@@ -1,3 +1,4 @@
+import { registerRootComponent } from 'expo';
 import { useFonts } from 'expo-font';
 import { useState } from 'react';
 import { TamaguiProvider, Theme, XStack, YStack } from 'tamagui';
@@ -7,7 +8,7 @@ import { Search } from './src/components/Search';
 import { User } from './src/components/User';
 import config from './tamagui.config';
 
-export default function App() {
+const App = () => {
   const [isDarkTheme, setIsDarkTheme] = useState(false);
   const [loaded] = useFonts({
     Inter: require('@tamagui/font-inter/otf/Inter-Medium.otf'),
@@ -31,4 +32,6 @@ export default function App() {
       </Theme>
     </TamaguiProvider>
   );
-}
+};
+
+export default registerRootComponent(App);
