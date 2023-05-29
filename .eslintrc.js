@@ -11,4 +11,10 @@ module.exports = {
   rules: {
     '@typescript-eslint/no-unused-vars': 'error',
   },
+  settings: {
+    'babel-plugin-root-import': {
+      rootPathPrefix: '~',
+      rootPathSuffix: 'src',
+    },
+  },
 };

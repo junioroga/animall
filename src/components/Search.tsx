@@ -1,4 +1,4 @@
-import { XStack, Input } from 'tamagui';
+import { Input, XStack } from 'tamagui';
 
 import { Button } from './Button';
 

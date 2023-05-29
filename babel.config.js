@@ -21,6 +21,18 @@ module.exports = function (api) {
         },
       ],
       'react-native-reanimated/plugin',
+      {
+        extensions: ['.ts', '.tsx'],
+        alias: {
+          '@assets': './src/assets',
+          '@components': './src/components',
+          '@hooks': './src/hooks',
+          '@navigators': './src/navigators',
+          '@pages': './src/pages',
+          '@router': './src/router',
+          '@utils': './src/utils',
+        },
+      },
     ],
   };
 };
