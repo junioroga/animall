@@ -1,5 +1,5 @@
-import HomeNavigator from '../navigators/Home';
-import LoginNavigator from '../navigators/Login';
+import HomeNavigator from '@navigators/Home';
+import LoginNavigator from '@navigators/Login';
 
 export const routesSigned = [
   {

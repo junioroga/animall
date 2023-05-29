@@ -1,5 +1,5 @@
-import { Sun, Moon } from '@tamagui/lucide-icons';
-import { XStack, Switch, SwitchProps } from 'tamagui';
+import { Moon, Sun } from '@tamagui/lucide-icons';
+import { Switch, SwitchProps, XStack } from 'tamagui';
 
 export const ChangeTheme = ({ ...rest }: SwitchProps) => {
   return (
