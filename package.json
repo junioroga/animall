@@ -1,6 +1,7 @@
 {
   "name": "base",
   "version": "1.0.0",
+  "private": true,
   "scripts": {
     "start": "expo start",
     "android": "expo start --android",
@@ -42,11 +43,17 @@
     "dotenv": "^16.0.3",
     "eslint": "^8.40.0",
     "eslint-config-universe": "^11.2.0",
+    "husky": "^8.0.3",
+    "lint-staged": "^13.2.2",
     "prettier": "^2.8.8",
     "typescript": "^4.9.4"
   },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "eslint --fix"
+    ]
+  },
   "eslintConfig": {
     "extends": "universe/native"
-  },
-  "private": true
+  }
 }
