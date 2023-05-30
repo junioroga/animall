@@ -5,7 +5,7 @@ import { TamaguiProvider, Theme } from 'tamagui';
 import Router from './router';
 import config from '../tamagui.config';
 
-export default function App() {
+export const App = () => {
   const [loaded] = useFonts({
     Inter: require('@tamagui/font-inter/otf/Inter-Medium.otf'),
     InterBold: require('@tamagui/font-inter/otf/Inter-Bold.otf'),
@@ -24,4 +24,4 @@ export default function App() {
       </Theme>
     </TamaguiProvider>
   );
-}
+};
