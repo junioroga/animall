@@ -9,7 +9,7 @@ module.exports = function (api) {
       [
         'transform-inline-environment-variables',
         {
-          include: 'TAMAGUI_TARGET',
+          include: ['TAMAGUI_TARGET'],
         },
       ],
       [
@@ -21,18 +21,21 @@ module.exports = function (api) {
         },
       ],
       'react-native-reanimated/plugin',
-      {
-        extensions: ['.ts', '.tsx'],
-        alias: {
-          '@assets': './src/assets',
-          '@components': './src/components',
-          '@hooks': './src/hooks',
-          '@navigators': './src/navigators',
-          '@pages': './src/pages',
-          '@router': './src/router',
-          '@utils': './src/utils',
+      [
+        'module-resolver',
+        {
+          extensions: ['.ts', '.tsx'],
+          alias: {
+            '@assets': './src/assets',
+            '@components': './src/components',
+            '@hooks': './src/hooks',
+            '@navigators': './src/navigators',
+            '@pages': './src/pages',
+            '@router': './src/router',
+            '@utils': './src/utils',
+          },
         },
-      },
+      ],
     ],
   };
 };
