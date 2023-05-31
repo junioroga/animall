@@ -5,7 +5,8 @@
   "scripts": {
     "start": "expo start",
     "android": "expo start --android",
-    "ios": "expo start --ios"
+    "ios": "expo start --ios",
+    "rebuild": "rm -rf node_modules yarn.lock && yarn"
   },
   "dependencies": {
     "@react-navigation/native": "^6.1.6",
