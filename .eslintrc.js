@@ -8,6 +8,7 @@ module.exports = {
       },
     },
   ],
+  ignorePatterns: ['webpack.config.js'],
   rules: {
     '@typescript-eslint/no-unused-vars': 'error',
   },

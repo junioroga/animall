@@ -1,3 +1,5 @@
+import 'resize-observer-polyfill';
+
 import { useFonts } from 'expo-font';
 import { StatusBar } from 'expo-status-bar';
 import { useColorScheme } from 'react-native';
