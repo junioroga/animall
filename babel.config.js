@@ -33,6 +33,7 @@ module.exports = function (api) {
             '@pages': './src/pages',
             '@router': './src/router',
             '@utils': './src/utils',
+            '@store': './src/store',
           },
         },
       ],
