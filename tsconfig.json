@@ -13,6 +13,8 @@
       "@pages/*": ["./src/pages/*"],
       "@router/*": ["./src/router/*"],
       "@utils/*": ["./src/utils/*"],
+      "@store/*": ["./src/store/*"],
+      "@store": ["./src/store"],
     }
   },
 }
