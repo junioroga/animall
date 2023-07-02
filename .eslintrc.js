@@ -8,9 +8,12 @@ module.exports = {
       },
     },
   ],
+  plugins: ['react-hooks'],
   ignorePatterns: ['webpack.config.js'],
   rules: {
     '@typescript-eslint/no-unused-vars': 'error',
+    'react-hooks/rules-of-hooks': 'error',
+    'react-hooks/exhaustive-deps': 'warn',
   },
   settings: {
     'babel-plugin-root-import': {
