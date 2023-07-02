@@ -1,5 +1,5 @@
-import { Search } from '@tamagui/lucide-icons';
-import { Button as TButton, styled } from 'tamagui';
+import { Search } from '@tamagui/lucide-icons'
+import { Button as TButton, styled } from 'tamagui'
 
 export const Button = styled(TButton, {
   w: '$5',
@@ -21,4 +21,4 @@ export const Button = styled(TButton, {
   defaultVariants: {
     variant: 'normal',
   },
-});
+})

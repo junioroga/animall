@@ -1,11 +1,13 @@
-import { observer } from '@legendapp/state/react';
-import { Store } from '@store';
-import { Moon, Sun } from '@tamagui/lucide-icons';
-import { Switch, SwitchProps, XStack } from 'tamagui';
+import { observer } from '@legendapp/state/react'
+import { Store } from '@store'
+import { Moon, Sun } from '@tamagui/lucide-icons'
+import { Switch, SwitchProps, XStack } from 'tamagui'
 
 export const ChangeTheme = observer(({ ...rest }: SwitchProps) => {
   const onCheckedChange = () =>
-    Store.settingsObs.settings.theme.set((theme) => (theme === 'light' ? 'dark' : 'light'));
+    Store.settingsObs.settings.theme.set((theme) =>
+      theme === 'light' ? 'dark' : 'light',
+    )
 
   return (
     <XStack space="$2" ai="center">
@@ -20,5 +22,5 @@ export const ChangeTheme = observer(({ ...rest }: SwitchProps) => {
       </Switch>
       <Moon size="$2" />
     </XStack>
-  );
-});
+  )
+})

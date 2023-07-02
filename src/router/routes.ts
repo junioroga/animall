@@ -1,5 +1,5 @@
-import HomeNavigator from '@navigators/Home';
-import LoginNavigator from '@navigators/Login';
+import HomeNavigator from '@navigators/Home'
+import LoginNavigator from '@navigators/Login'
 
 export const routesSigned = [
   {
@@ -9,7 +9,7 @@ export const routesSigned = [
       headerShown: false,
     },
   },
-];
+]
 
 export const routesNotSigned = [
   {
@@ -19,4 +19,4 @@ export const routesNotSigned = [
       headerShown: false,
     },
   },
-];
+]
