@@ -1,4 +1,4 @@
-import { Avatar, H4, Text, XStack, YStack } from 'tamagui';
+import { Avatar, H4, Text, XStack, YStack } from 'tamagui'
 
 export const User = () => {
   return (
@@ -15,5 +15,5 @@ export const User = () => {
         </H4>
       </YStack>
     </XStack>
-  );
-};
+  )
+}

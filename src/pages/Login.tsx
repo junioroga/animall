@@ -1,7 +1,7 @@
-import { ChangeTheme } from '@components/ChangeTheme';
-import { Search } from '@components/Search';
-import { User } from '@components/User';
-import { XStack, YStack } from 'tamagui';
+import { ChangeTheme } from '@components/ChangeTheme'
+import { Search } from '@components/Search'
+import { User } from '@components/User'
+import { XStack, YStack } from 'tamagui'
 
 const Login = () => {
   return (
@@ -12,7 +12,7 @@ const Login = () => {
       </XStack>
       <Search />
     </YStack>
-  );
-};
+  )
+}
 
-export default Login;
+export default Login

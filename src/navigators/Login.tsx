@@ -1,12 +1,12 @@
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { createNativeStackNavigator } from '@react-navigation/native-stack'
 
-import Login from '../pages/Login';
+import Login from '../pages/Login'
 
 type RootStackParamList = {
-  Login: undefined;
-};
+  Login: undefined
+}
 
-const Stack = createNativeStackNavigator<RootStackParamList>();
+const Stack = createNativeStackNavigator<RootStackParamList>()
 
 export default function LoginNavigator() {
   return (
@@ -17,5 +17,5 @@ export default function LoginNavigator() {
       }}>
       <Stack.Screen name="Login" component={Login} />
     </Stack.Navigator>
-  );
+  )
 }

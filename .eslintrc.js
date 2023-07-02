@@ -14,6 +14,18 @@ module.exports = {
     '@typescript-eslint/no-unused-vars': 'error',
     'react-hooks/rules-of-hooks': 'error',
     'react-hooks/exhaustive-deps': 'warn',
+    'prettier/prettier': [
+      'error',
+      {
+        printWidth: 80,
+        tabWidth: 2,
+        singleQuote: true,
+        trailingComma: 'all',
+        arrowParens: 'always',
+        semi: false,
+        endOfLine: 'auto',
+      },
+    ],
   },
   settings: {
     'babel-plugin-root-import': {
@@ -21,4 +33,4 @@ module.exports = {
       rootPathSuffix: 'src',
     },
   },
-};
+}

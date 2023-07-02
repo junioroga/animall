@@ -1,8 +1,8 @@
 /* eslint-disable no-undef */
-process.env.TAMAGUI_TARGET = 'native';
+process.env.TAMAGUI_TARGET = 'native'
 
 module.exports = function (api) {
-  api.cache(true);
+  api.cache(true)
   return {
     presets: ['babel-preset-expo'],
     plugins: [
@@ -34,9 +34,11 @@ module.exports = function (api) {
             '@router': './src/router',
             '@utils': './src/utils',
             '@store': './src/store',
+            '@config': './src/config',
+            '@services': './src/services',
           },
         },
       ],
     ],
-  };
-};
+  }
+}

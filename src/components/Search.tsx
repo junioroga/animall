@@ -1,6 +1,6 @@
-import { Input, XStack } from 'tamagui';
+import { Input, XStack } from 'tamagui'
 
-import { Button } from './Button';
+import { Button } from './Button'
 
 export const Search = () => {
   return (
@@ -17,5 +17,5 @@ export const Search = () => {
       />
       <Button variant="outline" />
     </XStack>
-  );
-};
+  )
+}

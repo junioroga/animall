@@ -1,14 +1,14 @@
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { XStack } from 'tamagui';
+import { NavigationContainer } from '@react-navigation/native'
+import { createNativeStackNavigator } from '@react-navigation/native-stack'
+import { useSafeAreaInsets } from 'react-native-safe-area-context'
+import { XStack } from 'tamagui'
 
-import { routesSigned } from './routes';
+import { routesSigned } from './routes'
 
-const Stack = createNativeStackNavigator();
+const Stack = createNativeStackNavigator()
 
 export default function Router() {
-  const insets = useSafeAreaInsets();
+  const insets = useSafeAreaInsets()
 
   return (
     <XStack flex={1} bg="$background" pt={insets.top}>
@@ -25,5 +25,5 @@ export default function Router() {
         </Stack.Navigator>
       </NavigationContainer>
     </XStack>
-  );
+  )
 }
