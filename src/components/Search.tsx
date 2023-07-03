@@ -1,21 +1,39 @@
-import { Input, XStack } from 'tamagui'
+import { Search as TSearch } from '@tamagui/lucide-icons'
+import { useCallback, useState } from 'react'
+import { Keyboard } from 'react-native'
+import { XStack } from 'tamagui'
 
 import { Button } from './Button'
+import { Input } from './Input'
 
-export const Search = () => {
+type Props = {
+  getAll: (init: boolean, refreshControl: boolean, search: string) => void
+}
+
+export const Search = ({ getAll }: Props) => {
+  const [search, setSearch] = useState('')
+  const canSearch = search.length > 3
+
+  const handleSearch = useCallback(() => {
+    getAll(true, false, search)
+  }, [getAll, search])
+
   return (
-    <XStack space="$2" mt="$8" ai="center">
+    <XStack space="$2" mt="$4" ai="center">
       <Input
-        f={1}
-        w="$5"
-        h="$5"
+        variant="full"
         placeholder="Buscar..."
-        focusStyle={{
-          bw: '$1',
-          boc: '$blue10',
-        }}
+        onChangeText={setSearch}
+        returnKeyType="search"
+        onSubmitEditing={canSearch ? handleSearch : Keyboard.dismiss}
+        autoCorrect={false}
       />
-      <Button variant="outline" />
+      <Button
+        variant="outline"
+        onPress={handleSearch}
+        disabled={!canSearch}
+        icon={<TSearch color="$blue10" />}
+      />
     </XStack>
   )
 }

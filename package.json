@@ -3,11 +3,12 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "start": "expo start",
-    "android": "expo start --android",
-    "ios": "expo start --ios",
+    "start": "yarn prepare && expo start",
+    "android": "yarn start --android",
+    "ios": "yarn start --ios",
     "web": "DISABLE_EXTRACTION=true TAMAGUI_TARGET=web NODE_ENV=development webpack serve",
-    "rebuild": "rm -rf node_modules yarn.lock && yarn"
+    "rebuild": "rm -rf node_modules yarn.lock && yarn",
+    "prepare": "npx husky install"
   },
   "dependencies": {
     "@expo/webpack-config": "^18.0.1",
@@ -24,6 +25,7 @@
     "@types/react-dom": "~18.0.10",
     "axios": "^1.4.0",
     "babel-plugin-transform-inline-environment-variables": "^0.4.4",
+    "date-fns": "^2.30.0",
     "expo": "~48.0.18",
     "expo-font": "^11.1.1",
     "expo-status-bar": "~1.4.4",
