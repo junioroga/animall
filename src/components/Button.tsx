@@ -1,11 +1,6 @@
-import { Search } from '@tamagui/lucide-icons'
-import { Button as TButton, styled } from 'tamagui'
+import { GetProps, Button as TButton, styled } from 'tamagui'
 
 export const Button = styled(TButton, {
-  w: '$5',
-  h: '$5',
-  icon: Search,
-
   variants: {
     variant: {
       normal: {
@@ -16,9 +11,36 @@ export const Button = styled(TButton, {
         boc: '$blue10',
       },
     },
+    buttonSize: {
+      small: {
+        h: '$5',
+        w: '$5',
+      },
+      medium: {
+        h: '$5',
+        w: '$10',
+      },
+      large: {
+        h: '$5',
+        f: 1,
+      },
+    },
+    disabled: {
+      true: {
+        opacity: 0.5,
+        pointerEvents: 'none',
+      },
+      false: {
+        opacity: 1,
+      },
+    },
   } as const,
 
   defaultVariants: {
     variant: 'normal',
+    buttonSize: 'small',
+    disabled: false,
   },
 })
+
+export type ButtonProps = GetProps<typeof Button>

@@ -8,14 +8,12 @@ type RootStackParamList = {
 
 const Stack = createNativeStackNavigator<RootStackParamList>()
 
-export default function HomeNavigator() {
-  return (
-    <Stack.Navigator
-      initialRouteName="Home"
-      screenOptions={{
-        headerShown: false,
-      }}>
-      <Stack.Screen name="Home" component={Home} />
-    </Stack.Navigator>
-  )
-}
+export const HomeNavigator = () => (
+  <Stack.Navigator
+    initialRouteName="Home"
+    screenOptions={{
+      headerShown: false,
+    }}>
+    <Stack.Screen name="Home" component={Home} />
+  </Stack.Navigator>
+)

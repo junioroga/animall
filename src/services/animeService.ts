@@ -2,11 +2,11 @@ import { api } from '@config/api'
 
 import { PaginationProps } from './types'
 
-const basePath = 'prizes'
+const basePath = 'anime'
 
 interface GetAllProps extends PaginationProps {
   q: string
-  fields: string[]
+  fields: string
 }
 
 interface ShowProps {
