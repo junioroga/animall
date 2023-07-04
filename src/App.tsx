@@ -6,6 +6,7 @@ import { useFonts } from 'expo-font'
 import { StatusBar } from 'expo-status-bar'
 import { SafeAreaProvider } from 'react-native-safe-area-context'
 import { TamaguiProvider, Theme } from 'tamagui'
+import './i18n'
 
 import Router from './router'
 import config from '../tamagui.config'
