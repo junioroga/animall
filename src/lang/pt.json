@@ -2,6 +2,10 @@
   "translation": {
     "home": {
       "itsFunTime": "É Hora Da Diversão!"
+    },
+    "language": {
+      "portuguese": "Português",
+      "english": "Inglês"
     }
   }
 }

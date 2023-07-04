@@ -2,6 +2,10 @@
   "translation": {
     "home": {
       "itsFunTime": "It's Fun Time!"
+    },
+    "language": {
+      "portuguese": "Portuguese",
+      "english": "English"
     }
   }
 }

@@ -7,11 +7,11 @@ import {
   withStaticProperties,
 } from 'tamagui'
 
-export const ButtonContext = createStyledContext({
+const ButtonContext = createStyledContext({
   variant: undefined,
 })
 
-export const ButtonFrame = styled(TButton, {
+const ButtonFrame = styled(TButton, {
   context: ButtonContext,
   name: 'Button',
 
@@ -23,6 +23,10 @@ export const ButtonFrame = styled(TButton, {
       outline: {
         bw: '$1',
         boc: '$blue10',
+      },
+      ghost: {
+        bw: '$1',
+        boc: 'transparent',
       },
     },
     buttonSize: {

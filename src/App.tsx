@@ -12,6 +12,7 @@ import Router from './router'
 import config from '../tamagui.config'
 
 export const App = observer(() => {
+  const theme = Store.settings.theme.get()
   const [loaded] = useFonts({
     Inter: require('@tamagui/font-inter/otf/Inter-Medium.otf'),
     InterBold: require('@tamagui/font-inter/otf/Inter-Bold.otf'),
@@ -23,12 +24,8 @@ export const App = observer(() => {
 
   return (
     <TamaguiProvider config={config}>
-      <StatusBar
-        style={
-          Store.settingsObs.settings.theme.get() === 'light' ? 'dark' : 'light'
-        }
-      />
-      <Theme name={Store.settingsObs.settings.theme.get()}>
+      <StatusBar style={theme === 'light' ? 'dark' : 'light'} />
+      <Theme name={theme}>
         <SafeAreaProvider>
           <Router />
         </SafeAreaProvider>
