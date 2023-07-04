@@ -1,25 +1,32 @@
 import { GetProps, Switch as TSwitch, styled } from 'tamagui'
 
-const StyledText = styled(TSwitch)
+export type SwitchProps = GetProps<typeof TSwitch> & {
+  iconChecked?: JSX.Element
+  iconUnchecked?: JSX.Element
+}
 
-const HigherOrderSwitch = StyledText.styleable((props, ref) => (
-  <TSwitch ref={ref} {...props}>
-    <TSwitch.Thumb animation="bouncy" />
-  </TSwitch>
-))
+const StyledSwitch = styled(TSwitch)
 
-export const Switch = styled(HigherOrderSwitch, {
+const SwitchFrame = StyledSwitch.styleable((props: SwitchProps, ref) => {
+  const icons = props.iconChecked && props.iconUnchecked
+
+  return (
+    <TSwitch ref={ref} {...props}>
+      <TSwitch.Thumb animation="bouncy" ai="center" jc="center">
+        {icons && (props.checked ? props.iconChecked : props.iconUnchecked)}
+      </TSwitch.Thumb>
+    </TSwitch>
+  )
+})
+
+export const Switch = styled(SwitchFrame, {
   name: 'Switch',
+  bg: '$gray7',
+  bw: '$0.5',
+  boc: '$gray10',
+  ai: 'center',
 
   variants: {
-    checked: {
-      true: {
-        bg: '$green8Light',
-      },
-      false: {
-        bg: '$gray8Light',
-      },
-    },
     size: {
       '...size': (size) => {
         return {
@@ -30,9 +37,6 @@ export const Switch = styled(HigherOrderSwitch, {
   } as const,
 
   defaultVariants: {
-    checked: false,
-    size: '$2',
+    size: '$3.5',
   },
 })
-
-export type SwitchProps = GetProps<typeof Switch>
