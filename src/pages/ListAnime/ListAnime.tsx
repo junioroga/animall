@@ -1,5 +1,4 @@
-import { AnimeList } from '@components/AnimeList'
-import { Search } from '@components/Search'
+import { AnimeList, Search } from '@components'
 import { useAnimeList } from '@hooks/useAnimeList'
 import { RootStackParamList } from '@navigators/Home'
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
@@ -8,7 +7,7 @@ import { YStack, Stack } from 'tamagui'
 
 type Props = NativeStackScreenProps<RootStackParamList, 'ListAnime'>
 
-const ListAnime = ({ route }: Props) => {
+export const ListAnime = ({ route }: Props) => {
   const { getAll, loading, refreshingManual, refreshing, pagination, data } =
     useAnimeList()
 
@@ -41,5 +40,3 @@ const ListAnime = ({ route }: Props) => {
     </YStack>
   )
 }
-
-export default ListAnime
