@@ -1,7 +1,7 @@
 import { observer } from '@legendapp/state/react'
 import { Store } from '@store'
 import { Moon, Sun } from '@tamagui/lucide-icons'
-import { XStack, SwitchThumb } from 'tamagui'
+import { XStack } from 'tamagui'
 
 import { Switch, SwitchProps } from './Switch'
 
@@ -15,11 +15,13 @@ export const ChangeTheme = observer(({ ...rest }: SwitchProps) => {
 
   return (
     <XStack space="$2" ai="center">
-      <Sun size="$2" />
-      <Switch checked={isChecked} onCheckedChange={onCheckedChange} {...rest}>
-        <SwitchThumb />
-      </Switch>
-      <Moon size="$2" />
+      <Switch
+        checked={isChecked}
+        onCheckedChange={onCheckedChange}
+        iconChecked={<Moon size="$1" color="$blue9" />}
+        iconUnchecked={<Sun size="$1" color="$yellow8" />}
+        {...rest}
+      />
     </XStack>
   )
 })

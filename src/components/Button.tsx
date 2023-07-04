@@ -1,6 +1,20 @@
-import { GetProps, Button as TButton, styled } from 'tamagui'
+import { cloneElement, useContext } from 'react'
+import {
+  GetProps,
+  Button as TButton,
+  createStyledContext,
+  styled,
+  withStaticProperties,
+} from 'tamagui'
 
-export const Button = styled(TButton, {
+export const ButtonContext = createStyledContext({
+  variant: undefined,
+})
+
+export const ButtonFrame = styled(TButton, {
+  context: ButtonContext,
+  name: 'Button',
+
   variants: {
     variant: {
       normal: {
@@ -18,7 +32,7 @@ export const Button = styled(TButton, {
       },
       medium: {
         h: '$5',
-        w: '$10',
+        f: 0.5,
       },
       large: {
         h: '$5',
@@ -30,9 +44,6 @@ export const Button = styled(TButton, {
         opacity: 0.5,
         pointerEvents: 'none',
       },
-      false: {
-        opacity: 1,
-      },
     },
   } as const,
 
@@ -41,6 +52,20 @@ export const Button = styled(TButton, {
     buttonSize: 'small',
     disabled: false,
   },
+})
+
+const ButtonIcon = (props: { children: any }) => {
+  const { variant } = useContext(ButtonContext)
+
+  return cloneElement(props.children, {
+    size: '$1',
+    color: variant === 'normal' ? '$gray1' : '$blue10',
+  })
+}
+
+export const Button = withStaticProperties(ButtonFrame, {
+  Icon: ButtonIcon,
+  Props: ButtonContext.Provider,
 })
 
 export type ButtonProps = GetProps<typeof Button>

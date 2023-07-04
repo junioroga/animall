@@ -7,8 +7,12 @@ import { Spinner, XStack, YStack, Text, Separator, Image, Card } from 'tamagui'
 
 const preparedData = (data: AnimeData[]) =>
   data.map((item) => {
-    const startAt = format(new Date(item.node.start_date), 'dd/MM/yyyy')
-    const endAt = format(new Date(item.node.end_date), 'dd/MM/yyyy')
+    const startAt = item.node.start_date
+      ? format(new Date(item.node.start_date), 'dd/MM/yyyy')
+      : ''
+    const endAt = item.node.end_date
+      ? format(new Date(item.node.end_date), 'dd/MM/yyyy')
+      : 'Produzindo'
 
     return {
       node: {
