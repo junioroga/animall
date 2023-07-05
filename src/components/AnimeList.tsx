@@ -1,8 +1,12 @@
+import { AnimeData } from '@hooks/types'
 import { AnimeListHookProps } from '@hooks/useAnimeList'
-import { AnimeData } from '@hooks/useAnimeList/types'
+import { tokens } from '@tamagui/themes'
 import { format } from 'date-fns'
+import { t } from 'i18next'
 import { useCallback, useMemo } from 'react'
+import { useTranslation } from 'react-i18next'
 import { FlatList, ListRenderItem } from 'react-native'
+import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import { Spinner, XStack, YStack, Text, Separator, Image, Card } from 'tamagui'
 
 const preparedData = (data: AnimeData[]) =>
@@ -12,7 +16,7 @@ const preparedData = (data: AnimeData[]) =>
       : ''
     const endAt = item.node.end_date
       ? format(new Date(item.node.end_date), 'dd/MM/yyyy')
-      : 'Produzindo'
+      : t('anime.producing')
 
     return {
       node: {
@@ -33,18 +37,21 @@ export const AnimeList = ({
   pagination,
   data,
 }: Props) => {
-  const renderItem: ListRenderItem<AnimeData> = ({ item }) => {
-    return (
-      <Card elevation="$1">
+  const { t } = useTranslation()
+  const insets = useSafeAreaInsets()
+
+  const renderItem: ListRenderItem<AnimeData> = ({ item }) => (
+    <Card elevation="$4" elevate animation="bouncy">
+      <Card overflow="hidden">
         <XStack space="$2">
           <Image
             source={{
-              width: 100,
-              height: 100,
+              width: tokens.size[10].val,
+              height: tokens.size[10].val,
               uri: item.node.main_picture.medium,
             }}
           />
-          <YStack>
+          <YStack jc="center">
             <Text>{item.node.title}</Text>
             <Text>{item.node.start_date}</Text>
             <Text>{item.node.end_date}</Text>
@@ -53,8 +60,8 @@ export const AnimeList = ({
           </YStack>
         </XStack>
       </Card>
-    )
-  }
+    </Card>
+  )
 
   const renderSeparator = () => <Separator marginVertical="$2" />
 
@@ -64,7 +71,7 @@ export const AnimeList = ({
         {loading ? (
           <Spinner alignSelf="center" />
         ) : (
-          <Text>Não há animes disponíveis</Text>
+          <Text>{t('anime.notFound')}</Text>
         )}
       </YStack>
     )
@@ -102,7 +109,12 @@ export const AnimeList = ({
       onEndReached={() => getAll()}
       onEndReachedThreshold={0.5}
       initialNumToRender={pagination.limit}
-      contentContainerStyle={{ flexGrow: 1, paddingHorizontal: 20 }}
+      contentContainerStyle={{
+        flexGrow: 1,
+        paddingHorizontal: tokens.space[4].val,
+        paddingBottom: insets.bottom,
+      }}
+      showsVerticalScrollIndicator={false}
     />
   )
 }

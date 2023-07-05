@@ -6,6 +6,11 @@ export interface AnimeData {
       medium: string
       large: string
     }
+    alternative_titles: {
+      synonyms: string[]
+      en: string
+      ja: string
+    }
     start_date: string
     end_date: string
     num_episodes: number
