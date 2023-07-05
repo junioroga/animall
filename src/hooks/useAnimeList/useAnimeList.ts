@@ -1,7 +1,7 @@
+import { AnimeData } from '@hooks/types'
 import { animeService } from '@services'
+import { Fields } from '@services/types'
 import { useState } from 'react'
-
-import { AnimeData } from './types'
 
 export type AnimeListHookProps = {
   getAll: (init?: boolean, refreshControl?: boolean, search?: string) => void
@@ -49,7 +49,7 @@ export const useAnimeList = (): AnimeListHookProps => {
       limit: pagination.limit,
       offset: init ? 0 : pagination.offset + 1,
       q: search,
-      fields: 'id,title,main_picture,start_date,end_date,num_episodes,mean',
+      fields: `${Fields.ID},${Fields.TITLE},${Fields.MAIN_PICTURE},${Fields.START_DATE},${Fields.END_DATE},${Fields.NUM_EPISODES},${Fields.MEAN}`,
     }
 
     animeService

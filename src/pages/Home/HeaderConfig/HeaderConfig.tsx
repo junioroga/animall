@@ -4,7 +4,7 @@ import { Store } from '@store'
 import { Languages, Moon, Sun } from '@tamagui/lucide-icons'
 import { useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Popover, XStack } from 'tamagui'
+import { Stack, Popover, XStack } from 'tamagui'
 
 export const HeaderConfig = observer(({ ...rest }: SwitchProps) => {
   const { t, i18n } = useTranslation()
@@ -34,6 +34,7 @@ export const HeaderConfig = observer(({ ...rest }: SwitchProps) => {
         <Popover.Content
           borderWidth={1}
           borderColor="$gray10"
+          f={1}
           enterStyle={{ x: 0, y: -10, opacity: 0 }}
           exitStyle={{ x: 0, y: -10, opacity: 0 }}
           x={0}
@@ -50,22 +51,26 @@ export const HeaderConfig = observer(({ ...rest }: SwitchProps) => {
           elevate>
           <Popover.Arrow borderWidth={1} borderColor="$gray10" />
           <XStack space="$3">
-            <Popover.Close>
-              <Button
-                buttonSize="large"
-                variant={language === 'pt' ? 'outline' : 'ghost'}
-                onPress={() => changeLanguage('pt')}>
-                {t('language.portuguese')}
-              </Button>
-            </Popover.Close>
-            <Popover.Close>
-              <Button
-                buttonSize="large"
-                variant={language === 'en' ? 'outline' : 'ghost'}
-                onPress={() => changeLanguage('en')}>
-                {t('language.english')}
-              </Button>
-            </Popover.Close>
+            <Stack>
+              <Popover.Close asChild>
+                <Button
+                  buttonSize="large"
+                  variant={language === 'pt' ? 'outline' : 'ghost'}
+                  onPress={() => changeLanguage('pt')}>
+                  {t('language.portuguese')}
+                </Button>
+              </Popover.Close>
+            </Stack>
+            <Stack>
+              <Popover.Close asChild>
+                <Button
+                  buttonSize="large"
+                  variant={language === 'en' ? 'outline' : 'ghost'}
+                  onPress={() => changeLanguage('en')}>
+                  {t('language.english')}
+                </Button>
+              </Popover.Close>
+            </Stack>
           </XStack>
         </Popover.Content>
       </Popover>

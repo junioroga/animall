@@ -8,12 +8,13 @@ module.exports = {
       },
     },
   ],
-  plugins: ['react-hooks'],
+  plugins: ['react-hooks', 'i18next'],
   ignorePatterns: ['webpack.config.js'],
   rules: {
     '@typescript-eslint/no-unused-vars': 'error',
     'react-hooks/rules-of-hooks': 'error',
     'react-hooks/exhaustive-deps': 'error',
+    'i18next/no-literal-string': 2,
     'no-console': 'error',
     'prettier/prettier': [
       'error',

@@ -1,11 +1,19 @@
 {
   "translation": {
     "home": {
-      "itsFunTime": "It's Fun Time!"
+      "itsFunTime": "It's Fun Time!",
+      "search": "Search...",
+      "topWatched": "📺  Top Watched!",
+      "mostPopular": "⭐️  Most Popular!",
+      "upcoming": "⏳  Tick Tock ..."
     },
     "language": {
       "portuguese": "Portuguese",
       "english": "English"
+    },
+    "anime": {
+      "producing": "Producing",
+      "notFound": "No anime available"
     }
   }
 }

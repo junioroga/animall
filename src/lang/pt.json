@@ -1,11 +1,19 @@
 {
   "translation": {
     "home": {
-      "itsFunTime": "É Hora Da Diversão!"
+      "itsFunTime": "É Hora Da Diversão!",
+      "search": "Buscar...",
+      "topWatched": "📺  Mais assistidos!",
+      "mostPopular": "⭐️  Mais populares!",
+      "upcoming": "⏳  Tic Toc ..."
     },
     "language": {
       "portuguese": "Português",
       "english": "Inglês"
+    },
+    "anime": {
+      "producing": "Produzindo",
+      "notFound": "Não há animes disponíveis"
     }
   }
 }

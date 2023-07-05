@@ -1,8 +1,10 @@
+import { useObservable } from '@legendapp/state/react'
 import { RootStackParamList } from '@navigators/Home'
 import { useNavigation } from '@react-navigation/native'
 import type { NativeStackNavigationProp } from '@react-navigation/native-stack'
 import { Search as TSearch } from '@tamagui/lucide-icons'
-import { useCallback, useState } from 'react'
+import { useCallback } from 'react'
+import { useTranslation } from 'react-i18next'
 import { Keyboard } from 'react-native'
 import { XStack } from 'tamagui'
 
@@ -18,15 +20,16 @@ type AnimeListScreenNavigationProp =
   NativeStackNavigationProp<RootStackParamList>
 
 export const Search = ({ getAll, userSearch }: Props) => {
-  const [search, setSearch] = useState(userSearch ?? '')
-  const canSearch = search.length >= 3
+  const search = useObservable<string>(userSearch ?? '')
   const navigation = useNavigation<AnimeListScreenNavigationProp>()
+  const { t } = useTranslation()
+  const canSearch = search.get().length >= 3
 
   const handleSearch = useCallback(() => {
     if (userSearch && getAll) {
-      getAll(true, false, search)
+      getAll(true, false, search.get())
     } else {
-      navigation.navigate('ListAnime', { userSearch: search })
+      navigation.navigate('ListAnime', { userSearch: search.get() })
     }
   }, [getAll, search, userSearch, navigation])
 
@@ -34,9 +37,9 @@ export const Search = ({ getAll, userSearch }: Props) => {
     <XStack space="$2" mt="$4" ai="center">
       <Input
         variant="full"
-        value={search}
-        placeholder="Buscar..."
-        onChangeText={setSearch}
+        value={search.get()}
+        placeholder={t('home.search')}
+        onChangeText={search.set}
         returnKeyType="search"
         onSubmitEditing={canSearch ? handleSearch : Keyboard.dismiss}
         autoCorrect={false}
