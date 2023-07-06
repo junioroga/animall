@@ -1,4 +1,3 @@
-import { Search } from '@components'
 import { useAnimeList } from '@hooks/useAnimeList'
 import { observer } from '@legendapp/state/react'
 import { RootStackParamList } from '@navigators/Home'
@@ -7,6 +6,7 @@ import { useEffect } from 'react'
 import { YStack, Stack } from 'tamagui'
 
 import { AnimeList } from './AnimeList'
+import { Search } from './Search'
 
 type Props = NativeStackScreenProps<RootStackParamList, 'ListAnime'>
 
@@ -26,7 +26,7 @@ export const ListAnime = observer(({ route }: Props) => {
   return (
     <YStack f={1} bg="$background">
       <Stack p="$4">
-        <Search getAll={getAll} userSearch={userSearch} />
+        <Search handleSearch={getAll} search={userSearch} />
       </Stack>
       <AnimeList
         getAll={getAll}

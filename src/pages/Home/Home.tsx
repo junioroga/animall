@@ -1,4 +1,3 @@
-import { Search } from '@components'
 import { AnimeRanking } from '@pages/Home/AnimeRanking'
 import { RankingType } from '@services/types'
 import { useTranslation } from 'react-i18next'
@@ -6,6 +5,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import { XStack, YStack, H3, Stack, H4, ScrollView } from 'tamagui'
 
 import { HeaderConfig } from './HeaderConfig'
+import { Search } from './Search'
 
 export const Home = () => {
   const { t } = useTranslation()

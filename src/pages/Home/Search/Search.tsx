@@ -1,39 +1,29 @@
-import { GetAnimeListProps } from '@hooks/useAnimeList'
 import { observer, useObservable } from '@legendapp/state/react'
 import { RootStackParamList } from '@navigators/Home'
 import { useNavigation } from '@react-navigation/native'
-import type { NativeStackNavigationProp } from '@react-navigation/native-stack'
+import { NativeStackNavigationProp } from '@react-navigation/native-stack'
 import { Search as TSearch } from '@tamagui/lucide-icons'
 import { useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Keyboard } from 'react-native'
 import { XStack } from 'tamagui'
 
-import { Button } from './Button'
-import { Input } from './Input'
-
-type Props = {
-  getAll?: ({ init, refreshControl, search }: GetAnimeListProps) => void
-  userSearch?: string
-}
+import { Button } from '../../../components/Button'
+import { Input } from '../../../components/Input'
 
 type AnimeListScreenNavigationProp =
   NativeStackNavigationProp<RootStackParamList>
 
-export const Search = observer(({ getAll, userSearch }: Props) => {
-  const searchObs = useObservable<string>(userSearch ?? '')
+export const Search = observer(() => {
+  const searchObs = useObservable('')
   const [search, setSearch] = [searchObs.get(), searchObs.set]
-  const navigation = useNavigation<AnimeListScreenNavigationProp>()
   const { t } = useTranslation()
   const canSearch = search.length >= 3
+  const navigation = useNavigation<AnimeListScreenNavigationProp>()
 
   const handleSearch = useCallback(() => {
-    if (userSearch && getAll) {
-      getAll({ init: true, search })
-    } else {
-      navigation.navigate('ListAnime', { userSearch: search })
-    }
-  }, [getAll, search, userSearch, navigation])
+    navigation.navigate('ListAnime', { userSearch: search })
+  }, [search, navigation])
 
   return (
     <XStack space="$2" mt="$4" ai="center">
