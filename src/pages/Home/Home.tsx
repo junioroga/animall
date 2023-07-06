@@ -1,5 +1,5 @@
 import { Search } from '@components'
-import { AnimeRanking } from '@components/AnimeRanking'
+import { AnimeRanking } from '@pages/Home/AnimeRanking'
 import { RankingType } from '@services/types'
 import { useTranslation } from 'react-i18next'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
@@ -10,6 +10,7 @@ import { HeaderConfig } from './HeaderConfig'
 export const Home = () => {
   const { t } = useTranslation()
   const insets = useSafeAreaInsets()
+
   return (
     <ScrollView
       fg={1}

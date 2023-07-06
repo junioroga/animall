@@ -10,6 +10,7 @@ import './i18n'
 
 import Router from './router'
 import config from '../tamagui.config'
+require('@config/reactotron')
 
 export const App = observer(() => {
   const theme = Store.settings.theme.get()

@@ -1,5 +1,5 @@
 export * from './Button'
-export * from './AnimeList'
+export * from './Image'
 export * from './Input'
 export * from './Search'
 export * from './Switch'

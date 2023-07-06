@@ -9,7 +9,7 @@ type GetRankingProps = Omit<FetchProps, 'variables' | 'service'> & {
 }
 
 export type AnimeRankingHookProps = {
-  getRanking: ({ init, refreshControl, rankingType }: GetRankingProps) => void
+  getRanking: ({ init, rankingType }: GetRankingProps) => void
   loading: boolean
   refreshingManual: boolean
   refreshing: boolean

@@ -3,6 +3,8 @@ import { GetProps, Input as TInput, styled } from 'tamagui'
 export const Input = styled(TInput, {
   bw: '$0.5',
   boc: '$gray10',
+  br: '$3',
+  pl: '$3',
   placeholderTextColor: '$gray10',
   focusStyle: {
     bw: '$1',
