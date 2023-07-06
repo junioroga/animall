@@ -12,7 +12,11 @@ const SwitchFrame = StyledSwitch.styleable((props: SwitchProps, ref) => {
 
   return (
     <TSwitch ref={ref} {...props}>
-      <TSwitch.Thumb animation="bouncy" ai="center" jc="center">
+      <TSwitch.Thumb
+        animation="bouncy"
+        ai="center"
+        jc="center"
+        bg="$background">
         {icons && (props.checked ? props.iconChecked : props.iconUnchecked)}
       </TSwitch.Thumb>
     </TSwitch>
@@ -21,8 +25,8 @@ const SwitchFrame = StyledSwitch.styleable((props: SwitchProps, ref) => {
 
 export const Switch = styled(SwitchFrame, {
   name: 'Switch',
-  bg: '$gray7',
-  bw: '$0.5',
+  bg: '$gray5',
+  bw: 0.3,
   boc: '$gray10',
   ai: 'center',
 

@@ -1,3 +1,4 @@
+import { Image } from '@components'
 import { AnimeData } from '@hooks/types'
 import { useAnimeRanking } from '@hooks/useAnimeRanking'
 import { observer } from '@legendapp/state/react'
@@ -11,7 +12,6 @@ import {
   YStack,
   Text,
   Separator,
-  Image,
   Card,
   Stack,
   useTheme,
@@ -32,21 +32,26 @@ export const AnimeRanking = observer(({ rankingType }: Props) => {
   }, [])
 
   const renderItem: ListRenderItem<AnimeData> = ({ item }) => (
-    <Card w="$11">
+    <Card h="$15" w="$11" elevate elevation="$0.75">
       <Card overflow="hidden">
-        <YStack space="$1.5">
+        <YStack ai="center">
           <Stack>
             <Image
-              source={{
+              style={{
+                height: tokens.size[13].val,
                 width: tokens.size[11].val,
-                height: tokens.size[15].val,
+              }}
+              source={{
                 uri: item.node.main_picture.medium,
               }}
+              contentFit="fill"
             />
           </Stack>
-          <Text numberOfLines={2}>
-            {item.node.alternative_titles.en || item.node.title}
-          </Text>
+          <Stack h="$4" jc="center" paddingHorizontal="$1">
+            <Text fontSize="$2" numberOfLines={3} textAlign="center">
+              {item.node.alternative_titles.en || item.node.title}
+            </Text>
+          </Stack>
         </YStack>
       </Card>
     </Card>
@@ -84,7 +89,7 @@ export const AnimeRanking = observer(({ rankingType }: Props) => {
       contentContainerStyle={{
         flexGrow: 1,
         backgroundColor: theme.background.get(),
-        paddingVertical: tokens.space[2].val,
+        paddingVertical: tokens.space[3].val,
         paddingHorizontal: tokens.space[4].val,
       }}
       showsHorizontalScrollIndicator={false}

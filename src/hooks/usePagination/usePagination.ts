@@ -1,8 +1,7 @@
 import { useObservable } from '@legendapp/state/react'
 import { AxiosResponse } from 'axios'
 
-type VariablesProps = Record<string, string | number>
-type DataProps = Record<string, string | number>
+type VariablesProps = Record<string, unknown>
 
 export type FetchProps = {
   init?: boolean
@@ -22,7 +21,7 @@ export type UsePaginationProps = {
     limit: number
     finished: boolean
   }
-  data: DataProps[]
+  data: AxiosResponse[]
 }
 
 interface ResponseProps extends AxiosResponse {
@@ -47,17 +46,17 @@ export const usePagination = (): UsePaginationProps => {
   })
   const dataObs = useObservable([])
 
-  const [setLoading, loading] = [loadingObs.set, loadingObs.get()]
-  const [setRefreshingManual, refreshingManual] = [
-    refreshingManualObs.set,
+  const [loading, setLoading] = [loadingObs.get(), loadingObs.set]
+  const [refreshingManual, setRefreshingManual] = [
     refreshingManualObs.get(),
+    refreshingManualObs.set,
   ]
-  const [setRefreshing, refreshing] = [refreshingObs.set, refreshingObs.get()]
-  const [setCanPaginate, canPaginate] = [
-    canPaginateObs.set,
+  const [refreshing, setRefreshing] = [refreshingObs.get(), refreshingObs.set]
+  const [canPaginate, setCanPaginate] = [
     canPaginateObs.get(),
+    canPaginateObs.set,
   ]
-  const [setPagination, pagination] = [paginationObs.set, paginationObs.get()]
+  const [pagination, setPagination] = [paginationObs.get(), paginationObs.set]
   const [data, setData] = [dataObs.get(), dataObs.set]
 
   const fetch = ({
@@ -82,7 +81,7 @@ export const usePagination = (): UsePaginationProps => {
     }
 
     const variablesLocal = {
-      offset: init ? 0 : pagination.offset + 1,
+      offset: init ? 0 : pagination.offset + pagination.limit,
       limit: pagination.limit,
       ...variables,
     }
@@ -94,7 +93,7 @@ export const usePagination = (): UsePaginationProps => {
         setCanPaginate(!!response.data.paging.next)
         setPagination({
           ...pagination,
-          offset: Number(variables.offset),
+          offset: Number(variablesLocal.offset),
           finished: !response.data.paging.next,
         })
         setData(init ? response.data.data : [...data, ...response.data.data])

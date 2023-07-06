@@ -1,4 +1,5 @@
-import { useObservable } from '@legendapp/state/react'
+import { GetAnimeListProps } from '@hooks/useAnimeList'
+import { observer, useObservable } from '@legendapp/state/react'
 import { RootStackParamList } from '@navigators/Home'
 import { useNavigation } from '@react-navigation/native'
 import type { NativeStackNavigationProp } from '@react-navigation/native-stack'
@@ -12,24 +13,25 @@ import { Button } from './Button'
 import { Input } from './Input'
 
 type Props = {
-  getAll?: (init: boolean, refreshControl: boolean, search: string) => void
+  getAll?: ({ init, refreshControl, search }: GetAnimeListProps) => void
   userSearch?: string
 }
 
 type AnimeListScreenNavigationProp =
   NativeStackNavigationProp<RootStackParamList>
 
-export const Search = ({ getAll, userSearch }: Props) => {
-  const search = useObservable<string>(userSearch ?? '')
+export const Search = observer(({ getAll, userSearch }: Props) => {
+  const searchObs = useObservable<string>(userSearch ?? '')
+  const [search, setSearch] = [searchObs.get(), searchObs.set]
   const navigation = useNavigation<AnimeListScreenNavigationProp>()
   const { t } = useTranslation()
-  const canSearch = search.get().length >= 3
+  const canSearch = search.length >= 3
 
   const handleSearch = useCallback(() => {
     if (userSearch && getAll) {
-      getAll(true, false, search.get())
+      getAll({ init: true, search })
     } else {
-      navigation.navigate('ListAnime', { userSearch: search.get() })
+      navigation.navigate('ListAnime', { userSearch: search })
     }
   }, [getAll, search, userSearch, navigation])
 
@@ -37,9 +39,9 @@ export const Search = ({ getAll, userSearch }: Props) => {
     <XStack space="$2" mt="$4" ai="center">
       <Input
         variant="full"
-        value={search.get()}
+        value={search}
         placeholder={t('home.search')}
-        onChangeText={search.set}
+        onChangeText={setSearch}
         returnKeyType="search"
         onSubmitEditing={canSearch ? handleSearch : Keyboard.dismiss}
         autoCorrect={false}
@@ -51,4 +53,4 @@ export const Search = ({ getAll, userSearch }: Props) => {
       </Button>
     </XStack>
   )
-}
+})

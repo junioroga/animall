@@ -1,28 +1,27 @@
-import { AnimeList, Search } from '@components'
+import { Search } from '@components'
 import { useAnimeList } from '@hooks/useAnimeList'
+import { observer } from '@legendapp/state/react'
 import { RootStackParamList } from '@navigators/Home'
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
-import { useCallback, useEffect } from 'react'
+import { useEffect } from 'react'
 import { YStack, Stack } from 'tamagui'
+
+import { AnimeList } from './AnimeList'
 
 type Props = NativeStackScreenProps<RootStackParamList, 'ListAnime'>
 
-export const ListAnime = ({ route }: Props) => {
+export const ListAnime = observer(({ route }: Props) => {
   const { getAll, loading, refreshingManual, refreshing, pagination, data } =
     useAnimeList()
 
   const userSearch = route.params.userSearch || ''
 
-  const handleSearch = useCallback(() => {
+  useEffect(() => {
     if (userSearch) {
-      getAll(true, false, userSearch)
+      getAll({ init: true, search: userSearch })
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userSearch])
-
-  useEffect(() => {
-    handleSearch()
-  }, [handleSearch])
 
   return (
     <YStack f={1} bg="$background">
@@ -31,6 +30,7 @@ export const ListAnime = ({ route }: Props) => {
       </Stack>
       <AnimeList
         getAll={getAll}
+        userSearch={userSearch}
         loading={loading}
         refreshingManual={refreshingManual}
         refreshing={refreshing}
@@ -39,4 +39,4 @@ export const ListAnime = ({ route }: Props) => {
       />
     </YStack>
   )
-}
+})
