@@ -1,61 +1,39 @@
-import { Image } from '@components'
+import { Text } from '@components'
 import { AnimeData } from '@hooks/types'
 import { useAnimeRanking } from '@hooks/useAnimeRanking'
 import { observer } from '@legendapp/state/react'
 import { RankingType } from '@services/types'
 import { tokens } from '@tamagui/themes'
-import { useCallback, useEffect, useMemo } from 'react'
+import { useCallback, useEffect, useMemo, useRef } from 'react'
 import { useTranslation } from 'react-i18next'
 import { FlatList, ListRenderItem } from 'react-native'
-import {
-  Spinner,
-  YStack,
-  Text,
-  Separator,
-  Card,
-  Stack,
-  useTheme,
-} from 'tamagui'
+import { Spinner, YStack, Separator, useTheme } from 'tamagui'
+
+import { HorizontalCard } from './HorizontalCard'
+import { VerticalCard } from './VerticalCard'
 
 type Props = {
   rankingType: RankingType
+  cardType: 'horizontal' | 'vertical'
 }
 
-export const AnimeRanking = observer(({ rankingType }: Props) => {
+export const AnimeRanking = observer(({ rankingType, cardType }: Props) => {
   const { getRanking, loading, data } = useAnimeRanking()
   const { t } = useTranslation()
   const theme = useTheme()
+  const refCard = useRef({ height: 0, width: 0 })
 
   useEffect(() => {
     getRanking({ init: true, rankingType })
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  const renderItem: ListRenderItem<AnimeData> = ({ item }) => (
-    <Card h="$15" w="$11" elevate elevation="$0.75">
-      <Card overflow="hidden">
-        <YStack ai="center">
-          <Stack>
-            <Image
-              style={{
-                height: tokens.size[13].val,
-                width: tokens.size[11].val,
-              }}
-              source={{
-                uri: item.node.main_picture.medium,
-              }}
-              contentFit="fill"
-            />
-          </Stack>
-          <Stack h="$4" jc="center" paddingHorizontal="$1">
-            <Text fontSize="$2" numberOfLines={3} textAlign="center">
-              {item.node.alternative_titles.en || item.node.title}
-            </Text>
-          </Stack>
-        </YStack>
-      </Card>
-    </Card>
-  )
+  const renderItem: ListRenderItem<AnimeData> = ({ item }) =>
+    cardType === 'horizontal' ? (
+      <HorizontalCard item={item} refCard={refCard} />
+    ) : (
+      <VerticalCard item={item} refCard={refCard} />
+    )
 
   const renderSeparator = () => <Separator marginHorizontal="$1.5" />
 
@@ -72,7 +50,7 @@ export const AnimeRanking = observer(({ rankingType }: Props) => {
   }
 
   const keyExtractor = useCallback(
-    (item: AnimeData) => String(item.node.id),
+    (item: AnimeData, index: number) => `${String(item.node.id)}${index}`,
     [],
   )
 

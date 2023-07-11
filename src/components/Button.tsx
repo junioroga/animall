@@ -1,14 +1,18 @@
 import { cloneElement, useContext } from 'react'
 import {
   GetProps,
+  SizeTokens,
   Button as TButton,
   createStyledContext,
   styled,
   withStaticProperties,
 } from 'tamagui'
 
+import { Text } from './Text'
+
 const ButtonContext = createStyledContext({
   variant: undefined,
+  size: undefined,
 })
 
 const ButtonFrame = styled(TButton, {
@@ -58,17 +62,23 @@ const ButtonFrame = styled(TButton, {
   },
 })
 
-const ButtonIcon = (props: { children: any }) => {
+const ButtonIcon = (props: { children: any; size: SizeTokens }) => {
   const { variant } = useContext(ButtonContext)
 
   return cloneElement(props.children, {
-    size: '$1',
+    size: props.size || '$1',
     color: variant === 'normal' ? '$gray1' : '$blue10',
   })
 }
 
+const ButtonText = styled(Text, {
+  context: ButtonContext,
+  name: 'ButtonText',
+})
+
 export const Button = withStaticProperties(ButtonFrame, {
   Icon: ButtonIcon,
+  Text: ButtonText,
   Props: ButtonContext.Provider,
 })
 

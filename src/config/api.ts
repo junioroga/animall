@@ -7,7 +7,6 @@ import {
   API_ERROR_TYPE_FORBIDDEN,
   API_ERROR_TYPE_NOT_FOUND,
   API_ERROR_TYPE_OTHER,
-  API_TOKEN,
   API_URL,
   APP_VERSION,
 } from './general'
@@ -19,7 +18,7 @@ export const API_HEADER_DEFAULT = {
   Accept: 'application/json',
   'Content-Type': 'application/json',
   'App-Version': APP_VERSION,
-  'X-MAL-CLIENT-ID': API_TOKEN,
+  'X-MAL-CLIENT-ID': process.env.EXPO_PUBLIC_API_TOKEN,
 }
 
 // -----------------------------------------------------------------------------

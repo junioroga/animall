@@ -27,21 +27,25 @@ export type UsePaginationProps = {
 interface ResponseProps extends AxiosResponse {
   data: {
     paging: {
-      next: string
-      previous: string
+      next?: string
+      previous?: string
     }
     data: []
   }
 }
 
-export const usePagination = (): UsePaginationProps => {
+type Props = {
+  limit?: number
+}
+
+export const usePagination = ({ limit = 10 }: Props): UsePaginationProps => {
   const loadingObs = useObservable(false)
   const refreshingManualObs = useObservable(false)
   const refreshingObs = useObservable(false)
   const canPaginateObs = useObservable(true)
   const paginationObs = useObservable({
     offset: 0,
-    limit: 10,
+    limit,
     finished: false,
   })
   const dataObs = useObservable([])

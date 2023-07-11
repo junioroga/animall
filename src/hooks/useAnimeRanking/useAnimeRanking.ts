@@ -31,14 +31,14 @@ export const useAnimeRanking = (): AnimeRankingHookProps => {
     canPaginate,
     pagination,
     data: response,
-  } = usePagination()
+  } = usePagination({ limit: 6 })
 
   const getRanking = ({ init, rankingType }: GetRankingProps) => {
     fetch({
       init,
       variables: {
         ranking_type: rankingType,
-        fields: `${Fields.ID},${Fields.TITLE},${Fields.ALTERNATIVE_TITLES},${Fields.MAIN_PICTURE}`,
+        fields: `${Fields.ID},${Fields.TITLE},${Fields.ALTERNATIVE_TITLES},${Fields.MAIN_PICTURE},${Fields.MEAN}, ${Fields.START_DATE}`,
       },
       service: animeService.getRanking,
     })
