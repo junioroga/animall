@@ -1,4 +1,4 @@
-import { Image } from '@components'
+import { Image, Text } from '@components'
 import { AnimeData } from '@hooks/types'
 import { AnimeListHookProps } from '@hooks/useAnimeList'
 import { observer } from '@legendapp/state/react'
@@ -9,7 +9,7 @@ import { useCallback, useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 import { FlatList, ListRenderItem } from 'react-native'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
-import { Spinner, XStack, YStack, Text, Separator, Card } from 'tamagui'
+import { Spinner, XStack, YStack, Separator, Card } from 'tamagui'
 
 const preparedData = (data: AnimeData[]) =>
   data.map((item) => {
@@ -106,7 +106,7 @@ export const AnimeList = observer(
     }, [refreshing])
 
     const keyExtractor = useCallback(
-      (item: AnimeData) => String(item.node.id),
+      (item: AnimeData, index: number) => `${String(item.node.id)}${index}`,
       [],
     )
 

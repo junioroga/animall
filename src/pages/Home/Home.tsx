@@ -22,22 +22,34 @@ export const Home = () => {
       <YStack>
         <YStack p="$4">
           <XStack jc="space-between" ai="center">
-            <H3>{t('home.itsFunTime')}</H3>
+            <H3 fontWeight="$7">{t('home.itsFunTime')}</H3>
             <HeaderConfig />
           </XStack>
           <Search />
         </YStack>
         <Stack space="$3">
-          <H4 ml="$4">{t('home.topWatched')}</H4>
-          <AnimeRanking rankingType={RankingType.ALL} />
+          <H4 fontWeight="$6" ml="$4">
+            {t('home.topWatched')}
+          </H4>
+          <AnimeRanking rankingType={RankingType.ALL} cardType="vertical" />
         </Stack>
         <Stack mt="$4" space="$3">
-          <H4 ml="$4">{t('home.upcoming')}</H4>
-          <AnimeRanking rankingType={RankingType.UPCOMING} />
+          <H4 fontWeight="$6" ml="$4">
+            {t('home.upcoming')}
+          </H4>
+          <AnimeRanking
+            rankingType={RankingType.UPCOMING}
+            cardType="horizontal"
+          />
         </Stack>
         <Stack mt="$4" space="$3">
-          <H4 ml="$4">{t('home.mostPopular')}</H4>
-          <AnimeRanking rankingType={RankingType.BYPOPULARITY} />
+          <H4 fontWeight="$6" ml="$4">
+            {t('home.mostPopular')}
+          </H4>
+          <AnimeRanking
+            rankingType={RankingType.BYPOPULARITY}
+            cardType="vertical"
+          />
         </Stack>
       </YStack>
     </ScrollView>

@@ -25,8 +25,8 @@ export const HeaderConfig = observer(({ ...rest }: SwitchProps) => {
     <XStack ai="center" space="$3">
       <Popover size="$4" allowFlip>
         <Popover.Trigger asChild>
-          <Button buttonSize="small" circular>
-            <Button.Icon>
+          <Button size="$3" buttonSize="small" circular>
+            <Button.Icon size="$1">
               <Languages />
             </Button.Icon>
           </Button>
@@ -57,7 +57,7 @@ export const HeaderConfig = observer(({ ...rest }: SwitchProps) => {
                   buttonSize="large"
                   variant={language === 'pt' ? 'outline' : 'ghost'}
                   onPress={() => changeLanguage('pt')}>
-                  {t('language.portuguese')}
+                  <Button.Text>{t('language.portuguese')}</Button.Text>
                 </Button>
               </Popover.Close>
             </Stack>
@@ -67,7 +67,7 @@ export const HeaderConfig = observer(({ ...rest }: SwitchProps) => {
                   buttonSize="large"
                   variant={language === 'en' ? 'outline' : 'ghost'}
                   onPress={() => changeLanguage('en')}>
-                  {t('language.english')}
+                  <Button.Text>{t('language.english')}</Button.Text>
                 </Button>
               </Popover.Close>
             </Stack>

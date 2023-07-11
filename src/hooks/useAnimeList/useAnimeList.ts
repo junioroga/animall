@@ -31,7 +31,7 @@ export const useAnimeList = (): AnimeListHookProps => {
     canPaginate,
     pagination,
     data: response,
-  } = usePagination()
+  } = usePagination({})
 
   const getAll = ({ init, refreshControl, search }: GetAnimeListProps) => {
     fetch({
