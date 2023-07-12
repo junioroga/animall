@@ -29,8 +29,7 @@ const ButtonFrame = styled(TButton, {
         boc: '$blue10',
       },
       ghost: {
-        bw: '$1',
-        boc: 'transparent',
+        chromeless: true,
       },
     },
     buttonSize: {

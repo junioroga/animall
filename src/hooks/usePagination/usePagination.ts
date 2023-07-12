@@ -10,6 +10,11 @@ export type FetchProps = {
   service: (variables: any) => Promise<AxiosResponse>
 }
 
+type Data = {
+  node: object
+  ranking: object
+}
+
 export type UsePaginationProps = {
   fetch: ({ init, refreshControl, variables, service }: FetchProps) => void
   loading: boolean
@@ -21,17 +26,7 @@ export type UsePaginationProps = {
     limit: number
     finished: boolean
   }
-  data: AxiosResponse[]
-}
-
-interface ResponseProps extends AxiosResponse {
-  data: {
-    paging: {
-      next?: string
-      previous?: string
-    }
-    data: []
-  }
+  data: Data[]
 }
 
 type Props = {
@@ -91,7 +86,7 @@ export const usePagination = ({ limit = 10 }: Props): UsePaginationProps => {
     }
 
     service(variablesLocal)
-      .then((response: ResponseProps) => {
+      .then((response) => {
         setRefreshingManual(false)
         setRefreshing(false)
         setCanPaginate(!!response.data.paging.next)

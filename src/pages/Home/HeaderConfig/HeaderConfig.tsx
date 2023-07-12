@@ -2,6 +2,8 @@ import { Button, Switch, SwitchProps } from '@components'
 import { observer } from '@legendapp/state/react'
 import { Store } from '@store'
 import { Languages, Moon, Sun } from '@tamagui/lucide-icons'
+import { setDefaultOptions } from 'date-fns'
+import { enUS, ptBR } from 'date-fns/locale'
 import { useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Stack, Popover, XStack } from 'tamagui'
@@ -16,7 +18,11 @@ export const HeaderConfig = observer(({ ...rest }: SwitchProps) => {
 
   const changeLanguage = useCallback(
     (value: 'pt' | 'en') => {
-      i18n.changeLanguage(value).then(() => Store.settings.lang.set(value))
+      i18n.changeLanguage(value).then(() => {
+        Store.settings.lang.set(value)
+
+        setDefaultOptions({ locale: value === 'en' ? enUS : ptBR })
+      })
     },
     [i18n],
   )

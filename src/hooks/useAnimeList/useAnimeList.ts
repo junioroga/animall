@@ -2,6 +2,7 @@ import { AnimeData } from '@hooks/types'
 import { FetchProps, usePagination } from '@hooks/usePagination'
 import { animeService } from '@services'
 import { Fields } from '@services/types'
+import map from 'lodash/map'
 import { useMemo } from 'react'
 
 export type GetAnimeListProps = Omit<FetchProps, 'variables' | 'service'> & {
@@ -45,7 +46,10 @@ export const useAnimeList = (): AnimeListHookProps => {
     })
   }
 
-  const data = useMemo(() => response as unknown as AnimeData[], [response])
+  const data = useMemo(
+    () => map(response, (item) => item.node) as unknown as AnimeData[],
+    [response],
+  )
 
   return {
     getAll,

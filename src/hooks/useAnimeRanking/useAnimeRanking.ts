@@ -1,7 +1,8 @@
-import { AnimeData } from '@hooks/types'
+import { AnimeRanking } from '@hooks/types'
 import { FetchProps, usePagination } from '@hooks/usePagination'
 import { animeService } from '@services'
 import { Fields, RankingType } from '@services/types'
+import map from 'lodash/map'
 import { useMemo } from 'react'
 
 type GetRankingProps = Omit<FetchProps, 'variables' | 'service'> & {
@@ -19,7 +20,7 @@ export type AnimeRankingHookProps = {
     limit: number
     finished: boolean
   }
-  data: AnimeData[]
+  data: AnimeRanking[]
 }
 
 export const useAnimeRanking = (): AnimeRankingHookProps => {
@@ -38,13 +39,20 @@ export const useAnimeRanking = (): AnimeRankingHookProps => {
       init,
       variables: {
         ranking_type: rankingType,
-        fields: `${Fields.ID},${Fields.TITLE},${Fields.ALTERNATIVE_TITLES},${Fields.MAIN_PICTURE},${Fields.MEAN}, ${Fields.START_DATE}`,
+        fields: `${Fields.ID},${Fields.TITLE},${Fields.ALTERNATIVE_TITLES},${Fields.MAIN_PICTURE},${Fields.MEAN},${Fields.START_DATE},${Fields.STUDIOS}`,
       },
       service: animeService.getRanking,
     })
   }
 
-  const data = useMemo(() => response as unknown as AnimeData[], [response])
+  const data = useMemo(
+    () =>
+      map(response, (item) => ({
+        ...item.node,
+        ...item.ranking,
+      })) as AnimeRanking[],
+    [response],
+  )
 
   return {
     getRanking,

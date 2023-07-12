@@ -1,4 +1,6 @@
 import { whenReady } from '@legendapp/state'
+import { setDefaultOptions } from 'date-fns'
+import { enUS, ptBR } from 'date-fns/locale'
 import * as Localization from 'expo-localization'
 import i18n, { Module } from 'i18next'
 import { initReactI18next } from 'react-i18next'
@@ -12,11 +14,12 @@ const languageDetector = {
   async: true,
   detect: (callback: (lng: string) => void) => {
     const lang = Store.settings.lang.get()
-    if (lang) {
+    const defaultLang = lang || Localization.locale
+
+    if (defaultLang) {
+      setDefaultOptions({ locale: defaultLang === 'en' ? enUS : ptBR })
       return callback(lang)
     }
-
-    return callback(Localization.locale)
   },
 }
 

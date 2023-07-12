@@ -1,33 +1,14 @@
 import { Image, Text } from '@components'
-import { AnimeData } from '@hooks/types'
 import { AnimeListHookProps } from '@hooks/useAnimeList'
 import { observer } from '@legendapp/state/react'
 import { tokens } from '@tamagui/themes'
-import { format } from 'date-fns'
-import { t } from 'i18next'
 import { useCallback, useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 import { FlatList, ListRenderItem } from 'react-native'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import { Spinner, XStack, YStack, Separator, Card } from 'tamagui'
 
-const preparedData = (data: AnimeData[]) =>
-  data.map((item) => {
-    const startAt = item.node.start_date
-      ? format(new Date(item.node.start_date), 'dd/MM/yyyy')
-      : ''
-    const endAt = item.node.end_date
-      ? format(new Date(item.node.end_date), 'dd/MM/yyyy')
-      : t('anime.producing')
-
-    return {
-      node: {
-        ...item.node,
-        start_date: startAt,
-        end_date: endAt,
-      },
-    }
-  })
+import { AnimeDataPrepared, preparedData } from './data'
 
 type Props = Omit<AnimeListHookProps, 'canPaginate'> & {
   userSearch: string
@@ -46,7 +27,7 @@ export const AnimeList = observer(
     const { t } = useTranslation()
     const insets = useSafeAreaInsets()
 
-    const renderItem: ListRenderItem<AnimeData> = useCallback(
+    const renderItem: ListRenderItem<AnimeDataPrepared> = useCallback(
       ({ item }) => (
         <Card elevation="$4" elevate animation="bouncy">
           <Card overflow="hidden">
@@ -57,16 +38,16 @@ export const AnimeList = observer(
                   width: tokens.size[10].val,
                 }}
                 source={{
-                  uri: item.node.main_picture.medium,
+                  uri: item.main_picture.medium,
                 }}
                 contentFit="fill"
               />
               <YStack jc="center">
-                <Text>{item.node.title}</Text>
-                <Text>{item.node.start_date}</Text>
-                <Text>{item.node.end_date}</Text>
-                <Text>{item.node.num_episodes}</Text>
-                <Text>{item.node.mean}</Text>
+                <Text>{item.title}</Text>
+                <Text>{item.start_date}</Text>
+                <Text>{item.end_date}</Text>
+                <Text>{item.num_episodes}</Text>
+                <Text>{item.mean}</Text>
               </YStack>
             </XStack>
           </Card>
@@ -106,7 +87,7 @@ export const AnimeList = observer(
     }, [refreshing])
 
     const keyExtractor = useCallback(
-      (item: AnimeData, index: number) => `${String(item.node.id)}${index}`,
+      (item: AnimeDataPrepared, index: number) => `${String(item.id)}${index}`,
       [],
     )
 

@@ -1,27 +1,17 @@
 import { Image, Text } from '@components'
-import { AnimeData } from '@hooks/types'
 import { Star } from '@tamagui/lucide-icons'
 import { tokens } from '@tamagui/themes'
-import { Ref } from 'react'
-import { View } from 'react-native'
 import { YStack, Card, Stack, XStack } from 'tamagui'
 
+import { AnimeRankingPrepared } from '../data'
+
 type Props = {
-  item: AnimeData
-  refCard: Ref<View>
+  item: AnimeRankingPrepared
 }
 
-export const VerticalCard = ({ item, refCard }: Props) => {
+export const VerticalCard = ({ item }: Props) => {
   return (
-    <Card
-      h="$20"
-      w="$13"
-      elevate
-      elevation="$0.75"
-      onLayout={() => {
-        // refCard.current.height = tokens.size[20].val
-        // refCard.current.width = tokens.size[13].val
-      }}>
+    <Card h="$20" w="$13" elevate elevation="$0.75">
       <Card overflow="hidden">
         <YStack>
           <Image
@@ -30,19 +20,19 @@ export const VerticalCard = ({ item, refCard }: Props) => {
               width: tokens.size[13].val,
             }}
             source={{
-              uri: item.node.main_picture.medium,
+              uri: item.main_picture.medium,
             }}
             contentFit="fill"
           />
           <Stack h="30%" padding="$2" space="$1">
             <Text fontWeight="$6" numberOfLines={3} flexWrap="wrap">
-              {item.node.alternative_titles.en || item.node.title}
+              {item.alternative_titles.en || item.title}
             </Text>
-            {item.node.mean && (
+            {item.mean && (
               <XStack ai="center" space="$1">
                 <Star size="$1" color="$green10" fill="green" />
                 <Text fontWeight="$6" fontSize="$4" color="$green10">
-                  {item.node.mean}
+                  {item.mean}
                 </Text>
               </XStack>
             )}
