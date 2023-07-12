@@ -1,13 +1,14 @@
 import { Image, Text } from '@components'
-import { AnimeData } from '@hooks/types'
 import { useDeviceType } from '@hooks/useDeviceType'
 import { CalendarDays, Star } from '@tamagui/lucide-icons'
 import { tokens } from '@tamagui/themes'
 import { Dimensions } from 'react-native'
 import { Card, Stack, XStack } from 'tamagui'
 
+import { AnimeRankingPrepared } from '../data'
+
 type Props = {
-  item: AnimeData
+  item: AnimeRankingPrepared
 }
 
 const WIDTH_SCREEN = Dimensions.get('window').width - tokens.space[4].val * 2
@@ -30,26 +31,26 @@ export const HorizontalCard = ({ item }: Props) => {
               width: isHandset ? '40%' : '30%',
             }}
             source={{
-              uri: item.node.main_picture.medium,
+              uri: item.main_picture.medium,
             }}
             contentFit="fill"
           />
           <Stack w={isHandset ? '60%' : '70%'} padding="$2" space="$1">
             <Text fontWeight="$6" numberOfLines={3} flexWrap="wrap">
-              {item.node.alternative_titles.en || item.node.title}
+              {item.alternative_titles.en || item.title}
             </Text>
-            {item.node.mean && (
+            {item.mean && (
               <XStack ai="center" space="$1">
                 <Star size="$1" color="$green10" fill="green" />
                 <Text fontWeight="$6" fontSize="$3" color="$green10">
-                  {item.node.mean}
+                  {item.mean}
                 </Text>
               </XStack>
             )}
             <XStack ai="center" space="$1">
               <CalendarDays size="$1" color="$blue10" />
               <Text fontWeight="$6" fontSize="$3" color="$blue10">
-                {item.node.start_date}
+                {item.fullDate}
               </Text>
             </XStack>
           </Stack>

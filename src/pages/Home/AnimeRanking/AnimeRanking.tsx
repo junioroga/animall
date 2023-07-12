@@ -1,16 +1,16 @@
 import { Text } from '@components'
-import { AnimeData } from '@hooks/types'
 import { useAnimeRanking } from '@hooks/useAnimeRanking'
 import { observer } from '@legendapp/state/react'
 import { RankingType } from '@services/types'
 import { tokens } from '@tamagui/themes'
-import { useCallback, useEffect, useMemo, useRef } from 'react'
+import { useCallback, useEffect, useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 import { FlatList, ListRenderItem } from 'react-native'
 import { Spinner, YStack, Separator, useTheme } from 'tamagui'
 
 import { HorizontalCard } from './HorizontalCard'
 import { VerticalCard } from './VerticalCard'
+import { AnimeRankingPrepared, preparedData } from './data'
 
 type Props = {
   rankingType: RankingType
@@ -21,18 +21,17 @@ export const AnimeRanking = observer(({ rankingType, cardType }: Props) => {
   const { getRanking, loading, data } = useAnimeRanking()
   const { t } = useTranslation()
   const theme = useTheme()
-  const refCard = useRef({ height: 0, width: 0 })
 
   useEffect(() => {
     getRanking({ init: true, rankingType })
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  const renderItem: ListRenderItem<AnimeData> = ({ item }) =>
+  const renderItem: ListRenderItem<AnimeRankingPrepared> = ({ item }) =>
     cardType === 'horizontal' ? (
-      <HorizontalCard item={item} refCard={refCard} />
+      <HorizontalCard item={item} />
     ) : (
-      <VerticalCard item={item} refCard={refCard} />
+      <VerticalCard item={item} />
     )
 
   const renderSeparator = () => <Separator marginHorizontal="$1.5" />
@@ -50,11 +49,11 @@ export const AnimeRanking = observer(({ rankingType, cardType }: Props) => {
   }
 
   const keyExtractor = useCallback(
-    (item: AnimeData, index: number) => `${String(item.node.id)}${index}`,
+    (item: AnimeRankingPrepared, index: number) => `${String(item.id)}${index}`,
     [],
   )
 
-  const formattedData = useMemo(() => data, [data])
+  const formattedData = useMemo(() => preparedData(data), [data])
 
   return (
     <FlatList

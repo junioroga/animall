@@ -28,6 +28,13 @@ module.exports = {
         endOfLine: 'auto',
       },
     ],
+    'no-restricted-imports': [
+      'error',
+      {
+        name: 'lodash',
+        message: 'Please import submodules instead of the full lodash package.',
+      },
+    ],
   },
   settings: {
     'babel-plugin-root-import': {
