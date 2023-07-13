@@ -1,6 +1,6 @@
 import { whenReady } from '@legendapp/state'
-import { setDefaultOptions } from 'date-fns'
 import { enUS, ptBR } from 'date-fns/locale'
+import setDefaultOptions from 'date-fns/setDefaultOptions'
 import * as Localization from 'expo-localization'
 import i18n, { Module } from 'i18next'
 import { initReactI18next } from 'react-i18next'

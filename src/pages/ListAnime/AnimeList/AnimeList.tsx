@@ -1,4 +1,4 @@
-import { Image, Text } from '@components'
+import { Image, Text, Loading } from '@components'
 import { AnimeListHookProps } from '@hooks/useAnimeList'
 import { observer } from '@legendapp/state/react'
 import { tokens } from '@tamagui/themes'
@@ -6,7 +6,7 @@ import { useCallback, useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 import { FlatList, ListRenderItem } from 'react-native'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
-import { Spinner, XStack, YStack, Separator, Card } from 'tamagui'
+import { XStack, YStack, Separator, Card } from 'tamagui'
 
 import { AnimeDataPrepared, preparedData } from './data'
 
@@ -64,11 +64,7 @@ export const AnimeList = observer(
     const renderEmpty = useCallback(
       () => (
         <YStack f={1} ai="center" jc="center">
-          {loading ? (
-            <Spinner alignSelf="center" />
-          ) : (
-            <Text>{t('anime.notFound')}</Text>
-          )}
+          {loading ? <Loading /> : <Text>{t('anime.notFound')}</Text>}
         </YStack>
       ),
       [loading, t],
@@ -78,7 +74,7 @@ export const AnimeList = observer(
       if (refreshing) {
         return (
           <YStack ai="center" jc="center" marginVertical="$3">
-            <Spinner />
+            <Loading />
           </YStack>
         )
       }

@@ -34,6 +34,11 @@ module.exports = {
         name: 'lodash',
         message: 'Please import submodules instead of the full lodash package.',
       },
+      {
+        name: 'date-fns',
+        message:
+          'Please import submodules instead of the full date-fns package.',
+      },
     ],
   },
   settings: {

@@ -1,4 +1,4 @@
-import { Text } from '@components'
+import { Text, Loading } from '@components'
 import { useAnimeRanking } from '@hooks/useAnimeRanking'
 import { observer } from '@legendapp/state/react'
 import { RankingType } from '@services/types'
@@ -6,7 +6,7 @@ import { tokens } from '@tamagui/themes'
 import { useCallback, useEffect, useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 import { FlatList, ListRenderItem } from 'react-native'
-import { Spinner, YStack, Separator, useTheme } from 'tamagui'
+import { YStack, Separator, useTheme } from 'tamagui'
 
 import { HorizontalCard } from './HorizontalCard'
 import { VerticalCard } from './VerticalCard'
@@ -39,11 +39,7 @@ export const AnimeRanking = observer(({ rankingType, cardType }: Props) => {
   const renderEmpty = () => {
     return (
       <YStack h="$14" w="100%" ai="center" jc="center">
-        {loading ? (
-          <Spinner alignSelf="center" />
-        ) : (
-          <Text>{t('anime.notFound')}</Text>
-        )}
+        {loading ? <Loading /> : <Text>{t('anime.notFound')}</Text>}
       </YStack>
     )
   }

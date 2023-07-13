@@ -1,5 +1,6 @@
 import { AnimeRanking } from '@hooks/types'
-import { formatDistanceToNow, isValid } from 'date-fns'
+import formatDistanceToNow from 'date-fns/formatDistanceToNow'
+import isValid from 'date-fns/isValid'
 import map from 'lodash/map'
 
 export interface AnimeRankingPrepared extends AnimeRanking {
