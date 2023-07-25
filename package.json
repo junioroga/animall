@@ -17,11 +17,11 @@
     "@react-native-async-storage/async-storage": "1.18.2",
     "@react-navigation/native": "^6.1.6",
     "@react-navigation/native-stack": "^6.9.12",
-    "@tamagui/animations-react-native": "^1.45.6",
-    "@tamagui/babel-plugin": "^1.45.6",
-    "@tamagui/config": "^1.45.6",
-    "@tamagui/font-inter": "^1.39.6",
-    "@tamagui/lucide-icons": "^1.45.6",
+    "@tamagui/animations-react-native": "latest",
+    "@tamagui/babel-plugin": "latest",
+    "@tamagui/config": "latest",
+    "@tamagui/font-inter": "latest",
+    "@tamagui/lucide-icons": "latest",
     "@types/react-dom": "~18.0.10",
     "axios": "^1.4.0",
     "babel-plugin-transform-inline-environment-variables": "^0.4.4",
@@ -44,11 +44,11 @@
     "react-native-svg": "13.9.0",
     "react-native-web": "~0.19.6",
     "resize-observer-polyfill": "^1.5.1",
-    "tamagui": "^1.45.6"
+    "tamagui": "latest"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
-    "@tamagui/react-native-svg": "^1.45.6",
+    "@tamagui/react-native-svg": "latest",
     "@types/lodash": "^4.14.195",
     "@types/react": "~18.2.14",
     "@types/react-native": "^0.72.2",
@@ -69,7 +69,7 @@
     "lint-staged": "^13.2.2",
     "prettier": "^2.8.8",
     "reactotron-react-native": "^5.0.3",
-    "tamagui-loader": "^1.45.6",
+    "tamagui-loader": "latest",
     "typescript": "^5.1.3",
     "url-loader": "^4.1.1",
     "webpack-cli": "^5.1.1"
@@ -81,5 +81,6 @@
   },
   "eslintConfig": {
     "extends": "universe/native"
-  }
+  },
+  "packageManager": "yarn@3.6.1"
 }

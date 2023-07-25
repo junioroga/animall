@@ -11,6 +11,13 @@ npm-debug.*
 *.lock
 web-build/
 .tamagui
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
 
 # macOS
 .DS_Store
