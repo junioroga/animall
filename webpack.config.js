@@ -1,5 +1,6 @@
 const { TamaguiPlugin } = require('tamagui-loader');
 const { DefinePlugin } = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 const NODE_ENV = process.env.NODE_ENV || 'development';
 const target = 'web';
@@ -24,7 +25,7 @@ module.exports = {
   context: projectRoot,
   stats: 'normal', // 'detailed'
   mode: NODE_ENV,
-  entry: ['./index.tsx'],
+  entry: ['./index.web.tsx'],
   devtool: isDev ? 'eval' : '',
   optimization: {
     concatenateModules: false,
@@ -47,7 +48,7 @@ module.exports = {
     hot: true,
     compress: true,
     open: true,
-    port: 9000,
+    port: 19006,
   },
   module: {
     rules: [
@@ -84,6 +85,9 @@ module.exports = {
           DEBUG: JSON.stringify(process.env.DEBUG || '0'),
         },
       },
+    }),
+    new HtmlWebpackPlugin({
+      template: `./index.html`,
     }),
   ],
 };
