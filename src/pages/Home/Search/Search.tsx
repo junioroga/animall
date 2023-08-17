@@ -8,8 +8,8 @@ import { useTranslation } from 'react-i18next'
 import { Keyboard } from 'react-native'
 import { XStack } from 'tamagui'
 
-import { Button } from '../../../components/Button'
-import { Input } from '../../../components/Input'
+import { Button } from '../../../components/Button/Button'
+import { Input } from '../../../components/Input/Input'
 
 type AnimeListScreenNavigationProp =
   NativeStackNavigationProp<RootStackParamList>

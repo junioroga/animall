@@ -8,7 +8,7 @@ import {
   withStaticProperties,
 } from 'tamagui'
 
-import { Text } from './Text'
+import { Text } from '../Text/Text'
 
 const ButtonContext = createStyledContext({
   variant: undefined,
