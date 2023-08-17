@@ -18,6 +18,7 @@ web-build/
 !.yarn/releases
 !.yarn/sdks
 !.yarn/versions
+coverage/**/*
 
 # macOS
 .DS_Store
