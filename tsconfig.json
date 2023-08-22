@@ -18,6 +18,7 @@
       "@config/*": ["./src/config/*"],
       "@services/*": ["./src/services/*"],
       "@services": ["./src/services"],
+      "@test/*": ["./test/*"],
     }
   },
 }
