@@ -11,7 +11,7 @@ import {
 import { Text } from '../Text/Text'
 
 const ButtonContext = createStyledContext({
-  variant: undefined,
+  type: undefined,
   size: undefined,
 })
 
@@ -20,7 +20,7 @@ const ButtonFrame = styled(TButton, {
   name: 'Button',
 
   variants: {
-    variant: {
+    type: {
       normal: {
         bg: '$blue10',
       },
@@ -55,18 +55,18 @@ const ButtonFrame = styled(TButton, {
   } as const,
 
   defaultVariants: {
-    variant: 'normal',
+    type: 'normal',
     buttonSize: 'small',
     disabled: false,
   },
 })
 
 const ButtonIcon = (props: { children: any; size: SizeTokens }) => {
-  const { variant } = useContext(ButtonContext)
+  const { type } = useContext(ButtonContext)
 
   return cloneElement(props.children, {
     size: props.size || '$1',
-    color: variant === 'normal' ? '$gray1' : '$blue10',
+    color: type === 'normal' ? '$gray1' : '$blue10',
   })
 }
 

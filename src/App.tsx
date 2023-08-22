@@ -1,5 +1,3 @@
-import 'resize-observer-polyfill'
-
 import { observer } from '@legendapp/state/react'
 import { Store } from '@store'
 import { useFonts } from 'expo-font'
@@ -13,7 +11,7 @@ import './i18n'
 import Router from './router'
 import config from '../tamagui.config'
 
-require('@config/reactotron')
+process.env.TAMAGUI_TARGET === 'native' && require('@config/reactotron')
 
 SplashScreen.preventAutoHideAsync()
 
