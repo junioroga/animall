@@ -1,3 +1,4 @@
+import { Button, Input } from '@components'
 import { observer, useObservable } from '@legendapp/state/react'
 import { RootStackParamList } from '@navigators/Home'
 import { useNavigation } from '@react-navigation/native'
@@ -7,9 +8,6 @@ import { useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Keyboard } from 'react-native'
 import { XStack } from 'tamagui'
-
-import { Button } from '../../../components/Button/Button'
-import { Input } from '../../../components/Input/Input'
 
 type AnimeListScreenNavigationProp =
   NativeStackNavigationProp<RootStackParamList>
@@ -36,7 +34,7 @@ export const Search = observer(() => {
         onSubmitEditing={canSearch ? handleSearch : Keyboard.dismiss}
         autoCorrect={false}
       />
-      <Button variant="outline" onPress={handleSearch} disabled={!canSearch}>
+      <Button type="outline" onPress={handleSearch} disabled={!canSearch}>
         <Button.Icon>
           <TSearch />
         </Button.Icon>

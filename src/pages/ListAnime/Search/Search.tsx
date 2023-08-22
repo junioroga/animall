@@ -1,12 +1,11 @@
+import { Button } from '@components/Button/Button'
+import { Input } from '@components/Input/Input'
 import { observer, useObservable } from '@legendapp/state/react'
 import { Search as TSearch } from '@tamagui/lucide-icons'
 import { useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Keyboard } from 'react-native'
 import { XStack } from 'tamagui'
-
-import { Button } from '../../../components/Button/Button'
-import { Input } from '../../../components/Input/Input'
 
 type Props = {
   handleSearch: (value: any) => void
@@ -35,7 +34,7 @@ export const Search = observer(({ handleSearch, search }: Props) => {
         autoCorrect={false}
       />
       <Button
-        variant="outline"
+        type="outline"
         onPress={handleSearchWithParams}
         disabled={!canSearch}>
         <Button.Icon>
