@@ -47,6 +47,7 @@ module.exports = {
       '@store': path.resolve(projectRoot, '/src/store'),
       '@config': path.resolve(projectRoot, '/src/config'),
       '@services': path.resolve(projectRoot, '/src/services'),
+      '@test': path.resolve(projectRoot, '/test'),
     },
   },
   devServer: {
