@@ -26,6 +26,7 @@ export const Search = observer(() => {
   return (
     <XStack space="$2" mt="$4" ai="center">
       <Input
+        testID="test-input-search"
         variant="full"
         value={search}
         placeholder={t('home.search')}
@@ -34,7 +35,11 @@ export const Search = observer(() => {
         onSubmitEditing={canSearch ? handleSearch : Keyboard.dismiss}
         autoCorrect={false}
       />
-      <Button type="outline" onPress={handleSearch} disabled={!canSearch}>
+      <Button
+        testID="test-button-search"
+        type="outline"
+        onPress={handleSearch}
+        disabled={!canSearch}>
         <Button.Icon>
           <TSearch />
         </Button.Icon>
