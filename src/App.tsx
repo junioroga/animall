@@ -1,5 +1,6 @@
 import { observer } from '@legendapp/state/react'
 import { Store } from '@store'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { useFonts } from 'expo-font'
 import * as SplashScreen from 'expo-splash-screen'
 import { StatusBar } from 'expo-status-bar'
@@ -14,6 +15,8 @@ import config from '../tamagui.config'
 process.env.TAMAGUI_TARGET === 'native' && require('@config/reactotron')
 
 SplashScreen.preventAutoHideAsync()
+
+const queryCliente = new QueryClient()
 
 export const App = observer(() => {
   const theme = Store.settings.theme.get()
@@ -40,13 +43,15 @@ export const App = observer(() => {
   }
 
   return (
-    <TamaguiProvider config={config}>
-      <StatusBar style={theme === 'light' ? 'dark' : 'light'} />
-      <Theme name={theme}>
-        <SafeAreaProvider onLayout={onLayoutRootView}>
-          <Router />
-        </SafeAreaProvider>
-      </Theme>
-    </TamaguiProvider>
+    <QueryClientProvider client={queryCliente}>
+      <TamaguiProvider config={config}>
+        <StatusBar style={theme === 'light' ? 'dark' : 'light'} />
+        <Theme name={theme}>
+          <SafeAreaProvider onLayout={onLayoutRootView}>
+            <Router />
+          </SafeAreaProvider>
+        </Theme>
+      </TamaguiProvider>
+    </QueryClientProvider>
   )
 })

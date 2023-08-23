@@ -26,16 +26,17 @@ export interface AnimeData {
   studios: Studios[]
 }
 
-export interface AnimeRanking extends AnimeData {
-  ranking: number
+export type Page = {
+  page: AnimeData
+  pageParam: number
 }
 
-export interface Response {
+export interface ResponseAnimeList {
   data: {
-    data: AnimeData[]
-    paging: {
-      next: string
-      previous: string
-    }
+    node: AnimeData
+  }
+  paging: {
+    next: string
+    previous: string
   }
 }

@@ -61,7 +61,7 @@ export const HeaderConfig = observer(({ ...rest }: SwitchProps) => {
               <Popover.Close asChild>
                 <Button
                   buttonSize="large"
-                  variant={language === 'pt' ? 'outline' : 'ghost'}
+                  type={language === 'pt' ? 'outline' : 'ghost'}
                   onPress={() => changeLanguage('pt')}>
                   <Button.Text>{t('language.portuguese')}</Button.Text>
                 </Button>
@@ -71,7 +71,7 @@ export const HeaderConfig = observer(({ ...rest }: SwitchProps) => {
               <Popover.Close asChild>
                 <Button
                   buttonSize="large"
-                  variant={language === 'en' ? 'outline' : 'ghost'}
+                  type={language === 'en' ? 'outline' : 'ghost'}
                   onPress={() => changeLanguage('en')}>
                   <Button.Text>{t('language.english')}</Button.Text>
                 </Button>

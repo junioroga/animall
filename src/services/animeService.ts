@@ -1,4 +1,6 @@
 import { api } from '@config/api'
+import { ResponseAnimeList } from '@hooks/useAnimeList/types'
+import { ResponseAnimeRanking } from '@hooks/useAnimeRanking/types'
 
 import { PaginationProps, RankingType } from './types'
 
@@ -18,7 +20,7 @@ interface GetDetailsProps {
   id: number
 }
 
-export const getAll = (options: GetAllProps) => {
+const getAll = async (options: GetAllProps): Promise<ResponseAnimeList> => {
   const params = []
   let paramsQs = ''
 
@@ -42,13 +44,20 @@ export const getAll = (options: GetAllProps) => {
     paramsQs = `?${params.join('&')}`
   }
 
-  return api.get(`${basePath}${paramsQs}`)
+  const response = await api.get<ResponseAnimeList>(`${basePath}${paramsQs}`)
+
+  return response.data
 }
 
-export const getDetails = (options: GetDetailsProps) =>
-  api.get(`${basePath}/${options.id}`)
+const getDetails = async (options: GetDetailsProps) => {
+  const response = await api.get(`${basePath}/${options.id}`)
 
-export const getRanking = (options: GetRankingProps) => {
+  return response.data
+}
+
+const getRanking = async (
+  options: GetRankingProps,
+): Promise<ResponseAnimeRanking> => {
   const params = []
   let paramsQs = ''
 
@@ -72,5 +81,11 @@ export const getRanking = (options: GetRankingProps) => {
     paramsQs = `?${params.join('&')}`
   }
 
-  return api.get(`${basePath}/ranking${paramsQs}`)
+  const response = await api.get<ResponseAnimeRanking>(
+    `${basePath}/ranking${paramsQs}`,
+  )
+
+  return response.data
 }
+
+export { getAll, getDetails, getRanking }

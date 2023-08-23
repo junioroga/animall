@@ -1,7 +1,8 @@
 import { Image, Text, Loading } from '@components'
-import { AnimeListHookProps } from '@hooks/useAnimeList'
+import { AnimeData } from '@hooks/useAnimeList/types'
 import { observer } from '@legendapp/state/react'
 import { tokens } from '@tamagui/themes'
+import { useInfiniteQuery } from '@tanstack/react-query'
 import { useCallback, useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 import { FlatList, ListRenderItem } from 'react-native'
@@ -10,19 +11,23 @@ import { XStack, YStack, Separator, Card } from 'tamagui'
 
 import { AnimeDataPrepared, preparedData } from './data'
 
-type Props = Omit<AnimeListHookProps, 'canPaginate'> & {
-  userSearch: string
+type Props = Partial<Omit<ReturnType<typeof useInfiniteQuery>, 'data'>> & {
+  limit: number
+  data?: AnimeData[]
+  onRefresh: () => void
+  refreshingManual: boolean
 }
 
 export const AnimeList = observer(
   ({
-    getAll,
-    loading,
-    refreshingManual,
-    refreshing,
-    pagination,
+    isLoading,
+    isFetchingNextPage,
+    hasNextPage,
+    fetchNextPage,
     data,
-    userSearch,
+    onRefresh,
+    refreshingManual,
+    limit,
   }: Props) => {
     const { t } = useTranslation()
     const insets = useSafeAreaInsets()
@@ -38,16 +43,16 @@ export const AnimeList = observer(
                   width: tokens.size[10].val,
                 }}
                 source={{
-                  uri: item.main_picture.medium,
+                  uri: item?.main_picture?.medium,
                 }}
                 contentFit="fill"
               />
               <YStack jc="center">
-                <Text>{item.title}</Text>
-                <Text>{item.start_date}</Text>
-                <Text>{item.end_date}</Text>
-                <Text>{item.num_episodes}</Text>
-                <Text>{item.mean}</Text>
+                <Text>{item?.title}</Text>
+                <Text>{item?.start_date}</Text>
+                <Text>{item?.end_date}</Text>
+                <Text>{item?.num_episodes}</Text>
+                <Text>{item?.mean}</Text>
               </YStack>
             </XStack>
           </Card>
@@ -64,14 +69,14 @@ export const AnimeList = observer(
     const renderEmpty = useCallback(
       () => (
         <YStack f={1} ai="center" jc="center">
-          {loading ? <Loading /> : <Text>{t('anime.notFound')}</Text>}
+          {isLoading ? <Loading /> : <Text>{t('anime.notFound')}</Text>}
         </YStack>
       ),
-      [loading, t],
+      [isLoading, t],
     )
 
     const renderFooter = useCallback(() => {
-      if (refreshing) {
+      if (isFetchingNextPage) {
         return (
           <YStack ai="center" jc="center" marginVertical="$3">
             <Loading />
@@ -80,7 +85,7 @@ export const AnimeList = observer(
       }
 
       return null
-    }, [refreshing])
+    }, [isFetchingNextPage])
 
     const keyExtractor = useCallback(
       (item: AnimeDataPrepared, index: number) => `${String(item.id)}${index}`,
@@ -97,22 +102,28 @@ export const AnimeList = observer(
       }
     }, [])
 
+    const onEndReached = () => {
+      if (hasNextPage) {
+        if (!isFetchingNextPage) {
+          fetchNextPage?.()
+        }
+      }
+    }
+
     return (
       <FlatList
         keyExtractor={keyExtractor}
-        data={loading ? [] : formattedData}
+        data={isLoading ? [] : formattedData}
         renderItem={renderItem}
         getItemLayout={getItemLayout}
         ItemSeparatorComponent={renderSeparator}
         ListEmptyComponent={renderEmpty}
         ListFooterComponent={renderFooter}
         refreshing={refreshingManual}
-        onRefresh={() =>
-          getAll({ init: true, refreshControl: true, search: userSearch })
-        }
-        onEndReached={() => getAll({ search: userSearch })}
+        onRefresh={onRefresh}
+        onEndReached={onEndReached}
         onEndReachedThreshold={0.5}
-        initialNumToRender={pagination.limit}
+        initialNumToRender={limit}
         contentContainerStyle={{
           flexGrow: 1,
           paddingHorizontal: tokens.space[4].val,

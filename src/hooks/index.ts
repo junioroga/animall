@@ -1,3 +1,3 @@
-import * as useAnimeList from './useAnimeList/useAnimeList'
-
-export { useAnimeList }
+export { useAnimeList } from './useAnimeList'
+export { useDeviceType } from './useDeviceType'
+export { useAnimeRanking } from './useAnimeRanking'

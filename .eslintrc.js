@@ -1,5 +1,9 @@
 module.exports = {
-  extends: ['universe', 'universe/shared/typescript-analysis'],
+  extends: [
+    'universe',
+    'universe/shared/typescript-analysis',
+    'plugin:@tanstack/eslint-plugin-query/recommended',
+  ],
   overrides: [
     {
       files: ['*.ts', '*.tsx', '*.d.ts'],
@@ -8,7 +12,7 @@ module.exports = {
       },
     },
   ],
-  plugins: ['react-hooks', 'i18next'],
+  plugins: ['react-hooks', 'i18next', '@tanstack/query'],
   ignorePatterns: ['webpack.config.js'],
   rules: {
     '@typescript-eslint/no-unused-vars': 'error',
@@ -40,6 +44,8 @@ module.exports = {
           'Please import submodules instead of the full date-fns package.',
       },
     ],
+    '@tanstack/query/exhaustive-deps': 'error',
+    '@tanstack/query/prefer-query-object-syntax': 'error',
   },
   settings: {
     'babel-plugin-root-import': {
