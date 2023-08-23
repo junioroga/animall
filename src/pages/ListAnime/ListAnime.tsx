@@ -1,8 +1,8 @@
-import { useAnimeList } from '@hooks/useAnimeList'
-import { observer } from '@legendapp/state/react'
+import { useAnimeList } from '@hooks'
+import { observer, useObservable } from '@legendapp/state/react'
 import { RootStackParamList } from '@navigators/Home'
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
-import { useEffect } from 'react'
+import { useQueryClient } from '@tanstack/react-query'
 import { YStack, Stack } from 'tamagui'
 
 import { AnimeList } from './AnimeList'
@@ -10,32 +10,56 @@ import { Search } from './Search'
 
 type Props = NativeStackScreenProps<RootStackParamList, 'ListAnime'>
 
+const LIMIT = 10
+
 export const ListAnime = observer(({ route }: Props) => {
-  const { getAll, loading, refreshingManual, refreshing, pagination, data } =
-    useAnimeList()
+  const queryClient = useQueryClient()
+  const userSearch = route.params.userSearch
+  const refreshingManualObs = useObservable(false)
+  const [refreshingManual, setRefreshingManual] = [
+    refreshingManualObs.get(),
+    refreshingManualObs.set,
+  ]
+  const searchObs = useObservable(userSearch ?? '')
+  const [search, setSearch] = [searchObs.get(), searchObs.set]
+  const {
+    refetch,
+    isLoading,
+    isFetchingNextPage,
+    hasNextPage,
+    fetchNextPage,
+    data,
+  } = useAnimeList({ search })
 
-  const userSearch = route.params.userSearch || ''
+  const onRefresh = () => {
+    setRefreshingManual(true)
+    queryClient.removeQueries({ queryKey: ['anime-list'] })
+    setRefreshingManual(false)
+  }
 
-  useEffect(() => {
-    if (userSearch) {
-      getAll({ init: true, search: userSearch })
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [userSearch])
+  const handleSearch = () => {
+    queryClient.removeQueries({ queryKey: ['anime-list'] })
+    refetch()
+  }
 
   return (
     <YStack f={1} bg="$background">
       <Stack p="$4">
-        <Search handleSearch={getAll} search={userSearch} />
+        <Search
+          handleSearch={handleSearch}
+          search={search}
+          setSearch={setSearch}
+        />
       </Stack>
       <AnimeList
-        getAll={getAll}
-        userSearch={userSearch}
-        loading={loading}
+        isLoading={isLoading}
+        isFetchingNextPage={isFetchingNextPage}
+        hasNextPage={hasNextPage}
+        fetchNextPage={fetchNextPage}
+        data={data?.pages}
+        onRefresh={onRefresh}
         refreshingManual={refreshingManual}
-        refreshing={refreshing}
-        pagination={pagination}
-        data={data}
+        limit={LIMIT}
       />
     </YStack>
   )

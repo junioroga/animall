@@ -1,5 +1,5 @@
 import { Image, Text } from '@components'
-import { useDeviceType } from '@hooks/useDeviceType'
+import { useDeviceType } from '@hooks'
 import { CalendarDays, Star } from '@tamagui/lucide-icons'
 import { tokens } from '@tamagui/themes'
 import { Dimensions } from 'react-native'

@@ -1,6 +1,5 @@
 import { Button } from '@components/Button/Button'
 import { Input } from '@components/Input/Input'
-import { observer, useObservable } from '@legendapp/state/react'
 import { Search as TSearch } from '@tamagui/lucide-icons'
 import { useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
@@ -8,27 +7,26 @@ import { Keyboard } from 'react-native'
 import { XStack } from 'tamagui'
 
 type Props = {
-  handleSearch: (value: any) => void
-  search?: string
+  handleSearch: () => void
+  search: string
+  setSearch: (value: string) => void
 }
 
-export const Search = observer(({ handleSearch, search }: Props) => {
-  const searchObs = useObservable<string>(search ?? '')
-  const [localSearch, setLocalSearch] = [searchObs.get(), searchObs.set]
+export const Search = ({ handleSearch, search, setSearch }: Props) => {
   const { t } = useTranslation()
-  const canSearch = localSearch.length >= 3
+  const canSearch = search.length >= 3
 
   const handleSearchWithParams = useCallback(() => {
-    handleSearch({ init: true, search: localSearch })
-  }, [handleSearch, localSearch])
+    handleSearch()
+  }, [handleSearch])
 
   return (
     <XStack space="$2" mt="$4" ai="center">
       <Input
         variant="full"
-        value={localSearch}
+        value={search}
         placeholder={t('home.search')}
-        onChangeText={setLocalSearch}
+        onChangeText={setSearch}
         returnKeyType="search"
         onSubmitEditing={canSearch ? handleSearchWithParams : Keyboard.dismiss}
         autoCorrect={false}
@@ -43,4 +41,4 @@ export const Search = observer(({ handleSearch, search }: Props) => {
       </Button>
     </XStack>
   )
-})
+}

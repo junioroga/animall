@@ -1,9 +1,9 @@
 import { Text, Loading } from '@components'
-import { useAnimeRanking } from '@hooks/useAnimeRanking'
+import { useAnimeRanking } from '@hooks'
 import { observer } from '@legendapp/state/react'
 import { RankingType } from '@services/types'
 import { tokens } from '@tamagui/themes'
-import { useCallback, useEffect, useMemo } from 'react'
+import { useCallback, useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 import { FlatList, ListRenderItem } from 'react-native'
 import { YStack, Separator, useTheme } from 'tamagui'
@@ -18,14 +18,9 @@ type Props = {
 }
 
 export const AnimeRanking = observer(({ rankingType, cardType }: Props) => {
-  const { getRanking, loading, data } = useAnimeRanking()
+  const { isLoading, data } = useAnimeRanking({ rankingType })
   const { t } = useTranslation()
   const theme = useTheme()
-
-  useEffect(() => {
-    getRanking({ init: true, rankingType })
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
 
   const renderItem: ListRenderItem<AnimeRankingPrepared> = ({ item }) =>
     cardType === 'horizontal' ? (
@@ -39,7 +34,7 @@ export const AnimeRanking = observer(({ rankingType, cardType }: Props) => {
   const renderEmpty = () => {
     return (
       <YStack h="$14" w="100%" ai="center" jc="center">
-        {loading ? <Loading /> : <Text>{t('anime.notFound')}</Text>}
+        {isLoading ? <Loading /> : <Text>{t('anime.notFound')}</Text>}
       </YStack>
     )
   }
@@ -49,12 +44,12 @@ export const AnimeRanking = observer(({ rankingType, cardType }: Props) => {
     [],
   )
 
-  const formattedData = useMemo(() => preparedData(data), [data])
+  const formattedData = useMemo(() => preparedData(data?.pages), [data])
 
   return (
     <FlatList
       keyExtractor={keyExtractor}
-      data={loading ? [] : formattedData}
+      data={isLoading ? [] : formattedData}
       horizontal
       renderItem={renderItem}
       ItemSeparatorComponent={renderSeparator}
