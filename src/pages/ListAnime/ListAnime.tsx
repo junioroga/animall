@@ -1,27 +1,24 @@
+import { Search } from '@components'
+import { Header } from '@components/Header'
 import { useAnimeList } from '@hooks'
 import { observer, useObservable } from '@legendapp/state/react'
-import { RootStackParamList } from '@navigators/Home'
-import { NativeStackScreenProps } from '@react-navigation/native-stack'
+import { Store } from '@store/index'
 import { useQueryClient } from '@tanstack/react-query'
 import { YStack, Stack } from 'tamagui'
 
 import { AnimeList } from './AnimeList'
-import { Search } from './Search'
-
-type Props = NativeStackScreenProps<RootStackParamList, 'ListAnime'>
 
 const LIMIT = 10
 
-export const ListAnime = observer(({ route }: Props) => {
+export const ListAnime = observer(() => {
   const queryClient = useQueryClient()
-  const userSearch = route.params.userSearch
   const refreshingManualObs = useObservable(false)
   const [refreshingManual, setRefreshingManual] = [
     refreshingManualObs.get(),
     refreshingManualObs.set,
   ]
-  const searchObs = useObservable(userSearch ?? '')
-  const [search, setSearch] = [searchObs.get(), searchObs.set]
+  const { search } = Store.user
+
   const {
     refetch,
     isLoading,
@@ -29,7 +26,7 @@ export const ListAnime = observer(({ route }: Props) => {
     hasNextPage,
     fetchNextPage,
     data,
-  } = useAnimeList({ search })
+  } = useAnimeList({ search: search.get() })
 
   const onRefresh = () => {
     setRefreshingManual(true)
@@ -44,12 +41,9 @@ export const ListAnime = observer(({ route }: Props) => {
 
   return (
     <YStack f={1} bg="$background">
-      <Stack p="$4">
-        <Search
-          handleSearch={handleSearch}
-          search={search}
-          setSearch={setSearch}
-        />
+      <Header />
+      <Stack px="$4" pb="$4">
+        <Search onSearch={handleSearch} />
       </Stack>
       <AnimeList
         isLoading={isLoading}

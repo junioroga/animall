@@ -1,3 +1,4 @@
+import { Text } from '@components/Text'
 import { cloneElement, useContext } from 'react'
 import {
   GetProps,
@@ -7,8 +8,6 @@ import {
   styled,
   withStaticProperties,
 } from 'tamagui'
-
-import { Text } from '../Text/Text'
 
 const ButtonContext = createStyledContext({
   type: undefined,

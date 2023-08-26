@@ -1,6 +1,6 @@
 import { animeService } from '@services'
 import { Fields, RankingType } from '@services/types'
-import { useInfiniteQuery } from '@tanstack/react-query'
+import { useInfiniteQuery, QueryFunctionContext } from '@tanstack/react-query'
 import flatMap from 'lodash/flatMap'
 import map from 'lodash/map'
 
@@ -17,10 +17,18 @@ export const useAnimeRanking = ({
   limit = 6,
   enabled = true,
 }: AnimeRankingHookProps) => {
-  const getRankingAnimes = async ({ pageParam = 0 }) => {
+  const getRankingAnimes = async ({
+    pageParam,
+    queryKey,
+  }: QueryFunctionContext) => {
+    const [, { rankingType }] = queryKey as [
+      string,
+      { rankingType: RankingType },
+    ]
+
     const data = await animeService.getRanking({
       ranking_type: rankingType,
-      fields: `${Fields.ID},${Fields.TITLE},${Fields.ALTERNATIVE_TITLES},${Fields.MAIN_PICTURE},${Fields.MEAN},${Fields.START_DATE},${Fields.STUDIOS}`,
+      fields: `${Fields.ID},${Fields.TITLE},${Fields.ALTERNATIVE_TITLES},${Fields.MAIN_PICTURE},${Fields.MEAN},${Fields.START_DATE},${Fields.GENRES}`,
       limit,
       offset: pageParam,
     })
@@ -32,7 +40,7 @@ export const useAnimeRanking = ({
     }
   }
 
-  return useInfiniteQuery(['ranking-list'], getRankingAnimes, {
+  return useInfiniteQuery(['ranking-list', { rankingType }], getRankingAnimes, {
     select: (data) => {
       const flattenData = flatMap(data?.pages, (page) => page.data)
       const newData: AnimeRanking[] = map(flattenData, (item) => ({

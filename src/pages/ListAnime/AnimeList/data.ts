@@ -4,6 +4,7 @@ import { t } from 'i18next'
 import map from 'lodash/map'
 
 export interface AnimeDataPrepared extends AnimeData {
+  rating: string
   startAt: string
   endAt: string
 }
@@ -19,6 +20,7 @@ export const preparedData = (data?: AnimeData[]): AnimeDataPrepared[] =>
 
     return {
       ...item,
+      rating: item?.mean?.toFixed(2) || t('anime.notEvaluated'),
       startAt,
       endAt,
     }

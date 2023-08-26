@@ -13,7 +13,15 @@
     },
     "anime": {
       "producing": "Produzindo",
-      "notFound": "Não há animes disponíveis"
+      "notFound": "Não há animes disponíveis",
+      "notEvaluated": "N/A",
+      "noReleaseDate": "Sem data de lançamento",
+      "list": {
+        "startDate": "Início",
+        "endDate": "Fim",
+        "episodes": "Episódios",
+        "rating": "Avaliação"
+      }
     }
   }
 }

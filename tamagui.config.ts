@@ -1,5 +1,4 @@
 import { createAnimations } from '@tamagui/animations-react-native'
-import { createInterFont } from '@tamagui/font-inter'
 import { createMedia } from '@tamagui/react-native-media-driver'
 import { shorthands } from '@tamagui/shorthands'
 import { themes, tokens } from '@tamagui/themes'
@@ -55,15 +54,32 @@ media.isTabletOrDesktop = media.lg
 media.isDesktop = media.xl
 media.isLargerDesktop = media.xxl
 
-const interFont = createInterFont()
-
 const defaultFont = {
-  ...interFont,
+  family: 'Poppins',
   letterSpacing: {
     0.25: 0.25,
     0.5: 0.5,
     0.75: 0.75,
     1: 1,
+  },
+  size: {
+    1: 11,
+    2: 12,
+    3: 13,
+    4: 14,
+    true: 14,
+    5: 16,
+    6: 18,
+    7: 20,
+    8: 23,
+    9: 30,
+    10: 46,
+    11: 55,
+    12: 62,
+    13: 72,
+    14: 92,
+    15: 114,
+    16: 134,
   },
   weight: {
     1: '100',
@@ -77,15 +93,15 @@ const defaultFont = {
     9: '900',
   },
   face: {
-    100: { normal: 'InterExtraLight' },
-    200: { normal: 'InterExtraLight' },
-    300: { normal: 'InterLight' },
-    400: { normal: 'InterRegular' },
-    500: { normal: 'InterMedium' },
-    600: { normal: 'InterSemiBold' },
-    700: { normal: 'InterBold' },
-    800: { normal: 'InterExtraBold' },
-    900: { normal: 'InterBlack' },
+    100: { normal: 'Poppins_100Thin' },
+    200: { normal: 'Poppins_200ExtraLight' },
+    300: { normal: 'Poppins_300Light' },
+    400: { normal: 'Poppins_400Regular' },
+    500: { normal: 'Poppins_500Medium' },
+    600: { normal: 'Poppins_600SemiBold' },
+    700: { normal: 'Poppins_700Bold' },
+    800: { normal: 'Poppins_800ExtraBold' },
+    900: { normal: 'Poppins_900Black' },
   },
 }
 

@@ -7,7 +7,7 @@ export default function Router() {
   const insets = useSafeAreaInsets()
 
   return (
-    <XStack flex={1} bg="$background" pt={insets.top}>
+    <XStack f={1} bg="$background" pt={insets.top}>
       <NavigationContainer>
         <HomeNavigator />
       </NavigationContainer>

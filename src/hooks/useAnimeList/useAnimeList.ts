@@ -20,7 +20,7 @@ export const useAnimeList = ({
   const getListAnimes = async ({ pageParam = 0 }) => {
     const data = await animeService.getAll({
       q: search,
-      fields: `${Fields.ID},${Fields.TITLE},${Fields.MAIN_PICTURE},${Fields.START_DATE},${Fields.END_DATE},${Fields.NUM_EPISODES},${Fields.MEAN}`,
+      fields: `${Fields.ID},${Fields.TITLE},${Fields.ALTERNATIVE_TITLES},${Fields.MAIN_PICTURE},${Fields.START_DATE},${Fields.END_DATE},${Fields.NUM_EPISODES},${Fields.MEAN}`,
       limit,
       offset: pageParam,
     })

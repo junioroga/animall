@@ -1,7 +1,18 @@
+import {
+  useFonts,
+  Poppins_100Thin,
+  Poppins_200ExtraLight,
+  Poppins_300Light,
+  Poppins_400Regular,
+  Poppins_500Medium,
+  Poppins_600SemiBold,
+  Poppins_700Bold,
+  Poppins_800ExtraBold,
+  Poppins_900Black,
+} from '@expo-google-fonts/poppins'
 import { observer } from '@legendapp/state/react'
 import { Store } from '@store'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import { useFonts } from 'expo-font'
 import * as SplashScreen from 'expo-splash-screen'
 import { StatusBar } from 'expo-status-bar'
 import { useCallback } from 'react'
@@ -20,25 +31,25 @@ const queryCliente = new QueryClient()
 
 export const App = observer(() => {
   const theme = Store.settings.theme.get()
-  const [loaded] = useFonts({
-    InterThin: require('@tamagui/font-inter/otf/Inter-Thin.otf'),
-    InterExtraLight: require('@tamagui/font-inter/otf/Inter-ExtraLight.otf'),
-    InterLight: require('@tamagui/font-inter/otf/Inter-Light.otf'),
-    InterRegular: require('@tamagui/font-inter/otf/Inter-Regular.otf'),
-    InterMedium: require('@tamagui/font-inter/otf/Inter-Medium.otf'),
-    InterSemiBold: require('@tamagui/font-inter/otf/Inter-SemiBold.otf'),
-    InterBold: require('@tamagui/font-inter/otf/Inter-Bold.otf'),
-    InterExtraBold: require('@tamagui/font-inter/otf/Inter-ExtraBold.otf'),
-    InterBlack: require('@tamagui/font-inter/otf/Inter-Black.otf'),
+  const [fontsLoaded, fontError] = useFonts({
+    Poppins_100Thin,
+    Poppins_200ExtraLight,
+    Poppins_300Light,
+    Poppins_400Regular,
+    Poppins_500Medium,
+    Poppins_600SemiBold,
+    Poppins_700Bold,
+    Poppins_800ExtraBold,
+    Poppins_900Black,
   })
 
   const onLayoutRootView = useCallback(async () => {
-    if (loaded) {
+    if (fontsLoaded) {
       await SplashScreen.hideAsync()
     }
-  }, [loaded])
+  }, [fontsLoaded])
 
-  if (!loaded) {
+  if (!fontsLoaded || fontError) {
     return <></>
   }
 

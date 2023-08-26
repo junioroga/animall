@@ -3,6 +3,11 @@ interface Studios {
   name: string
 }
 
+interface Genres {
+  id: string
+  name: string
+}
+
 interface AlternativeTitles {
   synonyms: string[]
   en: string
@@ -24,6 +29,7 @@ export interface AnimeData {
   num_episodes: number
   mean: number
   studios: Studios[]
+  genres: Genres[]
 }
 
 export type Page = {

@@ -1,3 +1,3 @@
-export { useAnimeList } from './useAnimeList'
-export { useDeviceType } from './useDeviceType'
-export { useAnimeRanking } from './useAnimeRanking'
+export * from './useAnimeList'
+export * from './useDeviceType'
+export * from './useAnimeRanking'
