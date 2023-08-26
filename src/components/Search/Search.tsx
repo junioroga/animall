@@ -1,4 +1,3 @@
-import { Button, Input } from '@components'
 import { observer } from '@legendapp/state/react'
 import { RootStackParamList } from '@navigators/Home'
 import { useNavigation } from '@react-navigation/native'
@@ -9,6 +8,9 @@ import { useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Keyboard } from 'react-native'
 import { XStack } from 'tamagui'
+
+import { Button } from '../Button'
+import { Input } from '../Input'
 
 type AnimeListScreenNavigationProp =
   NativeStackNavigationProp<RootStackParamList>
