@@ -1,29 +1,27 @@
-import { Text, Loading } from '@components'
+import { Text, Loading, VerticalCard, HorizontalCard } from '@components'
 import { useAnimeRanking } from '@hooks'
 import { observer } from '@legendapp/state/react'
-import { RankingType } from '@services/types'
+import { CardType, RankingType } from '@services/types'
 import { tokens } from '@tamagui/themes'
 import { useCallback, useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 import { FlatList, ListRenderItem } from 'react-native'
 import { YStack, Separator, useTheme } from 'tamagui'
 
-import { HorizontalCard } from './HorizontalCard'
-import { VerticalCard } from './VerticalCard'
 import { AnimeRankingPrepared, preparedData } from './data'
 
 type Props = {
   rankingType: RankingType
-  cardType: 'horizontal' | 'vertical'
+  cardType: CardType
 }
 
 export const AnimeRanking = observer(({ rankingType, cardType }: Props) => {
-  const { isLoading, data } = useAnimeRanking({ rankingType })
+  const { isLoading, data } = useAnimeRanking({ rankingType, limit: 30 })
   const { t } = useTranslation()
   const theme = useTheme()
 
   const renderItem: ListRenderItem<AnimeRankingPrepared> = ({ item }) =>
-    cardType === 'horizontal' ? (
+    cardType === CardType.HORIZONTAL ? (
       <HorizontalCard item={item} />
     ) : (
       <VerticalCard item={item} />

@@ -35,8 +35,8 @@ export const AnimeList = observer(
     const renderItem: ListRenderItem<AnimeDataPrepared> = useCallback(
       ({ item }) => (
         <Card elevation="$4" elevate animation="bouncy">
-          <Card overflow="hidden">
-            <XStack space="$2">
+          <Card overflow="hidden" br="$1" pr="$2">
+            <XStack space="$3">
               <Image
                 style={{
                   height: tokens.size[11].val,
@@ -47,24 +47,35 @@ export const AnimeList = observer(
                 }}
                 contentFit="fill"
               />
-              <YStack jc="center">
-                <Text>{item?.title}</Text>
-                <Text>{item?.start_date}</Text>
-                <Text>{item?.end_date}</Text>
-                <Text>{item?.num_episodes}</Text>
-                <Text>{item?.mean}</Text>
+              <YStack f={1} jc="center" space="$1">
+                <Text fontWeight="$6" numberOfLines={1}>
+                  {item?.alternative_titles?.en || item?.title}
+                </Text>
+                <XStack ai="center" space="$2">
+                  <Text w="$7">{t('anime.list.startDate')}</Text>
+                  <Text>{item?.startAt}</Text>
+                </XStack>
+                <XStack ai="center" space="$2">
+                  <Text w="$7">{t('anime.list.endDate')}</Text>
+                  <Text>{item?.endAt}</Text>
+                </XStack>
+                <XStack ai="center" space="$2">
+                  <Text w="$7">{t('anime.list.episodes')}</Text>
+                  <Text>{item?.num_episodes}</Text>
+                </XStack>
+                <XStack ai="center" space="$2">
+                  <Text w="$7">{t('anime.list.rating')}</Text>
+                  <Text>{item?.rating}</Text>
+                </XStack>
               </YStack>
             </XStack>
           </Card>
         </Card>
       ),
-      [],
+      [t],
     )
 
-    const renderSeparator = useCallback(
-      () => <Separator marginVertical="$2" />,
-      [],
-    )
+    const renderSeparator = useCallback(() => <Separator />, [])
 
     const renderEmpty = useCallback(
       () => (

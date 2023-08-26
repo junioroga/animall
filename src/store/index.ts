@@ -7,7 +7,7 @@ import { ObservablePersistLocalStorage } from '@legendapp/state/persist-plugins/
 import { Platform } from 'react-native'
 
 import { ObservablePersistAsyncStorage } from './observablePersist'
-import { settings } from './observers'
+import { settings, user } from './observers'
 
 const persistLocal: any =
   Platform.OS === 'web'
@@ -19,7 +19,7 @@ configureObservablePersistence({
   persistLocal,
 })
 
-export const Store = observable({ settings })
+export const Store = observable({ settings, user })
 
 persistObservable(Store, {
   local: 'store',

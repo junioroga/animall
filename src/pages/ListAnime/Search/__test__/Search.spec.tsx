@@ -1,24 +1,20 @@
 import { render, fireEvent } from '@test/test-utils'
 import React from 'react'
 
-import { Search, Props } from '../Search'
+import { Search } from '../Search'
 
-const setSearch = jest.fn()
-const handleSearch = jest.fn()
-
-const setup = (overrides?: Props) => {
-  return render(
-    <Search
-      handleSearch={handleSearch}
-      search=""
-      setSearch={setSearch}
-      {...overrides}
-    />,
-  )
+const setup = () => {
+  return render(<Search />)
 }
+
+const mockNavigate = jest.fn()
 
 jest.mock('react-i18next', () => ({
   useTranslation: () => ({ t: jest.fn() }),
+}))
+
+jest.mock('@react-navigation/native', () => ({
+  useNavigation: () => ({ navigate: mockNavigate }),
 }))
 
 describe('Search', () => {
@@ -27,13 +23,10 @@ describe('Search', () => {
   })
 
   it('when input is filled', () => {
-    const { getByTestId } = setup({
-      handleSearch,
-      search: 'Naruto',
-      setSearch,
-    })
+    const { getByTestId } = setup()
     const input = getByTestId('test-input-search')
 
+    fireEvent.changeText(input, 'Naruto')
     expect(input.props.value).toEqual('Naruto')
   })
 
@@ -53,6 +46,9 @@ describe('Search', () => {
     fireEvent.changeText(input, 'Naruto')
     fireEvent.press(button)
 
-    expect(handleSearch).toHaveBeenCalledTimes(1)
+    expect(mockNavigate).toHaveBeenCalledTimes(1)
+    expect(mockNavigate).toHaveBeenCalledWith('ListAnime', {
+      userSearch: 'Naruto',
+    })
   })
 })

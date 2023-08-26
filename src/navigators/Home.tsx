@@ -4,7 +4,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack'
 
 export type RootStackParamList = {
   Home: undefined
-  ListAnime: { userSearch: string }
+  ListAnime: undefined
 }
 
 const Stack = createNativeStackNavigator<RootStackParamList>()
@@ -16,10 +16,6 @@ export const HomeNavigator = () => (
       headerShown: false,
     }}>
     <Stack.Screen name="Home" component={Home} />
-    <Stack.Screen
-      name="ListAnime"
-      component={ListAnime}
-      initialParams={{ userSearch: '' }}
-    />
+    <Stack.Screen name="ListAnime" component={ListAnime} />
   </Stack.Navigator>
 )

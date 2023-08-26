@@ -46,6 +46,11 @@ export enum RankingType {
   OVA = 'ova',
   MOVIE = 'movie',
   SPECIAL = 'special',
-  BYPOPULARITY = 'bypopularity',
+  BY_POPULARITY = 'bypopularity',
   FAVORITE = 'favorite',
+}
+
+export enum CardType {
+  HORIZONTAL = 'horizontal',
+  VERTICAL = 'vertical',
 }
