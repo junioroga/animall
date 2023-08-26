@@ -1,4 +1,3 @@
-import { Image, Text } from '@components'
 import { useDeviceType } from '@hooks'
 import { Star } from '@tamagui/lucide-icons'
 import { tokens } from '@tamagui/themes'
@@ -6,6 +5,8 @@ import { Dimensions } from 'react-native'
 import { Card, Stack, ZStack, XStack } from 'tamagui'
 
 import { AnimeRankingPrepared } from '../../pages/Home/AnimeRanking/data'
+import { Image } from '../Image'
+import { Text } from '../Text'
 
 type Props = {
   item: AnimeRankingPrepared
