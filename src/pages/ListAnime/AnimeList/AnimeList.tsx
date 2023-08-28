@@ -7,7 +7,7 @@ import { useCallback, useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 import { FlatList, ListRenderItem } from 'react-native'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
-import { XStack, YStack, Separator, Card } from 'tamagui'
+import { XStack, YStack, Separator, Card, Button } from 'tamagui'
 
 import { AnimeDataPrepared, preparedData } from './data'
 
@@ -34,43 +34,45 @@ export const AnimeList = observer(
 
     const renderItem: ListRenderItem<AnimeDataPrepared> = useCallback(
       ({ item }) => (
-        <Card elevation="$4" elevate animation="bouncy">
-          <Card overflow="hidden" br="$1" pr="$2">
-            <XStack space="$3">
-              <Image
-                style={{
-                  height: tokens.size[11].val,
-                  width: tokens.size[10].val,
-                }}
-                source={{
-                  uri: item?.main_picture?.medium,
-                }}
-                contentFit="fill"
-              />
-              <YStack f={1} jc="center" space="$1">
-                <Text fontWeight="$6" numberOfLines={1}>
-                  {item?.alternative_titles?.en || item?.title}
-                </Text>
-                <XStack ai="center" space="$2">
-                  <Text w="$7">{t('anime.list.startDate')}</Text>
-                  <Text>{item?.startAt}</Text>
-                </XStack>
-                <XStack ai="center" space="$2">
-                  <Text w="$7">{t('anime.list.endDate')}</Text>
-                  <Text>{item?.endAt}</Text>
-                </XStack>
-                <XStack ai="center" space="$2">
-                  <Text w="$7">{t('anime.list.episodes')}</Text>
-                  <Text>{item?.num_episodes}</Text>
-                </XStack>
-                <XStack ai="center" space="$2">
-                  <Text w="$7">{t('anime.list.rating')}</Text>
-                  <Text>{item?.rating}</Text>
-                </XStack>
-              </YStack>
-            </XStack>
+        <Button unstyled onPress={() => null}>
+          <Card elevation="$4" elevate animation="bouncy">
+            <Card overflow="hidden" br="$1" pr="$2">
+              <XStack space="$3">
+                <Image
+                  style={{
+                    height: tokens.size[11].val,
+                    width: tokens.size[10].val,
+                  }}
+                  source={{
+                    uri: item?.main_picture?.medium,
+                  }}
+                  contentFit="fill"
+                />
+                <YStack f={1} jc="center" space="$1">
+                  <Text fontWeight="$6" numberOfLines={1}>
+                    {item?.alternative_titles?.en || item?.title}
+                  </Text>
+                  <XStack ai="center" space="$2">
+                    <Text w="$7">{t('anime.list.startDate')}</Text>
+                    <Text>{item?.startAt}</Text>
+                  </XStack>
+                  <XStack ai="center" space="$2">
+                    <Text w="$7">{t('anime.list.endDate')}</Text>
+                    <Text>{item?.endAt}</Text>
+                  </XStack>
+                  <XStack ai="center" space="$2">
+                    <Text w="$7">{t('anime.list.episodes')}</Text>
+                    <Text>{item?.num_episodes}</Text>
+                  </XStack>
+                  <XStack ai="center" space="$2">
+                    <Text w="$7">{t('anime.list.rating')}</Text>
+                    <Text>{item?.rating}</Text>
+                  </XStack>
+                </YStack>
+              </XStack>
+            </Card>
           </Card>
-        </Card>
+        </Button>
       ),
       [t],
     )
