@@ -54,3 +54,29 @@ export enum CardType {
   HORIZONTAL = 'horizontal',
   VERTICAL = 'vertical',
 }
+
+export enum Genres {
+  ACTION = 'action',
+  ADVENTURE = 'adventure',
+  AVANT_GARDE = 'avantgarde',
+  AWARD_WINNING = 'awardwinning',
+  COMEDY = 'comedy',
+  DRAMA = 'drama',
+  FANTASY = 'fantasy',
+  GOURMET = 'gourmet',
+  HORROR = 'horror',
+  MYSTERY = 'mystery',
+  ROMANCE = 'romance',
+  SCI_FI = 'scifi',
+  SLICE_OF_LIFE = 'sliceoflife',
+  SPORTS = 'sports',
+  SUPERNATURAL = 'supernatural',
+  SUSPENSE = 'suspense',
+}
+
+export enum Seasonal {
+  WINTER = 'winter',
+  SPRING = 'spring',
+  SUMMER = 'summer',
+  FALL = 'fall',
+}

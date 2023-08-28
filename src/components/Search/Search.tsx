@@ -38,6 +38,7 @@ export const Search = observer(({ onSearch }: Props) => {
     <XStack space="$2" mt="$4" ai="center">
       <Input
         testID="test-input-search"
+        clearButtonMode="always"
         variant="full"
         value={search}
         placeholder={t('home.search')}
