@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "base",
-    "slug": "base",
+    "name": "animei",
+    "slug": "Animei",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -27,7 +27,8 @@
       "favicon": "./assets/favicon.png"
     },
     "plugins": [
-      "expo-localization"
+      "expo-localization",
+      "expo-av"
     ]
   }
 }

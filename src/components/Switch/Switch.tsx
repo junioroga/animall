@@ -21,9 +21,6 @@ const SwitchFrame = StyledSwitch.styleable((props: SwitchProps, ref) => {
 
 export const Switch = styled(SwitchFrame, {
   name: 'Switch',
-  bg: '$gray6',
-  bw: 0.3,
-  boc: '$gray10',
   ai: 'center',
 
   variants: {

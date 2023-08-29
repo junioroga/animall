@@ -27,7 +27,7 @@ export const Home = () => {
           </XStack>
           <Search />
         </YStack>
-        <Stack space="$3" pt="$4">
+        <Stack gap="$3" pt="$4">
           <H4 fontWeight="$6" ml="$4">
             {t('home.topWatched')}
           </H4>
@@ -36,7 +36,7 @@ export const Home = () => {
             cardType={CardType.VERTICAL}
           />
         </Stack>
-        <Stack mt="$4" space="$3">
+        <Stack mt="$4" gap="$3">
           <H4 fontWeight="$6" ml="$4">
             {t('home.upcoming')}
           </H4>
@@ -45,7 +45,7 @@ export const Home = () => {
             cardType={CardType.HORIZONTAL}
           />
         </Stack>
-        <Stack mt="$4" space="$3">
+        <Stack mt="$4" gap="$3">
           <H4 fontWeight="$6" ml="$4">
             {t('home.mostPopular')}
           </H4>

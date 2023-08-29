@@ -1,4 +1,4 @@
-import { Button, Switch, SwitchProps } from '@components'
+import { Switch, SwitchProps } from '@components'
 import { observer } from '@legendapp/state/react'
 import { Store } from '@store'
 import { Languages, Moon, Sun } from '@tamagui/lucide-icons'
@@ -6,7 +6,7 @@ import { enUS, ptBR } from 'date-fns/locale'
 import setDefaultOptions from 'date-fns/setDefaultOptions'
 import { useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Stack, Popover, XStack } from 'tamagui'
+import { Stack, Popover, XStack, Button } from 'tamagui'
 
 export const HeaderConfig = observer(({ ...rest }: SwitchProps) => {
   const { t, i18n } = useTranslation()
@@ -28,12 +28,12 @@ export const HeaderConfig = observer(({ ...rest }: SwitchProps) => {
   )
 
   return (
-    <XStack ai="center" space="$3">
+    <XStack ai="center" gap="$3">
       <Popover size="$4" allowFlip>
         <Popover.Trigger asChild>
-          <Button size="$3" buttonSize="small" circular>
-            <Button.Icon size="$1">
-              <Languages />
+          <Button size="$3" circular>
+            <Button.Icon>
+              <Languages size="$icon.sm" color="$blue10" />
             </Button.Icon>
           </Button>
         </Popover.Trigger>
@@ -56,12 +56,12 @@ export const HeaderConfig = observer(({ ...rest }: SwitchProps) => {
           ]}
           elevate>
           <Popover.Arrow borderWidth={1} borderColor="$gray10" />
-          <XStack space="$3">
+          <XStack gap="$3">
             <Stack>
               <Popover.Close asChild>
                 <Button
-                  buttonSize="large"
-                  type={language === 'pt' ? 'outline' : 'ghost'}
+                  variant={language === 'pt' ? 'outlined' : undefined}
+                  borderColor={language === 'pt' ? '$blue10' : undefined}
                   onPress={() => changeLanguage('pt')}>
                   <Button.Text>{t('language.portuguese')}</Button.Text>
                 </Button>
@@ -70,8 +70,8 @@ export const HeaderConfig = observer(({ ...rest }: SwitchProps) => {
             <Stack>
               <Popover.Close asChild>
                 <Button
-                  buttonSize="large"
-                  type={language === 'en' ? 'outline' : 'ghost'}
+                  variant={language === 'en' ? 'outlined' : undefined}
+                  borderColor={language === 'en' ? '$blue10' : undefined}
                   onPress={() => changeLanguage('en')}>
                   <Button.Text>{t('language.english')}</Button.Text>
                 </Button>
@@ -83,7 +83,7 @@ export const HeaderConfig = observer(({ ...rest }: SwitchProps) => {
       <Switch
         checked={isChecked}
         onCheckedChange={onCheckedChange}
-        iconChecked={<Moon size="$1" color="$blue9" />}
+        iconChecked={<Moon size="$1" color="$blue10" />}
         iconUnchecked={<Sun size="$1" color="$yellow8" />}
         {...rest}
       />

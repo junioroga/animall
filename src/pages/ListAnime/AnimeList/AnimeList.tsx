@@ -1,15 +1,27 @@
-import { Image, Text, Loading } from '@components'
+import { Text, Loading } from '@components'
 import { AnimeData } from '@hooks/useAnimeList/types'
 import { observer } from '@legendapp/state/react'
-import { tokens } from '@tamagui/themes'
+import { RootStackParamList } from '@navigators/Home'
+import { useNavigation } from '@react-navigation/native'
+import { NativeStackNavigationProp } from '@react-navigation/native-stack'
 import { useInfiniteQuery } from '@tanstack/react-query'
 import { useCallback, useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 import { FlatList, ListRenderItem } from 'react-native'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
-import { XStack, YStack, Separator, Card, Button } from 'tamagui'
+import {
+  XStack,
+  YStack,
+  Separator,
+  Card,
+  Button,
+  Image,
+  getTokens,
+} from 'tamagui'
 
 import { AnimeDataPrepared, preparedData } from './data'
+
+type NavigationProps = NativeStackNavigationProp<RootStackParamList>
 
 type Props = Partial<Omit<ReturnType<typeof useInfiniteQuery>, 'data'>> & {
   limit: number
@@ -31,40 +43,45 @@ export const AnimeList = observer(
   }: Props) => {
     const { t } = useTranslation()
     const insets = useSafeAreaInsets()
+    const navigation = useNavigation<NavigationProps>()
 
     const renderItem: ListRenderItem<AnimeDataPrepared> = useCallback(
       ({ item }) => (
-        <Button unstyled onPress={() => null}>
+        <Button
+          unstyled
+          onPress={() =>
+            navigation.navigate('AnimeDetails', { animeId: item.id })
+          }>
           <Card elevation="$4" elevate animation="bouncy">
             <Card overflow="hidden" br="$1" pr="$2">
-              <XStack space="$3">
+              <XStack gap="$3">
                 <Image
                   style={{
-                    height: tokens.size[11].val,
-                    width: tokens.size[10].val,
+                    height: getTokens().size[11].val,
+                    width: getTokens().size[10].val,
                   }}
                   source={{
                     uri: item?.main_picture?.medium,
                   }}
-                  contentFit="fill"
+                  resizeMode="stretch"
                 />
-                <YStack f={1} jc="center" space="$1">
+                <YStack f={1} jc="center" gap="$1">
                   <Text fontWeight="$6" numberOfLines={1}>
                     {item?.alternative_titles?.en || item?.title}
                   </Text>
-                  <XStack ai="center" space="$2">
+                  <XStack ai="center" gap="$2">
                     <Text w="$7">{t('anime.list.startDate')}</Text>
                     <Text>{item?.startAt}</Text>
                   </XStack>
-                  <XStack ai="center" space="$2">
+                  <XStack ai="center" gap="$2">
                     <Text w="$7">{t('anime.list.endDate')}</Text>
                     <Text>{item?.endAt}</Text>
                   </XStack>
-                  <XStack ai="center" space="$2">
+                  <XStack ai="center" gap="$2">
                     <Text w="$7">{t('anime.list.episodes')}</Text>
                     <Text>{item?.num_episodes}</Text>
                   </XStack>
-                  <XStack ai="center" space="$2">
+                  <XStack ai="center" gap="$2">
                     <Text w="$7">{t('anime.list.rating')}</Text>
                     <Text>{item?.rating}</Text>
                   </XStack>
@@ -74,7 +91,7 @@ export const AnimeList = observer(
           </Card>
         </Button>
       ),
-      [t],
+      [t, navigation],
     )
 
     const renderSeparator = useCallback(() => <Separator />, [])
@@ -109,8 +126,8 @@ export const AnimeList = observer(
 
     const getItemLayout = useCallback((_: any, index: number) => {
       return {
-        length: tokens.size[10].val,
-        offset: tokens.size[10].val * index,
+        length: getTokens().size[10].val,
+        offset: getTokens().size[10].val * index,
         index,
       }
     }, [])
@@ -139,7 +156,7 @@ export const AnimeList = observer(
         initialNumToRender={limit}
         contentContainerStyle={{
           flexGrow: 1,
-          paddingHorizontal: tokens.space[4].val,
+          paddingHorizontal: getTokens().space[4].val,
           paddingBottom: insets.bottom,
         }}
         showsVerticalScrollIndicator={false}

@@ -1,4 +1,5 @@
 import { api } from '@config/api'
+import { ResponseAnimeDetails } from '@hooks/useAnimeDetails/types'
 import { ResponseAnimeList } from '@hooks/useAnimeList/types'
 import { ResponseAnimeRanking } from '@hooks/useAnimeRanking/types'
 
@@ -17,7 +18,8 @@ interface GetRankingProps extends PaginationProps {
 }
 
 interface GetDetailsProps {
-  id: number
+  animeId: number
+  fields: string
 }
 
 const getAll = async (options: GetAllProps): Promise<ResponseAnimeList> => {
@@ -50,7 +52,20 @@ const getAll = async (options: GetAllProps): Promise<ResponseAnimeList> => {
 }
 
 const getDetails = async (options: GetDetailsProps) => {
-  const response = await api.get(`${basePath}/${options.id}`)
+  const params = []
+  let paramsQs = ''
+
+  if (Object.prototype.hasOwnProperty.call(options, 'fields')) {
+    params.push(`fields=${options.fields}`)
+  }
+
+  if (params.length) {
+    paramsQs = `?${params.join('&')}`
+  }
+
+  const response = await api.get<ResponseAnimeDetails>(
+    `${basePath}/${options.animeId}${paramsQs}`,
+  )
 
   return response.data
 }

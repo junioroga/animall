@@ -2,7 +2,7 @@ import { createAnimations } from '@tamagui/animations-react-native'
 import { createMedia } from '@tamagui/react-native-media-driver'
 import { shorthands } from '@tamagui/shorthands'
 import { themes, tokens } from '@tamagui/themes'
-import { createTamagui } from 'tamagui'
+import { createFont, createTamagui } from 'tamagui'
 
 const animations = createAnimations({
   bouncy: {
@@ -24,7 +24,7 @@ const animations = createAnimations({
   },
 })
 
-const media = {
+const media = createMedia({
   xs: { maxWidth: 660 },
   sm: { maxWidth: 800 },
   md: { maxWidth: 1020 },
@@ -45,7 +45,7 @@ const media = {
   isTabletOrDesktop: {},
   isDesktop: {},
   isLargerDesktop: {},
-}
+})
 
 media.isHandset = media.xs || media.sm
 media.isHandsetOrTablet = media.md
@@ -54,7 +54,7 @@ media.isTabletOrDesktop = media.lg
 media.isDesktop = media.xl
 media.isLargerDesktop = media.xxl
 
-const defaultFont = {
+const defaultFont = createFont({
   family: 'Poppins',
   letterSpacing: {
     0.25: 0.25,
@@ -103,13 +103,14 @@ const defaultFont = {
     800: { normal: 'Poppins_800ExtraBold' },
     900: { normal: 'Poppins_900Black' },
   },
-}
+})
 
 const config = createTamagui({
   animations,
   defaultTheme: 'light',
   shouldAddPrefersColorThemes: false,
   themeClassNameOnRoot: false,
+  onlyAllowShorthands: true,
   shorthands,
   fonts: {
     heading: defaultFont,
@@ -117,7 +118,7 @@ const config = createTamagui({
   },
   themes,
   tokens,
-  media: createMedia(media),
+  media,
 })
 
 export type AppConfig = typeof config

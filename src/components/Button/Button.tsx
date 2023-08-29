@@ -44,6 +44,7 @@ const ButtonFrame = styled(TButton, {
         h: '$5',
         f: 1,
       },
+      default: {},
     },
     disabled: {
       true: {
