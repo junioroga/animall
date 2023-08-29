@@ -2,11 +2,10 @@ import { Text, Loading, VerticalCard, HorizontalCard } from '@components'
 import { useAnimeRanking } from '@hooks'
 import { observer } from '@legendapp/state/react'
 import { CardType, RankingType } from '@services/types'
-import { tokens } from '@tamagui/themes'
 import { useCallback, useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 import { FlatList, ListRenderItem } from 'react-native'
-import { YStack, Separator, useTheme } from 'tamagui'
+import { YStack, Separator, useTheme, getTokens } from 'tamagui'
 
 import { AnimeRankingPrepared, preparedData } from './data'
 
@@ -15,8 +14,10 @@ type Props = {
   cardType: CardType
 }
 
+const LIMIT = 30
+
 export const AnimeRanking = observer(({ rankingType, cardType }: Props) => {
-  const { isLoading, data } = useAnimeRanking({ rankingType, limit: 30 })
+  const { isLoading, data } = useAnimeRanking({ rankingType, limit: LIMIT })
   const { t } = useTranslation()
   const theme = useTheme()
 
@@ -55,10 +56,11 @@ export const AnimeRanking = observer(({ rankingType, cardType }: Props) => {
       contentContainerStyle={{
         flexGrow: 1,
         backgroundColor: theme.background.get(),
-        paddingVertical: tokens.space[3].val,
-        paddingHorizontal: tokens.space[4].val,
+        paddingVertical: getTokens().space[3].val,
+        paddingHorizontal: getTokens().space[4].val,
       }}
       showsHorizontalScrollIndicator={false}
+      initialNumToRender={LIMIT}
     />
   )
 })

@@ -31,7 +31,7 @@ const queryCliente = new QueryClient()
 
 export const App = observer(() => {
   const theme = Store.settings.theme.get()
-  const [fontsLoaded, fontError] = useFonts({
+  const [fontsLoaded] = useFonts({
     Poppins_100Thin,
     Poppins_200ExtraLight,
     Poppins_300Light,
@@ -49,7 +49,7 @@ export const App = observer(() => {
     }
   }, [fontsLoaded])
 
-  if (!fontsLoaded || fontError) {
+  if (!fontsLoaded) {
     return <></>
   }
 

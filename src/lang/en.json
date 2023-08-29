@@ -21,6 +21,40 @@
         "endDate": "End",
         "episodes": "Episodes",
         "rating": "Rating"
+      },
+      "details": {
+        "numEpisodes": "{{numEpisodes}} EP",
+        "averageTime": "{{averageTime}} PER EP",
+        "ranking": "Ranking",
+        "favorites": "Favorites",
+        "members": "Members",
+        "popularity": "Popularity",
+        "synopsis": "Synopsis",
+        "moreInfo": "More info",
+        "status": "Status",
+        "season": "Season",
+        "studios": "Studios",
+        "source": "Source",
+        "genre": "Genre",
+        "classification": "Rating",
+        "seasons": {
+          "winter": "Winter",
+          "spring": "Spring",
+          "summer": "Summer",
+          "fall": "Fall"
+        },
+        "statusLabel": {
+          "finished": "Finished airing",
+          "airing": "Currently airing",
+          "not_yet_aired": "Not yet aired"
+        },
+        "rating": {
+          "all_ages": "All ages",
+          "children": "Children",
+          "teens": "Teens 13 and Older",
+          "young": "17+ (violence & profanity)",
+          "young_man": "Profanity & Mild Nudity"
+        }
       }
     }
   }

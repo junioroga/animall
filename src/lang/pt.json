@@ -5,7 +5,7 @@
       "search": "Buscar...",
       "topWatched": "📺 Mais assistidos!",
       "mostPopular": "⭐️ Mais populares!",
-      "upcoming": "⏳ Tic toc ..."
+      "upcoming": "⏳ Tic tac ..."
     },
     "language": {
       "portuguese": "Português",
@@ -21,6 +21,40 @@
         "endDate": "Fim",
         "episodes": "Episódios",
         "rating": "Avaliação"
+      },
+      "details": {
+        "numEpisodes": "{{numEpisodes}} EP",
+        "averageTime": "{{averageTime}} POR EP",
+        "ranking": "Colocação",
+        "favorites": "Curtidas",
+        "members": "Usuários",
+        "popularity": "Popularidade",
+        "synopsis": "Sinopse",
+        "moreInfo": "Mais informações",
+        "status": "Status",
+        "season": "Estação",
+        "studios": "Estúdio",
+        "source": "Fonte",
+        "genre": "Gênero",
+        "classification": "Classificação",
+        "seasons": {
+          "winter": "Inverno",
+          "spring": "Primavera",
+          "summer": "Verão",
+          "fall": "Outono"
+        },
+        "statusLabel": {
+          "finished": "Finalizado",
+          "airing": "Sendo exibido",
+          "not_yet_aired": "Ainda não lançado"
+        },
+        "rating": {
+          "all_ages": "Todas as idades",
+          "children": "Crianças",
+          "teens": "Adolescentes 13+",
+          "young": "17+ (violência & profanação)",
+          "young_man": "Profanação & Nudez ligeira"
+        }
       }
     }
   }

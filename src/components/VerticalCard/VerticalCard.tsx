@@ -1,25 +1,35 @@
+import { Text } from '@components/Text'
 import { useDeviceType } from '@hooks'
+import { RootStackParamList } from '@navigators/Home'
+import { useNavigation } from '@react-navigation/native'
+import { NativeStackNavigationProp } from '@react-navigation/native-stack'
+import { Store } from '@store/index'
 import { Star } from '@tamagui/lucide-icons'
-import { tokens } from '@tamagui/themes'
+import { BlurView } from 'expo-blur'
 import { Dimensions } from 'react-native'
-import { Card, Stack, ZStack, XStack, Button } from 'tamagui'
+import { Card, Stack, ZStack, XStack, Button, Image, getTokens } from 'tamagui'
 
 import { AnimeRankingPrepared } from '../../pages/Home/AnimeRanking/data'
-import { Image } from '../Image'
-import { Text } from '../Text'
+
+type NavigationProps = NativeStackNavigationProp<RootStackParamList>
 
 type Props = {
   item: AnimeRankingPrepared
 }
 
-const WIDTH_SCREEN = Dimensions.get('window').width / 3 - tokens.space[4].val
-const WIDTH_TABLET = WIDTH_SCREEN - tokens.size[18].val
+const WIDTH_SCREEN =
+  Dimensions.get('window').width / 3 - getTokens().space[4].val
+const WIDTH_TABLET = WIDTH_SCREEN - getTokens().size[18].val
 
 export const VerticalCard = ({ item }: Props) => {
   const { isHandset } = useDeviceType()
+  const navigation = useNavigation<NavigationProps>()
+  const theme = Store.settings.theme.get()
 
   return (
-    <Button unstyled onPress={() => null}>
+    <Button
+      unstyled
+      onPress={() => navigation.navigate('AnimeDetails', { animeId: item.id })}>
       <Card
         h="$16"
         w={isHandset ? WIDTH_SCREEN : WIDTH_TABLET}
@@ -36,25 +46,27 @@ export const VerticalCard = ({ item }: Props) => {
               source={{
                 uri: item?.main_picture.medium,
               }}
-              contentFit="fill"
+              resizeMode="stretch"
             />
-            <Stack
-              position="absolute"
-              left={0}
-              bottom={0}
-              right={0}
-              height={tokens.size[2].val}
-              backgroundColor="black"
-              opacity={0.5}
+            <BlurView
+              style={{
+                height: getTokens().size[2].val,
+                position: 'absolute',
+                left: 0,
+                bottom: 0,
+                right: 0,
+              }}
+              intensity={50}
+              tint={theme}
             />
             {item?.rating && (
               <XStack
                 position="absolute"
-                bottom={5}
-                right={5}
+                bottom={2.5}
+                right={2.5}
                 ai="center"
-                space="$2">
-                <Text fontWeight="$6" fontSize="$4" color="white">
+                gap="$2">
+                <Text fontWeight="$6" fontSize="$4" color="$color12">
                   {item.rating}
                 </Text>
                 <Star size="$1" color="yellow" fill="yellow" />

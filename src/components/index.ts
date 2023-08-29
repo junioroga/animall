@@ -1,6 +1,5 @@
 export * from './Header'
 export * from './HorizontalCard'
-export * from './Image'
 export * from './Input'
 export * from './Loading'
 export * from './Switch'

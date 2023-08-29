@@ -3,6 +3,28 @@ export type PaginationProps = {
   offset: number
 }
 
+export enum Seasons {
+  WINTER = 'winter',
+  SPRING = 'spring',
+  SUMMER = 'summer',
+  FALL = 'fall',
+}
+
+export enum Status {
+  FINISHED = 'finished_airing',
+  AIRING = 'currently_airing',
+  NOT_YET_AIRED = 'not_yet_aired',
+}
+
+export enum Rating {
+  ALL_AGES = 'g',
+  CHILDREN = 'pg',
+  TEENS = 'pg_13',
+  YOUNG = 'r',
+  YOUNG_MAN = 'r+',
+  ADULT = 'rx',
+}
+
 export enum Fields {
   ID = 'id',
   TITLE = 'title',
@@ -30,6 +52,7 @@ export enum Fields {
   AVERAGE_EPISODE_DURATION = 'average_episode_duration',
   RATING = 'rating',
   PICTURES = 'pictures',
+  VIDEOS = 'videos',
   BACKGROUND = 'background',
   RELATED_ANIME = 'related_anime',
   RELATED_MANGA = 'related_manga',

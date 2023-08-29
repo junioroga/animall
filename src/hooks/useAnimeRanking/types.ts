@@ -1,8 +1,6 @@
 import { AnimeData } from '@hooks/useAnimeList/types'
 
-export interface AnimeRanking extends AnimeData {
-  rank: number
-}
+export type AnimeRanking = AnimeData
 
 export interface ResponseAnimeRanking {
   data: {
