@@ -1,5 +1,7 @@
+import './i18n'
+import { useCallback } from 'react'
+
 import {
-  useFonts,
   Poppins_100Thin,
   Poppins_200ExtraLight,
   Poppins_300Light,
@@ -9,19 +11,21 @@ import {
   Poppins_700Bold,
   Poppins_800ExtraBold,
   Poppins_900Black,
+  useFonts,
 } from '@expo-google-fonts/poppins'
 import { observer } from '@legendapp/state/react'
-import { Store } from '@store'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { SafeAreaProvider } from 'react-native-safe-area-context'
+
 import * as SplashScreen from 'expo-splash-screen'
 import { StatusBar } from 'expo-status-bar'
-import { useCallback } from 'react'
-import { SafeAreaProvider } from 'react-native-safe-area-context'
-import { TamaguiProvider, Theme } from 'tamagui'
-import './i18n'
 
-import Router from './router'
+import { TamaguiProvider, Theme } from 'tamagui'
+
+import { Store } from '@store'
+
 import config from '../tamagui.config'
+import Router from './router'
 
 process.env.TAMAGUI_TARGET === 'native' && require('@config/reactotron')
 

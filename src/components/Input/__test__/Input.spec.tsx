@@ -1,5 +1,6 @@
-import { render } from '@test/test-utils'
 import React from 'react'
+
+import { render } from '@test/test-utils'
 
 import { Input } from '../Input'
 

@@ -1,22 +1,27 @@
-import { Text } from '@components/Text'
-import { useDeviceType } from '@hooks'
-import { RootStackParamList } from '@navigators/Home'
+import { Dimensions } from 'react-native'
+
 import { useNavigation } from '@react-navigation/native'
 import { NativeStackNavigationProp } from '@react-navigation/native-stack'
-import { Store } from '@store/index'
-import { CalendarDays } from '@tamagui/lucide-icons'
+
 import { BlurView } from 'expo-blur'
-import { Dimensions } from 'react-native'
+
 import {
+  Button,
   Card,
+  getTokens,
+  Image,
   Stack,
   XStack,
   YStack,
   ZStack,
-  Button,
-  Image,
-  getTokens,
 } from 'tamagui'
+import { CalendarDays } from '@tamagui/lucide-icons'
+import { tokens } from '@tamagui/themes'
+
+import { Text } from '@components/Text'
+import { useDeviceType } from '@hooks'
+import { RootStackParamList } from '@navigators/Home'
+import { Store } from '@store'
 
 import { AnimeRankingPrepared } from '../../pages/Home/AnimeRanking/data'
 
@@ -26,8 +31,8 @@ type Props = {
   item: AnimeRankingPrepared
 }
 
-const WIDTH_SCREEN = Dimensions.get('window').width - getTokens().size[9].val
-const WIDTH_TABLET = WIDTH_SCREEN - getTokens().size[18].val
+const WIDTH_SCREEN = Dimensions.get('window').width - tokens.size[9].val
+const WIDTH_TABLET = WIDTH_SCREEN - tokens.size[18].val
 
 export const HorizontalCard = ({ item }: Props) => {
   const { isHandset } = useDeviceType()

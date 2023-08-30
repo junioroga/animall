@@ -1,10 +1,12 @@
+import { observer, useObservable } from '@legendapp/state/react'
+import { useQueryClient } from '@tanstack/react-query'
+
+import { Stack, YStack } from 'tamagui'
+
 import { Search } from '@components'
 import { Header } from '@components/Header'
 import { useAnimeList } from '@hooks'
-import { observer, useObservable } from '@legendapp/state/react'
 import { Store } from '@store/index'
-import { useQueryClient } from '@tanstack/react-query'
-import { YStack, Stack } from 'tamagui'
 
 import { AnimeList } from './AnimeList'
 

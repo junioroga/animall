@@ -1,22 +1,22 @@
+import React from 'react'
+import { useTranslation } from 'react-i18next'
+
+import { BlurView } from 'expo-blur'
+
+import {
+  getTokens,
+  Image,
+  Progress,
+  Stack,
+  XStack,
+  YStack,
+  ZStack,
+} from 'tamagui'
+import { PlayCircle, Timer } from '@tamagui/lucide-icons'
+
 import { Text } from '@components'
 import { MainPicture } from '@hooks/useAnimeList/types'
 import { Store } from '@store/index'
-import { PlayCircle, Timer } from '@tamagui/lucide-icons'
-import { BlurView } from 'expo-blur'
-import React from 'react'
-import { useTranslation } from 'react-i18next'
-import { Dimensions } from 'react-native'
-import {
-  YStack,
-  Image,
-  ZStack,
-  XStack,
-  Progress,
-  Stack,
-  getTokens,
-} from 'tamagui'
-
-const { height, width } = Dimensions.get('screen')
 
 type Props = {
   mainPicture?: MainPicture
@@ -39,13 +39,16 @@ export const HeaderDetails = ({
       <ZStack>
         <Image
           h={getTokens().size[14].val}
-          w={width}
           source={{
             uri: mainPicture?.medium,
           }}
           resizeMode="cover"
         />
-        <BlurView style={{ height, width }} intensity={80} tint={theme} />
+        <BlurView
+          style={{ height: getTokens().size[14].val }}
+          intensity={80}
+          tint={theme}
+        />
       </ZStack>
       <XStack p="$4" gap="$2">
         <Image

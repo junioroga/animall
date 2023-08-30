@@ -1,5 +1,6 @@
-import { render, fireEvent } from '@test/test-utils'
 import React from 'react'
+
+import { fireEvent, render } from '@test/test-utils'
 
 import { Search } from '../Search'
 

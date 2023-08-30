@@ -1,12 +1,15 @@
-import { Switch, SwitchProps } from '@components'
-import { observer } from '@legendapp/state/react'
-import { Store } from '@store'
-import { Languages, Moon, Sun } from '@tamagui/lucide-icons'
-import { enUS, ptBR } from 'date-fns/locale'
-import setDefaultOptions from 'date-fns/setDefaultOptions'
 import { useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Stack, Popover, XStack, Button } from 'tamagui'
+
+import { observer } from '@legendapp/state/react'
+import { enUS, ptBR } from 'date-fns/locale'
+import setDefaultOptions from 'date-fns/setDefaultOptions'
+
+import { Button, Popover, Stack, XStack } from 'tamagui'
+import { Languages, Moon, Sun } from '@tamagui/lucide-icons'
+
+import { Switch, SwitchProps } from '@components'
+import { Store } from '@store'
 
 export const HeaderConfig = observer(({ ...rest }: SwitchProps) => {
   const { t, i18n } = useTranslation()

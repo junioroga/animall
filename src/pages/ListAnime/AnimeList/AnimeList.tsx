@@ -1,23 +1,26 @@
-import { Text, Loading } from '@components'
-import { AnimeData } from '@hooks/useAnimeList/types'
-import { observer } from '@legendapp/state/react'
-import { RootStackParamList } from '@navigators/Home'
-import { useNavigation } from '@react-navigation/native'
-import { NativeStackNavigationProp } from '@react-navigation/native-stack'
-import { useInfiniteQuery } from '@tanstack/react-query'
 import { useCallback, useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 import { FlatList, ListRenderItem } from 'react-native'
+
+import { observer } from '@legendapp/state/react'
+import { useNavigation } from '@react-navigation/native'
+import { NativeStackNavigationProp } from '@react-navigation/native-stack'
+import { useInfiniteQuery } from '@tanstack/react-query'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
+
 import {
+  Button,
+  Card,
+  getTokens,
+  Image,
+  Separator,
   XStack,
   YStack,
-  Separator,
-  Card,
-  Button,
-  Image,
-  getTokens,
 } from 'tamagui'
+
+import { Loading, Text } from '@components'
+import { AnimeData } from '@hooks/useAnimeList/types'
+import { RootStackParamList } from '@navigators/Home'
 
 import { AnimeDataPrepared, preparedData } from './data'
 
@@ -94,7 +97,7 @@ export const AnimeList = observer(
       [t, navigation],
     )
 
-    const renderSeparator = useCallback(() => <Separator />, [])
+    const renderSeparator = useCallback(() => <Separator py="$2" />, [])
 
     const renderEmpty = useCallback(
       () => (

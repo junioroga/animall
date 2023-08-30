@@ -1,6 +1,8 @@
-import { Moon, Sun } from '@tamagui/lucide-icons'
-import { render } from '@test/test-utils'
 import React from 'react'
+
+import { Moon, Sun } from '@tamagui/lucide-icons'
+
+import { render } from '@test/test-utils'
 
 import { Switch, SwitchProps } from '../Switch'
 

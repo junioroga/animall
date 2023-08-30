@@ -1,7 +1,8 @@
+import { Platform } from 'react-native'
+
 import { observable } from '@legendapp/state'
 import { persistObservable } from '@legendapp/state/persist'
 import { ObservablePersistLocalStorage } from '@legendapp/state/persist-plugins/local-storage'
-import { Platform } from 'react-native'
 
 import { ObservablePersistAsyncStorage } from './observablePersist'
 import { settings, user } from './observers'

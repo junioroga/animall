@@ -1,7 +1,7 @@
-import { api } from '@config/api'
 import { ResponseAnimeDetails } from '@hooks/useAnimeDetails/types'
 import { ResponseAnimeList } from '@hooks/useAnimeList/types'
 import { ResponseAnimeRanking } from '@hooks/useAnimeRanking/types'
+import { api } from '@config/api'
 
 import { PaginationProps, RankingType } from './types'
 

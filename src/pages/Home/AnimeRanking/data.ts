@@ -1,8 +1,9 @@
-import { AnimeRanking } from '@hooks/useAnimeRanking/types'
 import formatDistanceToNow from 'date-fns/formatDistanceToNow'
 import isValid from 'date-fns/isValid'
 import { t } from 'i18next'
 import map from 'lodash/map'
+
+import { AnimeRanking } from '@hooks/useAnimeRanking/types'
 
 export interface AnimeRankingPrepared extends AnimeRanking {
   genresFormatted: string

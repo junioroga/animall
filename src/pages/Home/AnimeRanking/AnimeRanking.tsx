@@ -1,11 +1,14 @@
-import { Text, Loading, VerticalCard, HorizontalCard } from '@components'
-import { useAnimeRanking } from '@hooks'
-import { observer } from '@legendapp/state/react'
-import { CardType, RankingType } from '@services/types'
 import { useCallback, useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 import { FlatList, ListRenderItem } from 'react-native'
-import { YStack, Separator, useTheme, getTokens } from 'tamagui'
+
+import { observer } from '@legendapp/state/react'
+
+import { getTokens, Separator, useTheme, YStack } from 'tamagui'
+
+import { HorizontalCard, Loading, Text, VerticalCard } from '@components'
+import { useAnimeRanking } from '@hooks'
+import { CardType, RankingType } from '@services/types'
 
 import { AnimeRankingPrepared, preparedData } from './data'
 
