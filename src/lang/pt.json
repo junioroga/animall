@@ -37,6 +37,8 @@
         "source": "Fonte",
         "genre": "Gênero",
         "classification": "Classificação",
+        "videos": "Vídeos",
+        "emptyVideos": "Não há vídeos disponíveis",
         "seasons": {
           "winter": "Inverno",
           "spring": "Primavera",
@@ -54,7 +56,8 @@
           "teens": "Adolescentes 13+",
           "young": "17+ (violência & profanação)",
           "young_man": "Profanação & Nudez ligeira"
-        }
+        },
+        "relatedAnime": "Animes relacionados"
       }
     }
   }

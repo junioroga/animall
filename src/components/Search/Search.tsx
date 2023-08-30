@@ -1,14 +1,17 @@
-import { Input } from '@components/Input'
-import { observer } from '@legendapp/state/react'
-import { RootStackParamList } from '@navigators/Home'
-import { useNavigation } from '@react-navigation/native'
-import { NativeStackNavigationProp } from '@react-navigation/native-stack'
-import { Store } from '@store/index'
-import { Search as TSearch } from '@tamagui/lucide-icons'
 import { useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Keyboard } from 'react-native'
-import { XStack, Button } from 'tamagui'
+
+import { observer } from '@legendapp/state/react'
+import { useNavigation } from '@react-navigation/native'
+import { NativeStackNavigationProp } from '@react-navigation/native-stack'
+
+import { Button, XStack } from 'tamagui'
+import { Search as TSearch } from '@tamagui/lucide-icons'
+
+import { Input } from '@components/Input'
+import { RootStackParamList } from '@navigators/Home'
+import { Store } from '@store/index'
 
 type NavigationProps = NativeStackNavigationProp<RootStackParamList>
 

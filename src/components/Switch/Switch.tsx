@@ -1,4 +1,4 @@
-import { GetProps, Switch as TSwitch, styled } from 'tamagui'
+import { GetProps, styled, Switch as TSwitch } from 'tamagui'
 
 export type SwitchProps = GetProps<typeof TSwitch> & {
   iconChecked?: JSX.Element

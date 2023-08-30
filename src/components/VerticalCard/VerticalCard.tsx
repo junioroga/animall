@@ -1,13 +1,18 @@
+import { Dimensions } from 'react-native'
+
+import { useNavigation } from '@react-navigation/native'
+import { NativeStackNavigationProp } from '@react-navigation/native-stack'
+
+import { BlurView } from 'expo-blur'
+
+import { Button, Card, getTokens, Image, Stack, XStack, ZStack } from 'tamagui'
+import { Star } from '@tamagui/lucide-icons'
+import { tokens } from '@tamagui/themes'
+
 import { Text } from '@components/Text'
 import { useDeviceType } from '@hooks'
 import { RootStackParamList } from '@navigators/Home'
-import { useNavigation } from '@react-navigation/native'
-import { NativeStackNavigationProp } from '@react-navigation/native-stack'
 import { Store } from '@store/index'
-import { Star } from '@tamagui/lucide-icons'
-import { BlurView } from 'expo-blur'
-import { Dimensions } from 'react-native'
-import { Card, Stack, ZStack, XStack, Button, Image, getTokens } from 'tamagui'
 
 import { AnimeRankingPrepared } from '../../pages/Home/AnimeRanking/data'
 
@@ -17,9 +22,8 @@ type Props = {
   item: AnimeRankingPrepared
 }
 
-const WIDTH_SCREEN =
-  Dimensions.get('window').width / 3 - getTokens().space[4].val
-const WIDTH_TABLET = WIDTH_SCREEN - getTokens().size[18].val
+const WIDTH_SCREEN = Dimensions.get('window').width / 3 - tokens.space[4].val
+const WIDTH_TABLET = WIDTH_SCREEN - tokens.size[18].val
 
 export const VerticalCard = ({ item }: Props) => {
   const { isHandset } = useDeviceType()

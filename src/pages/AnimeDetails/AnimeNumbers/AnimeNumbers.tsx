@@ -1,8 +1,10 @@
-import { Text } from '@components'
-import { BarChart2, ThumbsUp, TrendingUp, Users2 } from '@tamagui/lucide-icons'
 import React from 'react'
 import { useTranslation } from 'react-i18next'
-import { YStack, XStack } from 'tamagui'
+
+import { useTheme, XStack, YStack } from 'tamagui'
+import { BarChart2, ThumbsUp, TrendingUp, Users2 } from '@tamagui/lucide-icons'
+
+import { Text } from '@components'
 
 type Props = {
   ranking?: number
@@ -20,9 +22,10 @@ export const AnimeNumbers = ({
   popularity,
 }: Props) => {
   const { t } = useTranslation()
+  const theme = useTheme()
 
   return (
-    <XStack py="$4" px="$2" gap="$4" jc="space-between" ai="center">
+    <XStack px="$2" jc="space-between" ai="center">
       <YStack ai="center" gap="$1.5">
         <BarChart2
           size="$1"
@@ -35,14 +38,22 @@ export const AnimeNumbers = ({
         <Text color="$gray11">{t('anime.details.ranking')}</Text>
       </YStack>
       <YStack ai="center" gap="$1.5">
-        <ThumbsUp size="$1" color={favorites ? '$blue10' : '$blue6'} />
+        <ThumbsUp
+          size="$1"
+          color={favorites ? '$blue10' : '$blue6'}
+          fill={favorites ? theme.blue10.val : theme.blue6.val}
+        />
         <Text fontWeight="$6" mt="$2">
           {favorites ? `${favorites.toLocaleString()}K` : missingText}
         </Text>
         <Text color="$gray11">{t('anime.details.favorites')}</Text>
       </YStack>
       <YStack ai="center" gap="$1.5">
-        <Users2 size="$1" color={members ? '$blue10' : '$blue6'} />
+        <Users2
+          size="$1"
+          color={members ? '$blue10' : '$blue6'}
+          fill={members ? theme.blue10.val : theme.blue6.val}
+        />
         <Text fontWeight="$6" mt="$2">
           {members ? `${members.toLocaleString()}K` : missingText}
         </Text>

@@ -1,6 +1,7 @@
+import { QueryFunctionContext, useQuery } from '@tanstack/react-query'
+
 import { animeService } from '@services'
 import { Fields } from '@services/types'
-import { QueryFunctionContext, useQuery } from '@tanstack/react-query'
 
 type AnimeDetailsHookProps = {
   animeId: number

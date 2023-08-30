@@ -28,7 +28,6 @@
     },
     "plugins": [
       "expo-localization",
-      "expo-av"
     ]
   }
 }

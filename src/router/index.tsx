@@ -1,7 +1,9 @@
-import { HomeNavigator } from '@navigators/Home'
 import { NavigationContainer } from '@react-navigation/native'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
+
 import { XStack } from 'tamagui'
+
+import { HomeNavigator } from '@navigators/Home'
 
 export default function Router() {
   const insets = useSafeAreaInsets()

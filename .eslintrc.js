@@ -12,7 +12,7 @@ module.exports = {
       },
     },
   ],
-  plugins: ['react-hooks', 'i18next', '@tanstack/query'],
+  plugins: ['react-hooks', 'i18next', '@tanstack/query', 'simple-import-sort'],
   ignorePatterns: ['webpack.config.js'],
   rules: {
     '@typescript-eslint/no-unused-vars': 'error',
@@ -46,6 +46,34 @@ module.exports = {
     ],
     '@tanstack/query/exhaustive-deps': 'error',
     '@tanstack/query/prefer-query-object-syntax': 'error',
+    'simple-import-sort/imports': [
+      'error',
+      {
+        groups: [
+          ['^\\u0000', '^react', '^react-native'],
+          ['^@?\\w', '^react-native-?\\w'],
+          ['^expo?\\w'],
+          ['^tamagui?\\w', '^@tamagui?\\w'],
+          [
+            '^@assets',
+            '^@components',
+            '^@hooks',
+            '^@navigators',
+            '^@pages',
+            '^@router',
+            '^@utils',
+            '^@store',
+            '^@config',
+            '^@services',
+            '^@test',
+          ],
+          ['^\\.'],
+          ['~?\\w'],
+          ['\\./styles'],
+        ],
+      },
+    ],
+    'import/order': ['off'],
   },
   settings: {
     'babel-plugin-root-import': {

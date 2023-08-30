@@ -1,9 +1,11 @@
+import React from 'react'
+import { useTranslation } from 'react-i18next'
+
+import { XStack, YStack } from 'tamagui'
+
 import { Text } from '@components'
 import { Season, Studios } from '@hooks/useAnimeList/types'
 import { Rating, Seasons, Status } from '@services/types'
-import React from 'react'
-import { useTranslation } from 'react-i18next'
-import { YStack, XStack } from 'tamagui'
 
 type Props = {
   status?: string
@@ -47,8 +49,10 @@ export const MoreInfo = ({
   }[classification ?? '']
 
   return (
-    <YStack py="$4" gap="$2">
-      <Text fontWeight="$6">{t('anime.details.moreInfo')}</Text>
+    <YStack py="$3" gap="$1.5">
+      <Text fontWeight="$6" mb="$2">
+        {t('anime.details.moreInfo')}
+      </Text>
       <XStack ai="center" jc="space-between">
         <Text color="$gray11">{t('anime.details.status')}</Text>
         <Text>{statusTranslated ?? missingText}</Text>

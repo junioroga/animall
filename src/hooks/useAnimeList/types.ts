@@ -19,12 +19,14 @@ export interface MainPicture {
   large: string
 }
 
-interface RelatedAnime {
+export interface RelatedAnime {
   node: {
     id: number
     title: string
     main_picture: MainPicture
   }
+  relation_type: string
+  relation_type_formatted: string
 }
 
 export interface Season {

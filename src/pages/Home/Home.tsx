@@ -1,8 +1,11 @@
+import { useTranslation } from 'react-i18next'
+
+import { useSafeAreaInsets } from 'react-native-safe-area-context'
+
+import { H3, H4, ScrollView, Stack, XStack, YStack } from 'tamagui'
+
 import { Search } from '@components'
 import { CardType, RankingType } from '@services/types'
-import { useTranslation } from 'react-i18next'
-import { useSafeAreaInsets } from 'react-native-safe-area-context'
-import { XStack, YStack, H3, Stack, H4, ScrollView } from 'tamagui'
 
 import { AnimeRanking } from './AnimeRanking/'
 import { HeaderConfig } from './HeaderConfig'
