@@ -1,12 +1,11 @@
-import { observer, useObservable } from '@legendapp/state/react'
+import { observer } from '@legendapp/state/react'
 import { useQueryClient } from '@tanstack/react-query'
 
 import { Stack, YStack } from 'tamagui'
 
 import { Search } from '@components'
-import { Header } from '@components/Header'
 import { useAnimeList } from '@hooks'
-import { Store } from '@store/index'
+import { useLegendState } from '@hooks/useLegendState'
 
 import { AnimeList } from './AnimeList'
 
@@ -14,41 +13,38 @@ const LIMIT = 10
 
 export const ListAnime = observer(() => {
   const queryClient = useQueryClient()
-  const refreshingManualObs = useObservable(false)
-  const [refreshingManual, setRefreshingManual] = [
-    refreshingManualObs.get(),
-    refreshingManualObs.set,
-  ]
-  const { search } = Store.user
+  const [refreshingManual, setRefreshingManual] = useLegendState(false)
+  const [search, setSearch] = useLegendState('')
 
   const {
     refetch,
-    isLoading,
+    isFetching,
     isFetchingNextPage,
     hasNextPage,
     fetchNextPage,
     data,
-  } = useAnimeList({ search: search.get() })
+  } = useAnimeList({ search, enabled: false })
 
-  const onRefresh = () => {
-    setRefreshingManual(true)
-    queryClient.removeQueries({ queryKey: ['anime-list'] })
-    setRefreshingManual(false)
-  }
-
-  const handleSearch = () => {
+  const refetchQuery = () => {
     queryClient.removeQueries({ queryKey: ['anime-list'] })
     refetch()
   }
 
+  const onRefresh = () => {
+    if (data?.pages.length) {
+      setRefreshingManual(true)
+      refetchQuery()
+      setRefreshingManual(false)
+    }
+  }
+
   return (
     <YStack f={1} bg="$background">
-      <Header />
-      <Stack px="$4" pb="$4">
-        <Search onSearch={handleSearch} />
+      <Stack px="$4" py="$4">
+        <Search search={search} setSearch={setSearch} onSearch={refetchQuery} />
       </Stack>
       <AnimeList
-        isLoading={isLoading}
+        isLoading={isFetching && !isFetchingNextPage}
         isFetchingNextPage={isFetchingNextPage}
         hasNextPage={hasNextPage}
         fetchNextPage={fetchNextPage}

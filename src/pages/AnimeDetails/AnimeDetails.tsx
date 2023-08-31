@@ -9,17 +9,18 @@ import { Share } from '@tamagui/lucide-icons'
 import { Header } from '@components/Header'
 import { Loading } from '@components/Loading'
 import { useAnimeDetails } from '@hooks'
-import { RootStackParamList } from '@navigators/Home'
+import { RootStackParamListHome } from '@navigators/Home/Home'
 
 import { AnimeNumbers } from './AnimeNumbers'
 import { Genres } from './Genres'
 import { HeaderDetails } from './HeaderDetails'
 import { MoreInfo } from './MoreInfo'
+import { Recommendations } from './Recommendations'
 import { RelatedAnime } from './RelatedAnime'
 import { Synopsis } from './Synopsis'
 import { Videos } from './Videos'
 
-type Props = NativeStackScreenProps<RootStackParamList, 'AnimeDetails'>
+type Props = NativeStackScreenProps<RootStackParamListHome, 'AnimeDetails'>
 
 export const AnimeDetails = ({ route }: Props) => {
   const { animeId } = route.params
@@ -52,6 +53,7 @@ export const AnimeDetails = ({ route }: Props) => {
               )}
               numEpisodes={data?.num_episodes ?? 0}
               title={data?.title ?? data?.alternative_titles.en ?? ''}
+              mean={data?.mean}
             />
             <YStack p="$4" gap="$4">
               <AnimeNumbers
@@ -70,9 +72,12 @@ export const AnimeDetails = ({ route }: Props) => {
                 genre={data?.genres![0]?.name}
                 studios={data?.studios}
               />
-              {data?.videos && <Videos videos={data.videos} />}
-              {data?.related_anime && (
+              {!!data?.videos.length && <Videos videos={data.videos} />}
+              {!!data?.related_anime.length && (
                 <RelatedAnime relatedAnime={data.related_anime} />
+              )}
+              {!!data?.recommendations.length && (
+                <Recommendations recommendations={data.recommendations} />
               )}
             </YStack>
           </YStack>

@@ -19,23 +19,20 @@ import { CalendarDays } from '@tamagui/lucide-icons'
 import { tokens } from '@tamagui/themes'
 
 import { Text } from '@components/Text'
-import { useDeviceType } from '@hooks'
-import { RootStackParamList } from '@navigators/Home'
+import { RootStackParamListHome } from '@navigators/Home/Home'
 import { Store } from '@store'
 
 import { AnimeRankingPrepared } from '../../pages/Home/AnimeRanking/data'
 
-type NavigationProps = NativeStackNavigationProp<RootStackParamList>
+type NavigationProps = NativeStackNavigationProp<RootStackParamListHome>
 
 type Props = {
   item: AnimeRankingPrepared
 }
 
 const WIDTH_SCREEN = Dimensions.get('window').width - tokens.size[9].val
-const WIDTH_TABLET = WIDTH_SCREEN - tokens.size[18].val
 
 export const HorizontalCard = ({ item }: Props) => {
-  const { isHandset } = useDeviceType()
   const navigation = useNavigation<NavigationProps>()
   const theme = Store.settings.theme.get()
 
@@ -45,7 +42,7 @@ export const HorizontalCard = ({ item }: Props) => {
       onPress={() => navigation.navigate('AnimeDetails', { animeId: item.id })}>
       <Card
         h="$14"
-        w={isHandset ? WIDTH_SCREEN : WIDTH_TABLET}
+        w={WIDTH_SCREEN}
         elevate
         elevation="$0.75"
         animation="bouncy">
@@ -70,7 +67,7 @@ export const HorizontalCard = ({ item }: Props) => {
             </ZStack>
           </Card.Background>
           <XStack h="$14">
-            <Stack ml="$2" w={isHandset ? '40%' : '30%'} jc="center">
+            <Stack ml="$2" w="40%" jc="center">
               <Image
                 style={{
                   height: '90%',

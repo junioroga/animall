@@ -1,5 +1,6 @@
-import React, { useCallback, useState } from 'react'
+import React, { useCallback } from 'react'
 
+import { observer } from '@legendapp/state/react'
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import YoutubePlayer from 'react-native-youtube-iframe'
@@ -20,23 +21,28 @@ import { Play } from '@tamagui/lucide-icons'
 
 import { Header, Loading } from '@components'
 import { Videos as VideosType } from '@hooks/useAnimeList/types'
-import { RootStackParamList } from '@navigators/Home'
+import { useLegendState } from '@hooks/useLegendState'
+import { RootStackParamListHome } from '@navigators/Home/Home'
 import { getYouTubeVideoIdFromUrl } from '@utils/regex'
 
-type Props = NativeStackScreenProps<RootStackParamList, 'Videos'>
+type Props = NativeStackScreenProps<RootStackParamListHome, 'Videos'>
 
-export const Videos = ({ route }: Props) => {
+export const Videos = observer(({ route }: Props) => {
   const { videos, pressedVideo } = route.params
   const theme = useTheme()
   const insets = useSafeAreaInsets()
-  const [videoSelected, setVideoSelected] = useState<VideosType>(pressedVideo)
-  const [ready, setReady] = useState(false)
+  const [videoSelected, setVideoSelected] =
+    useLegendState<VideosType>(pressedVideo)
+  const [ready, setReady] = useLegendState(false)
 
-  const handlePressVideo = useCallback((video: VideosType) => {
-    setReady(false)
-    setVideoSelected(video)
-    setTimeout(() => setReady(true), 500)
-  }, [])
+  const handlePressVideo = useCallback(
+    (video: VideosType) => {
+      setReady(false)
+      setVideoSelected(video)
+      setTimeout(() => setReady(true), 500)
+    },
+    [setReady, setVideoSelected],
+  )
 
   return (
     <YStack f={1} bg="$background">
@@ -101,4 +107,4 @@ export const Videos = ({ route }: Props) => {
       </ScrollView>
     </YStack>
   )
-}
+})

@@ -4,9 +4,9 @@ import { useTranslation } from 'react-i18next'
 import { BlurView } from 'expo-blur'
 
 import {
+  Circle,
   getTokens,
   Image,
-  Progress,
   Stack,
   XStack,
   YStack,
@@ -23,6 +23,7 @@ type Props = {
   title?: string
   numEpisodes?: number
   averageTime?: number
+  mean?: number
 }
 
 export const HeaderDetails = ({
@@ -30,6 +31,7 @@ export const HeaderDetails = ({
   title,
   numEpisodes,
   averageTime,
+  mean,
 }: Props) => {
   const { t } = useTranslation()
   const theme = Store.settings.theme.get()
@@ -83,9 +85,13 @@ export const HeaderDetails = ({
             </XStack>
           </XStack>
         </YStack>
-        <Progress value={5} max={10} circular>
-          <Progress.Indicator circular />
-        </Progress>
+        <Circle size="$4" backgroundColor="$blue10">
+          <Circle size="$3" backgroundColor="white">
+            <Text fontWeight="$6" fontSize="$3">
+              {mean?.toFixed(2)}
+            </Text>
+          </Circle>
+        </Circle>
       </XStack>
     </Stack>
   )

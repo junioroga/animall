@@ -19,13 +19,13 @@ import { Play } from '@tamagui/lucide-icons'
 
 import { Text } from '@components'
 import { Videos as VideosType } from '@hooks/useAnimeList/types'
-import { RootStackParamList } from '@navigators/Home'
+import { RootStackParamListHome } from '@navigators/Home/Home'
 
 type Props = {
   videos: VideosType[]
 }
 
-type NavigationProps = NativeStackNavigationProp<RootStackParamList>
+type NavigationProps = NativeStackNavigationProp<RootStackParamListHome>
 
 export const Videos = ({ videos }: Props) => {
   const theme = useTheme()

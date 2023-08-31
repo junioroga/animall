@@ -2,27 +2,25 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack'
 
 import { Videos as VideosType } from '@hooks/useAnimeList/types'
 import { AnimeDetails } from '@pages/AnimeDetails'
-import { Home } from '@pages/Home'
 import { ListAnime } from '@pages/ListAnime'
 import { Videos } from '@pages/Videos'
 
-export type RootStackParamList = {
-  Home: undefined
-  ListAnime: undefined
+export type RootStackParamListSearch = {
+  ListAnimePage: undefined
   AnimeDetails: { animeId: number }
   Videos: { videos: VideosType[]; pressedVideo: VideosType }
 }
 
-const Stack = createNativeStackNavigator<RootStackParamList>()
+const Stack = createNativeStackNavigator<RootStackParamListSearch>()
 
-export const HomeNavigator = () => (
+export const ListAnimeNavigator = () => (
   <Stack.Navigator
-    initialRouteName="Home"
+    initialRouteName="ListAnimePage"
     screenOptions={{
       headerShown: false,
+      fullScreenGestureEnabled: true,
     }}>
-    <Stack.Screen name="Home" component={Home} />
-    <Stack.Screen name="ListAnime" component={ListAnime} />
+    <Stack.Screen name="ListAnimePage" component={ListAnime} />
     <Stack.Screen name="AnimeDetails" component={AnimeDetails} />
     <Stack.Screen name="Videos" component={Videos} />
   </Stack.Navigator>

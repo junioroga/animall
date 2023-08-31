@@ -10,6 +10,7 @@
       "@hooks": ["./src/hooks"],
       "@hooks/*": ["./src/hooks/*"],
       "@navigators/*": ["./src/navigators/*"],
+      "@navigators": ["./src/navigators"],
       "@pages/*": ["./src/pages/*"],
       "@router/*": ["./src/router/*"],
       "@utils/*": ["./src/utils/*"],

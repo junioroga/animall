@@ -3,28 +3,15 @@ import { useTranslation } from 'react-i18next'
 import { FlatList, ListRenderItem } from 'react-native'
 
 import { observer } from '@legendapp/state/react'
-import { useNavigation } from '@react-navigation/native'
-import { NativeStackNavigationProp } from '@react-navigation/native-stack'
 import { useInfiniteQuery } from '@tanstack/react-query'
-import { useSafeAreaInsets } from 'react-native-safe-area-context'
 
-import {
-  Button,
-  Card,
-  getTokens,
-  Image,
-  Separator,
-  XStack,
-  YStack,
-} from 'tamagui'
+import { getTokens, Separator, YStack } from 'tamagui'
 
 import { Loading, Text } from '@components'
 import { AnimeData } from '@hooks/useAnimeList/types'
-import { RootStackParamList } from '@navigators/Home'
 
+import { CardAnime } from './CardAnime'
 import { AnimeDataPrepared, preparedData } from './data'
-
-type NavigationProps = NativeStackNavigationProp<RootStackParamList>
 
 type Props = Partial<Omit<ReturnType<typeof useInfiniteQuery>, 'data'>> & {
   limit: number
@@ -45,59 +32,13 @@ export const AnimeList = observer(
     limit,
   }: Props) => {
     const { t } = useTranslation()
-    const insets = useSafeAreaInsets()
-    const navigation = useNavigation<NavigationProps>()
 
     const renderItem: ListRenderItem<AnimeDataPrepared> = useCallback(
-      ({ item }) => (
-        <Button
-          unstyled
-          onPress={() =>
-            navigation.navigate('AnimeDetails', { animeId: item.id })
-          }>
-          <Card elevation="$4" elevate animation="bouncy">
-            <Card overflow="hidden" br="$1" pr="$2">
-              <XStack gap="$3">
-                <Image
-                  style={{
-                    height: getTokens().size[11].val,
-                    width: getTokens().size[10].val,
-                  }}
-                  source={{
-                    uri: item?.main_picture?.medium,
-                  }}
-                  resizeMode="stretch"
-                />
-                <YStack f={1} jc="center" gap="$1">
-                  <Text fontWeight="$6" numberOfLines={1}>
-                    {item?.alternative_titles?.en || item?.title}
-                  </Text>
-                  <XStack ai="center" gap="$2">
-                    <Text w="$7">{t('anime.list.startDate')}</Text>
-                    <Text>{item?.startAt}</Text>
-                  </XStack>
-                  <XStack ai="center" gap="$2">
-                    <Text w="$7">{t('anime.list.endDate')}</Text>
-                    <Text>{item?.endAt}</Text>
-                  </XStack>
-                  <XStack ai="center" gap="$2">
-                    <Text w="$7">{t('anime.list.episodes')}</Text>
-                    <Text>{item?.num_episodes}</Text>
-                  </XStack>
-                  <XStack ai="center" gap="$2">
-                    <Text w="$7">{t('anime.list.rating')}</Text>
-                    <Text>{item?.rating}</Text>
-                  </XStack>
-                </YStack>
-              </XStack>
-            </Card>
-          </Card>
-        </Button>
-      ),
-      [t, navigation],
+      ({ item }) => <CardAnime item={item} />,
+      [],
     )
 
-    const renderSeparator = useCallback(() => <Separator py="$2" />, [])
+    const renderSeparator = useCallback(() => <Separator py="$1.5" />, [])
 
     const renderEmpty = useCallback(
       () => (
@@ -125,15 +66,10 @@ export const AnimeList = observer(
       [],
     )
 
-    const formattedData = useMemo(() => preparedData(data), [data])
-
-    const getItemLayout = useCallback((_: any, index: number) => {
-      return {
-        length: getTokens().size[10].val,
-        offset: getTokens().size[10].val * index,
-        index,
-      }
-    }, [])
+    const formattedData = useMemo(
+      () => (data ? preparedData(data) : []),
+      [data],
+    )
 
     const onEndReached = () => {
       if (hasNextPage) {
@@ -148,7 +84,6 @@ export const AnimeList = observer(
         keyExtractor={keyExtractor}
         data={isLoading ? [] : formattedData}
         renderItem={renderItem}
-        getItemLayout={getItemLayout}
         ItemSeparatorComponent={renderSeparator}
         ListEmptyComponent={renderEmpty}
         ListFooterComponent={renderFooter}
@@ -160,7 +95,7 @@ export const AnimeList = observer(
         contentContainerStyle={{
           flexGrow: 1,
           paddingHorizontal: getTokens().space[4].val,
-          paddingBottom: insets.bottom,
+          paddingBottom: getTokens().size[6].val,
         }}
         showsVerticalScrollIndicator={false}
       />
