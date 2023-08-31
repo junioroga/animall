@@ -2,7 +2,7 @@
   "translation": {
     "home": {
       "itsFunTime": "It's fun time!",
-      "search": "Search...",
+      "search": "Search Anime or Manga",
       "topWatched": "📺  Top watched!",
       "mostPopular": "⭐️  Most popular!",
       "upcoming": "⏳  Tick tock ..."
@@ -57,7 +57,8 @@
           "young": "17+ (violence & profanity)",
           "young_man": "Profanity & Mild Nudity"
         },
-        "relatedAnime": "Related anime"
+        "relatedAnime": "Related anime",
+        "recommendations": "Recommendations"
       }
     }
   }

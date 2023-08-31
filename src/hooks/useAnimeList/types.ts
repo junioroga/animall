@@ -29,6 +29,15 @@ export interface RelatedAnime {
   relation_type_formatted: string
 }
 
+export interface Recommendations {
+  node: {
+    id: number
+    title: string
+    main_picture: MainPicture
+  }
+  num_recommendations: number
+}
+
 export interface Season {
   year: string
   season: string
@@ -71,7 +80,7 @@ export interface AnimeData {
   background: string
   related_anime: RelatedAnime[]
   related_manga: RelatedAnime[]
-  recommendations: RelatedAnime[]
+  recommendations: Recommendations[]
   videos: Videos[]
 }
 

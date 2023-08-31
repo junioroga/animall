@@ -3,7 +3,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context'
 
 import { XStack } from 'tamagui'
 
-import { HomeNavigator } from '@navigators/Home'
+import { BottomTab } from '@navigators'
 
 export default function Router() {
   const insets = useSafeAreaInsets()
@@ -11,7 +11,7 @@ export default function Router() {
   return (
     <XStack f={1} bg="$background" pt={insets.top}>
       <NavigationContainer>
-        <HomeNavigator />
+        <BottomTab />
       </NavigationContainer>
     </XStack>
   )

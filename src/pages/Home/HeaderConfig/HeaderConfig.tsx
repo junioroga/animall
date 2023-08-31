@@ -42,7 +42,7 @@ export const HeaderConfig = observer(({ ...rest }: SwitchProps) => {
         </Popover.Trigger>
         <Popover.Content
           borderWidth={1}
-          borderColor="$gray10"
+          borderColor="$gray11"
           f={1}
           enterStyle={{ x: 0, y: -10, opacity: 0 }}
           exitStyle={{ x: 0, y: -10, opacity: 0 }}
@@ -58,7 +58,7 @@ export const HeaderConfig = observer(({ ...rest }: SwitchProps) => {
             },
           ]}
           elevate>
-          <Popover.Arrow borderWidth={1} borderColor="$gray10" />
+          <Popover.Arrow borderWidth={1} borderColor="$gray11" />
           <XStack gap="$3">
             <Stack>
               <Popover.Close asChild>

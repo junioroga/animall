@@ -46,7 +46,10 @@ export const AnimeRanking = observer(({ rankingType, cardType }: Props) => {
     [],
   )
 
-  const formattedData = useMemo(() => preparedData(data?.pages), [data])
+  const formattedData = useMemo(
+    () => (data?.pages ? preparedData(data.pages) : []),
+    [data],
+  )
 
   return (
     <FlatList

@@ -9,13 +9,13 @@ import { Button, YStack } from 'tamagui'
 
 import { Text } from '@components'
 import { RelatedAnime as RelatedAnimeType } from '@hooks/useAnimeList/types'
-import { RootStackParamList } from '@navigators/Home'
+import { RootStackParamListHome } from '@navigators/Home/Home'
 
 type Props = {
   relatedAnime: RelatedAnimeType[]
 }
 
-type NavigationProps = NativeStackNavigationProp<RootStackParamList>
+type NavigationProps = NativeStackNavigationProp<RootStackParamListHome>
 
 export const RelatedAnime = ({ relatedAnime }: Props) => {
   const { t } = useTranslation()
@@ -41,10 +41,11 @@ export const RelatedAnime = ({ relatedAnime }: Props) => {
                 {relationType}
               </Text>
             )}
-            <Button unstyled onPress={() => handleRelatedItem(anime.node.id)}>
-              <Text key={anime.node.id} color="$blue10">
-                {anime.node.title}
-              </Text>
+            <Button
+              unstyled
+              onPress={() => handleRelatedItem(anime.node.id)}
+              als="flex-start">
+              <Text color="$blue10">{anime.node.title}</Text>
             </Button>
           </YStack>
         )),

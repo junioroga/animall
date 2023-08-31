@@ -2,7 +2,7 @@
   "translation": {
     "home": {
       "itsFunTime": "É hora da diversão!",
-      "search": "Buscar...",
+      "search": "Procure um Anime ou Mangá",
       "topWatched": "📺 Mais assistidos!",
       "mostPopular": "⭐️ Mais populares!",
       "upcoming": "⏳ Tic tac ..."
@@ -57,7 +57,8 @@
           "young": "17+ (violência & profanação)",
           "young_man": "Profanação & Nudez ligeira"
         },
-        "relatedAnime": "Animes relacionados"
+        "relatedAnime": "Animes relacionados",
+        "recommendations": "Recomendações"
       }
     }
   }
