@@ -95,7 +95,7 @@ export const AnimeList = observer(
         contentContainerStyle={{
           flexGrow: 1,
           paddingHorizontal: getTokens().space[4].val,
-          paddingBottom: getTokens().size[6].val,
+          paddingBottom: getTokens().space[15].val,
         }}
         showsVerticalScrollIndicator={false}
       />

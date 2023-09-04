@@ -40,7 +40,7 @@ export const ListAnime = observer(() => {
 
   return (
     <YStack f={1} bg="$background">
-      <Stack px="$4" py="$4">
+      <Stack p="$4">
         <Search search={search} setSearch={setSearch} onSearch={refetchQuery} />
       </Stack>
       <AnimeList

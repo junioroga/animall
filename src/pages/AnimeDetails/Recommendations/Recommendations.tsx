@@ -16,12 +16,15 @@ export const Recommendations = ({ recommendations }: Props) => {
 
   return (
     <YStack>
-      <Text fontWeight="$6">{t('anime.details.recommendations')}</Text>
+      <Text fontWeight="$6" ml="$4">
+        {t('anime.details.recommendations')}
+      </Text>
       <ScrollView
         horizontal
         contentContainerStyle={{
           flexGrow: 1,
-          paddingTop: getTokens().space[3].val,
+          paddingVertical: getTokens().space[3].val,
+          paddingHorizontal: getTokens().space[4].val,
         }}
         showsHorizontalScrollIndicator={false}>
         <XStack gap="$2">

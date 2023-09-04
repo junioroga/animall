@@ -2,7 +2,6 @@ import React, { useCallback } from 'react'
 
 import { observer } from '@legendapp/state/react'
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
-import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import YoutubePlayer from 'react-native-youtube-iframe'
 
 import {
@@ -30,7 +29,6 @@ type Props = NativeStackScreenProps<RootStackParamListHome, 'Videos'>
 export const Videos = observer(({ route }: Props) => {
   const { videos, pressedVideo } = route.params
   const theme = useTheme()
-  const insets = useSafeAreaInsets()
   const [videoSelected, setVideoSelected] =
     useLegendState<VideosType>(pressedVideo)
   const [ready, setReady] = useLegendState(false)
@@ -69,7 +67,7 @@ export const Videos = observer(({ route }: Props) => {
         contentContainerStyle={{
           flexGrow: 1,
           paddingHorizontal: getTokens().space[4].val,
-          paddingBottom: insets.bottom,
+          paddingBottom: getTokens().space[12].val,
         }}
         showsVerticalScrollIndicator={false}>
         <Stack gap="$4">
@@ -84,7 +82,8 @@ export const Videos = observer(({ route }: Props) => {
                   h={getTokens().size[10].val}
                   w={getTokens().size[14].val}
                   source={{ uri: video.thumbnail }}
-                  style={{ borderRadius: getTokens().size[0.25].val }}
+                  br="$2"
+                  style={{ borderRadius: getTokens().size[0.5].val }}
                 />
                 <Stack position="absolute" ai="center" jc="center">
                   <Circle h="$3" w="$3" bc="$color12" o={0.7} />

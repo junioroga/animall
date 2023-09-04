@@ -1,5 +1,14 @@
 {
   "translation": {
+    "bottom-tabs": {
+      "home": "Início",
+      "discover": "Descobrir",
+      "settings": "Configurações"
+    },
+    "settings": {
+      "theme": "Tema",
+      "language": "Idioma"
+    },
     "home": {
       "itsFunTime": "É hora da diversão!",
       "search": "Procure um Anime ou Mangá",

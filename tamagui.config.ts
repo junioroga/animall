@@ -1,8 +1,8 @@
+import { createFont, createTamagui } from 'tamagui'
 import { createAnimations } from '@tamagui/animations-react-native'
 import { createMedia } from '@tamagui/react-native-media-driver'
 import { shorthands } from '@tamagui/shorthands'
 import { themes, tokens } from '@tamagui/themes'
-import { createFont, createTamagui } from 'tamagui'
 
 const animations = createAnimations({
   bouncy: {
@@ -63,7 +63,7 @@ const defaultFont = createFont({
     1: 1,
   },
   size: {
-    1: 11,
+    1: 10,
     2: 12,
     3: 13,
     4: 14,

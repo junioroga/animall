@@ -1,30 +1,24 @@
 import React from 'react'
 import { useTranslation } from 'react-i18next'
+import { Dimensions } from 'react-native'
 
-import { BlurView } from 'expo-blur'
-
-import {
-  Circle,
-  getTokens,
-  Image,
-  Stack,
-  XStack,
-  YStack,
-  ZStack,
-} from 'tamagui'
+import { Circle, Image, Stack, XStack, YStack, ZStack } from 'tamagui'
 import { PlayCircle, Timer } from '@tamagui/lucide-icons'
+import { tokens } from '@tamagui/themes'
 
 import { Text } from '@components'
 import { MainPicture } from '@hooks/useAnimeList/types'
-import { Store } from '@store/index'
 
 type Props = {
   mainPicture?: MainPicture
   title?: string
   numEpisodes?: number
   averageTime?: number
-  mean?: number
+  mean?: string
 }
+
+const WIDTH_CARD = Dimensions.get('window').width / 4
+const HEIGHT_CARD = Dimensions.get('window').height / 5 - tokens.size[1].val
 
 export const HeaderDetails = ({
   mainPicture,
@@ -34,28 +28,24 @@ export const HeaderDetails = ({
   mean,
 }: Props) => {
   const { t } = useTranslation()
-  const theme = Store.settings.theme.get()
 
   return (
     <Stack>
       <ZStack>
         <Image
-          h={getTokens().size[14].val}
+          h={HEIGHT_CARD + tokens.size[3].val}
           source={{
             uri: mainPicture?.medium,
           }}
           resizeMode="cover"
+          blurRadius={6}
         />
-        <BlurView
-          style={{ height: getTokens().size[14].val }}
-          intensity={80}
-          tint={theme}
-        />
+        <Stack h={HEIGHT_CARD + tokens.size[3].val} bg="$color1" o={0.4} />
       </ZStack>
       <XStack p="$4" gap="$2">
         <Image
-          h={getTokens().size[12].val}
-          w={getTokens().size[10].val}
+          h={HEIGHT_CARD}
+          w={WIDTH_CARD}
           source={{
             uri: mainPicture?.medium,
           }}
@@ -85,10 +75,10 @@ export const HeaderDetails = ({
             </XStack>
           </XStack>
         </YStack>
-        <Circle size="$4" backgroundColor="$blue10">
-          <Circle size="$3" backgroundColor="white">
-            <Text fontWeight="$6" fontSize="$3">
-              {mean?.toFixed(2)}
+        <Circle size="$5" bg="$blue10">
+          <Circle size="$4" bg="white">
+            <Text fontWeight="$7" fontSize="$4" color="black" top={1}>
+              {mean}
             </Text>
           </Circle>
         </Circle>
