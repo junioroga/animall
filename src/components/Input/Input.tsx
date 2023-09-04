@@ -1,7 +1,8 @@
 import { GetProps, Input as TInput, styled } from 'tamagui'
 
 export const Input = styled(TInput, {
-  bw: '$0.5',
+  size: '$3',
+  bw: '$1',
   boc: '$gray11',
   br: '$3',
   pl: '$3',

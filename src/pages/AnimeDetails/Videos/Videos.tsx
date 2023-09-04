@@ -62,7 +62,7 @@ export const Videos = ({ videos }: Props) => {
                   h={getTokens().size[10].val}
                   w={getTokens().size[14].val}
                   source={{ uri: video.thumbnail }}
-                  style={{ borderRadius: getTokens().size[0.25].val }}
+                  style={{ borderRadius: getTokens().size[0.5].val }}
                 />
                 <Stack position="absolute" ai="center" jc="center">
                   <Circle h="$3" w="$3" bc="$color12" o={0.7} />

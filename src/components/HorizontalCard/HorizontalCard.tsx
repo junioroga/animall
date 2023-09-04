@@ -3,24 +3,12 @@ import { Dimensions } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 import { NativeStackNavigationProp } from '@react-navigation/native-stack'
 
-import { BlurView } from 'expo-blur'
-
-import {
-  Button,
-  Card,
-  getTokens,
-  Image,
-  Stack,
-  XStack,
-  YStack,
-  ZStack,
-} from 'tamagui'
+import { Button, Card, Image, Stack, XStack, YStack, ZStack } from 'tamagui'
 import { CalendarDays } from '@tamagui/lucide-icons'
 import { tokens } from '@tamagui/themes'
 
 import { Text } from '@components/Text'
 import { RootStackParamListHome } from '@navigators/Home/Home'
-import { Store } from '@store'
 
 import { AnimeRankingPrepared } from '../../pages/Home/AnimeRanking/data'
 
@@ -30,43 +18,37 @@ type Props = {
   item: AnimeRankingPrepared
 }
 
-const WIDTH_SCREEN = Dimensions.get('window').width - tokens.size[9].val
+const WIDTH_CARD = Dimensions.get('window').width - tokens.size[9].val
+const HEIGHT_CARD = Dimensions.get('window').height / 4
 
 export const HorizontalCard = ({ item }: Props) => {
   const navigation = useNavigation<NavigationProps>()
-  const theme = Store.settings.theme.get()
 
   return (
     <Button
       unstyled
       onPress={() => navigation.navigate('AnimeDetails', { animeId: item.id })}>
       <Card
-        h="$14"
-        w={WIDTH_SCREEN}
+        h={HEIGHT_CARD}
+        w={WIDTH_CARD}
         elevate
         elevation="$0.75"
         animation="bouncy">
-        <Card overflow="hidden" br="$1" pr="$2">
+        <Card overflow="hidden" br="$2" pr="$2">
           <Card.Background>
             <ZStack>
               <Image
-                h={getTokens().size[14].val / 2}
+                h={HEIGHT_CARD / 2}
                 source={{
                   uri: item?.main_picture.medium,
                 }}
                 resizeMode="cover"
-                blurRadius={1}
+                blurRadius={3}
               />
-              <BlurView
-                style={{
-                  height: getTokens().size[14].val / 2,
-                }}
-                intensity={70}
-                tint={theme}
-              />
+              <Stack h={HEIGHT_CARD / 2} o={0.5} bg="$color1" />
             </ZStack>
           </Card.Background>
-          <XStack h="$14">
+          <XStack h={HEIGHT_CARD}>
             <Stack ml="$2" w="40%" jc="center">
               <Image
                 style={{

@@ -26,7 +26,7 @@ export const CardAnime = ({ item }: Props) => {
       unstyled
       onPress={() => navigation.navigate('AnimeDetails', { animeId: item.id })}>
       <Card elevation="$4" elevate animation="bouncy">
-        <Card overflow="hidden" br="$1" pr="$2">
+        <Card overflow="hidden" br="$2" pr="$2">
           <XStack gap="$3">
             <Image
               style={{

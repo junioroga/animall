@@ -27,9 +27,11 @@ export const Search = observer(({ search, setSearch, onSearch }: Props) => {
         value={search}
         placeholder={t('home.search')}
         onChangeText={setSearch}
+        autoCapitalize="words"
+        autoCorrect={false}
+        autoComplete="off"
         returnKeyType="search"
         onSubmitEditing={disabled ? Keyboard.dismiss : onSearch}
-        autoCorrect={false}
       />
       <Button
         h="$5"

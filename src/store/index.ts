@@ -5,14 +5,14 @@ import { persistObservable } from '@legendapp/state/persist'
 import { ObservablePersistLocalStorage } from '@legendapp/state/persist-plugins/local-storage'
 
 import { ObservablePersistAsyncStorage } from './observablePersist'
-import { settings, user } from './observers'
+import { settings } from './observers'
 
 const persistLocal: any =
   Platform.OS === 'web'
     ? ObservablePersistLocalStorage
     : ObservablePersistAsyncStorage
 
-export const Store = observable({ settings, user })
+export const Store = observable({ settings })
 
 persistObservable(Store, {
   local: 'store',
