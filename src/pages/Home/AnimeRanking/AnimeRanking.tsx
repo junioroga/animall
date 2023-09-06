@@ -17,7 +17,7 @@ type Props = {
   cardType: CardType
 }
 
-const LIMIT = 30
+const LIMIT = 10
 
 export const AnimeRanking = observer(({ rankingType, cardType }: Props) => {
   const { isLoading, data } = useAnimeRanking({ rankingType, limit: LIMIT })

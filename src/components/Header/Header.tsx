@@ -1,9 +1,8 @@
 import React from 'react'
-import { TouchableOpacity } from 'react-native'
 
 import { useNavigation } from '@react-navigation/native'
 
-import { getTokens, Stack, XStack } from 'tamagui'
+import { Button, Stack, XStack } from 'tamagui'
 import { ChevronLeft } from '@tamagui/lucide-icons'
 
 export type HeaderProps = {
@@ -20,11 +19,9 @@ export const Header = ({ right }: HeaderProps) => {
       pb="$2"
       ai="center"
       bg="$background">
-      <TouchableOpacity
-        onPress={navigation.goBack}
-        style={{ left: -getTokens()?.size[0.75].val }}>
+      <Button unstyled onPress={navigation.goBack} left="$-2.5">
         <ChevronLeft />
-      </TouchableOpacity>
+      </Button>
       <Stack>{right && right}</Stack>
     </XStack>
   )

@@ -12,6 +12,7 @@ import { useAnimeDetails } from '@hooks'
 import { RootStackParamListHome } from '@navigators/Home/Home'
 
 import { AnimeNumbers } from './AnimeNumbers'
+import { Chart } from './Chart'
 import { AnimeDetailsPrepared, preparedData } from './data'
 import { Genres } from './Genres'
 import { HeaderDetails } from './HeaderDetails'
@@ -39,7 +40,7 @@ export const AnimeDetails = ({ route }: Props) => {
       <Header
         right={
           <Button unstyled>
-            <Share />
+            <Share size="$4" />
           </Button>
         }
       />
@@ -50,7 +51,7 @@ export const AnimeDetails = ({ route }: Props) => {
         }}
         showsVerticalScrollIndicator={false}>
         {isLoading && !Object.keys(formattedData).length ? (
-          <YStack h={height} ai="center" jc="center">
+          <YStack h={height * 0.8} ai="center" jc="center">
             <Loading />
           </YStack>
         ) : (
@@ -84,6 +85,9 @@ export const AnimeDetails = ({ route }: Props) => {
                 />
                 {!!formattedData?.videos.length && (
                   <Videos videos={formattedData.videos} />
+                )}
+                {!!formattedData?.statistics && (
+                  <Chart statistics={formattedData?.statistics} />
                 )}
                 {!!formattedData?.related_anime.length && (
                   <RelatedAnime relatedAnime={formattedData.related_anime} />

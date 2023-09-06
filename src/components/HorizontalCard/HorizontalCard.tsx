@@ -4,7 +4,7 @@ import { useNavigation } from '@react-navigation/native'
 import { NativeStackNavigationProp } from '@react-navigation/native-stack'
 
 import { Button, Card, Image, Stack, XStack, YStack, ZStack } from 'tamagui'
-import { CalendarDays } from '@tamagui/lucide-icons'
+import { CalendarDays, Timer } from '@tamagui/lucide-icons'
 import { tokens } from '@tamagui/themes'
 
 import { Text } from '@components/Text'
@@ -19,7 +19,7 @@ type Props = {
 }
 
 const WIDTH_CARD = Dimensions.get('window').width - tokens.size[9].val
-const HEIGHT_CARD = Dimensions.get('window').height / 4
+const HEIGHT_CARD = tokens.size[14].val
 
 export const HorizontalCard = ({ item }: Props) => {
   const navigation = useNavigation<NavigationProps>()
@@ -68,18 +68,26 @@ export const HorizontalCard = ({ item }: Props) => {
                   {item?.title || item?.alternative_titles.en}
                 </Text>
               </Stack>
-              <Stack f={0.5} gap="$2" mt="$5">
+              <Stack f={0.5} gap="$1.5" mt="$5">
                 {item?.genresFormatted && (
-                  <Text fontWeight="$5" fontSize="$2" numberOfLines={2}>
+                  <Text fontWeight="$5" fontSize="$1" numberOfLines={2}>
                     {item.genresFormatted}
                   </Text>
                 )}
                 <XStack ai="center" gap="$1">
-                  <CalendarDays size="$1" color="$blue10" />
-                  <Text fontWeight="$5" fontSize="$2" color="$blue10">
+                  <CalendarDays size="$3" color="$blue10" />
+                  <Text fontWeight="$5" fontSize="$1" color="$blue10">
                     {item?.fullDate}
                   </Text>
                 </XStack>
+                {item.releaseDay && (
+                  <XStack ai="center" gap="$1">
+                    <Timer size="$3" color="$blue10" />
+                    <Text fontWeight="$5" fontSize="$1" color="$blue10">
+                      {item?.releaseDay} - {item?.broadcast?.start_time}
+                    </Text>
+                  </XStack>
+                )}
               </Stack>
             </YStack>
           </XStack>

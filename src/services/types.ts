@@ -3,6 +3,24 @@ export type PaginationProps = {
   offset: number
 }
 
+export enum StatisticsTypes {
+  WATCHING = 'watching',
+  DROPPED = 'dropped',
+  ON_HOLD = 'on_hold',
+  COMPLETED = 'completed',
+  PLAN_TO_WATCH = 'plan_to_watch',
+}
+
+export enum DaysOfWeek {
+  MONDAY = 'monday',
+  TUESDAY = 'tuesday',
+  WEDNESDAY = 'wednesday',
+  THURSDAY = 'thursday',
+  FRIDAY = 'friday',
+  SATURDAY = 'saturday',
+  SUNDAY = 'sunday',
+}
+
 export enum Seasons {
   WINTER = 'winter',
   SPRING = 'spring',

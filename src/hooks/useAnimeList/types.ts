@@ -38,6 +38,19 @@ export interface Recommendations {
   num_recommendations: number
 }
 
+interface StatusStatistics {
+  watching: number
+  completed: number
+  on_hold: number
+  dropped: number
+  plan_to_watch: number
+}
+
+export interface Statistics {
+  status: StatusStatistics
+  num_list_users: number
+}
+
 export interface Season {
   year: string
   season: string
@@ -52,6 +65,11 @@ export interface Videos {
   thumbnail: string
 }
 
+export interface Broadcast {
+  day_of_the_week: string
+  start_time: string
+}
+
 export interface AnimeData {
   id: number
   title: string
@@ -60,6 +78,7 @@ export interface AnimeData {
   start_date: string
   end_date: string
   studios: Studios[]
+  statistics: Statistics
   genres: Genres[]
   synopsis: string
   mean: number
@@ -69,6 +88,7 @@ export interface AnimeData {
   num_episodes: number
   start_season: Season
   num_scoring_users: number
+  broadcast: Broadcast
   created_at: string
   updated_at: string
   media_type: string

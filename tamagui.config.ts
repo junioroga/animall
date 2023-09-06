@@ -1,10 +1,27 @@
 import { createFont, createTamagui } from 'tamagui'
-import { createAnimations } from '@tamagui/animations-react-native'
+import { createAnimations } from '@tamagui/animations-moti'
 import { createMedia } from '@tamagui/react-native-media-driver'
 import { shorthands } from '@tamagui/shorthands'
 import { themes, tokens } from '@tamagui/themes'
 
 const animations = createAnimations({
+  fast: {
+    type: 'spring',
+    damping: 20,
+    mass: 1.2,
+    stiffness: 250,
+  },
+  medium: {
+    type: 'spring',
+    damping: 10,
+    mass: 0.9,
+    stiffness: 100,
+  },
+  slow: {
+    type: 'spring',
+    damping: 20,
+    stiffness: 60,
+  },
   bouncy: {
     type: 'spring',
     damping: 10,
@@ -110,8 +127,8 @@ const config = createTamagui({
   defaultTheme: 'light',
   shouldAddPrefersColorThemes: false,
   themeClassNameOnRoot: false,
-  onlyAllowShorthands: true,
   shorthands,
+  onlyAllowShorthands: true,
   fonts: {
     heading: defaultFont,
     body: defaultFont,

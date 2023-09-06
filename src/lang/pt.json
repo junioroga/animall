@@ -11,20 +11,31 @@
     },
     "home": {
       "itsFunTime": "É hora da diversão!",
-      "search": "Procure um Anime ou Mangá",
+      "search": "Procure um anime",
       "topWatched": "📺 Mais assistidos!",
       "mostPopular": "⭐️ Mais populares!",
-      "upcoming": "⏳ Tic tac ..."
+      "upcoming": "⏳ Tic tac ...",
+      "airing": "🚀 Lançando",
+      "special": "🎉 Especial"
     },
     "language": {
       "portuguese": "Português",
       "english": "Inglês"
     },
+    "daysOfWeek": {
+      "monday": "Segunda",
+      "tuesday": "Terça",
+      "wednesday": "Quarta",
+      "thursday": "Quinta",
+      "friday": "Sexta",
+      "saturday": "Sábado",
+      "sunday": "Domingo" 
+    },
     "anime": {
       "producing": "Produzindo",
       "notFound": "Não há animes disponíveis",
       "notEvaluated": "N/A",
-      "noReleaseDate": "Sem data de lançamento",
+      "noReleaseDate": "Sem data",
       "list": {
         "startDate": "Início",
         "endDate": "Fim",
@@ -39,6 +50,8 @@
         "members": "Usuários",
         "popularity": "Popularidade",
         "synopsis": "Sinopse",
+        "showLess": "Mostrar menos",
+        "showMore": "Mostrar mais",
         "moreInfo": "Mais informações",
         "status": "Status",
         "season": "Estação",
@@ -65,6 +78,15 @@
           "teens": "Adolescentes 13+",
           "young": "17+ (violência & profanação)",
           "young_man": "Profanação & Nudez ligeira"
+        },
+        "statistics": {
+          "title": "Estatísticas",
+          "allMembers": "Total de espectadores: {{total}}",
+          "planToWatch": "Pretende assistir",
+          "dropped": "Desistências",
+          "onHold": "Esperando",
+          "completed": "Finalizados",
+          "watching": "Assistindo"
         },
         "relatedAnime": "Animes relacionados",
         "recommendations": "Recomendações"

@@ -29,7 +29,7 @@ export const useAnimeRanking = ({
 
     const data = await animeService.getRanking({
       ranking_type: rankingType,
-      fields: `${Fields.ID},${Fields.TITLE},${Fields.ALTERNATIVE_TITLES},${Fields.MAIN_PICTURE},${Fields.MEAN},${Fields.START_DATE},${Fields.GENRES}`,
+      fields: `${Fields.ID},${Fields.TITLE},${Fields.ALTERNATIVE_TITLES},${Fields.MAIN_PICTURE},${Fields.MEAN},${Fields.START_DATE},${Fields.GENRES},${Fields.BROADCAST}`,
       limit,
       offset: pageParam,
     })
