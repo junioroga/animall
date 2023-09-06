@@ -55,9 +55,9 @@ export const Settings = observer(() => {
               onCheckedChange={onCheckedThemeChange}>
               <Switch.Thumb>
                 {isCheckedTheme ? (
-                  <Moon size={16} color="$blue10" />
+                  <Moon size="$icon.sm" color="$blue10" />
                 ) : (
-                  <Sun size={16} color="$yellow8" />
+                  <Sun size="$icon.sm" color="$yellow8" />
                 )}
               </Switch.Thumb>
             </Switch>
@@ -69,7 +69,7 @@ export const Settings = observer(() => {
               checked={isCheckedLanguage}
               onCheckedChange={onCheckedLanguageChange}>
               <Switch.Thumb>
-                {isCheckedTheme ? (
+                {isCheckedLanguage ? (
                   <Brazil height={10} width={15} />
                 ) : (
                   <Usa height={10} width={15} />

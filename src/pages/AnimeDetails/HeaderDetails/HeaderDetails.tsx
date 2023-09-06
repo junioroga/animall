@@ -2,7 +2,18 @@ import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { Dimensions } from 'react-native'
 
-import { Circle, Image, Stack, XStack, YStack, ZStack } from 'tamagui'
+import { Text as TextSVG } from 'react-native-svg'
+import { ProgressCircle } from 'react-native-svg-charts'
+
+import {
+  getFontSize,
+  Image,
+  Stack,
+  useTheme,
+  XStack,
+  YStack,
+  ZStack,
+} from 'tamagui'
 import { PlayCircle, Timer } from '@tamagui/lucide-icons'
 import { tokens } from '@tamagui/themes'
 
@@ -17,8 +28,8 @@ type Props = {
   mean?: string
 }
 
-const WIDTH_CARD = Dimensions.get('window').width / 4
-const HEIGHT_CARD = Dimensions.get('window').height / 5 - tokens.size[1].val
+const WIDTH_CARD = Dimensions.get('window').width / 3.5
+const HEIGHT_CARD = tokens.size[13].val
 
 export const HeaderDetails = ({
   mainPicture,
@@ -28,6 +39,7 @@ export const HeaderDetails = ({
   mean,
 }: Props) => {
   const { t } = useTranslation()
+  const theme = useTheme()
 
   return (
     <Stack>
@@ -42,7 +54,7 @@ export const HeaderDetails = ({
         />
         <Stack h={HEIGHT_CARD + tokens.size[3].val} bg="$color1" o={0.4} />
       </ZStack>
-      <XStack p="$4" gap="$2">
+      <XStack p="$4" gap="$2" f={1}>
         <Image
           h={HEIGHT_CARD}
           w={WIDTH_CARD}
@@ -52,13 +64,13 @@ export const HeaderDetails = ({
           borderRadius={3}
           resizeMode="stretch"
         />
-        <YStack f={1} gap="$2">
+        <YStack gap="$2" f={1}>
           <Text color="$color12" fontWeight="$6" numberOfLines={3}>
             {title}
           </Text>
           <XStack gap="$2">
             <XStack ai="center" gap="$1.5">
-              <PlayCircle size="$1" />
+              <PlayCircle size="$icon.sm" />
               <Text fontWeight="$4" fontSize="$2">
                 {t('anime.details.numEpisodes', {
                   numEpisodes,
@@ -66,7 +78,7 @@ export const HeaderDetails = ({
               </Text>
             </XStack>
             <XStack ai="center" gap="$1.5">
-              <Timer size="$1" />
+              <Timer size="$icon.sm" />
               <Text fontWeight="$4" fontSize="$2">
                 {t('anime.details.averageTime', {
                   averageTime,
@@ -75,13 +87,29 @@ export const HeaderDetails = ({
             </XStack>
           </XStack>
         </YStack>
-        <Circle size="$5" bg="$blue10">
-          <Circle size="$4" bg="white">
-            <Text fontWeight="$7" fontSize="$4" color="black" top={1}>
-              {mean}
-            </Text>
-          </Circle>
-        </Circle>
+        <ProgressCircle
+          style={{
+            height: tokens.size[5].val,
+            width: tokens.size[5].val,
+            backgroundColor: 'white',
+            borderRadius: tokens.size[5].val,
+          }}
+          progress={Number(mean) / 10}
+          progressColor={theme.blue10.val}
+          backgroundColor={theme.blue7.val}
+          startAngle={-Math.PI}
+          endAngle={Math.PI}
+          animate>
+          <TextSVG
+            x={-0.5}
+            y={1.5}
+            fill="black"
+            textAnchor="middle"
+            alignmentBaseline="middle"
+            fontSize={getFontSize('$4')}>
+            {mean}
+          </TextSVG>
+        </ProgressCircle>
       </XStack>
     </Stack>
   )

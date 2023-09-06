@@ -50,7 +50,7 @@ export const Videos = ({ videos }: Props) => {
             paddingTop: getTokens().space[4].val,
           }}
           showsHorizontalScrollIndicator={false}>
-          <XStack gap="$4">
+          <XStack gap="$2">
             {videos?.map((video) => (
               <Button
                 key={video.id}

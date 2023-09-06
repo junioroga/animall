@@ -11,14 +11,25 @@
     },
     "home": {
       "itsFunTime": "It's fun time!",
-      "search": "Search Anime or Manga",
+      "search": "Search anime",
       "topWatched": "📺  Top watched!",
       "mostPopular": "⭐️  Most popular!",
-      "upcoming": "⏳  Tick tock ..."
+      "upcoming": "⏳  Tick tock ...",
+      "airing": "🚀 Airing",
+      "special": "🎉 Special"
     },
     "language": {
       "portuguese": "Portuguese",
       "english": "English"
+    },
+    "daysOfWeek": {
+      "monday": "Monday",
+      "tuesday": "Tuesday",
+      "wednesday": "Wednesday",
+      "thursday": "Thursday",
+      "friday": "Friday",
+      "saturday": "Saturday",
+      "sunday": "Sunday" 
     },
     "anime": {
       "producing": "Producing",
@@ -39,6 +50,8 @@
         "members": "Members",
         "popularity": "Popularity",
         "synopsis": "Synopsis",
+        "showLess": "Show less",
+        "showMore": "Show more",
         "moreInfo": "More info",
         "status": "Status",
         "season": "Season",
@@ -65,6 +78,15 @@
           "teens": "Teens 13 and Older",
           "young": "17+ (violence & profanity)",
           "young_man": "Profanity & Mild Nudity"
+        },
+        "statistics": {
+          "title": "Statistics",
+          "allMembers": "All members: {{total}}",
+          "planToWatch": "Plan to watch",
+          "dropped": "Dropped",
+          "onHold": "On hold",
+          "completed": "Completed",
+          "watching": "Watching"
         },
         "relatedAnime": "Related anime",
         "recommendations": "Recommendations"

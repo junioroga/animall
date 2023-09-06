@@ -1,17 +1,40 @@
 import { useTranslation } from 'react-i18next'
 
-import { getTokens, H4, H6, ScrollView, Stack, XStack, YStack } from 'tamagui'
+import {
+  Button,
+  getTokens,
+  H4,
+  H6,
+  ScrollView,
+  Stack,
+  XStack,
+  YStack,
+} from 'tamagui'
+import { ChevronRight } from '@tamagui/lucide-icons'
 
 import { CardType, RankingType } from '@services/types'
 
 import { AnimeRanking } from './AnimeRanking/'
+
+type TitleProps = {
+  title: string
+}
+
+const TitleSection = ({ title }: TitleProps) => (
+  <XStack ai="center" jc="space-between" ml="$4" mr="$3">
+    <H6 fontWeight="$6">{title}</H6>
+    <Button unstyled>
+      <ChevronRight />
+    </Button>
+  </XStack>
+)
 
 export const Home = () => {
   const { t } = useTranslation()
 
   return (
     <YStack f={1} bg="$background">
-      <YStack px="$4" py="$3">
+      <YStack px="$4" pb="$3" pt="$1">
         <XStack jc="space-between" ai="center">
           <H4 fontWeight="$7">{t('home.itsFunTime')}</H4>
         </XStack>
@@ -25,30 +48,38 @@ export const Home = () => {
         keyboardShouldPersistTaps="handled">
         <Stack gap="$2">
           <Stack>
-            <H6 fontWeight="$6" ml="$4">
-              {t('home.topWatched')}
-            </H6>
+            <TitleSection title={t('home.airing')} />
+            <AnimeRanking
+              rankingType={RankingType.AIRING}
+              cardType={CardType.HORIZONTAL}
+            />
+          </Stack>
+          <Stack>
+            <TitleSection title={t('home.topWatched')} />
             <AnimeRanking
               rankingType={RankingType.ALL}
               cardType={CardType.VERTICAL}
             />
           </Stack>
           <Stack>
-            <H6 fontWeight="$6" ml="$4">
-              {t('home.upcoming')}
-            </H6>
+            <TitleSection title={t('home.upcoming')} />
             <AnimeRanking
               rankingType={RankingType.UPCOMING}
               cardType={CardType.HORIZONTAL}
             />
           </Stack>
           <Stack>
-            <H6 fontWeight="$6" ml="$4">
-              {t('home.mostPopular')}
-            </H6>
+            <TitleSection title={t('home.mostPopular')} />
             <AnimeRanking
               rankingType={RankingType.BY_POPULARITY}
               cardType={CardType.VERTICAL}
+            />
+          </Stack>
+          <Stack>
+            <TitleSection title={t('home.special')} />
+            <AnimeRanking
+              rankingType={RankingType.SPECIAL}
+              cardType={CardType.HORIZONTAL}
             />
           </Stack>
         </Stack>

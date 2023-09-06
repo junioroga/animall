@@ -16,6 +16,7 @@ const SwitchThumb = styled(TSwitch.Thumb, {
   ai: 'center',
   jc: 'center',
   animation: 'bouncy',
+  size: '$3',
   bg: '$color1',
 })
 
