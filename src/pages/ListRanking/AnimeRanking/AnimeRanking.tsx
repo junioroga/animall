@@ -11,7 +11,7 @@ import { getTokens, Separator, Stack, YStack } from 'tamagui'
 import { HEIGHT_VERTICAL_CARD, Loading, Text, VerticalCard } from '@components'
 import { AnimeData } from '@hooks/useAnimeList/types'
 
-import { AnimeDataPrepared, preparedData } from './data'
+import { AnimeRankingPrepared, preparedData } from './data'
 
 type Props = Partial<Omit<ReturnType<typeof useInfiniteQuery>, 'data'>> & {
   limit: number
@@ -20,7 +20,7 @@ type Props = Partial<Omit<ReturnType<typeof useInfiniteQuery>, 'data'>> & {
   refreshingManual: boolean
 }
 
-export const AnimeList = observer(
+export const AnimeRanking = observer(
   ({
     isLoading,
     isFetchingNextPage,
@@ -34,7 +34,7 @@ export const AnimeList = observer(
     const { t } = useTranslation()
     const { bottom } = useSafeAreaInsets()
 
-    const renderItem: ListRenderItem<AnimeDataPrepared> = useCallback(
+    const renderItem: ListRenderItem<AnimeRankingPrepared> = useCallback(
       ({ item }) => (
         <Stack mr="$2.5">
           <VerticalCard item={item} />
@@ -43,7 +43,7 @@ export const AnimeList = observer(
       [],
     )
 
-    const renderSeparator = useCallback(() => <Separator my="$1.5" />, [])
+    const renderSeparator = useCallback(() => <Separator py="$1.5" />, [])
 
     const renderEmpty = useCallback(
       () => (
@@ -67,7 +67,8 @@ export const AnimeList = observer(
     }, [isFetchingNextPage])
 
     const keyExtractor = useCallback(
-      (item: AnimeDataPrepared, index: number) => `${String(item.id)}${index}`,
+      (item: AnimeRankingPrepared, index: number) =>
+        `${String(item.id)}${index}`,
       [],
     )
 
@@ -82,7 +83,7 @@ export const AnimeList = observer(
           fetchNextPage?.()
         }
       }
-    }, [isFetchingNextPage, hasNextPage, fetchNextPage])
+    }, [hasNextPage, isFetchingNextPage, fetchNextPage])
 
     const getItemLayout = useCallback(
       (_: any, index: number) => ({

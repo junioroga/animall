@@ -3,9 +3,17 @@ import { Dimensions } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 import { NativeStackNavigationProp } from '@react-navigation/native-stack'
 
-import { Button, Card, Image, Stack, XStack, YStack, ZStack } from 'tamagui'
+import {
+  Button,
+  Card,
+  getTokens,
+  Image,
+  Stack,
+  XStack,
+  YStack,
+  ZStack,
+} from 'tamagui'
 import { CalendarDays, Timer } from '@tamagui/lucide-icons'
-import { tokens } from '@tamagui/themes'
 
 import { Text } from '@components/Text'
 import { RootStackParamListHome } from '@navigators/Home/Home'
@@ -18,8 +26,9 @@ type Props = {
   item: AnimeRankingPrepared
 }
 
-const WIDTH_CARD = Dimensions.get('window').width - tokens.size[9].val
-const HEIGHT_CARD = tokens.size[14].val
+export const WIDTH_HORIZONTAL_CARD =
+  Dimensions.get('window').width - getTokens().size[9].val
+export const HEIGHT_HORIZONTAL_CARD = getTokens().size[14].val
 
 export const HorizontalCard = ({ item }: Props) => {
   const navigation = useNavigation<NavigationProps>()
@@ -29,8 +38,8 @@ export const HorizontalCard = ({ item }: Props) => {
       unstyled
       onPress={() => navigation.navigate('AnimeDetails', { animeId: item.id })}>
       <Card
-        h={HEIGHT_CARD}
-        w={WIDTH_CARD}
+        h={HEIGHT_HORIZONTAL_CARD}
+        w={WIDTH_HORIZONTAL_CARD}
         elevate
         elevation="$0.75"
         animation="bouncy">
@@ -38,17 +47,17 @@ export const HorizontalCard = ({ item }: Props) => {
           <Card.Background>
             <ZStack>
               <Image
-                h={HEIGHT_CARD / 2}
+                h={HEIGHT_HORIZONTAL_CARD / 2}
                 source={{
                   uri: item?.main_picture.medium,
                 }}
                 resizeMode="cover"
                 blurRadius={3}
               />
-              <Stack h={HEIGHT_CARD / 2} o={0.5} bg="$color1" />
+              <Stack h={HEIGHT_HORIZONTAL_CARD / 2} o={0.5} bg="$color1" />
             </ZStack>
           </Card.Background>
-          <XStack h={HEIGHT_CARD}>
+          <XStack h={HEIGHT_HORIZONTAL_CARD}>
             <Stack ml="$2" w="40%" jc="center">
               <Image
                 style={{
@@ -70,19 +79,19 @@ export const HorizontalCard = ({ item }: Props) => {
               </Stack>
               <Stack f={0.5} gap="$1.5" mt="$5">
                 {item?.genresFormatted && (
-                  <Text fontWeight="$5" fontSize="$1" numberOfLines={2}>
+                  <Text fontWeight="$5" fontSize="$1.5" numberOfLines={2}>
                     {item.genresFormatted}
                   </Text>
                 )}
                 <XStack ai="center" gap="$1">
-                  <CalendarDays size="$3" color="$blue10" />
-                  <Text fontWeight="$5" fontSize="$1" color="$blue10">
+                  <CalendarDays size="$icon.sm" color="$blue10" />
+                  <Text fontWeight="$5" fontSize="$1.5" color="$blue10">
                     {item?.fullDate}
                   </Text>
                 </XStack>
                 {item.releaseDay && (
                   <XStack ai="center" gap="$1">
-                    <Timer size="$3" color="$blue10" />
+                    <Timer size="$icon.sm" color="$blue10" />
                     <Text fontWeight="$5" fontSize="$1" color="$blue10">
                       {item?.releaseDay} - {item?.broadcast?.start_time}
                     </Text>

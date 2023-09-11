@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Dimensions } from 'react-native'
 
@@ -7,6 +7,7 @@ import { ProgressCircle } from 'react-native-svg-charts'
 
 import {
   getFontSize,
+  getTokens,
   Image,
   Stack,
   useTheme,
@@ -15,7 +16,6 @@ import {
   ZStack,
 } from 'tamagui'
 import { PlayCircle, Timer } from '@tamagui/lucide-icons'
-import { tokens } from '@tamagui/themes'
 
 import { Text } from '@components'
 import { MainPicture } from '@hooks/useAnimeList/types'
@@ -28,9 +28,6 @@ type Props = {
   mean?: string
 }
 
-const WIDTH_CARD = Dimensions.get('window').width / 3.5
-const HEIGHT_CARD = tokens.size[13].val
-
 export const HeaderDetails = ({
   mainPicture,
   title,
@@ -40,19 +37,21 @@ export const HeaderDetails = ({
 }: Props) => {
   const { t } = useTranslation()
   const theme = useTheme()
+  const WIDTH_CARD = useMemo(() => Dimensions.get('window').width / 3.5, [])
+  const HEIGHT_CARD = useMemo(() => getTokens().size[13].val, [])
 
   return (
     <Stack>
       <ZStack>
         <Image
-          h={HEIGHT_CARD + tokens.size[3].val}
+          h={HEIGHT_CARD + getTokens().size[3].val}
           source={{
             uri: mainPicture?.medium,
           }}
           resizeMode="cover"
           blurRadius={6}
         />
-        <Stack h={HEIGHT_CARD + tokens.size[3].val} bg="$color1" o={0.4} />
+        <Stack h={HEIGHT_CARD + getTokens().size[3].val} bg="$color1" o={0.4} />
       </ZStack>
       <XStack p="$4" gap="$2" f={1}>
         <Image
@@ -89,10 +88,10 @@ export const HeaderDetails = ({
         </YStack>
         <ProgressCircle
           style={{
-            height: tokens.size[5].val,
-            width: tokens.size[5].val,
+            height: getTokens().size[5].val,
+            width: getTokens().size[5].val,
             backgroundColor: 'white',
-            borderRadius: tokens.size[5].val,
+            borderRadius: getTokens().size[5].val,
           }}
           progress={Number(mean) / 10}
           progressColor={theme.blue10.val}

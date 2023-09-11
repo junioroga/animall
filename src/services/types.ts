@@ -88,7 +88,6 @@ export enum RankingType {
   MOVIE = 'movie',
   SPECIAL = 'special',
   BY_POPULARITY = 'bypopularity',
-  FAVORITE = 'favorite',
 }
 
 export enum CardType {
