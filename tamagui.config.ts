@@ -81,6 +81,7 @@ const defaultFont = createFont({
   },
   size: {
     1: 10,
+    1.5: 11,
     2: 12,
     3: 13,
     4: 14,

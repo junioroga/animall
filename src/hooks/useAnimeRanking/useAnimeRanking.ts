@@ -7,19 +7,26 @@ import { Fields, RankingType } from '@services/types'
 
 import { AnimeRanking } from './types'
 
+export enum QueryKeysRanking {
+  RANKING_HOME = 'ranking-home',
+  RANKING_LIST = 'ranking-list',
+}
+
 type AnimeRankingHookProps = {
+  queryKey: QueryKeysRanking
   rankingType: RankingType
   limit?: number
   enabled?: boolean
 }
 
 export const useAnimeRanking = ({
+  queryKey,
   rankingType,
-  limit = 6,
+  limit = 10,
   enabled = true,
 }: AnimeRankingHookProps) => {
   const getRankingAnimes = async ({
-    pageParam,
+    pageParam = 0,
     queryKey,
   }: QueryFunctionContext) => {
     const [, { rankingType }] = queryKey as [
@@ -41,7 +48,7 @@ export const useAnimeRanking = ({
     }
   }
 
-  return useInfiniteQuery(['ranking-list', { rankingType }], getRankingAnimes, {
+  return useInfiniteQuery([queryKey, { rankingType }], getRankingAnimes, {
     select: (data) => {
       const flattenData = flatMap(data?.pages, (page) => page.data)
       const newData: AnimeRanking[] = map(flattenData, (item) => ({
@@ -57,5 +64,6 @@ export const useAnimeRanking = ({
     enabled,
     getNextPageParam: (lastPage) =>
       lastPage.paging?.next ? lastPage.nextPage : false,
+    cacheTime: 0,
   })
 }

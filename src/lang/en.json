@@ -31,6 +31,16 @@
       "saturday": "Saturday",
       "sunday": "Sunday" 
     },
+    "rankingTypes": {
+      "all": "All",
+      "airing": "Airing",
+      "upcoming": "Up Coming",
+      "tv": "TV",
+      "ova": "OVA",
+      "movie": "Movie",
+      "special": "Special",
+      "bypopularity": "Popular" 
+    },
     "anime": {
       "producing": "Producing",
       "notFound": "No anime available",
@@ -90,6 +100,9 @@
         },
         "relatedAnime": "Related anime",
         "recommendations": "Recommendations"
+      },
+      "rankingList": {
+        "filtersType": "Type"
       }
     }
   }

@@ -6,8 +6,15 @@ import { observer } from '@legendapp/state/react'
 
 import { getTokens, Separator, useTheme, YStack } from 'tamagui'
 
-import { HorizontalCard, Loading, Text, VerticalCard } from '@components'
-import { useAnimeRanking } from '@hooks'
+import {
+  HorizontalCard,
+  Loading,
+  Text,
+  VerticalCard,
+  WIDTH_HORIZONTAL_CARD,
+  WIDTH_VERTICAL_CARD,
+} from '@components'
+import { QueryKeysRanking, useAnimeRanking } from '@hooks'
 import { CardType, RankingType } from '@services/types'
 
 import { AnimeRankingPrepared, preparedData } from './data'
@@ -17,33 +24,56 @@ type Props = {
   cardType: CardType
 }
 
-const LIMIT = 10
-
 export const AnimeRanking = observer(({ rankingType, cardType }: Props) => {
-  const { isLoading, data } = useAnimeRanking({ rankingType, limit: LIMIT })
+  const { isLoading, data } = useAnimeRanking({
+    queryKey: QueryKeysRanking.RANKING_HOME,
+    rankingType,
+  })
   const { t } = useTranslation()
   const theme = useTheme()
+  const itemHeight = useMemo(
+    () =>
+      cardType === CardType.HORIZONTAL
+        ? WIDTH_HORIZONTAL_CARD
+        : WIDTH_VERTICAL_CARD,
+    [cardType],
+  )
 
-  const renderItem: ListRenderItem<AnimeRankingPrepared> = ({ item }) =>
-    cardType === CardType.HORIZONTAL ? (
-      <HorizontalCard item={item} />
-    ) : (
-      <VerticalCard item={item} />
-    )
+  const renderItem: ListRenderItem<AnimeRankingPrepared> = useCallback(
+    ({ item }) =>
+      cardType === CardType.HORIZONTAL ? (
+        <HorizontalCard item={item} />
+      ) : (
+        <VerticalCard item={item} />
+      ),
+    [cardType],
+  )
 
-  const renderSeparator = () => <Separator marginHorizontal="$1.5" />
+  const renderSeparator = useCallback(
+    () => <Separator marginHorizontal="$1.5" />,
+    [],
+  )
 
-  const renderEmpty = () => {
+  const renderEmpty = useCallback(() => {
     return (
       <YStack h="$14" w="100%" ai="center" jc="center">
         {isLoading ? <Loading /> : <Text>{t('anime.notFound')}</Text>}
       </YStack>
     )
-  }
+  }, [t, isLoading])
 
   const keyExtractor = useCallback(
     (item: AnimeRankingPrepared, index: number) => `${String(item.id)}${index}`,
     [],
+  )
+
+  const getItemLayout = useCallback(
+    (_: any, index: number) => ({
+      length: itemHeight,
+      offset: itemHeight * index,
+      index,
+    }),
+    [itemHeight],
   )
 
   const formattedData = useMemo(
@@ -57,6 +87,7 @@ export const AnimeRanking = observer(({ rankingType, cardType }: Props) => {
       data={isLoading ? [] : formattedData}
       horizontal
       renderItem={renderItem}
+      getItemLayout={getItemLayout}
       ItemSeparatorComponent={renderSeparator}
       ListEmptyComponent={renderEmpty}
       contentContainerStyle={{
@@ -66,7 +97,7 @@ export const AnimeRanking = observer(({ rankingType, cardType }: Props) => {
         paddingHorizontal: getTokens().space[4].val,
       }}
       showsHorizontalScrollIndicator={false}
-      initialNumToRender={LIMIT}
+      initialNumToRender={10}
     />
   )
 })

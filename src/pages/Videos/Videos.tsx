@@ -2,6 +2,7 @@ import React, { useCallback } from 'react'
 
 import { observer } from '@legendapp/state/react'
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
+import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import YoutubePlayer from 'react-native-youtube-iframe'
 
 import {
@@ -28,6 +29,7 @@ type Props = NativeStackScreenProps<RootStackParamListHome, 'Videos'>
 
 export const Videos = observer(({ route }: Props) => {
   const { videos, pressedVideo } = route.params
+  const { bottom } = useSafeAreaInsets()
   const theme = useTheme()
   const [videoSelected, setVideoSelected] =
     useLegendState<VideosType>(pressedVideo)
@@ -67,7 +69,7 @@ export const Videos = observer(({ route }: Props) => {
         contentContainerStyle={{
           flexGrow: 1,
           paddingHorizontal: getTokens().space[4].val,
-          paddingBottom: getTokens().space[12].val,
+          paddingBottom: getTokens().space[11].val + bottom,
         }}
         showsVerticalScrollIndicator={false}>
         <Stack gap="$4">

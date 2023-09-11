@@ -2,6 +2,7 @@ import React, { useMemo } from 'react'
 import { Dimensions } from 'react-native'
 
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
+import { useSafeAreaInsets } from 'react-native-safe-area-context'
 
 import { Button, getTokens, ScrollView, Stack, YStack } from 'tamagui'
 import { Share } from '@tamagui/lucide-icons'
@@ -29,6 +30,7 @@ type Props = NativeStackScreenProps<RootStackParamListHome, 'AnimeDetails'>
 export const AnimeDetails = ({ route }: Props) => {
   const { animeId } = route.params
   const { data, isLoading } = useAnimeDetails({ animeId })
+  const { bottom } = useSafeAreaInsets()
 
   const formattedData = useMemo(
     () => (data ? preparedData(data) : {}),
@@ -40,14 +42,14 @@ export const AnimeDetails = ({ route }: Props) => {
       <Header
         right={
           <Button unstyled>
-            <Share size="$4" />
+            <Share size="$icon.sm" />
           </Button>
         }
       />
       <ScrollView
         contentContainerStyle={{
           flexGrow: 1,
-          paddingBottom: getTokens().space[14].val,
+          paddingBottom: getTokens().space[13].val + bottom,
         }}
         showsVerticalScrollIndicator={false}>
         {isLoading && !Object.keys(formattedData).length ? (
