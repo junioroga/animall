@@ -8,7 +8,13 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context'
 
 import { getTokens, Separator, Stack, YStack } from 'tamagui'
 
-import { HEIGHT_VERTICAL_CARD, Loading, Text, VerticalCard } from '@components'
+import {
+  EmptyState,
+  HEIGHT_VERTICAL_CARD,
+  Loading,
+  Types,
+  VerticalCard,
+} from '@components'
 import { AnimeData } from '@hooks/useAnimeList/types'
 
 import { AnimeRankingPrepared, preparedData } from './data'
@@ -48,7 +54,11 @@ export const AnimeRanking = observer(
     const renderEmpty = useCallback(
       () => (
         <YStack f={1} ai="center" jc="center">
-          {isLoading ? <Loading /> : <Text>{t('anime.notFound')}</Text>}
+          {isLoading ? (
+            <Loading />
+          ) : (
+            <EmptyState type={Types.ERROR} message={t('anime.notFound')} />
+          )}
         </YStack>
       ),
       [isLoading, t],

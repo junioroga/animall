@@ -17,7 +17,7 @@ export const Header = ({ right }: HeaderProps) => {
   const navigation = useNavigation()
   const theme = Store.settings.theme.get()
 
-  const AsepriteTheme = useMemo(
+  const AsepriteThemed = useMemo(
     () => (theme === 'light' ? AsepriteLight : AsepriteDark),
     [theme],
   )
@@ -34,7 +34,7 @@ export const Header = ({ right }: HeaderProps) => {
         <ChevronLeft />
       </Button>
       <Stack f={1} ai="center">
-        <AsepriteTheme height={30} width={30} />
+        <AsepriteThemed height={30} width={30} />
       </Stack>
       <Stack f={1} ai="flex-end">
         {right && right}

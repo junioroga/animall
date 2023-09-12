@@ -62,7 +62,7 @@ export const Home = ({ navigation }: NavigationProps) => {
         }}
         showsVerticalScrollIndicator={false}
         keyboardShouldPersistTaps="handled">
-        <Stack gap="$2">
+        <Stack>
           <Stack>
             <TitleSection
               title={t('home.airing')}

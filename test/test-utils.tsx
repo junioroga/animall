@@ -1,7 +1,10 @@
+import React, { FC, ReactElement } from 'react'
+
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import { render } from '@testing-library/react-native'
-import React, { ReactElement, FC } from 'react'
+
 import { TamaguiProvider } from 'tamagui'
+
+import { render } from '@testing-library/react-native'
 
 import config from '../tamagui.config'
 

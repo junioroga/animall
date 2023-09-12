@@ -7,8 +7,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import { Button, getTokens, ScrollView, Stack, YStack } from 'tamagui'
 import { Share } from '@tamagui/lucide-icons'
 
-import { Header } from '@components/Header'
-import { Loading } from '@components/Loading'
+import { Header, Loading } from '@components'
 import { useAnimeDetails } from '@hooks'
 import { RootStackParamListHome } from '@navigators/Home/Home'
 
