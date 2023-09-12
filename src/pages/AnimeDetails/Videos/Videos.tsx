@@ -4,11 +4,12 @@ import { useTranslation } from 'react-i18next'
 import { useNavigation } from '@react-navigation/native'
 import { NativeStackNavigationProp } from '@react-navigation/native-stack'
 
+import { Image } from 'expo-image'
+
 import {
   Button,
   Circle,
   getTokens,
-  Image,
   ScrollView,
   Stack,
   useTheme,
@@ -59,10 +60,12 @@ export const Videos = ({ videos }: Props) => {
                 ai="center"
                 onPress={() => handlePressVideo(video)}>
                 <Image
-                  h={getTokens().size[10].val}
-                  w={getTokens().size[14].val}
-                  source={{ uri: video.thumbnail }}
-                  style={{ borderRadius: getTokens().size[0.5].val }}
+                  source={video.thumbnail}
+                  style={{
+                    borderRadius: getTokens().size[0.5].val,
+                    height: getTokens().size[10].val,
+                    width: getTokens().size[14].val,
+                  }}
                 />
                 <Stack position="absolute" ai="center" jc="center">
                   <Circle h="$3" w="$3" bc="$color12" o={0.7} />

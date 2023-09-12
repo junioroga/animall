@@ -7,9 +7,10 @@ import { observer } from '@legendapp/state/react'
 import { getTokens, Separator, useTheme, YStack } from 'tamagui'
 
 import {
+  EmptyState,
   HorizontalCard,
   Loading,
-  Text,
+  Types,
   VerticalCard,
   WIDTH_HORIZONTAL_CARD,
   WIDTH_VERTICAL_CARD,
@@ -31,11 +32,11 @@ export const AnimeRanking = observer(({ rankingType, cardType }: Props) => {
   })
   const { t } = useTranslation()
   const theme = useTheme()
-  const itemHeight = useMemo(
+  const itemWidth = useMemo(
     () =>
       cardType === CardType.HORIZONTAL
-        ? WIDTH_HORIZONTAL_CARD
-        : WIDTH_VERTICAL_CARD,
+        ? WIDTH_VERTICAL_CARD
+        : WIDTH_HORIZONTAL_CARD,
     [cardType],
   )
 
@@ -49,18 +50,20 @@ export const AnimeRanking = observer(({ rankingType, cardType }: Props) => {
     [cardType],
   )
 
-  const renderSeparator = useCallback(
-    () => <Separator marginHorizontal="$1.5" />,
-    [],
-  )
+  const renderSeparator = useCallback(() => <Separator mx="$1.5" />, [])
 
-  const renderEmpty = useCallback(() => {
-    return (
+  const renderEmpty = useCallback(
+    () => (
       <YStack h="$14" w="100%" ai="center" jc="center">
-        {isLoading ? <Loading /> : <Text>{t('anime.notFound')}</Text>}
+        {isLoading ? (
+          <Loading />
+        ) : (
+          <EmptyState type={Types.ERROR} message={t('anime.notFound')} />
+        )}
       </YStack>
-    )
-  }, [t, isLoading])
+    ),
+    [isLoading, t],
+  )
 
   const keyExtractor = useCallback(
     (item: AnimeRankingPrepared, index: number) => `${String(item.id)}${index}`,
@@ -69,11 +72,11 @@ export const AnimeRanking = observer(({ rankingType, cardType }: Props) => {
 
   const getItemLayout = useCallback(
     (_: any, index: number) => ({
-      length: itemHeight,
-      offset: itemHeight * index,
+      length: itemWidth,
+      offset: itemWidth * index,
       index,
     }),
-    [itemHeight],
+    [itemWidth],
   )
 
   const formattedData = useMemo(

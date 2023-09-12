@@ -4,11 +4,12 @@ import { Dimensions } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 import { NativeStackNavigationProp } from '@react-navigation/native-stack'
 
+import { Image } from 'expo-image'
+
 import {
   Button,
   Card,
   getTokens,
-  Image,
   Stack,
   useTheme,
   XStack,
@@ -19,6 +20,7 @@ import { Star } from '@tamagui/lucide-icons'
 import { Text } from '@components/Text'
 import { RootStackParamListHome } from '@navigators/Home/Home'
 import { AnimeDataPrepared } from '@pages/ListAnime/AnimeList/data'
+import { blurhash } from '@config/general'
 
 import { AnimeRankingPrepared } from '../../pages/Home/AnimeRanking/data'
 
@@ -29,9 +31,9 @@ type Props = {
   pushNavigation?: boolean
 }
 
-export const HEIGHT_VERTICAL_CARD = getTokens().size[15].val
+export const HEIGHT_VERTICAL_CARD = getTokens().size[14].val
 export const WIDTH_VERTICAL_CARD =
-  Dimensions.get('window').width / 3 - getTokens().space[4].val
+  Dimensions.get('screen').width / 3 - getTokens().space[4].val
 
 export const VerticalCard = ({ item, pushNavigation = false }: Props) => {
   const theme = useTheme()
@@ -58,10 +60,11 @@ export const VerticalCard = ({ item, pushNavigation = false }: Props) => {
                 height: '100%',
                 width: WIDTH_VERTICAL_CARD,
               }}
-              source={{
-                uri: item?.main_picture.medium,
-              }}
-              resizeMode="stretch"
+              source={item?.main_picture.medium}
+              contentFit="fill"
+              recyclingKey={item?.main_picture.medium}
+              transition={700}
+              placeholder={blurhash}
             />
             {item?.rating && (
               <Stack

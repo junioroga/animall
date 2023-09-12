@@ -5,10 +5,11 @@ import { Dimensions } from 'react-native'
 import { Text as TextSVG } from 'react-native-svg'
 import { ProgressCircle } from 'react-native-svg-charts'
 
+import { Image } from 'expo-image'
+
 import {
   getFontSize,
   getTokens,
-  Image,
   Stack,
   useTheme,
   XStack,
@@ -44,24 +45,22 @@ export const HeaderDetails = ({
     <Stack>
       <ZStack>
         <Image
-          h={HEIGHT_CARD + getTokens().size[3].val}
-          source={{
-            uri: mainPicture?.medium,
-          }}
-          resizeMode="cover"
+          source={mainPicture?.medium}
+          style={{ height: HEIGHT_CARD + getTokens().size[3].val }}
+          contentFit="cover"
           blurRadius={6}
         />
         <Stack h={HEIGHT_CARD + getTokens().size[3].val} bg="$color1" o={0.4} />
       </ZStack>
       <XStack p="$4" gap="$2" f={1}>
         <Image
-          h={HEIGHT_CARD}
-          w={WIDTH_CARD}
-          source={{
-            uri: mainPicture?.medium,
+          source={mainPicture?.medium}
+          style={{
+            height: HEIGHT_CARD,
+            width: WIDTH_CARD,
+            borderRadius: 3,
           }}
-          borderRadius={3}
-          resizeMode="stretch"
+          contentFit="fill"
         />
         <YStack gap="$2" f={1}>
           <Text color="$color12" fontWeight="$6" numberOfLines={3}>

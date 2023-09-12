@@ -5,11 +5,12 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import YoutubePlayer from 'react-native-youtube-iframe'
 
+import { Image } from 'expo-image'
+
 import {
   Button,
   Circle,
   getTokens,
-  Image,
   ScrollView,
   Stack,
   Text,
@@ -46,11 +47,11 @@ export const Videos = observer(({ route }: Props) => {
 
   return (
     <YStack f={1} bg="$background">
-      <Stack gap="$4">
+      <Stack>
         <Header />
-        <Stack h="$19">
+        <Stack h="$17">
           <YoutubePlayer
-            height={getTokens().size[19].val}
+            height={getTokens().size[17].val}
             videoId={getYouTubeVideoIdFromUrl(
               videoSelected.url ?? pressedVideo?.url,
             )}
@@ -81,11 +82,12 @@ export const Videos = observer(({ route }: Props) => {
                 ai="center"
                 onPress={() => handlePressVideo(video)}>
                 <Image
-                  h={getTokens().size[10].val}
-                  w={getTokens().size[14].val}
-                  source={{ uri: video.thumbnail }}
-                  br="$2"
-                  style={{ borderRadius: getTokens().size[0.5].val }}
+                  source={video.thumbnail}
+                  style={{
+                    borderRadius: getTokens().size[0.5].val,
+                    height: getTokens().size[10].val,
+                    width: getTokens().size[14].val,
+                  }}
                 />
                 <Stack position="absolute" ai="center" jc="center">
                   <Circle h="$3" w="$3" bc="$color12" o={0.7} />

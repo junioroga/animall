@@ -3,20 +3,14 @@ import { Dimensions } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 import { NativeStackNavigationProp } from '@react-navigation/native-stack'
 
-import {
-  Button,
-  Card,
-  getTokens,
-  Image,
-  Stack,
-  XStack,
-  YStack,
-  ZStack,
-} from 'tamagui'
+import { Image } from 'expo-image'
+
+import { Button, Card, getTokens, Stack, XStack, YStack, ZStack } from 'tamagui'
 import { CalendarDays, Timer } from '@tamagui/lucide-icons'
 
 import { Text } from '@components/Text'
 import { RootStackParamListHome } from '@navigators/Home/Home'
+import { blurhash } from '@config/general'
 
 import { AnimeRankingPrepared } from '../../pages/Home/AnimeRanking/data'
 
@@ -27,8 +21,8 @@ type Props = {
 }
 
 export const WIDTH_HORIZONTAL_CARD =
-  Dimensions.get('window').width - getTokens().size[9].val
-export const HEIGHT_HORIZONTAL_CARD = getTokens().size[14].val
+  Dimensions.get('window').width - getTokens().size[7].val
+export const HEIGHT_HORIZONTAL_CARD = getTokens().size[13].val
 
 export const HorizontalCard = ({ item }: Props) => {
   const navigation = useNavigation<NavigationProps>()
@@ -47,11 +41,9 @@ export const HorizontalCard = ({ item }: Props) => {
           <Card.Background>
             <ZStack>
               <Image
-                h={HEIGHT_HORIZONTAL_CARD / 2}
-                source={{
-                  uri: item?.main_picture.medium,
-                }}
-                resizeMode="cover"
+                source={item?.main_picture.medium}
+                style={{ height: HEIGHT_HORIZONTAL_CARD / 2 }}
+                contentFit="cover"
                 blurRadius={3}
               />
               <Stack h={HEIGHT_HORIZONTAL_CARD / 2} o={0.5} bg="$color1" />
@@ -65,10 +57,11 @@ export const HorizontalCard = ({ item }: Props) => {
                   width: '90%',
                   borderRadius: 3,
                 }}
-                source={{
-                  uri: item?.main_picture.medium,
-                }}
-                resizeMode="stretch"
+                source={item?.main_picture.medium}
+                contentFit="fill"
+                recyclingKey={item?.main_picture.medium}
+                transition={700}
+                placeholder={blurhash}
               />
             </Stack>
             <YStack f={1}>
@@ -77,7 +70,7 @@ export const HorizontalCard = ({ item }: Props) => {
                   {item?.title || item?.alternative_titles.en}
                 </Text>
               </Stack>
-              <Stack f={0.5} gap="$1.5" mt="$5">
+              <Stack f={0.5} gap="$1.5" mt="$2">
                 {item?.genresFormatted && (
                   <Text fontWeight="$5" fontSize="$1.5" numberOfLines={2}>
                     {item.genresFormatted}
