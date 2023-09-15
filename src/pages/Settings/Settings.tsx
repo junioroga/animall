@@ -24,17 +24,17 @@ export const Settings = observer(() => {
   const { t, i18n } = useTranslation()
   const isCheckedTheme = Store.settings.theme.get() === 'dark'
   const language = Store.settings.lang.get()
-  const isCheckedLanguage = language === 'pt'
+  const isCheckedLanguage = language === 'pt-BR'
 
   const onCheckedThemeChange = () =>
     Store.settings.theme.set((theme) => (theme === 'light' ? 'dark' : 'light'))
 
   const onCheckedLanguageChange = useCallback(() => {
-    const defineLanguage = language === 'pt' ? 'en' : 'pt'
+    const defineLanguage = language === 'pt-BR' ? 'en-US' : 'pt-BR'
     i18n.changeLanguage(defineLanguage).then(() => {
       Store.settings.lang.set(defineLanguage)
 
-      setDefaultOptions({ locale: defineLanguage === 'en' ? enUS : ptBR })
+      setDefaultOptions({ locale: defineLanguage === 'en-US' ? enUS : ptBR })
     })
   }, [i18n, language])
 
