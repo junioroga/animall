@@ -1,4 +1,8 @@
+import { Appearance } from 'react-native'
+
+import * as Localization from 'expo-localization'
+
 export const settings = {
-  theme: 'light' as 'light' | 'dark',
-  lang: 'pt' as 'pt' | 'en',
+  theme: Appearance.getColorScheme() as 'light' | 'dark',
+  lang: Localization.locale as 'pt-BR' | 'en-US',
 }

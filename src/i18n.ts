@@ -5,8 +5,6 @@ import { enUS, ptBR } from 'date-fns/locale'
 import setDefaultOptions from 'date-fns/setDefaultOptions'
 import i18n, { Module } from 'i18next'
 
-import * as Localization from 'expo-localization'
-
 import en from './lang/en.json'
 import pt from './lang/pt.json'
 import { Store } from './store'
@@ -16,10 +14,9 @@ const languageDetector = {
   async: true,
   detect: (callback: (lng: string) => void) => {
     const lang = Store.settings.lang.get()
-    const defaultLang = lang || Localization.locale
 
-    if (defaultLang) {
-      setDefaultOptions({ locale: defaultLang === 'en' ? enUS : ptBR })
+    if (lang) {
+      setDefaultOptions({ locale: lang === 'en-US' ? enUS : ptBR })
       return callback(lang)
     }
   },
