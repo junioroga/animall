@@ -5,8 +5,6 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import YoutubePlayer from 'react-native-youtube-iframe'
 
-import { Image } from 'expo-image'
-
 import {
   Button,
   Circle,
@@ -20,7 +18,7 @@ import {
 } from 'tamagui'
 import { Play } from '@tamagui/lucide-icons'
 
-import { Header, Loading } from '@components'
+import { Header, Image, Loading } from '@components'
 import { Videos as VideosType } from '@hooks/useAnimeList/types'
 import { useLegendState } from '@hooks/useLegendState'
 import { RootStackParamListHome } from '@navigators/Home/Home'
@@ -73,7 +71,7 @@ export const Videos = observer(({ route }: Props) => {
           paddingBottom: getTokens().space[11].val + bottom,
         }}
         showsVerticalScrollIndicator={false}>
-        <Stack gap="$4">
+        <Stack gap="$2">
           {videos?.map((video) => (
             <XStack key={video.id} ai="flex-start" gap="$3">
               <Button

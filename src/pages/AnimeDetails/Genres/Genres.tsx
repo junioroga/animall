@@ -9,7 +9,16 @@ type Props = {
 }
 
 export const Genres = ({ genres }: Props) => (
-  <XStack gap="$3" fw="wrap">
+  <XStack
+    gap="$3"
+    fw="wrap"
+    animation="lazy"
+    enterStyle={{
+      y: -20,
+      opacity: 0,
+    }}
+    opacity={1}
+    y={0}>
     {genres?.map((genre) => (
       <Button key={genre.id} size="$2" bg="$blue5Light" br="$10">
         <Button.Text size="$2" fontWeight="$5" p="$1" color="$blue10">

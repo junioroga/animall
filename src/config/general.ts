@@ -7,7 +7,7 @@ const { android, version } = app.expo
 // -----------------------------------------------------------------------------
 // General
 // -----------------------------------------------------------------------------
-export const APP_NAME = android
+export const APP_NAME = android.package
 export const APP_VERSION = version
 // eslint-disable-next-line no-undef
 export const IS_DEBUG = __DEV__

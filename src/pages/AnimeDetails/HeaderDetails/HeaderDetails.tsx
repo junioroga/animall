@@ -5,8 +5,6 @@ import { Dimensions } from 'react-native'
 import { Text as TextSVG } from 'react-native-svg'
 import { ProgressCircle } from 'react-native-svg-charts'
 
-import { Image } from 'expo-image'
-
 import {
   getFontSize,
   getTokens,
@@ -18,10 +16,11 @@ import {
 } from 'tamagui'
 import { PlayCircle, Timer } from '@tamagui/lucide-icons'
 
-import { Text } from '@components'
+import { Image, Text } from '@components'
 import { MainPicture } from '@hooks/useAnimeList/types'
 
 type Props = {
+  transitionTag: string
   mainPicture?: MainPicture
   title?: string
   numEpisodes?: number
@@ -30,6 +29,7 @@ type Props = {
 }
 
 export const HeaderDetails = ({
+  transitionTag,
   mainPicture,
   title,
   numEpisodes,
@@ -61,6 +61,7 @@ export const HeaderDetails = ({
             borderRadius: 3,
           }}
           contentFit="fill"
+          sharedTransitionTag={transitionTag}
         />
         <YStack gap="$2" f={1}>
           <Text color="$color12" fontWeight="$6" numberOfLines={3}>
