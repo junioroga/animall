@@ -60,6 +60,7 @@ export const Chart = ({ statistics }: Props) => {
         y={y(index) + bandwidth / 1.8}
         fontSize={getFontSize('$1')}
         fontWeight="400"
+        fontFamily="Poppins_500Medium"
         fill={status >= CUT_OFF ? theme.color1.val : theme.color12.val}
         alignmentBaseline="middle">
         {formatString(status)}
@@ -77,6 +78,11 @@ export const Chart = ({ statistics }: Props) => {
           formatLabel={(_, index) =>
             dataNames[index] ? dataNames[index].label : ''
           }
+          svg={{
+            fill: theme.gray11.val,
+            fontSize: getFontSize('$1.5'),
+            fontFamily: 'Poppins_500Medium',
+          }}
           style={{
             height: 100,
             bottom: 1,

@@ -26,7 +26,17 @@ export const AnimeNumbers = ({
   const theme = useTheme()
 
   return (
-    <XStack px="$2" jc="space-between" ai="center">
+    <XStack
+      px="$2"
+      jc="space-between"
+      ai="center"
+      animation="lazy"
+      enterStyle={{
+        y: -20,
+        opacity: 0,
+      }}
+      opacity={1}
+      y={0}>
       <YStack ai="center" gap="$1.5">
         <BarChart2
           size="$icon.sm"

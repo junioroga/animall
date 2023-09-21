@@ -13,11 +13,12 @@ import { RootStackParamListHome } from '@navigators/Home/Home'
 
 type Props = {
   relatedAnime: RelatedAnimeType[]
+  uuid: string
 }
 
 type NavigationProps = NativeStackNavigationProp<RootStackParamListHome>
 
-export const RelatedAnime = ({ relatedAnime }: Props) => {
+export const RelatedAnime = ({ relatedAnime, uuid }: Props) => {
   const { t } = useTranslation()
   const navigation = useNavigation<NavigationProps>()
   const animeGrouped = groupBy(relatedAnime, 'relation_type_formatted')
@@ -25,9 +26,9 @@ export const RelatedAnime = ({ relatedAnime }: Props) => {
 
   const handleRelatedItem = useCallback(
     (animeId: number) => {
-      navigation.push('AnimeDetails', { animeId })
+      navigation.push('AnimeDetails', { animeId, uuid })
     },
-    [navigation],
+    [navigation, uuid],
   )
 
   return (

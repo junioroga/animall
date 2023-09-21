@@ -10,7 +10,7 @@ import { RankingType } from '@services/types'
 export type RootStackParamListHome = {
   HomePage: undefined
   ListAnime: undefined
-  AnimeDetails: { animeId: number }
+  AnimeDetails: { animeId: number; uuid: string }
   Videos: { videos: VideosType[]; pressedVideo: VideosType }
   ListRanking: { rankingType: RankingType }
 }

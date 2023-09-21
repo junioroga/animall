@@ -10,7 +10,7 @@ This is a React Native App to show information about Animes and Mangas. The data
 
 Project created with Expo CLI. [See official docs](https://docs.expo.dev/get-started/installation/) to set up the environment.
 
-## 🛠 Tecnologias utilizadas
+## 🛠 Used Technologies
 
 The following tools were used to build the project:
 
@@ -79,24 +79,24 @@ To run this project, you will need to add the following environment variables to
 ## Demonstration
 
 ### Home
-![](docs/readme/home.gif)
+<img src="/assets/readme/home.gif" width="50%" height="50%"/>
 
 ### Ranking
 
-![](docs/readme/ranking.gif)
+<img src="/assets/readme/ranking.gif" width="50%" height="50%"/>
 
 ### Search
 
-![](docs/readme/search.gif)
+<img src="/assets/readme/search.gif" width="50%" height="50%"/>
 
 ### Settings
 
-![](docs/readme/settings.gif)
+<img src="/assets/readme/settings.gif" width="50%" height="50%"/>
 
 
 ### Dark
 
-![](docs/readme/dark.png)
+<img src="/assets/readme/dark.png" width="50%" height="50%"/>
 
 ### Light
-![](docs/readme/light.png)
+<img src="/assets/readme/light.png" width="50%" height="50%"/>

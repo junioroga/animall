@@ -17,7 +17,15 @@ export const Synopsis = observer(({ synopsis }: Props) => {
   const [open, setOpen] = useLegendState<boolean>(false)
 
   return (
-    <YStack gap="$3">
+    <YStack
+      gap="$3"
+      animation="lazy"
+      enterStyle={{
+        y: -20,
+        opacity: 0,
+      }}
+      opacity={1}
+      y={0}>
       <Text fontWeight="$6">{t('anime.details.synopsis')}</Text>
       <Button unstyled onPress={() => setOpen((old: boolean) => !old)}>
         <Text numberOfLines={open ? undefined : 5} color="$gray11">

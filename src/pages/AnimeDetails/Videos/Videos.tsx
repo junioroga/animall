@@ -4,8 +4,6 @@ import { useTranslation } from 'react-i18next'
 import { useNavigation } from '@react-navigation/native'
 import { NativeStackNavigationProp } from '@react-navigation/native-stack'
 
-import { Image } from 'expo-image'
-
 import {
   Button,
   Circle,
@@ -18,7 +16,7 @@ import {
 } from 'tamagui'
 import { Play } from '@tamagui/lucide-icons'
 
-import { Text } from '@components'
+import { Image, Text } from '@components'
 import { Videos as VideosType } from '@hooks/useAnimeList/types'
 import { RootStackParamListHome } from '@navigators/Home/Home'
 

@@ -31,7 +31,7 @@ process.env.TAMAGUI_TARGET === 'native' && require('@config/reactotron')
 
 SplashScreen.preventAutoHideAsync()
 
-const queryCliente = new QueryClient()
+const queryClient = new QueryClient()
 
 export const App = observer(() => {
   const theme = Store.settings.theme.get()
@@ -58,7 +58,7 @@ export const App = observer(() => {
   }
 
   return (
-    <QueryClientProvider client={queryCliente}>
+    <QueryClientProvider client={queryClient}>
       <TamaguiProvider config={config}>
         <StatusBar style={theme === 'light' ? 'dark' : 'light'} />
         <Theme name={theme}>

@@ -134,7 +134,17 @@ const config = createTamagui({
     heading: defaultFont,
     body: defaultFont,
   },
-  themes,
+  themes: {
+    ...themes,
+    dark: {
+      ...themes.dark,
+      shadowColor: themes.dark.gray5,
+    },
+    light: {
+      ...themes.light,
+      shadowColor: themes.light.shadowColor,
+    },
+  },
   tokens,
   media,
 })

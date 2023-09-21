@@ -4,8 +4,6 @@ import { Dimensions } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 import { NativeStackNavigationProp } from '@react-navigation/native-stack'
 
-import { Image } from 'expo-image'
-
 import {
   Button,
   Card,
@@ -17,6 +15,7 @@ import {
 } from 'tamagui'
 import { Star } from '@tamagui/lucide-icons'
 
+import { Image } from '@components/Image'
 import { Text } from '@components/Text'
 import { RootStackParamListHome } from '@navigators/Home/Home'
 import { AnimeDataPrepared } from '@pages/ListAnime/AnimeList/data'
@@ -42,18 +41,24 @@ export const VerticalCard = ({ item, pushNavigation = false }: Props) => {
     () => (pushNavigation ? navigation.push : navigation.navigate),
     [pushNavigation, navigation],
   )
+  const transitionTag = String(`${item?.id}${item?.uuid}`)
 
   return (
     <Button
       unstyled
-      onPress={() => navigationType('AnimeDetails', { animeId: item.id })}>
+      onPress={() =>
+        navigationType('AnimeDetails', { animeId: item.id, uuid: item?.uuid })
+      }>
       <Card
         h={HEIGHT_VERTICAL_CARD}
         w={WIDTH_VERTICAL_CARD}
-        elevate
         elevation="$0.75"
         animation="bouncy">
-        <Card f={1} overflow="hidden" br="$2">
+        <Card
+          f={1}
+          overflow="hidden"
+          br="$2"
+          $platform-android={{ elevation: 1 }}>
           <ZStack f={1}>
             <Image
               style={{
@@ -65,6 +70,7 @@ export const VerticalCard = ({ item, pushNavigation = false }: Props) => {
               recyclingKey={item?.main_picture.medium}
               transition={700}
               placeholder={blurhash}
+              sharedTransitionTag={transitionTag}
             />
             {item?.rating && (
               <Stack

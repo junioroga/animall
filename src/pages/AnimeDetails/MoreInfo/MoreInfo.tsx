@@ -49,7 +49,16 @@ export const MoreInfo = ({
   }[classification ?? '']
 
   return (
-    <YStack py="$3" gap="$1.5">
+    <YStack
+      py="$3"
+      gap="$1.5"
+      animation="lazy"
+      enterStyle={{
+        y: -20,
+        opacity: 0,
+      }}
+      opacity={1}
+      y={0}>
       <Text fontWeight="$6" mb="$2">
         {t('anime.details.moreInfo')}
       </Text>
