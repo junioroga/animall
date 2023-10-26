@@ -57,7 +57,7 @@ export const AnimeList = observer(
           {isLoading ? (
             <Loading />
           ) : (
-            <EmptyState type={Types.ERROR} message={t('anime.notFound')} />
+            <EmptyState type={Types.NO_DATA} message={t('anime.notSearched')} />
           )}
         </YStack>
       ),
