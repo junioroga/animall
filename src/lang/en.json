@@ -44,6 +44,7 @@
     "anime": {
       "producing": "Producing",
       "notFound": "No anime available",
+      "notSearched": "Do a search to find your anime",
       "notEvaluated": "N/E",
       "noReleaseDate": "No release date",
       "list": {

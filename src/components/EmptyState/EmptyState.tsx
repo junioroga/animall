@@ -1,11 +1,11 @@
 import React, { useMemo } from 'react'
 import { Dimensions } from 'react-native'
 
+import AnimatedLottieView from 'lottie-react-native'
+
 import { Button, H6, YStack } from 'tamagui'
 
-import Dinosaur from '@assets/dinosaur.svg'
 import { Text } from '@components/Text'
-import { Store } from '@store/index'
 
 export enum Types {
   ERROR = 'error',
@@ -30,26 +30,33 @@ export const EmptyState = ({
   action,
   onPress,
 }: EmptyStateProps) => {
-  const theme = Store.settings.theme.get()
-
-  const DinosaurThemed = useMemo(
-    () => (theme === 'light' ? Dinosaur : Dinosaur),
-    [theme],
-  )
-
-  const renderSvg = useMemo(
+  const defineType = useMemo(
     () => ({
-      [Types.ERROR]: <DinosaurThemed height={height / 4} />,
-      [Types.NO_DATA]: <DinosaurThemed height={height / 4} />,
-      [Types.NO_SEARCH]: <DinosaurThemed height={height / 4} />,
+      [Types.ERROR]: {
+        source: require('../../assets/lottie/error.json'),
+        style: { height: height / 5 },
+      },
+      [Types.NO_DATA]: {
+        source: require('../../assets/lottie/no_data.json'),
+        style: { height: height / 7 },
+      },
+      [Types.NO_SEARCH]: {
+        source: require('../../assets/lottie/empty_search.json'),
+        style: { height: height / 5 },
+      },
     }),
-    [DinosaurThemed],
+    [],
   )
 
   return (
     <YStack f={1} ai="center" jc="center" gap="$4">
       {alert && <H6>{alert}</H6>}
-      {renderSvg[type]}
+      <AnimatedLottieView
+        source={defineType[type].source}
+        style={defineType[type].style}
+        autoPlay
+        loop={false}
+      />
       {message && <Text>{message}</Text>}
       {action && onPress && (
         <Button onPress={onPress}>
