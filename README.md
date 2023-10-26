@@ -22,7 +22,7 @@ The following tools were used to build the project:
 - [Axios](https://axios-http.com/ptbr/docs/intro): Promise based HTTP client
 - [React Query](https://tanstack.com/query/v3/): Fetching, caching, synchronizing and updating server state
 - [Legend-state](https://legendapp.com/open-source/state/): Control application states instead of using react native's useState
-- [React Native MMKV](https://github.com/mrousavy/react-native-mmkv): The fastest key/value storage for React Native. Using to persist data with Legend-state
+- [AsyncStorage](https://docs.expo.dev/versions/latest/sdk/async-storage/): A library that provides an asynchronous, unencrypted, persistent, key-value storage API.
 
 ![Maestro](https://img.shields.io/badge/Test%20e2e%20with%20Maestro%20-future-blue)
 
@@ -99,4 +99,5 @@ To run this project, you will need to add the following environment variables to
 <img src="/assets/readme/dark.png" width="50%" height="50%"/>
 
 ### Light
+
 <img src="/assets/readme/light.png" width="50%" height="50%"/>

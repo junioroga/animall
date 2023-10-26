@@ -69,6 +69,7 @@ export const Videos = observer(({ route }: Props) => {
           flexGrow: 1,
           paddingHorizontal: getTokens().space[4].val,
           paddingBottom: getTokens().space[11].val + bottom,
+          paddingTop: getTokens().space[4].val,
         }}
         showsVerticalScrollIndicator={false}>
         <Stack gap="$2">
