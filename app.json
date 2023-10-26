@@ -14,14 +14,12 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true,
-      "bundleIdentifier": "com.junioroga.animall"
+      "supportsTablet": true
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png"
-      },
-      "package": "com.junioroga.animall"
+      }
     },
     "web": {
       "favicon": "./assets/favicon.png"

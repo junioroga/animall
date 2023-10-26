@@ -16,6 +16,5 @@ if (IS_DEBUG) {
     .connect()
 
   console.tron = tron
-
   console.tron.clear()
 }
