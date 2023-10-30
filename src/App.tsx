@@ -1,5 +1,6 @@
 import './i18n'
 import { useCallback } from 'react'
+import { Platform } from 'react-native'
 
 import {
   Poppins_100Thin,
@@ -27,7 +28,8 @@ import { Store } from '@store'
 import config from '../tamagui.config'
 import Router from './router'
 
-process.env.TAMAGUI_TARGET === 'native' && require('@config/reactotron')
+if (Platform.OS === 'web') require('@config/reactotron.web')
+else require('@config/reactotron')
 
 SplashScreen.preventAutoHideAsync()
 

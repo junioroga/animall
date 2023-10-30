@@ -41,7 +41,6 @@ export const VerticalCard = ({ item, pushNavigation = false }: Props) => {
     () => (pushNavigation ? navigation.push : navigation.navigate),
     [pushNavigation, navigation],
   )
-  const transitionTag = String(`${item?.id}${item?.uuid}`)
 
   return (
     <Button
@@ -70,7 +69,6 @@ export const VerticalCard = ({ item, pushNavigation = false }: Props) => {
               recyclingKey={item?.main_picture.medium}
               transition={700}
               placeholder={blurhash}
-              sharedTransitionTag={transitionTag}
             />
             {item?.rating && (
               <Stack

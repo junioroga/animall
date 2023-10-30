@@ -1,26 +1,19 @@
-/* eslint-disable no-undef */
-process.env.TAMAGUI_TARGET = 'native'
-
 module.exports = function (api) {
   api.cache(true)
   return {
     presets: ['babel-preset-expo'],
     plugins: [
       [
-        'transform-inline-environment-variables',
-        {
-          include: ['TAMAGUI_TARGET'],
-        },
-      ],
-      [
         '@tamagui/babel-plugin',
         {
+          platform: 'native',
           components: ['tamagui'],
           config: './tamagui.config.ts',
           logTimings: true,
         },
       ],
       'react-native-reanimated/plugin',
+      'transform-inline-environment-variables',
       [
         'module-resolver',
         {

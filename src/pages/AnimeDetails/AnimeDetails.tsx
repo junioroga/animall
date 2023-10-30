@@ -30,15 +30,14 @@ const { height, width } = Dimensions.get('window')
 type Props = NativeStackScreenProps<RootStackParamListHome, 'AnimeDetails'>
 
 export const AnimeDetails = ({ route }: Props) => {
-  const { animeId, uuid } = route.params
+  const { animeId } = route.params
   const { data, isLoading } = useAnimeDetails({ animeId })
   const { bottom } = useSafeAreaInsets()
   const theme = useTheme()
-  const transitionTag = String(`${animeId}${uuid}`)
 
   const formattedData = useMemo(
-    () => (data ? preparedData(data, uuid) : {}),
-    [data, uuid],
+    () => (data ? preparedData(data) : {}),
+    [data],
   ) as unknown as AnimeDetailsPrepared
 
   return (
@@ -59,7 +58,6 @@ export const AnimeDetails = ({ route }: Props) => {
         <YStack f={1}>
           <Stack>
             <HeaderDetails
-              transitionTag={transitionTag}
               mainPicture={formattedData?.main_picture}
               averageTime={formattedData?.averageTime}
               numEpisodes={formattedData?.num_episodes || 0}
@@ -115,16 +113,12 @@ export const AnimeDetails = ({ route }: Props) => {
                     <Chart statistics={formattedData?.statistics} />
                   )}
                   {!!formattedData?.related_anime.length && (
-                    <RelatedAnime
-                      relatedAnime={formattedData.related_anime}
-                      uuid={formattedData.uuid}
-                    />
+                    <RelatedAnime relatedAnime={formattedData.related_anime} />
                   )}
                 </YStack>
                 {!!formattedData?.recommendations.length && (
                   <Recommendations
                     recommendations={formattedData.recommendations}
-                    uuid={formattedData.uuid}
                   />
                 )}
               </YStack>
