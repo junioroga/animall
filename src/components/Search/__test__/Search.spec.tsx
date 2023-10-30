@@ -5,7 +5,7 @@ import { fireEvent, render } from '@test/test-utils'
 import { Search } from '../Search'
 
 const setup = () => {
-  return render(<Search />)
+  return render(<Search search="teste" setSearch={() => null} />)
 }
 
 const mockNavigate = jest.fn()

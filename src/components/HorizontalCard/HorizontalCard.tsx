@@ -25,7 +25,6 @@ export const HEIGHT_HORIZONTAL_CARD = getTokens().size[13].val
 
 export const HorizontalCard = ({ item }: Props) => {
   const navigation = useNavigation<NavigationProps>()
-  const transitionTag = String(`${item?.id}${item?.uuid}`)
 
   return (
     <Button
@@ -33,7 +32,6 @@ export const HorizontalCard = ({ item }: Props) => {
       onPress={() =>
         navigation.navigate('AnimeDetails', {
           animeId: item.id,
-          uuid: item?.uuid,
         })
       }>
       <Card
@@ -71,7 +69,6 @@ export const HorizontalCard = ({ item }: Props) => {
                 recyclingKey={item?.main_picture.medium}
                 transition={700}
                 placeholder={blurhash}
-                sharedTransitionTag={transitionTag}
               />
             </Stack>
             <YStack f={1}>

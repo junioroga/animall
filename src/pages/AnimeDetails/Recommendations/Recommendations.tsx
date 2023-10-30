@@ -9,10 +9,9 @@ import { AnimeRankingPrepared } from '@pages/Home/AnimeRanking/data'
 
 type Props = {
   recommendations: RecommendationsType[]
-  uuid: string
 }
 
-export const Recommendations = ({ recommendations, uuid }: Props) => {
+export const Recommendations = ({ recommendations }: Props) => {
   const { t } = useTranslation()
 
   return (
@@ -32,7 +31,6 @@ export const Recommendations = ({ recommendations, uuid }: Props) => {
           {recommendations.map((anime) => {
             const animeRanking = {
               ...anime.node,
-              uuid,
             } as unknown as AnimeRankingPrepared
 
             return (

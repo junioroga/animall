@@ -20,7 +20,6 @@ import { Image, Text } from '@components'
 import { MainPicture } from '@hooks/useAnimeList/types'
 
 type Props = {
-  transitionTag: string
   mainPicture?: MainPicture
   title?: string
   numEpisodes?: number
@@ -29,7 +28,6 @@ type Props = {
 }
 
 export const HeaderDetails = ({
-  transitionTag,
   mainPicture,
   title,
   numEpisodes,
@@ -61,7 +59,6 @@ export const HeaderDetails = ({
             borderRadius: 3,
           }}
           contentFit="fill"
-          sharedTransitionTag={transitionTag}
         />
         <YStack gap="$2" f={1}>
           <Text color="$color12" fontWeight="$6" numberOfLines={3}>

@@ -2,12 +2,12 @@ import { Platform } from 'react-native'
 
 import app from '../../app.json'
 
-const { android, version } = app.expo
+const { name, version } = app.expo
 
 // -----------------------------------------------------------------------------
 // General
 // -----------------------------------------------------------------------------
-export const APP_NAME = android.package
+export const APP_NAME = name
 export const APP_VERSION = version
 // eslint-disable-next-line no-undef
 export const IS_DEBUG = __DEV__

@@ -29,10 +29,10 @@ export const Input = styled(TInput, {
     },
     editable: {
       true: {
-        opacity: 1,
+        o: 1,
       },
       false: {
-        opacity: 0.5,
+        o: 0.5,
         pointerEvents: 'none',
       },
     },
