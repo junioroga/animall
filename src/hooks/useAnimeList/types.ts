@@ -72,36 +72,36 @@ export interface Broadcast {
 
 export interface AnimeData {
   id: number
-  title: string
-  main_picture: MainPicture
-  alternative_titles: AlternativeTitles
-  start_date: string
-  end_date: string
-  studios: Studios[]
-  statistics: Statistics
-  genres: Genres[]
-  synopsis: string
-  mean: number
-  rank: number
-  popularity: number
-  num_list_users: number
-  num_episodes: number
-  start_season: Season
-  num_scoring_users: number
-  broadcast: Broadcast
-  created_at: string
-  updated_at: string
-  media_type: string
-  status: string
-  source: string
-  average_episode_duration: number
-  rating: string
-  pictures: MainPicture[]
-  background: string
-  related_anime: RelatedAnime[]
-  related_manga: RelatedAnime[]
-  recommendations: Recommendations[]
-  videos: Videos[]
+  title?: string
+  main_picture?: MainPicture
+  alternative_titles?: AlternativeTitles
+  start_date?: string
+  end_date?: string
+  studios?: Studios[]
+  statistics?: Statistics
+  genres?: Genres[]
+  synopsis?: string
+  mean?: number
+  rank?: number
+  popularity?: number
+  num_list_users?: number
+  num_episodes?: number
+  start_season?: Season
+  num_scoring_users?: number
+  broadcast?: Broadcast
+  created_at?: string
+  updated_at?: string
+  media_type?: string
+  status?: string
+  source?: string
+  average_episode_duration?: number
+  rating?: string
+  pictures?: MainPicture[]
+  background?: string
+  related_anime?: RelatedAnime[]
+  related_manga?: RelatedAnime[]
+  recommendations?: Recommendations[]
+  videos?: Videos[]
 }
 
 export type Page = {

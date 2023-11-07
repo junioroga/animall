@@ -25,7 +25,7 @@ import { AnimeRankingPrepared } from '../../pages/Home/AnimeRanking/data'
 
 type NavigationProps = NativeStackNavigationProp<RootStackParamListHome>
 
-type Props = {
+export type VerticalCardProps = {
   item: AnimeRankingPrepared | AnimeDataPrepared
   pushNavigation?: boolean
 }
@@ -34,7 +34,10 @@ export const HEIGHT_VERTICAL_CARD = getTokens().size[14].val
 export const WIDTH_VERTICAL_CARD =
   Dimensions.get('screen').width / 3 - getTokens().space[4].val
 
-export const VerticalCard = ({ item, pushNavigation = false }: Props) => {
+export const VerticalCard = ({
+  item,
+  pushNavigation = false,
+}: VerticalCardProps) => {
   const theme = useTheme()
   const navigation = useNavigation<NavigationProps>()
   const navigationType = useMemo(
@@ -45,9 +48,8 @@ export const VerticalCard = ({ item, pushNavigation = false }: Props) => {
   return (
     <Button
       unstyled
-      onPress={() =>
-        navigationType('AnimeDetails', { animeId: item.id, uuid: item?.uuid })
-      }>
+      onPress={() => navigationType('AnimeDetails', { animeId: item.id })}
+      testID="card-button">
       <Card
         h={HEIGHT_VERTICAL_CARD}
         w={WIDTH_VERTICAL_CARD}
@@ -64,9 +66,9 @@ export const VerticalCard = ({ item, pushNavigation = false }: Props) => {
                 height: '100%',
                 width: WIDTH_VERTICAL_CARD,
               }}
-              source={item?.main_picture.medium}
+              source={item?.main_picture?.medium}
               contentFit="fill"
-              recyclingKey={item?.main_picture.medium}
+              recyclingKey={item?.main_picture?.medium}
               transition={700}
               placeholder={blurhash}
             />
@@ -94,7 +96,7 @@ export const VerticalCard = ({ item, pushNavigation = false }: Props) => {
           </ZStack>
           <Stack mx="$2" mt="$1" h="$3" jc="center">
             <Text fontWeight="$4" fontSize="$1.5" numberOfLines={2}>
-              {item?.title || item?.alternative_titles.en}
+              {item?.title || item?.alternative_titles?.en}
             </Text>
           </Stack>
         </Card>

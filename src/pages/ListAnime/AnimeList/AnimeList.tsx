@@ -10,9 +10,9 @@ import { getTokens, Separator, Stack, YStack } from 'tamagui'
 
 import {
   EmptyState,
+  EmptyStateTypes,
   HEIGHT_VERTICAL_CARD,
   Loading,
-  Types,
   VerticalCard,
 } from '@components'
 import { AnimeData } from '@hooks/useAnimeList/types'
@@ -57,7 +57,10 @@ export const AnimeList = observer(
           {isLoading ? (
             <Loading />
           ) : (
-            <EmptyState type={Types.NO_DATA} message={t('anime.notSearched')} />
+            <EmptyState
+              type={EmptyStateTypes.NO_DATA}
+              message={t('anime.notSearched')}
+            />
           )}
         </YStack>
       ),

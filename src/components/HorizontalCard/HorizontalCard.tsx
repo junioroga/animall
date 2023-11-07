@@ -15,7 +15,7 @@ import { AnimeRankingPrepared } from '../../pages/Home/AnimeRanking/data'
 
 type NavigationProps = NativeStackNavigationProp<RootStackParamListHome>
 
-type Props = {
+export type HorizontalCardProps = {
   item: AnimeRankingPrepared
 }
 
@@ -23,11 +23,12 @@ export const WIDTH_HORIZONTAL_CARD =
   Dimensions.get('window').width - getTokens().size[7].val
 export const HEIGHT_HORIZONTAL_CARD = getTokens().size[13].val
 
-export const HorizontalCard = ({ item }: Props) => {
+export const HorizontalCard = ({ item }: HorizontalCardProps) => {
   const navigation = useNavigation<NavigationProps>()
 
   return (
     <Button
+      testID="card-button"
       unstyled
       onPress={() =>
         navigation.navigate('AnimeDetails', {
@@ -48,7 +49,7 @@ export const HorizontalCard = ({ item }: Props) => {
           <Card.Background>
             <ZStack>
               <Image
-                source={item?.main_picture.medium}
+                source={item?.main_picture?.medium}
                 style={{ height: HEIGHT_HORIZONTAL_CARD / 2.3 }}
                 contentFit="cover"
                 blurRadius={3}
@@ -64,9 +65,9 @@ export const HorizontalCard = ({ item }: Props) => {
                   width: '90%',
                   borderRadius: 3,
                 }}
-                source={item?.main_picture.medium}
+                source={item?.main_picture?.medium}
                 contentFit="fill"
-                recyclingKey={item?.main_picture.medium}
+                recyclingKey={item?.main_picture?.medium}
                 transition={700}
                 placeholder={blurhash}
               />
@@ -74,7 +75,7 @@ export const HorizontalCard = ({ item }: Props) => {
             <YStack f={1}>
               <Stack f={0.5} jc="center">
                 <Text color="$color12" fontWeight="$6" numberOfLines={3}>
-                  {item?.title || item?.alternative_titles.en}
+                  {item?.title || item?.alternative_titles?.en}
                 </Text>
               </Stack>
               <Stack f={0.6} gap="$1.5">

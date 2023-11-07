@@ -1,21 +1,20 @@
 import React from 'react'
 
+import { mocked } from 'jest-mock'
+
 import { fireEvent, render } from '@test/test-utils'
 
-import { Search } from '../Search'
+import { Search, SearchProps } from '../Search'
 
-const setup = () => {
-  return render(<Search search="teste" setSearch={() => null} />)
+const mockSetSearch = jest.fn((value) => value)
+const mockOnSearch = jest.fn()
+
+const setup = (props: SearchProps) => {
+  return render(<Search {...props} />)
 }
-
-const mockNavigate = jest.fn()
 
 jest.mock('react-i18next', () => ({
   useTranslation: () => ({ t: jest.fn() }),
-}))
-
-jest.mock('@react-navigation/native', () => ({
-  useNavigation: () => ({ navigate: mockNavigate }),
 }))
 
 describe('Search', () => {
@@ -24,32 +23,39 @@ describe('Search', () => {
   })
 
   it('when input is filled', () => {
-    const { getByTestId } = setup()
-    const input = getByTestId('test-input-search')
+    mocked(mockSetSearch).mockImplementationOnce(() => 'Naruto')
+    const { getByTestId } = setup({
+      search: 'Naruto',
+      setSearch: mockSetSearch,
+    })
 
+    const input = getByTestId('test-input-search')
     fireEvent.changeText(input, 'Naruto')
+
     expect(input.props.value).toEqual('Naruto')
+    expect(mockSetSearch).toHaveBeenCalledTimes(1)
   })
 
   it('when search length is minus than three, button has disabled', () => {
-    const { getByTestId } = setup()
-    const button = getByTestId('test-button-search')
+    const { getByTestId } = setup({
+      search: 'Na',
+      setSearch: mockSetSearch,
+    })
 
-    fireEvent.press(button)
+    const button = getByTestId('test-button-search')
     expect(button.props.pointerEvents).toEqual('none')
   })
 
-  it('enable button when has search length with more than 3 characters', () => {
-    const { getByTestId } = setup()
-    const input = getByTestId('test-input-search')
+  it('press button when has search length with more than 3 characters', () => {
+    mocked(mockSetSearch).mockImplementationOnce(() => 'Naruto')
+    const { getByTestId } = setup({
+      search: 'Naruto',
+      setSearch: mockSetSearch,
+      onSearch: mockOnSearch,
+    })
     const button = getByTestId('test-button-search')
 
-    fireEvent.changeText(input, 'Naruto')
     fireEvent.press(button)
-
-    expect(mockNavigate).toHaveBeenCalledTimes(1)
-    expect(mockNavigate).toHaveBeenCalledWith('ListAnime', {
-      userSearch: 'Naruto',
-    })
+    expect(mockOnSearch).toHaveBeenCalledTimes(1)
   })
 })

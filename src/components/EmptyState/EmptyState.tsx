@@ -7,14 +7,14 @@ import { Button, H6, YStack } from 'tamagui'
 
 import { Text } from '@components/Text'
 
-export enum Types {
+export enum EmptyStateTypes {
   ERROR = 'error',
   NO_DATA = 'no-data',
   NO_SEARCH = 'no-search',
 }
 
-type EmptyStateProps = {
-  type: Types
+export type EmptyStateProps = {
+  type: EmptyStateTypes
   message: string
   alert?: string
   action?: string
@@ -32,15 +32,15 @@ export const EmptyState = ({
 }: EmptyStateProps) => {
   const defineType = useMemo(
     () => ({
-      [Types.ERROR]: {
+      [EmptyStateTypes.ERROR]: {
         source: require('../../assets/lottie/error.json'),
         style: { height: height / 5 },
       },
-      [Types.NO_DATA]: {
+      [EmptyStateTypes.NO_DATA]: {
         source: require('../../assets/lottie/no_data.json'),
         style: { height: height / 7 },
       },
-      [Types.NO_SEARCH]: {
+      [EmptyStateTypes.NO_SEARCH]: {
         source: require('../../assets/lottie/empty_search.json'),
         style: { height: height / 5 },
       },
