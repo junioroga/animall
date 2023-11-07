@@ -28,12 +28,13 @@ const daysOfWeek = {
 
 export const preparedData = (data: AnimeRanking[]): AnimeRankingPrepared[] =>
   map(data, (item) => {
-    const fullDate = isValid(new Date(item?.start_date))
-      ? formatDistanceToNow(new Date(item.start_date), {
-          includeSeconds: true,
-          addSuffix: true,
-        })
-      : t('anime.noReleaseDate')
+    const fullDate =
+      item?.start_date && isValid(new Date(item?.start_date))
+        ? formatDistanceToNow(new Date(item?.start_date), {
+            includeSeconds: true,
+            addSuffix: true,
+          })
+        : t('anime.noReleaseDate')
 
     const genresFormatted = item?.genres
       ? map(item?.genres, 'name').join(', ')

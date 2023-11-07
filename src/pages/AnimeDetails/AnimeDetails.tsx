@@ -106,21 +106,25 @@ export const AnimeDetails = ({ route }: Props) => {
                     genre={formattedData?.genres![0]?.name}
                     studios={formattedData?.studios}
                   />
-                  {!!formattedData?.videos.length && (
+                  {formattedData.videos && !!formattedData?.videos.length && (
                     <Videos videos={formattedData.videos} />
                   )}
-                  {!!formattedData?.statistics && (
+                  {formattedData?.statistics && !!formattedData?.statistics && (
                     <Chart statistics={formattedData?.statistics} />
                   )}
-                  {!!formattedData?.related_anime.length && (
-                    <RelatedAnime relatedAnime={formattedData.related_anime} />
-                  )}
+                  {formattedData?.related_anime &&
+                    !!formattedData?.related_anime.length && (
+                      <RelatedAnime
+                        relatedAnime={formattedData.related_anime}
+                      />
+                    )}
                 </YStack>
-                {!!formattedData?.recommendations.length && (
-                  <Recommendations
-                    recommendations={formattedData.recommendations}
-                  />
-                )}
+                {formattedData?.recommendations &&
+                  !!formattedData?.recommendations.length && (
+                    <Recommendations
+                      recommendations={formattedData.recommendations}
+                    />
+                  )}
               </YStack>
             </YStack>
           )}

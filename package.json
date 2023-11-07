@@ -16,7 +16,8 @@
     "test": "jest",
     "lint": "eslint ./src",
     "lint:fix": "eslint --fix ./src",
-    "deps:update": "npx npm-check-updates --interactive --format group"
+    "deps:update": "npx npm-check-updates --interactive --format group",
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "@expo-google-fonts/poppins": "^0.2.3",
@@ -89,6 +90,7 @@
     "husky": "^8.0.3",
     "jest": "^29.7.0",
     "jest-expo": "^49.0.0",
+    "jest-transformer-svg": "^2.0.1",
     "lint-staged": "^13.2.2",
     "mini-css-extract-plugin": "^2.7.6",
     "prettier": "^2.8.8",

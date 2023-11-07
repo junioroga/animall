@@ -8,9 +8,9 @@ import { getTokens, Separator, useTheme, YStack } from 'tamagui'
 
 import {
   EmptyState,
+  EmptyStateTypes,
   HorizontalCard,
   Loading,
-  Types,
   VerticalCard,
   WIDTH_HORIZONTAL_CARD,
   WIDTH_VERTICAL_CARD,
@@ -58,7 +58,10 @@ export const AnimeRanking = observer(({ rankingType, cardType }: Props) => {
         {isLoading ? (
           <Loading />
         ) : (
-          <EmptyState type={Types.ERROR} message={t('anime.notFound')} />
+          <EmptyState
+            type={EmptyStateTypes.ERROR}
+            message={t('anime.notFound')}
+          />
         )}
       </YStack>
     ),

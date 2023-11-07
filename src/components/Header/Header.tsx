@@ -7,7 +7,7 @@ import { ChevronLeft } from '@tamagui/lucide-icons'
 
 import AsepriteDark from '@assets/aseprite_dark.svg'
 import AsepriteLight from '@assets/aseprite_light.svg'
-import { Store } from '@store/index'
+import { Store } from '@store'
 
 export type HeaderProps = {
   right?: React.ReactNode
@@ -29,12 +29,13 @@ export const Header = ({ right }: HeaderProps) => {
       pb="$2"
       jc="space-between"
       ai="center"
-      bg="$background">
+      bg="$background"
+      testID="header-container">
       <Button f={1} unstyled onPress={navigation.goBack} left="$-2.5">
         <ChevronLeft />
       </Button>
       <Stack f={1} ai="center">
-        <AsepriteThemed height={30} width={30} />
+        <AsepriteThemed testID="image-center" height={30} width={30} />
       </Stack>
       <Stack f={1} ai="flex-end">
         {right && right}
