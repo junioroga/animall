@@ -19,31 +19,31 @@ export const mockCard = {
   start_date: '2010-12-15',
   genres: [
     {
-      id: '1',
+      id: 1,
       name: 'Action',
     },
     {
-      id: '4',
+      id: 4,
       name: 'Comedy',
     },
     {
-      id: '13',
+      id: 13,
       name: 'Historical',
     },
     {
-      id: '20',
+      id: 20,
       name: 'Parody',
     },
     {
-      id: '21',
+      id: 21,
       name: 'Samurai',
     },
     {
-      id: '24',
+      id: 24,
       name: 'Sci-Fi',
     },
     {
-      id: '27',
+      id: 27,
       name: 'Shounen',
     },
   ],

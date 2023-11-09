@@ -17,7 +17,7 @@ export const IS_DEBUG = __DEV__
 // -----------------------------------------------------------------------------
 const URLS = {
   PRODUCTION: {
-    API: 'https://api.myanimelist.net/v2',
+    API: 'https://api.myanimelist.net/v2/',
   },
 }
 
