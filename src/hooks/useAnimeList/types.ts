@@ -1,10 +1,10 @@
 export interface Studios {
-  id: string
+  id: number
   name: string
 }
 
 export interface Genres {
-  id: string
+  id: number
   name: string
 }
 
@@ -52,7 +52,7 @@ export interface Statistics {
 }
 
 export interface Season {
-  year: string
+  year: number
   season: string
 }
 
@@ -88,6 +88,7 @@ export interface AnimeData {
   num_episodes?: number
   start_season?: Season
   num_scoring_users?: number
+  nsfw?: string
   broadcast?: Broadcast
   created_at?: string
   updated_at?: string
@@ -109,12 +110,14 @@ export type Page = {
   pageParam: number
 }
 
+type Node = {
+  node: AnimeData
+}
+
 export interface ResponseAnimeList {
-  data: {
-    node: AnimeData
-  }
+  data: Node[]
   paging: {
     next: string
-    previous: string
+    previous?: string
   }
 }

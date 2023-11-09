@@ -3,7 +3,7 @@ import { ResponseAnimeList } from '@hooks/useAnimeList/types'
 import { ResponseAnimeRanking } from '@hooks/useAnimeRanking/types'
 import { api } from '@config/api'
 
-import { PaginationProps, RankingType } from './types'
+import { PaginationProps, RankingType } from '../types'
 
 const basePath = 'anime'
 
