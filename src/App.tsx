@@ -16,7 +16,10 @@ import {
 } from '@expo-google-fonts/poppins'
 import { observer } from '@legendapp/state/react'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import { SafeAreaProvider } from 'react-native-safe-area-context'
+import {
+  initialWindowMetrics,
+  SafeAreaProvider,
+} from 'react-native-safe-area-context'
 
 import * as SplashScreen from 'expo-splash-screen'
 import { StatusBar } from 'expo-status-bar'
@@ -64,7 +67,9 @@ export const App = observer(() => {
       <TamaguiProvider config={config}>
         <StatusBar style={theme === 'light' ? 'dark' : 'light'} />
         <Theme name={theme}>
-          <SafeAreaProvider onLayout={onLayoutRootView}>
+          <SafeAreaProvider
+            initialMetrics={initialWindowMetrics}
+            onLayout={onLayoutRootView}>
             <Router />
           </SafeAreaProvider>
         </Theme>

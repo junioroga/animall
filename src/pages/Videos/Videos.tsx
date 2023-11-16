@@ -38,7 +38,7 @@ export const Videos = observer(({ route }: Props) => {
     (video: VideosType) => {
       setReady(false)
       setVideoSelected(video)
-      setTimeout(() => setReady(true), 500)
+      setReady(true)
     },
     [setReady, setVideoSelected],
   )
@@ -50,9 +50,7 @@ export const Videos = observer(({ route }: Props) => {
         <Stack h="$17">
           <YoutubePlayer
             height={getTokens().size[17].val}
-            videoId={getYouTubeVideoIdFromUrl(
-              videoSelected.url ?? pressedVideo?.url,
-            )}
+            videoId={getYouTubeVideoIdFromUrl(videoSelected.url)}
             webViewStyle={{ display: ready ? 'flex' : 'none' }}
             onReady={() => setReady(true)}
           />
@@ -76,6 +74,7 @@ export const Videos = observer(({ route }: Props) => {
           {videos?.map((video) => (
             <XStack key={video.id} ai="flex-start" gap="$3">
               <Button
+                testID={`button-video-${video.id}`}
                 unstyled
                 jc="center"
                 ai="center"

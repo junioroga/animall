@@ -46,7 +46,7 @@ describe('EmptyState', () => {
     expect(rendered.getByText('Test alert')).toBeTruthy()
   })
 
-  it('renders empty state with alert', () => {
+  it('renders empty state with action', () => {
     const mockPress = jest.fn()
 
     const rendered = setup({
