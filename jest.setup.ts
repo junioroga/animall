@@ -1,6 +1,10 @@
 // include this line for mocking react-native-gesture-handler
 import 'react-native-gesture-handler/jestSetup'
 
+import mockSafeAreaContext from 'react-native-safe-area-context/jest/mock'
+
+jest.mock('react-native-safe-area-context', () => mockSafeAreaContext)
+
 jest.useFakeTimers()
 
 // include this section and the NativeAnimatedHelper section for mocking react-native-reanimated

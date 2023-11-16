@@ -22,12 +22,15 @@ import { Store } from '@store/index'
 
 export const Settings = observer(() => {
   const { t, i18n } = useTranslation()
+  const theme = Store.settings.theme.get()
   const isCheckedTheme = Store.settings.theme.get() === 'dark'
   const language = Store.settings.lang.get()
   const isCheckedLanguage = language === 'pt-BR'
 
-  const onCheckedThemeChange = () =>
-    Store.settings.theme.set((theme) => (theme === 'light' ? 'dark' : 'light'))
+  const onCheckedThemeChange = useCallback(() => {
+    const defineTheme = theme === 'light' ? 'dark' : 'light'
+    Store.settings.theme.set(defineTheme)
+  }, [theme])
 
   const onCheckedLanguageChange = useCallback(() => {
     const defineLanguage = language === 'pt-BR' ? 'en-US' : 'pt-BR'
@@ -52,7 +55,8 @@ export const Settings = observer(() => {
             <Text fontWeight="$6">{t('settings.theme')}</Text>
             <Switch
               checked={isCheckedTheme}
-              onCheckedChange={onCheckedThemeChange}>
+              onCheckedChange={onCheckedThemeChange}
+              testID="switch-theme">
               <Switch.Thumb>
                 {isCheckedTheme ? (
                   <Moon size="$icon.sm" color="$blue10" />
@@ -67,7 +71,8 @@ export const Settings = observer(() => {
             <Text fontWeight="$6">{t('settings.language')}</Text>
             <Switch
               checked={isCheckedLanguage}
-              onCheckedChange={onCheckedLanguageChange}>
+              onCheckedChange={onCheckedLanguageChange}
+              testID="switch-language">
               <Switch.Thumb>
                 {isCheckedLanguage ? (
                   <Brazil height={10} width={15} />
