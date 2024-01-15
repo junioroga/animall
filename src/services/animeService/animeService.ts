@@ -51,7 +51,9 @@ const getAll = async (options: GetAllProps): Promise<ResponseAnimeList> => {
   return response.data
 }
 
-const getDetails = async (options: GetDetailsProps) => {
+const getDetails = async (
+  options: GetDetailsProps,
+): Promise<ResponseAnimeDetails> => {
   const params = []
   let paramsQs = ''
 

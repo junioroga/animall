@@ -18,6 +18,7 @@ import {
 import { AnimeData } from '@hooks/useAnimeList/types'
 
 import { AnimeDataPrepared, preparedData } from './data'
+import { Skeleton } from './Skeleton'
 
 type Props = Partial<Omit<ReturnType<typeof useInfiniteQuery>, 'data'>> & {
   limit: number
@@ -55,7 +56,7 @@ export const AnimeList = observer(
       () => (
         <YStack f={1} ai="center" jc="center">
           {isLoading ? (
-            <Loading />
+            <Skeleton />
           ) : (
             <EmptyState
               type={EmptyStateTypes.NO_DATA}

@@ -48,8 +48,8 @@ export const BottomTab = () => {
         tabBarStyle: {
           backgroundColor: theme.backgroundHover.val,
           position: 'absolute',
-          paddingBottom: getTokens().space[2].val,
-          paddingTop: getTokens().space[2.5].val,
+          paddingBottom: getTokens().space[1].val,
+          paddingTop: getTokens().space[1.5].val,
           bottom: bottomDistance,
           left: getTokens().space[3].val,
           right: getTokens().space[3].val,

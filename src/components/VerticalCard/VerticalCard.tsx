@@ -75,10 +75,10 @@ export const VerticalCard = ({
             {item?.rating && (
               <Stack
                 h={getTokens().size[1.5].val}
-                position="absolute"
-                left={0}
-                bottom={0}
-                right={0}
+                pos="absolute"
+                l={0}
+                b={0}
+                r={0}
                 jc="center">
                 <Stack h={getTokens().size[1.5].val} bg="$color1" o={0.7} />
                 <XStack position="absolute" right={2.5} ai="center" gap="$2">
