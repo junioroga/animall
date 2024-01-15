@@ -9,7 +9,7 @@ import { LinearGradient } from 'expo-linear-gradient'
 import { Button, getTokens, ScrollView, Stack, useTheme, YStack } from 'tamagui'
 import { Share } from '@tamagui/lucide-icons'
 
-import { Header, Loading } from '@components'
+import { Header } from '@components'
 import { useAnimeDetails } from '@hooks'
 import { RootStackParamListHome } from '@navigators/Home/Home'
 import { hexToRgb } from '@utils/color'
@@ -22,6 +22,7 @@ import { HeaderDetails } from './HeaderDetails'
 import { MoreInfo } from './MoreInfo'
 import { Recommendations } from './Recommendations'
 import { RelatedAnime } from './RelatedAnime'
+import { Skeleton } from './Skeleton'
 import { Synopsis } from './Synopsis'
 import { Videos } from './Videos'
 
@@ -45,7 +46,7 @@ export const AnimeDetails = ({ route }: Props) => {
       <Header
         right={
           <Button unstyled>
-            <Share size="$icon.sm" />
+            <Share size="$1" />
           </Button>
         }
       />
@@ -55,38 +56,38 @@ export const AnimeDetails = ({ route }: Props) => {
           paddingBottom: getTokens().space[13].val + bottom,
         }}
         showsVerticalScrollIndicator={false}>
-        <YStack f={1}>
-          <Stack>
-            <HeaderDetails
-              mainPicture={formattedData?.main_picture}
-              averageTime={formattedData?.averageTime}
-              numEpisodes={formattedData?.num_episodes || 0}
-              title={
-                formattedData?.title || formattedData?.alternative_titles?.en
-              }
-              mean={formattedData?.ratingString}
-            />
-            <LinearGradient
-              colors={[
-                'transparent',
-                `rgba(${hexToRgb(theme.color1.val)}, 0.3)`,
-                `rgba(${hexToRgb(theme.background.val)}, 1)`,
-              ]}
-              style={{
-                width,
-                height: height * 0.4,
-                position: 'absolute',
-                bottom: 0,
-              }}
-              start={{ x: 0, y: 0.5 }}
-              end={{ x: 0, y: 1 }}
-            />
-          </Stack>
-          {isLoading && !Object.keys(formattedData).length ? (
-            <YStack h={height} ai="center" jc="center">
-              <Loading position="absolute" top={height / 5} />
-            </YStack>
-          ) : (
+        {isLoading && !Object.keys(formattedData).length ? (
+          <YStack>
+            <Skeleton />
+          </YStack>
+        ) : (
+          <YStack f={1}>
+            <Stack>
+              <HeaderDetails
+                mainPicture={formattedData?.main_picture}
+                averageTime={formattedData?.averageTime}
+                numEpisodes={formattedData?.num_episodes || 0}
+                title={
+                  formattedData?.title || formattedData?.alternative_titles?.en
+                }
+                mean={formattedData?.ratingString}
+              />
+              <LinearGradient
+                colors={[
+                  'transparent',
+                  `rgba(${hexToRgb(theme.color1.val)}, 0.3)`,
+                  `rgba(${hexToRgb(theme.background.val)}, 1)`,
+                ]}
+                style={{
+                  width,
+                  height: height * 0.4,
+                  position: 'absolute',
+                  bottom: 0,
+                }}
+                start={{ x: 0, y: 0.5 }}
+                end={{ x: 0, y: 1 }}
+              />
+            </Stack>
             <YStack f={1}>
               <YStack pt="$4" gap="$4">
                 <YStack px="$4" gap="$4">
@@ -127,8 +128,8 @@ export const AnimeDetails = ({ route }: Props) => {
                   )}
               </YStack>
             </YStack>
-          )}
-        </YStack>
+          </YStack>
+        )}
       </ScrollView>
     </Stack>
   )

@@ -55,7 +55,7 @@ export const ListRanking = observer(({ route }: Props) => {
       <Header
         right={
           <Button unstyled onPress={() => setSheetOpen(true)}>
-            <SlidersHorizontal size="$icon.sm" />
+            <SlidersHorizontal size="$1" />
           </Button>
         }
       />

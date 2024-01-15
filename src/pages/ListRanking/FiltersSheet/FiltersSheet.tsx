@@ -47,7 +47,7 @@ export const FiltersSheet = ({
       dismissOnSnapToBottom
       onOpenChange={setOpen}>
       <Sheet.Overlay />
-      <Sheet.Handle h="$0.5" />
+      <Sheet.Handle h="$0.5" w="$4" als="center" />
       <Sheet.Frame>
         <YStack pb="$8" pt="$4" px="$4" gap="$3">
           <H6>{t('anime.rankingList.filtersType')}</H6>

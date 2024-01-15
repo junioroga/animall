@@ -10,7 +10,6 @@ import {
   EmptyState,
   EmptyStateTypes,
   HorizontalCard,
-  Loading,
   VerticalCard,
   WIDTH_HORIZONTAL_CARD,
   WIDTH_VERTICAL_CARD,
@@ -19,6 +18,8 @@ import { QueryKeysRanking, useAnimeRanking } from '@hooks'
 import { CardType, RankingType } from '@services/types'
 
 import { AnimeRankingPrepared, preparedData } from './data'
+import { SkeletonHorizontal } from './SkeletonHorizontal'
+import { SkeletonVertical } from './SkeletonVertical'
 
 type Props = {
   rankingType: RankingType
@@ -54,9 +55,17 @@ export const AnimeRanking = observer(({ rankingType, cardType }: Props) => {
 
   const renderEmpty = useCallback(
     () => (
-      <YStack h="$14" w="100%" ai="center" jc="center">
+      <YStack
+        h={cardType === CardType.HORIZONTAL ? '$13' : '$14'}
+        w="100%"
+        ai="center"
+        jc="center">
         {isLoading ? (
-          <Loading />
+          cardType === CardType.HORIZONTAL ? (
+            <SkeletonHorizontal />
+          ) : (
+            <SkeletonVertical />
+          )
         ) : (
           <EmptyState
             type={EmptyStateTypes.ERROR}
@@ -65,7 +74,7 @@ export const AnimeRanking = observer(({ rankingType, cardType }: Props) => {
         )}
       </YStack>
     ),
-    [isLoading, t],
+    [isLoading, t, cardType],
   )
 
   const keyExtractor = useCallback(
@@ -98,9 +107,9 @@ export const AnimeRanking = observer(({ rankingType, cardType }: Props) => {
       ListEmptyComponent={renderEmpty}
       contentContainerStyle={{
         flexGrow: 1,
-        backgroundColor: theme.background.get(),
-        paddingVertical: getTokens().space[3].val,
         paddingHorizontal: getTokens().space[4].val,
+        paddingVertical: getTokens().space[3].val,
+        backgroundColor: theme.background.get(),
       }}
       showsHorizontalScrollIndicator={false}
       initialNumToRender={10}

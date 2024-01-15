@@ -59,9 +59,9 @@ export const Settings = observer(() => {
               testID="switch-theme">
               <Switch.Thumb>
                 {isCheckedTheme ? (
-                  <Moon size="$icon.sm" color="$blue10" />
+                  <Moon size="$1" color="$blue10" />
                 ) : (
-                  <Sun size="$icon.sm" color="$yellow8" />
+                  <Sun size="$1" color="$yellow8" />
                 )}
               </Switch.Thumb>
             </Switch>

@@ -44,7 +44,7 @@ export const Search = observer(
           onPress={onSearch}
           disabled={disabled}>
           <Button.Icon>
-            <TSearch color={disabled ? '$gray11' : '$blue10'} size="$icon.sm" />
+            <TSearch color={disabled ? '$gray11' : '$blue10'} size="$1" />
           </Button.Icon>
         </Button>
       </XStack>

@@ -19,6 +19,7 @@ module.exports = {
     'react-hooks/rules-of-hooks': 'error',
     'react-hooks/exhaustive-deps': 'error',
     'i18next/no-literal-string': 2,
+    '@typescript-eslint/prefer-nullish-coalescing': 'off',
     'no-console': 'error',
     'prettier/prettier': [
       'error',
