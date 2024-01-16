@@ -23,12 +23,10 @@ The following tools were used to build the project:
 - [React Query](https://tanstack.com/query/v3/): Fetching, caching, synchronizing and updating server state
 - [Legend-state](https://legendapp.com/open-source/state/): Control application states instead of using react native's useState
 - [AsyncStorage](https://docs.expo.dev/versions/latest/sdk/async-storage/): A library that provides an asynchronous, unencrypted, persistent, key-value storage API.
+- [React Content Loader](https://github.com/danilowoz/react-content-loader): A SVG-Powered component to easily create placeholder loadings (like Facebook's cards loading).
+- [Jest](https://jestjs.io/): Jest is a delightful JavaScript Testing Framework with a focus on simplicity.
 
 ![Maestro](https://img.shields.io/badge/Test%20e2e%20with%20Maestro%20-future-blue)
-
-![Test for all files](https://img.shields.io/badge/Test%20for%20all%20files%20with%20jest%20-future-purple
-)
-
 ![Sentry monitoring](https://img.shields.io/badge/Sentry%20monitoring%20-future-green)
 
 
@@ -76,6 +74,14 @@ To run this project, you will need to add the following environment variables to
 
 `EXPO_PUBLIC_API_TOKEN`
 
+## Getting api key
+
+You can easily get your key for free on the website
+[AnimeList API](https://myanimelist.net/apiconfig/references/api/v2)
+Just register, click on your profile -> account settings -> API menu
+
+<img src="/assets/readme/api.png" width="50%" height="50%"/>
+
 ## Demonstration
 
 ### Home
@@ -92,7 +98,6 @@ To run this project, you will need to add the following environment variables to
 ### Settings
 
 <img src="/assets/readme/settings.gif" width="50%" height="50%"/>
-
 
 ### Dark
 
