@@ -2,18 +2,9 @@ import React, { useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Dimensions } from 'react-native'
 
-import { Text as TextSVG } from 'react-native-svg'
 import { ProgressCircle } from 'react-native-svg-charts'
 
-import {
-  getFontSize,
-  getTokens,
-  Stack,
-  useTheme,
-  XStack,
-  YStack,
-  ZStack,
-} from 'tamagui'
+import { getTokens, Stack, useTheme, XStack, YStack, ZStack } from 'tamagui'
 import { PlayCircle, Timer } from '@tamagui/lucide-icons'
 
 import { Image, Text } from '@components'
@@ -83,29 +74,30 @@ export const HeaderDetails = ({
             </XStack>
           </XStack>
         </YStack>
-        <ProgressCircle
-          style={{
-            height: getTokens().size[5].val,
-            width: getTokens().size[5].val,
-            backgroundColor: 'white',
-            borderRadius: getTokens().size[5].val,
-          }}
-          progress={Number(mean) / 10}
-          progressColor={theme.blue10.val}
-          backgroundColor={theme.blue7.val}
-          startAngle={-Math.PI}
-          endAngle={Math.PI}
-          animate>
-          <TextSVG
-            x={-0.5}
-            y={1.5}
-            fill="black"
-            textAnchor="middle"
-            alignmentBaseline="middle"
-            fontSize={getFontSize('$4')}>
+        <Stack ai="center">
+          <Text
+            pos="absolute"
+            zi={1}
+            t={getTokens().size[5].val / 3.4}
+            fontSize="$5"
+            fontWeight="500">
             {mean}
-          </TextSVG>
-        </ProgressCircle>
+          </Text>
+          <ProgressCircle
+            style={{
+              height: getTokens().size[5].val,
+              width: getTokens().size[5].val,
+              backgroundColor: 'white',
+              borderRadius: getTokens().size[5].val,
+            }}
+            progress={Number(mean) / 10}
+            progressColor={theme.blue10.val}
+            backgroundColor={theme.blue7.val}
+            startAngle={-Math.PI}
+            endAngle={Math.PI}
+            animate
+          />
+        </Stack>
       </XStack>
     </Stack>
   )
