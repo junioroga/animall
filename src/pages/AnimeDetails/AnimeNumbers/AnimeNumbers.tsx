@@ -2,7 +2,7 @@ import React from 'react'
 import { useTranslation } from 'react-i18next'
 
 import { useTheme, XStack, YStack } from 'tamagui'
-import { BarChart2, ThumbsUp, TrendingUp, Users2 } from '@tamagui/lucide-icons'
+import { BarChart2, ThumbsUp, TrendingUp, Users } from '@tamagui/lucide-icons'
 
 import { Text } from '@components'
 import { formatString } from '@utils/formatters'
@@ -60,7 +60,7 @@ export const AnimeNumbers = ({
         <Text color="$gray11">{t('anime.details.favorites')}</Text>
       </YStack>
       <YStack ai="center" gap="$1.5">
-        <Users2
+        <Users
           size="$icon.sm"
           color={members ? '$blue10' : '$blue6'}
           fill={members ? theme.blue10.val : theme.blue6.val}

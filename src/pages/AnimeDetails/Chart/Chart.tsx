@@ -16,8 +16,8 @@ type Props = {
 }
 
 type LabelProps = {
-  x: AccessorFunction
-  y: AccessorFunction
+  x: AccessorFunction<any, any>
+  y: AccessorFunction<any, any>
   bandwidth: number
   data: number[]
 }
@@ -41,7 +41,7 @@ export const Chart = ({ statistics }: Props) => {
     () => Object.values(statistics.status).map((values) => Number(values)),
     [statistics],
   )
-  const dataNames = useMemo(
+  const data = useMemo(
     () =>
       Object.entries(statistics.status).map((values) => ({
         label: labels[values[0] as StatisticsTypes],
@@ -49,14 +49,13 @@ export const Chart = ({ statistics }: Props) => {
       })),
     [statistics, labels],
   )
-
   const CUT_OFF = useMemo(() => Math.max(...dataValues), [dataValues])
 
   const Labels = ({ x, y, bandwidth, data }: LabelProps) =>
-    data.map((status, index) => (
+    data.map((status: any, index: any) => (
       <TextSVG
         key={index}
-        x={status >= CUT_OFF ? x(status * 0.8) : x(status) + 4}
+        x={status >= CUT_OFF ? x((status * 0.8) as any) : x(status) + 4}
         y={y(index) + bandwidth / 1.8}
         fontSize={getFontSize('$1')}
         fontWeight="400"
@@ -72,12 +71,10 @@ export const Chart = ({ statistics }: Props) => {
       <Text fontWeight="$6">{t('anime.details.statistics.title')}</Text>
       <XStack h={100} gap="$2">
         <YAxis
-          data={dataNames}
+          data={data}
           yAccessor={({ index }) => index}
           contentInset={{ top: -62, bottom: 10 }}
-          formatLabel={(_, index) =>
-            dataNames[index] ? dataNames[index].label : ''
-          }
+          formatLabel={(_, index) => (data[index] ? data[index].label : '')}
           svg={{
             fill: theme.gray11.val,
             fontSize: getFontSize('$1.5'),
@@ -96,7 +93,7 @@ export const Chart = ({ statistics }: Props) => {
           spacingInner={0.1}
           spacingOuter={0.2}
           svg={{ fill: theme.blue10.val }}>
-          <Labels />
+          <Labels x={() => null} y={() => null} bandwidth={0} data={[]} />
         </BarChart>
       </XStack>
       <Text fontSize="$1" als="flex-end">
