@@ -65,6 +65,8 @@
   },
   "devDependencies": {
     "@babel/core": "^7.23.2",
+    "@commitlint/cli": "^18.4.4",
+    "@commitlint/config-conventional": "^18.4.4",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.5.11",
     "@tamagui/react-native-svg": "latest",
     "@tanstack/eslint-plugin-query": "^4.32.5",
