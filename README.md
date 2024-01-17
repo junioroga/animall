@@ -25,6 +25,7 @@ The following tools were used to build the project:
 - [AsyncStorage](https://docs.expo.dev/versions/latest/sdk/async-storage/): A library that provides an asynchronous, unencrypted, persistent, key-value storage API.
 - [React Content Loader](https://github.com/danilowoz/react-content-loader): A SVG-Powered component to easily create placeholder loadings (like Facebook's cards loading).
 - [Jest](https://jestjs.io/): Jest is a delightful JavaScript Testing Framework with a focus on simplicity.
+- [MSW](https://mswjs.io/): Mock Service Worker is an API mocking library that allows you to write client-agnostic mocks and reuse them across any frameworks, tools, and environments.
 
 ![Maestro](https://img.shields.io/badge/Test%20e2e%20with%20Maestro%20-future-blue)
 ![Sentry monitoring](https://img.shields.io/badge/Sentry%20monitoring%20-future-green)
