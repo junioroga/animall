@@ -39,7 +39,7 @@ export const Videos = ({ videos }: Props) => {
   )
 
   return (
-    <YStack>
+    <YStack testID="videos-carousel">
       <Text fontWeight="$6">{t('anime.details.videos')}</Text>
       {videos.length ? (
         <ScrollView
@@ -52,6 +52,7 @@ export const Videos = ({ videos }: Props) => {
           <XStack gap="$2">
             {videos?.map((video) => (
               <Button
+                testID="youtube-card"
                 key={video.id}
                 unstyled
                 jc="center"
@@ -65,9 +66,9 @@ export const Videos = ({ videos }: Props) => {
                     width: getTokens().size[14].val,
                   }}
                 />
-                <Stack position="absolute" ai="center" jc="center">
+                <Stack pos="absolute" ai="center" jc="center">
                   <Circle h="$3" w="$3" bc="$color12" o={0.7} />
-                  <Stack position="absolute">
+                  <Stack pos="absolute">
                     <Play
                       size="$icon.sm"
                       color={theme.color1.val}

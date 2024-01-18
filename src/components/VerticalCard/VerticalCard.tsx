@@ -49,7 +49,7 @@ export const VerticalCard = ({
     <Button
       unstyled
       onPress={() => navigationType('AnimeDetails', { animeId: item.id })}
-      testID="card-button">
+      testID="card-button-vertical">
       <Card
         h={HEIGHT_VERTICAL_CARD}
         w={WIDTH_VERTICAL_CARD}

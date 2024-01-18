@@ -32,7 +32,7 @@ describe('HorizontalCard', () => {
   it('pressing card button', () => {
     const rendered = setup({ item: mockCard })
 
-    const button = rendered.getByTestId('card-button')
+    const button = rendered.getByTestId('card-button-horizontal')
 
     fireEvent.press(button)
     expect(mockNavigate).toHaveBeenCalledTimes(1)

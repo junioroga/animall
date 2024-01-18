@@ -21,7 +21,12 @@ export const Header = ({ right }: HeaderProps) => {
       ai="center"
       bg="$background"
       testID="header-container">
-      <Button f={1} unstyled onPress={navigation.goBack} left="$-2.5">
+      <Button
+        testID="button-back"
+        f={1}
+        unstyled
+        onPress={navigation.goBack}
+        left="$-2.5">
         <ChevronLeft />
       </Button>
       <Stack f={1} ai="center" />

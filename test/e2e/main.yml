@@ -1,0 +1,7 @@
+#Main workflow tabs
+appId: br.com.animall
+---
+- openLink: exp://127.0.0.1:8081
+- runFlow: home.yml
+- runFlow: search.yml
+- runFlow: settings.yml

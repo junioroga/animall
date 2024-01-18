@@ -1,5 +1,6 @@
-import React, { useMemo } from 'react'
-import { Dimensions } from 'react-native'
+import React, { useCallback, useMemo } from 'react'
+import { useTranslation } from 'react-i18next'
+import { Alert, Dimensions, Share } from 'react-native'
 
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
@@ -7,7 +8,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import { LinearGradient } from 'expo-linear-gradient'
 
 import { Button, getTokens, ScrollView, Stack, useTheme, YStack } from 'tamagui'
-import { Share } from '@tamagui/lucide-icons'
+import { Share as ShareIcon } from '@tamagui/lucide-icons'
 
 import { Header } from '@components'
 import { useAnimeDetails } from '@hooks'
@@ -35,22 +36,37 @@ export const AnimeDetails = ({ route }: Props) => {
   const { data, isLoading } = useAnimeDetails({ animeId })
   const { bottom } = useSafeAreaInsets()
   const theme = useTheme()
+  const { t } = useTranslation()
 
   const formattedData = useMemo(
     () => (data ? preparedData(data) : {}),
     [data],
   ) as unknown as AnimeDetailsPrepared
 
+  const onShareAnime = useCallback(async () => {
+    try {
+      await Share.share({
+        message: t('anime.details.share.message', {
+          title: formattedData.title || formattedData.alternative_titles?.en,
+        }),
+        url: `https://myanimelist.net/anime/${formattedData.id}`,
+      })
+    } catch (error: any) {
+      Alert.alert(error.message)
+    }
+  }, [formattedData, t])
+
   return (
     <Stack bg="$background">
       <Header
         right={
           <Button unstyled>
-            <Share size="$1" />
+            <ShareIcon size="$1" onPress={onShareAnime} />
           </Button>
         }
       />
       <ScrollView
+        testID="scroll-anime-details"
         contentContainerStyle={{
           flexGrow: 1,
           paddingBottom: getTokens().space[13].val + bottom,
@@ -71,6 +87,8 @@ export const AnimeDetails = ({ route }: Props) => {
                   formattedData?.title || formattedData?.alternative_titles?.en
                 }
                 mean={formattedData?.ratingString}
+                releaseDay={formattedData?.releaseDay}
+                releaseHour={formattedData?.releaseHour}
               />
               <LinearGradient
                 colors={[

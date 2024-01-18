@@ -100,7 +100,10 @@
           "watching": "Watching"
         },
         "relatedAnime": "Related anime",
-        "recommendations": "Recommendations"
+        "recommendations": "Recommendations",
+        "share": {
+          "message": "Look at this anime I found - {{title}} - Take a look! 👀"
+        }
       },
       "rankingList": {
         "filtersType": "Type"

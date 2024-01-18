@@ -45,7 +45,7 @@ export const preparedData = (data: AnimeRanking[]): AnimeRankingPrepared[] =>
 
     const releaseHour = format(
       parse(item?.broadcast?.start_time || '00:00', 'HH:mm', new Date()),
-      'hh:mm a',
+      'HH:mm',
     )
 
     return {
