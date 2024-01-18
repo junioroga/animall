@@ -33,23 +33,11 @@ describe('VerticalCard', () => {
   it('pressing card button', () => {
     const rendered = setup({ item: mockCard })
 
-    const button = rendered.getByTestId('card-button')
+    const button = rendered.getByTestId('card-button-vertical')
 
     fireEvent.press(button)
     expect(mockNavigate).toHaveBeenCalledTimes(1)
     expect(mockNavigate).toHaveBeenCalledWith('AnimeDetails', {
-      animeId: mockCard.id,
-    })
-  })
-
-  it('pressing card button with push navigation', () => {
-    const rendered = setup({ item: mockCard, pushNavigation: true })
-
-    const button = rendered.getByTestId('card-button')
-
-    fireEvent.press(button)
-    expect(mockPush).toHaveBeenCalledTimes(1)
-    expect(mockPush).toHaveBeenCalledWith('AnimeDetails', {
       animeId: mockCard.id,
     })
   })

@@ -1,0 +1,10 @@
+#Settings -> Change Language - Change Theme
+appId: br.com.animall
+---
+- openLink: exp://127.0.0.1:8081
+- tapOn: 
+    id: settings-tab
+- tapOn: 
+    id: switch-theme
+- tapOn: 
+    id: switch-language

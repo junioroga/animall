@@ -28,7 +28,7 @@ export const HorizontalCard = ({ item }: HorizontalCardProps) => {
 
   return (
     <Button
-      testID="card-button"
+      testID="card-button-horizontal"
       unstyled
       onPress={() =>
         navigation.navigate('AnimeDetails', {
@@ -50,11 +50,11 @@ export const HorizontalCard = ({ item }: HorizontalCardProps) => {
             <ZStack>
               <Image
                 source={item?.main_picture?.medium}
-                style={{ height: HEIGHT_HORIZONTAL_CARD / 2.3 }}
+                style={{ height: HEIGHT_HORIZONTAL_CARD / 2.6 }}
                 contentFit="cover"
                 blurRadius={3}
               />
-              <Stack h={HEIGHT_HORIZONTAL_CARD / 2.3} o={0.5} bg="$color1" />
+              <Stack h={HEIGHT_HORIZONTAL_CARD / 2.6} o={0.5} bg="$color1" />
             </ZStack>
           </Card.Background>
           <XStack h={HEIGHT_HORIZONTAL_CARD}>
@@ -73,7 +73,7 @@ export const HorizontalCard = ({ item }: HorizontalCardProps) => {
               />
             </Stack>
             <YStack f={1}>
-              <Stack f={0.5} jc="center">
+              <Stack f={0.4} jc="center">
                 <Text color="$color12" fontWeight="$6" numberOfLines={3}>
                   {item?.title || item?.alternative_titles?.en}
                 </Text>
@@ -84,17 +84,17 @@ export const HorizontalCard = ({ item }: HorizontalCardProps) => {
                     {item.genresFormatted}
                   </Text>
                 )}
-                <XStack ai="center" gap="$1">
-                  <CalendarDays size="$icon.sm" color="$blue10" />
+                <XStack ai="center" gap="$2">
+                  <CalendarDays size="$1" color="$blue10" />
                   <Text fontWeight="$5" fontSize="$1.5" color="$blue10">
                     {item?.fullDate}
                   </Text>
                 </XStack>
                 {item.releaseDay && (
-                  <XStack ai="center" gap="$1">
-                    <Timer size="$icon.sm" color="$blue10" />
-                    <Text fontWeight="$5" fontSize="$1" color="$blue10">
-                      {item?.releaseDay} - {item?.broadcast?.start_time}
+                  <XStack ai="center" gap="$2">
+                    <Timer size="$1" color="$blue10" />
+                    <Text fontWeight="$5" fontSize="$1.5" color="$blue10">
+                      {item?.releaseDay} - {item?.releaseHour}
                     </Text>
                   </XStack>
                 )}

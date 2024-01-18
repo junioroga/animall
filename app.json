@@ -14,12 +14,14 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "br.com.animall"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png"
-      }
+      },
+      "package": "br.com.animall"
     },
     "web": {
       "favicon": "./assets/favicon.png"

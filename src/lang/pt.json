@@ -100,7 +100,10 @@
           "watching": "Assistindo"
         },
         "relatedAnime": "Animes relacionados",
-        "recommendations": "Recomendações"
+        "recommendations": "Recomendações",
+        "share": {
+          "message": "Olha esse anime que eu achei - {{title}} - Dá uma olhada! 👀"
+        }
       },
       "rankingList": {
         "filtersType": "Tipo"

@@ -1,0 +1,16 @@
+#Search -> Details
+appId: br.com.animall
+---
+- openLink: exp://127.0.0.1:8081
+- tapOn: 
+    id: search-tab
+- tapOn: 
+    id: test-input-search
+- inputText: "Naruto"
+- hideKeyboard
+- tapOn: 
+    id: test-button-search
+- tapOn: 
+    id: card-button-vertical
+- tapOn:
+    id: button-back

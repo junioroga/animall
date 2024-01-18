@@ -1,0 +1,15 @@
+#Home -> Details -> Youtube
+appId: br.com.animall
+---
+- openLink: exp://127.0.0.1:8081
+- tapOn: 
+    id: home-tab
+- tapOn: 
+    id: card-button-horizontal
+- scroll
+- tapOn: 
+    id: youtube-card
+- tapOn:
+    id: button-back
+- tapOn:
+    id: button-back

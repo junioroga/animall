@@ -74,6 +74,7 @@ export const BottomTab = () => {
         name="Home"
         component={HomeNavigator}
         options={{
+          tabBarTestID: 'home-tab',
           tabBarIcon: ({ color, focused }) => (
             <Home
               size="$icon.sm"
@@ -90,6 +91,7 @@ export const BottomTab = () => {
         name="ListAnime"
         component={ListAnimeNavigator}
         options={{
+          tabBarTestID: 'search-tab',
           tabBarIcon: ({ color, focused }) => (
             <Search
               size="$icon.sm"
@@ -106,6 +108,7 @@ export const BottomTab = () => {
         name="Settings"
         component={SettingsNavigator}
         options={{
+          tabBarTestID: 'settings-tab',
           tabBarIcon: ({ color, focused }) => (
             <Settings
               size="$icon.sm"

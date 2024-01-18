@@ -5,7 +5,7 @@ import { Dimensions } from 'react-native'
 import { ProgressCircle } from 'react-native-svg-charts'
 
 import { getTokens, Stack, useTheme, XStack, YStack, ZStack } from 'tamagui'
-import { PlayCircle, Timer } from '@tamagui/lucide-icons'
+import { PlayCircle, Timer, TimerReset } from '@tamagui/lucide-icons'
 
 import { Image, Text } from '@components'
 import { MainPicture } from '@hooks/useAnimeList/types'
@@ -16,6 +16,8 @@ type Props = {
   numEpisodes?: number
   averageTime?: number
   mean?: string
+  releaseDay?: string
+  releaseHour?: string
 }
 
 export const HeaderDetails = ({
@@ -24,6 +26,8 @@ export const HeaderDetails = ({
   numEpisodes,
   averageTime,
   mean,
+  releaseDay,
+  releaseHour,
 }: Props) => {
   const { t } = useTranslation()
   const theme = useTheme()
@@ -58,7 +62,7 @@ export const HeaderDetails = ({
           <XStack gap="$2">
             <XStack ai="center" gap="$1.5">
               <PlayCircle size="$icon.sm" />
-              <Text fontWeight="$4" fontSize="$2">
+              <Text fontWeight="$6" fontSize="$2">
                 {t('anime.details.numEpisodes', {
                   numEpisodes,
                 })}
@@ -66,13 +70,21 @@ export const HeaderDetails = ({
             </XStack>
             <XStack ai="center" gap="$1.5">
               <Timer size="$icon.sm" />
-              <Text fontWeight="$4" fontSize="$2">
+              <Text fontWeight="$6" fontSize="$2">
                 {t('anime.details.averageTime', {
                   averageTime,
                 })}
               </Text>
             </XStack>
           </XStack>
+          {releaseDay && (
+            <XStack ai="center" gap="$1.5">
+              <TimerReset size="$icon.sm" />
+              <Text fontWeight="$6" fontSize="$2">
+                {releaseDay} - {releaseHour}
+              </Text>
+            </XStack>
+          )}
         </YStack>
         <Stack ai="center">
           <Text
@@ -80,14 +92,15 @@ export const HeaderDetails = ({
             zi={1}
             t={getTokens().size[5].val / 3.4}
             fontSize="$5"
-            fontWeight="500">
+            fontWeight="500"
+            color="$color12">
             {mean}
           </Text>
           <ProgressCircle
             style={{
               height: getTokens().size[5].val,
               width: getTokens().size[5].val,
-              backgroundColor: 'white',
+              backgroundColor: theme.color5.val,
               borderRadius: getTokens().size[5].val,
             }}
             progress={Number(mean) / 10}
