@@ -18,11 +18,13 @@ import {
 } from 'tamagui'
 import { Play } from '@tamagui/lucide-icons'
 
-import { Header, Image, Loading } from '@components'
+import { Header, Image } from '@components'
 import { Videos as VideosType } from '@hooks/useAnimeList/types'
 import { useLegendState } from '@hooks/useLegendState'
 import { RootStackParamListHome } from '@navigators/Home/Home'
 import { getYouTubeVideoIdFromUrl } from '@utils/regex'
+
+import { Skeleton } from './Skeleton'
 
 type Props = NativeStackScreenProps<RootStackParamListHome, 'Videos'>
 
@@ -47,19 +49,14 @@ export const Videos = observer(({ route }: Props) => {
     <YStack f={1} bg="$background">
       <Stack>
         <Header />
-        <Stack h="$17">
+        <Stack h="$18">
           <YoutubePlayer
-            height={getTokens().size[17].val}
+            height={getTokens().size[18].val}
             videoId={getYouTubeVideoIdFromUrl(videoSelected.url)}
             webViewStyle={{ display: ready ? 'flex' : 'none' }}
             onReady={() => setReady(true)}
           />
-          {!ready && (
-            <Loading
-              position="absolute"
-              bottom={getTokens().size[19].val / 2}
-            />
-          )}
+          {!ready && <Skeleton />}
         </Stack>
       </Stack>
       <ScrollView
@@ -99,7 +96,7 @@ export const Videos = observer(({ route }: Props) => {
                   </Stack>
                 </Stack>
               </Button>
-              <Text f={1} fontWeight="$6" numberOfLines={4}>
+              <Text f={1} fow="$6" numberOfLines={4}>
                 {video.title}
               </Text>
             </XStack>
