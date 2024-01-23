@@ -1,5 +1,5 @@
 const path = require('path')
-const { DefinePlugin } = require('webpack')
+const { EsbuildPlugin } = require('esbuild-loader')
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const { TamaguiPlugin } = require('tamagui-loader')
@@ -26,6 +26,7 @@ const tamaguiOptions = {
 
 /** @type { import('webpack').Configuration } */
 module.exports = {
+  target: 'node',
   context: projectRoot,
   stats: 'normal',
   mode: NODE_ENV,
@@ -83,6 +84,7 @@ module.exports = {
               target: 'es2020',
               loader: 'tsx',
               minify: false,
+              tsconfig: './tsconfig.json',
             },
           },
         ],
@@ -105,6 +107,12 @@ module.exports = {
       },
     ],
   },
+  optimization: {
+		minimize: false,
+		minimizer: [
+			new EsbuildPlugin(),
+		],
+	},
   plugins: [
     new TamaguiPlugin(tamaguiOptions),
     new MiniCSSExtractPlugin({
@@ -112,17 +120,15 @@ module.exports = {
       ignoreOrder: true,
     }),
     isProduction ? null : new ReactRefreshWebpackPlugin(),
-    new DefinePlugin({
-      process: {
-        env: {
-          NODE_ENV: JSON.stringify(NODE_ENV),
-          __DEV__: NODE_ENV === 'development' ? 'true' : 'false',
-          DEBUG: JSON.stringify(process.env.EXPO_DEBUG || '0'),
-        },
-      },
+    new EsbuildPlugin({
+      define: {
+        'process.env.NODE_ENV': JSON.stringify(NODE_ENV),
+        'process.env.__DEV__': NODE_ENV === 'development' ? 'true' : 'false',
+        'process.env.DEBUG': JSON.stringify(process.env.EXPO_DEBUG || '0')
+      }
     }),
     new HtmlWebpackPlugin({
-      template: `./index.html`,
+      template: './index.html',
     }),
   ].filter(Boolean),
 };

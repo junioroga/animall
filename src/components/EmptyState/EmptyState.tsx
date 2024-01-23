@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react'
 import { Dimensions } from 'react-native'
 
-import AnimatedLottieView from 'lottie-react-native'
+import LottieView from 'lottie-react-native'
 
 import { Button, H6, YStack } from 'tamagui'
 
@@ -33,16 +33,16 @@ export const EmptyState = ({
   const defineType = useMemo(
     () => ({
       [EmptyStateTypes.ERROR]: {
-        source: require('../../assets/lottie/error.json'),
-        style: { height: height / 5 },
+        source: require('@assets/lottie/error.json'),
+        style: { height: height / 5, width: height / 2 },
       },
       [EmptyStateTypes.NO_DATA]: {
-        source: require('../../assets/lottie/no_data.json'),
-        style: { height: height / 7 },
+        source: require('@assets/lottie/no_data.json'),
+        style: { height: height / 7, width: height / 4 },
       },
       [EmptyStateTypes.NO_SEARCH]: {
-        source: require('../../assets/lottie/empty_search.json'),
-        style: { height: height / 5 },
+        source: require('@assets/lottie/empty_search.json'),
+        style: { height: height / 5, width: height / 2 },
       },
     }),
     [],
@@ -51,7 +51,7 @@ export const EmptyState = ({
   return (
     <YStack f={1} ai="center" jc="center" gap="$4">
       {alert && <H6>{alert}</H6>}
-      <AnimatedLottieView
+      <LottieView
         source={defineType[type].source}
         style={defineType[type].style}
         autoPlay
@@ -60,7 +60,7 @@ export const EmptyState = ({
       {message && <Text>{message}</Text>}
       {action && onPress && (
         <Button onPress={onPress}>
-          <Button.Text color="$blue10" fontSize="$3">
+          <Button.Text col="$blue10" fos="$3">
             {action}
           </Button.Text>
         </Button>

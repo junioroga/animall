@@ -59,7 +59,7 @@ export const AnimeList = observer(
             <Skeleton />
           ) : (
             <EmptyState
-              type={EmptyStateTypes.NO_DATA}
+              type={EmptyStateTypes.NO_SEARCH}
               message={t('anime.notSearched')}
             />
           )}
@@ -71,7 +71,7 @@ export const AnimeList = observer(
     const renderFooter = useCallback(() => {
       if (isFetchingNextPage) {
         return (
-          <YStack ai="center" jc="center" marginVertical="$3">
+          <YStack ai="center" jc="center" my="$3">
             <Loading />
           </YStack>
         )
