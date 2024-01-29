@@ -1,4 +1,4 @@
-import { renderHook, waitFor } from '@test/test-utils'
+import { renderHook, waitFor } from '~/test/test-utils'
 
 import { useAnimeList } from '../useAnimeList'
 import { useAnimeListMock } from './mock'

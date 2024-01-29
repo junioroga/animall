@@ -5,9 +5,9 @@ import parse from 'date-fns/parse'
 import { t } from 'i18next'
 import map from 'lodash/map'
 
-import { AnimeRanking } from '@hooks/useAnimeRanking/types'
-import { Store } from '@store/index'
-import { DaysOfWeek } from '@services/types'
+import { AnimeRanking } from '@/hooks/useAnimeRanking/types'
+import { Store } from '@/store/index'
+import { DaysOfWeek } from '@/services/types'
 
 export interface AnimeRankingPrepared extends AnimeRanking {
   genresFormatted: string

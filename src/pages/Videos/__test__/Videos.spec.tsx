@@ -1,7 +1,7 @@
 import { RouteProp } from '@react-navigation/native'
 
-import { RootStackParamListHome } from '@navigators/Home'
-import { fireEvent, render } from '@test/test-utils'
+import { RootStackParamListHome } from '@/navigators/Home'
+import { fireEvent, render } from '~/test/test-utils'
 
 import { Videos } from '../Videos'
 import { videosMock } from './mock'

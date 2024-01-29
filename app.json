@@ -30,6 +30,10 @@
     "plugins": [
       "expo-font",
       "expo-localization"
-    ]
+    ],
+    "experiments": {
+      "typedRoutes": true,
+      "tsconfigPaths": true
+    }
   }
 }

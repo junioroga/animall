@@ -3,7 +3,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context'
 
 import { XStack } from 'tamagui'
 
-import { BottomTab } from '@navigators'
+import { BottomTab } from '@/navigators'
 
 export default function Router() {
   const insets = useSafeAreaInsets()

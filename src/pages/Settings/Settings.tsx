@@ -15,10 +15,10 @@ import {
 } from 'tamagui'
 import { Moon, Sun } from '@tamagui/lucide-icons'
 
-import Brazil from '@assets/brazil.svg'
-import Usa from '@assets/usa.svg'
-import { Switch, Text } from '@components'
-import { Store } from '@store/index'
+import Brazil from '@/assets/brazil.svg'
+import Usa from '@/assets/usa.svg'
+import { Switch, Text } from '@/components'
+import { Store } from '@/store/index'
 
 export const Settings = observer(() => {
   const { t, i18n } = useTranslation()
@@ -52,23 +52,23 @@ export const Settings = observer(() => {
         showsVerticalScrollIndicator={false}>
         <Stack gap="$4">
           <XStack jc="space-between" ai="center">
-            <Text fontWeight="$6">{t('settings.theme')}</Text>
+            <Text fow="$6">{t('settings.theme')}</Text>
             <Switch
               checked={isCheckedTheme}
               onCheckedChange={onCheckedThemeChange}
               testID="switch-theme">
               <Switch.Thumb>
                 {isCheckedTheme ? (
-                  <Moon size="$1" color="$blue10" />
+                  <Moon size="$1" col="$blue10" />
                 ) : (
-                  <Sun size="$1" color="$yellow8" />
+                  <Sun size="$1" col="$yellow8" />
                 )}
               </Switch.Thumb>
             </Switch>
           </XStack>
           <Separator />
           <XStack jc="space-between" ai="center">
-            <Text fontWeight="$6">{t('settings.language')}</Text>
+            <Text fow="$6">{t('settings.language')}</Text>
             <Switch
               checked={isCheckedLanguage}
               onCheckedChange={onCheckedLanguageChange}

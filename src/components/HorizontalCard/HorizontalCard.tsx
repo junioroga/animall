@@ -6,10 +6,10 @@ import { NativeStackNavigationProp } from '@react-navigation/native-stack'
 import { Button, Card, getTokens, Stack, XStack, YStack, ZStack } from 'tamagui'
 import { CalendarDays, Timer } from '@tamagui/lucide-icons'
 
-import { Image } from '@components/Image'
-import { Text } from '@components/Text'
-import { RootStackParamListHome } from '@navigators/Home/Home'
-import { blurhash } from '@config/general'
+import { Image } from '@/components/Image'
+import { Text } from '@/components/Text'
+import { RootStackParamListHome } from '@/navigators/Home/Home'
+import { blurhash } from '@/config/general'
 
 import { AnimeRankingPrepared } from '../../pages/Home/AnimeRanking/data'
 
@@ -74,26 +74,26 @@ export const HorizontalCard = ({ item }: HorizontalCardProps) => {
             </Stack>
             <YStack f={1}>
               <Stack f={0.4} jc="center">
-                <Text color="$color12" fontWeight="$6" numberOfLines={3}>
+                <Text col="$color12" fow="$6" numberOfLines={3}>
                   {item?.title || item?.alternative_titles?.en}
                 </Text>
               </Stack>
               <Stack f={0.6} gap="$1.5">
                 {item?.genresFormatted && (
-                  <Text fontWeight="$5" fontSize="$1.5" numberOfLines={2}>
+                  <Text fow="$5" fos="$1.5" numberOfLines={2}>
                     {item.genresFormatted}
                   </Text>
                 )}
                 <XStack ai="center" gap="$2">
-                  <CalendarDays size="$1" color="$blue10" />
-                  <Text fontWeight="$5" fontSize="$1.5" color="$blue10">
+                  <CalendarDays size="$1" col="$blue10" />
+                  <Text fow="$5" fos="$1.5" col="$blue10">
                     {item?.fullDate}
                   </Text>
                 </XStack>
                 {item.releaseDay && (
                   <XStack ai="center" gap="$2">
-                    <Timer size="$1" color="$blue10" />
-                    <Text fontWeight="$5" fontSize="$1.5" color="$blue10">
+                    <Timer size="$1" col="$blue10" />
+                    <Text fow="$5" fos="$1.5" col="$blue10">
                       {item?.releaseDay} - {item?.releaseHour}
                     </Text>
                   </XStack>

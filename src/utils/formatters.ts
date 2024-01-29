@@ -1,4 +1,4 @@
-import { Store } from '@store/index'
+import { Store } from '@/store/index'
 
 export const formatString = (value: number) => {
   const language = Store.settings.lang.get()

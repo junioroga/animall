@@ -26,7 +26,7 @@ export const Header = ({ right }: HeaderProps) => {
         f={1}
         unstyled
         onPress={navigation.goBack}
-        left="$-2.5">
+        l="$-2.5">
         <ChevronLeft />
       </Button>
       <Stack f={1} ai="center" />

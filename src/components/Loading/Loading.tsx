@@ -2,7 +2,7 @@ import { GetProps, Spinner, styled } from 'tamagui'
 
 export const Loading = styled(Spinner, {
   name: 'Loading',
-  alignSelf: 'center',
+  als: 'center',
 
   variants: {
     variant: {

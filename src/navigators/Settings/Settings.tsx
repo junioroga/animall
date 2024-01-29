@@ -1,6 +1,6 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 
-import { Settings } from '@pages/Settings'
+import { Settings } from '@/pages/Settings'
 
 export type RootStackParamListSettings = {
   SettingsPage: undefined

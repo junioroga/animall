@@ -6,7 +6,7 @@ import { observer } from '@legendapp/state/react'
 import { Button, XStack } from 'tamagui'
 import { Search as TSearch } from '@tamagui/lucide-icons'
 
-import { Input } from '@components/Input'
+import { Input } from '@/components/Input'
 
 export type SearchProps = {
   search: string
@@ -38,13 +38,13 @@ export const Search = observer(
           h="$5"
           w="$5"
           variant="outlined"
-          borderColor={disabled ? '$gray11' : '$blue10'}
-          opacity={disabled ? 0.5 : 1}
+          boc={disabled ? '$gray11' : '$blue10'}
+          o={disabled ? 0.5 : 1}
           testID="test-button-search"
           onPress={onSearch}
           disabled={disabled}>
           <Button.Icon>
-            <TSearch color={disabled ? '$gray11' : '$blue10'} size="$1" />
+            <TSearch col={disabled ? '$gray11' : '$blue10'} size="$1" />
           </Button.Icon>
         </Button>
       </XStack>

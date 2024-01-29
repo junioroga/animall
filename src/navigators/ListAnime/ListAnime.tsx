@@ -1,9 +1,9 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 
-import { Videos as VideosType } from '@hooks/useAnimeList/types'
-import { AnimeDetails } from '@pages/AnimeDetails'
-import { ListAnime } from '@pages/ListAnime'
-import { Videos } from '@pages/Videos'
+import { Videos as VideosType } from '@/hooks/useAnimeList/types'
+import { AnimeDetails } from '@/pages/AnimeDetails'
+import { ListAnime } from '@/pages/ListAnime'
+import { Videos } from '@/pages/Videos'
 
 export type RootStackParamListSearch = {
   ListAnimePage: undefined

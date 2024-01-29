@@ -2,8 +2,8 @@ import { useInfiniteQuery } from '@tanstack/react-query'
 import flatMap from 'lodash/flatMap'
 import map from 'lodash/map'
 
-import { animeService } from '@services'
-import { Fields } from '@services/types'
+import { animeService } from '@/services'
+import { Fields } from '@/services/types'
 
 import { AnimeData } from './types'
 

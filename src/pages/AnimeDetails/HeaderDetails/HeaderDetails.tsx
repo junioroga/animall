@@ -7,8 +7,8 @@ import { ProgressCircle } from 'react-native-svg-charts'
 import { getTokens, Stack, useTheme, XStack, YStack, ZStack } from 'tamagui'
 import { PlayCircle, Timer, TimerReset } from '@tamagui/lucide-icons'
 
-import { Image, Text } from '@components'
-import { MainPicture } from '@hooks/useAnimeList/types'
+import { Image, Text } from '@/components'
+import { MainPicture } from '@/hooks/useAnimeList/types'
 
 type Props = {
   mainPicture?: MainPicture
@@ -56,13 +56,13 @@ export const HeaderDetails = ({
           contentFit="fill"
         />
         <YStack gap="$2" f={1}>
-          <Text color="$color12" fontWeight="$6" numberOfLines={3}>
+          <Text col="$color12" fow="$6" numberOfLines={3}>
             {title}
           </Text>
           <XStack gap="$2">
             <XStack ai="center" gap="$1.5">
               <PlayCircle size="$icon.sm" />
-              <Text fontWeight="$6" fontSize="$2">
+              <Text fow="$6" fos="$2">
                 {t('anime.details.numEpisodes', {
                   numEpisodes,
                 })}
@@ -70,7 +70,7 @@ export const HeaderDetails = ({
             </XStack>
             <XStack ai="center" gap="$1.5">
               <Timer size="$icon.sm" />
-              <Text fontWeight="$6" fontSize="$2">
+              <Text fow="$6" fos="$2">
                 {t('anime.details.averageTime', {
                   averageTime,
                 })}
@@ -80,7 +80,7 @@ export const HeaderDetails = ({
           {releaseDay && (
             <XStack ai="center" gap="$1.5">
               <TimerReset size="$icon.sm" />
-              <Text fontWeight="$6" fontSize="$2">
+              <Text fow="$6" fos="$2">
                 {releaseDay} - {releaseHour}
               </Text>
             </XStack>
@@ -91,9 +91,9 @@ export const HeaderDetails = ({
             pos="absolute"
             zi={1}
             t={getTokens().size[5].val / 3.4}
-            fontSize="$5"
-            fontWeight="500"
-            color="$color12">
+            fos="$5"
+            fow="500"
+            col="$color12">
             {mean}
           </Text>
           <ProgressCircle

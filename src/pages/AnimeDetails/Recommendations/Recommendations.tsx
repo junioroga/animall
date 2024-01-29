@@ -3,9 +3,9 @@ import { useTranslation } from 'react-i18next'
 
 import { getTokens, ScrollView, XStack, YStack } from 'tamagui'
 
-import { Text, VerticalCard } from '@components'
-import { Recommendations as RecommendationsType } from '@hooks/useAnimeList/types'
-import { AnimeRankingPrepared } from '@pages/Home/AnimeRanking/data'
+import { Text, VerticalCard } from '@/components'
+import { Recommendations as RecommendationsType } from '@/hooks/useAnimeList/types'
+import { AnimeRankingPrepared } from '@/pages/Home/AnimeRanking/data'
 
 type Props = {
   recommendations: RecommendationsType[]
@@ -16,7 +16,7 @@ export const Recommendations = ({ recommendations }: Props) => {
 
   return (
     <YStack>
-      <Text fontWeight="$6" ml="$4">
+      <Text fow="$6" ml="$4">
         {t('anime.details.recommendations')}
       </Text>
       <ScrollView

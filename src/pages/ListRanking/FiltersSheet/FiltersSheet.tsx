@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next'
 
 import { Button, H6, Sheet, XStack, YStack } from 'tamagui'
 
-import { RankingType } from '@services/types'
+import { RankingType } from '@/services/types'
 
 type Props = {
   open: boolean
@@ -61,9 +61,9 @@ export const FiltersSheet = ({
                 onPress={() => handleSelectRanking(ranking)}>
                 <Button.Text
                   size="$2"
-                  fontWeight="$5"
+                  fow="$5"
                   p="$1"
-                  color={selected === ranking ? '$blue5Light' : '$blue10'}>
+                  col={selected === ranking ? '$blue5Light' : '$blue10'}>
                   {rankingTypes[ranking]}
                 </Button.Text>
               </Button>

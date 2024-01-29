@@ -1,7 +1,7 @@
 import { mocked } from 'jest-mock'
 
-import { Store } from '@store/index'
-import { act, fireEvent, render } from '@test/test-utils'
+import { Store } from '@/store/index'
+import { act, fireEvent, render } from '~/test/test-utils'
 
 import { Settings } from '../Settings'
 
@@ -14,8 +14,8 @@ jest.mock('react-i18next', () => ({
   }),
 }))
 
-jest.mock('@store', () => ({
-  ...jest.requireActual('@store'),
+jest.mock('@/store', () => ({
+  ...jest.requireActual('@/store'),
   Store: {
     settings: {
       theme: {

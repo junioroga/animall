@@ -16,9 +16,9 @@ import {
 } from 'tamagui'
 import { Play } from '@tamagui/lucide-icons'
 
-import { Image, Text } from '@components'
-import { Videos as VideosType } from '@hooks/useAnimeList/types'
-import { RootStackParamListHome } from '@navigators/Home/Home'
+import { Image, Text } from '@/components'
+import { Videos as VideosType } from '@/hooks/useAnimeList/types'
+import { RootStackParamListHome } from '@/navigators/Home/Home'
 
 type Props = {
   videos: VideosType[]
@@ -40,7 +40,7 @@ export const Videos = ({ videos }: Props) => {
 
   return (
     <YStack testID="videos-carousel">
-      <Text fontWeight="$6">{t('anime.details.videos')}</Text>
+      <Text fow="$6">{t('anime.details.videos')}</Text>
       {videos.length ? (
         <ScrollView
           horizontal
@@ -71,7 +71,7 @@ export const Videos = ({ videos }: Props) => {
                   <Stack pos="absolute">
                     <Play
                       size="$icon.sm"
-                      color={theme.color1.val}
+                      col={theme.color1.val}
                       fill={theme.color1.val}
                       style={{ left: 1 }}
                     />
@@ -82,7 +82,7 @@ export const Videos = ({ videos }: Props) => {
           </XStack>
         </ScrollView>
       ) : (
-        <Text color="$gray11">{t('anime.details.emptyVideos')}</Text>
+        <Text col="$gray11">{t('anime.details.emptyVideos')}</Text>
       )}
     </YStack>
   )

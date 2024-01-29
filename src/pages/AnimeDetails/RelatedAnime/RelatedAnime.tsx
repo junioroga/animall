@@ -7,9 +7,9 @@ import groupBy from 'lodash/groupBy'
 
 import { Button, YStack } from 'tamagui'
 
-import { Text } from '@components'
-import { RelatedAnime as RelatedAnimeType } from '@hooks/useAnimeList/types'
-import { RootStackParamListHome } from '@navigators/Home/Home'
+import { Text } from '@/components'
+import { RelatedAnime as RelatedAnimeType } from '@/hooks/useAnimeList/types'
+import { RootStackParamListHome } from '@/navigators/Home/Home'
 
 type Props = {
   relatedAnime: RelatedAnimeType[]
@@ -32,12 +32,12 @@ export const RelatedAnime = ({ relatedAnime }: Props) => {
 
   return (
     <YStack>
-      <Text fontWeight="$6">{t('anime.details.relatedAnime')}</Text>
+      <Text fow="$6">{t('anime.details.relatedAnime')}</Text>
       {relationArray.map((relationType) =>
         animeGrouped[relationType].map((anime, index) => (
           <YStack gap="$1" key={anime.node.id}>
             {index === 0 && (
-              <Text color="$gray11" mt="$3">
+              <Text col="$gray11" mt="$3">
                 {relationType}
               </Text>
             )}
@@ -45,7 +45,7 @@ export const RelatedAnime = ({ relatedAnime }: Props) => {
               unstyled
               onPress={() => handleRelatedItem(anime.node.id)}
               als="flex-start">
-              <Text color="$blue10">{anime.node.title}</Text>
+              <Text col="$blue10">{anime.node.title}</Text>
             </Button>
           </YStack>
         )),

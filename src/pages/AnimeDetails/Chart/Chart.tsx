@@ -6,10 +6,10 @@ import { AccessorFunction, BarChart, YAxis } from 'react-native-svg-charts'
 
 import { getFontSize, useTheme, XStack, YStack } from 'tamagui'
 
-import { Text } from '@components'
-import { Statistics } from '@hooks/useAnimeList/types'
-import { formatString } from '@utils/formatters'
-import { StatisticsTypes } from '@services/types'
+import { Text } from '@/components'
+import { Statistics } from '@/hooks/useAnimeList/types'
+import { formatString } from '@/utils/formatters'
+import { StatisticsTypes } from '@/services/types'
 
 type Props = {
   statistics: Statistics
@@ -68,7 +68,7 @@ export const Chart = ({ statistics }: Props) => {
 
   return (
     <YStack py="$3" gap="$2">
-      <Text fontWeight="$6">{t('anime.details.statistics.title')}</Text>
+      <Text fow="$6">{t('anime.details.statistics.title')}</Text>
       <XStack h={100} gap="$2">
         <YAxis
           data={data}
@@ -96,7 +96,7 @@ export const Chart = ({ statistics }: Props) => {
           <Labels x={() => null} y={() => null} bandwidth={0} data={[]} />
         </BarChart>
       </XStack>
-      <Text fontSize="$1" als="flex-end">
+      <Text fos="$1" als="flex-end">
         {t('anime.details.statistics.allMembers', {
           total: formatString(statistics.num_list_users),
         })}

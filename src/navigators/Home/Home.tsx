@@ -1,11 +1,11 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 
-import { Videos as VideosType } from '@hooks/useAnimeList/types'
-import { AnimeDetails } from '@pages/AnimeDetails'
-import { Home } from '@pages/Home'
-import { ListRanking } from '@pages/ListRanking'
-import { Videos } from '@pages/Videos'
-import { RankingType } from '@services/types'
+import { Videos as VideosType } from '@/hooks/useAnimeList/types'
+import { AnimeDetails } from '@/pages/AnimeDetails'
+import { Home } from '@/pages/Home'
+import { ListRanking } from '@/pages/ListRanking'
+import { Videos } from '@/pages/Videos'
+import { RankingType } from '@/services/types'
 
 export type RootStackParamListHome = {
   HomePage: undefined
