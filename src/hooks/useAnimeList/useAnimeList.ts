@@ -48,5 +48,6 @@ export const useAnimeList = ({
     enabled,
     getNextPageParam: (lastPage) =>
       lastPage.paging?.next ? lastPage.nextPage : false,
+    staleTime: Infinity,
   })
 }

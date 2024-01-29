@@ -21,5 +21,6 @@ export const useAnimeDetails = ({ animeId }: AnimeDetailsHookProps) => {
   return useQuery({
     queryKey: ['anime-details', { animeId }],
     queryFn: getDetailsAnime,
+    staleTime: Infinity,
   })
 }
