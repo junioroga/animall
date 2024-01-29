@@ -2,9 +2,9 @@ import format from 'date-fns/format'
 import parse from 'date-fns/parse'
 import { t } from 'i18next'
 
-import { AnimeData } from '@hooks/useAnimeList/types'
-import { Store } from '@store/index'
-import { DaysOfWeek } from '@services/types'
+import { AnimeData } from '@/hooks/useAnimeList/types'
+import { Store } from '@/store/index'
+import { DaysOfWeek } from '@/services/types'
 
 export interface AnimeDetailsPrepared extends AnimeData {
   ratingString: string

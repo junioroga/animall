@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { render } from '@test/test-utils'
+import { render } from '~/test/test-utils'
 
 import { Switch } from '../Switch'
 

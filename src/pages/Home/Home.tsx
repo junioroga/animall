@@ -16,8 +16,8 @@ import {
 } from 'tamagui'
 import { ChevronRight } from '@tamagui/lucide-icons'
 
-import { RootStackParamListHome } from '@navigators/Home'
-import { CardType, RankingType } from '@services/types'
+import { RootStackParamListHome } from '@/navigators/Home'
+import { CardType, RankingType } from '@/services/types'
 
 import { AnimeRanking } from './AnimeRanking/'
 
@@ -37,7 +37,7 @@ const TitleSection = ({ title, onPress }: TitleProps) => (
     ml="$4"
     mr="$3"
     onPress={onPress}>
-    <H6 fontWeight="$6">{title}</H6>
+    <H6 fow="$6">{title}</H6>
     <Button unstyled>
       <ChevronRight size="$icon.sm" />
     </Button>
@@ -52,7 +52,7 @@ export const Home = ({ navigation }: NavigationProps) => {
     <YStack f={1} bg="$background">
       <YStack px="$4" pb="$3" pt="$1">
         <XStack jc="space-between" ai="center">
-          <H4 fontWeight="$7">{t('home.itsFunTime')}</H4>
+          <H4 fow="$7">{t('home.itsFunTime')}</H4>
         </XStack>
       </YStack>
       <ScrollView

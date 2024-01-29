@@ -2,7 +2,7 @@ import format from 'date-fns/format'
 import { t } from 'i18next'
 import map from 'lodash/map'
 
-import { AnimeData } from '@hooks/useAnimeList/types'
+import { AnimeData } from '@/hooks/useAnimeList/types'
 
 export interface AnimeDataPrepared extends AnimeData {
   rating: string

@@ -1,4 +1,4 @@
-import { Videos } from '@hooks/useAnimeList/types'
+import { Videos } from '@/hooks/useAnimeList/types'
 
 export const videosMock: Videos[] = [
   {

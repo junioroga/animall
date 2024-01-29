@@ -5,7 +5,7 @@ import LottieView from 'lottie-react-native'
 
 import { Button, H6, YStack } from 'tamagui'
 
-import { Text } from '@components/Text'
+import { Text } from '@/components/Text'
 
 export enum EmptyStateTypes {
   ERROR = 'error',
@@ -33,15 +33,15 @@ export const EmptyState = ({
   const defineType = useMemo(
     () => ({
       [EmptyStateTypes.ERROR]: {
-        source: require('@assets/lottie/error.json'),
+        source: require('@/assets/lottie/error.json'),
         style: { height: height / 5, width: height / 2 },
       },
       [EmptyStateTypes.NO_DATA]: {
-        source: require('@assets/lottie/no_data.json'),
+        source: require('@/assets/lottie/no_data.json'),
         style: { height: height / 7, width: height / 4 },
       },
       [EmptyStateTypes.NO_SEARCH]: {
-        source: require('@assets/lottie/empty_search.json'),
+        source: require('@/assets/lottie/empty_search.json'),
         style: { height: height / 5, width: height / 2 },
       },
     }),

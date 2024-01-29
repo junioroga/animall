@@ -1,10 +1,10 @@
-import { animeService } from '@services'
-import { Fields, RankingType } from '@services/types'
+import { animeService } from '@/services'
+import { Fields, RankingType } from '@/services/types'
 import {
   animeDetailsMock,
   animeListMock,
   animeListRankingMock,
-} from '@test/mocks/animeListMock'
+} from '~/test/mocks/animeListMock'
 
 describe('animeService', () => {
   describe('getAll', () => {

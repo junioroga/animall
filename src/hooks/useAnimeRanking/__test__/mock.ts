@@ -1,6 +1,6 @@
 import { InfiniteData } from '@tanstack/react-query'
 
-import { AnimeData } from '@hooks/useAnimeList/types'
+import { AnimeData } from '@/hooks/useAnimeList/types'
 
 export const useAnimeRankingMock: InfiniteData<AnimeData> = {
   pages: [

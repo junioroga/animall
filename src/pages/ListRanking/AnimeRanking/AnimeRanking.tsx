@@ -14,8 +14,8 @@ import {
   HEIGHT_VERTICAL_CARD,
   Loading,
   VerticalCard,
-} from '@components'
-import { AnimeData } from '@hooks/useAnimeList/types'
+} from '@/components'
+import { AnimeData } from '@/hooks/useAnimeList/types'
 
 import { AnimeRankingPrepared, preparedData } from './data'
 
@@ -70,7 +70,7 @@ export const AnimeRanking = observer(
     const renderFooter = useCallback(() => {
       if (isFetchingNextPage) {
         return (
-          <YStack ai="center" jc="center" marginVertical="$3">
+          <YStack ai="center" jc="center" my="$3">
             <Loading />
           </YStack>
         )

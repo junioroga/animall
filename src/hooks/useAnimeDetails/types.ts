@@ -1,4 +1,4 @@
-import { AnimeData } from '@hooks/useAnimeList/types'
+import { AnimeData } from '@/hooks/useAnimeList/types'
 
 export type AnimeDetails = AnimeData
 

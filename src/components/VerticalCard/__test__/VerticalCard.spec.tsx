@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { fireEvent, render } from '@test/test-utils'
+import { fireEvent, render } from '~/test/test-utils'
 
 import { VerticalCard, VerticalCardProps } from '../VerticalCard'
 import { mockCard } from './mock'

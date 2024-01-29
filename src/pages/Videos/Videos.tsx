@@ -18,11 +18,11 @@ import {
 } from 'tamagui'
 import { Play } from '@tamagui/lucide-icons'
 
-import { Header, Image } from '@components'
-import { Videos as VideosType } from '@hooks/useAnimeList/types'
-import { useLegendState } from '@hooks/useLegendState'
-import { RootStackParamListHome } from '@navigators/Home/Home'
-import { getYouTubeVideoIdFromUrl } from '@utils/regex'
+import { Header, Image } from '@/components'
+import { Videos as VideosType } from '@/hooks/useAnimeList/types'
+import { useLegendState } from '@/hooks/useLegendState'
+import { RootStackParamListHome } from '@/navigators/Home/Home'
+import { getYouTubeVideoIdFromUrl } from '@/utils/regex'
 
 import { Skeleton } from './Skeleton'
 
@@ -89,7 +89,7 @@ export const Videos = observer(({ route }: Props) => {
                   <Stack pos="absolute">
                     <Play
                       size="$icon.sm"
-                      color={theme.color1.val}
+                      col={theme.color1.val}
                       fill={theme.color1.val}
                       style={{ left: 1 }}
                     />

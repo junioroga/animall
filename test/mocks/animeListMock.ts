@@ -1,6 +1,6 @@
-import { ResponseAnimeDetails } from '@hooks/useAnimeDetails/types'
-import { ResponseAnimeList } from '@hooks/useAnimeList/types'
-import { ResponseAnimeRanking } from '@hooks/useAnimeRanking/types'
+import { ResponseAnimeDetails } from '@/hooks/useAnimeDetails/types'
+import { ResponseAnimeList } from '@/hooks/useAnimeList/types'
+import { ResponseAnimeRanking } from '@/hooks/useAnimeRanking/types'
 
 export const animeListMock: ResponseAnimeList = {
   data: [

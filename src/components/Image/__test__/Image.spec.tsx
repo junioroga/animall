@@ -4,7 +4,7 @@ import Animated from 'react-native-reanimated'
 
 import { ImageProps } from 'expo-image'
 
-import { render } from '@test/test-utils'
+import { render } from '~/test/test-utils'
 
 import { Image } from '../Image'
 

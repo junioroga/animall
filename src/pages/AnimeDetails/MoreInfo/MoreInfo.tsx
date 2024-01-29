@@ -3,9 +3,9 @@ import { useTranslation } from 'react-i18next'
 
 import { XStack, YStack } from 'tamagui'
 
-import { Text } from '@components'
-import { Season, Studios } from '@hooks/useAnimeList/types'
-import { Rating, Seasons, Status } from '@services/types'
+import { Text } from '@/components'
+import { Season, Studios } from '@/hooks/useAnimeList/types'
+import { Rating, Seasons, Status } from '@/services/types'
 
 type Props = {
   status?: string
@@ -55,39 +55,39 @@ export const MoreInfo = ({
       animation="lazy"
       enterStyle={{
         y: -20,
-        opacity: 0,
+        o: 0,
       }}
-      opacity={1}
+      o={1}
       y={0}>
-      <Text fontWeight="$6" mb="$2">
+      <Text fow="$6" mb="$2">
         {t('anime.details.moreInfo')}
       </Text>
       <XStack ai="center" jc="space-between">
-        <Text color="$gray11">{t('anime.details.status')}</Text>
+        <Text col="$gray11">{t('anime.details.status')}</Text>
         <Text>{statusTranslated ?? missingText}</Text>
       </XStack>
       <XStack ai="center" jc="space-between">
-        <Text color="$gray11">{t('anime.details.season')}</Text>
+        <Text col="$gray11">{t('anime.details.season')}</Text>
         <Text>
           {season ? `${seasonTranslated} ${season?.year}` : missingText}
         </Text>
       </XStack>
       <XStack ai="center" jc="space-between">
-        <Text color="$gray11">{t('anime.details.studios')}</Text>
+        <Text col="$gray11">{t('anime.details.studios')}</Text>
         <Text>
           {studios ? studios?.map((item) => item.name).join(', ') : missingText}
         </Text>
       </XStack>
       <XStack ai="center" jc="space-between">
-        <Text color="$gray11">{t('anime.details.source')}</Text>
+        <Text col="$gray11">{t('anime.details.source')}</Text>
         <Text>{source?.toUpperCase() ?? missingText}</Text>
       </XStack>
       <XStack ai="center" jc="space-between">
-        <Text color="$gray11">{t('anime.details.genre')}</Text>
+        <Text col="$gray11">{t('anime.details.genre')}</Text>
         <Text>{genre ?? missingText}</Text>
       </XStack>
       <XStack ai="center" jc="space-between">
-        <Text color="$gray11">{t('anime.details.classification')}</Text>
+        <Text col="$gray11">{t('anime.details.classification')}</Text>
         <Text>{classificationTranslated ?? missingText}</Text>
       </XStack>
     </YStack>

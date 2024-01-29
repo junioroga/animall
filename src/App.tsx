@@ -26,13 +26,13 @@ import { StatusBar } from 'expo-status-bar'
 
 import { TamaguiProvider, Theme } from 'tamagui'
 
-import { Store } from '@store'
+import { Store } from '@/store'
 
 import config from '../tamagui.config'
 import Router from './router'
 
-if (Platform.OS === 'web') require('@config/reactotron.web')
-else require('@config/reactotron')
+if (Platform.OS === 'web') require('@/config/reactotron.web')
+else require('@/config/reactotron')
 
 SplashScreen.preventAutoHideAsync()
 

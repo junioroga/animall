@@ -1,7 +1,7 @@
 import { useInfiniteQuery } from '@tanstack/react-query'
 
-import { RankingType } from '@services/types'
-import { renderHook } from '@test/test-utils'
+import { RankingType } from '@/services/types'
+import { renderHook } from '~/test/test-utils'
 
 import { QueryKeysRanking, useAnimeRanking } from '../useAnimeRanking'
 import { useAnimeRankingMock } from './mock'

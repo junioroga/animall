@@ -15,11 +15,11 @@ import {
 } from 'tamagui'
 import { Star } from '@tamagui/lucide-icons'
 
-import { Image } from '@components/Image'
-import { Text } from '@components/Text'
-import { RootStackParamListHome } from '@navigators/Home/Home'
-import { AnimeDataPrepared } from '@pages/ListAnime/AnimeList/data'
-import { blurhash } from '@config/general'
+import { Image } from '@/components/Image'
+import { Text } from '@/components/Text'
+import { RootStackParamListHome } from '@/navigators/Home/Home'
+import { AnimeDataPrepared } from '@/pages/ListAnime/AnimeList/data'
+import { blurhash } from '@/config/general'
 
 import { AnimeRankingPrepared } from '../../pages/Home/AnimeRanking/data'
 
@@ -81,13 +81,13 @@ export const VerticalCard = ({
                 r={0}
                 jc="center">
                 <Stack h={getTokens().size[1.5].val} bg="$color1" o={0.7} />
-                <XStack position="absolute" right={2.5} ai="center" gap="$2">
-                  <Text fontWeight="$6" fontSize="$4" color="$color12" top={1}>
+                <XStack pos="absolute" r={2.5} ai="center" gap="$2">
+                  <Text fow="$6" fos="$4" col="$color12" t={1}>
                     {item.rating}
                   </Text>
                   <Star
                     size="$icon.sm"
-                    color="$yellow10"
+                    col="$yellow10"
                     fill={theme.yellow6.val}
                   />
                 </XStack>
@@ -95,7 +95,7 @@ export const VerticalCard = ({
             )}
           </ZStack>
           <Stack mx="$2" mt="$1" h="$3" jc="center">
-            <Text fontWeight="$4" fontSize="$1.5" numberOfLines={2}>
+            <Text fow="$4" fos="$1.5" numberOfLines={2}>
               {item?.title || item?.alternative_titles?.en}
             </Text>
           </Stack>

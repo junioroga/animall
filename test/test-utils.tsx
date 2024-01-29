@@ -2,15 +2,14 @@
 import React, { FC, ReactElement } from 'react'
 
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-
-import { TamaguiProvider } from 'tamagui'
-
 import {
   render,
   renderHook,
   RenderHookOptions,
   RenderHookResult,
 } from '@testing-library/react-native'
+
+import { TamaguiProvider } from 'tamagui'
 
 import config from '../tamagui.config'
 

@@ -14,8 +14,8 @@ import {
   HEIGHT_VERTICAL_CARD,
   Loading,
   VerticalCard,
-} from '@components'
-import { AnimeData } from '@hooks/useAnimeList/types'
+} from '@/components'
+import { AnimeData } from '@/hooks/useAnimeList/types'
 
 import { AnimeDataPrepared, preparedData } from './data'
 import { Skeleton } from './Skeleton'

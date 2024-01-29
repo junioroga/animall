@@ -9,8 +9,8 @@ import { selectionAsync } from 'expo-haptics'
 import { getTokens, useTheme } from 'tamagui'
 import { Home, Search, Settings } from '@tamagui/lucide-icons'
 
-import { Text } from '@components'
-import { SettingsNavigator } from '@navigators/Settings'
+import { Text } from '@/components'
+import { SettingsNavigator } from '@/navigators/Settings'
 
 import { HomeNavigator } from '../Home'
 import { ListAnimeNavigator } from '../ListAnime'
@@ -23,7 +23,7 @@ type TabLabelProps = {
 }
 
 const TabLabel = ({ label, color }: TabLabelProps) => (
-  <Text color={color} fontSize="$1" fontWeight="$6">
+  <Text col={color} fos="$1" fow="$6">
     {label}
   </Text>
 )
@@ -78,7 +78,7 @@ export const BottomTab = () => {
           tabBarIcon: ({ color, focused }) => (
             <Home
               size="$icon.sm"
-              color={color}
+              col={color}
               fill={focused ? theme.blue6.val : theme.background.val}
             />
           ),
@@ -95,7 +95,7 @@ export const BottomTab = () => {
           tabBarIcon: ({ color, focused }) => (
             <Search
               size="$icon.sm"
-              color={color}
+              col={color}
               fill={focused ? theme.blue6.val : theme.background.val}
             />
           ),
@@ -112,7 +112,7 @@ export const BottomTab = () => {
           tabBarIcon: ({ color, focused }) => (
             <Settings
               size="$icon.sm"
-              color={color}
+              col={color}
               fill={focused ? theme.blue6.val : theme.background.val}
             />
           ),

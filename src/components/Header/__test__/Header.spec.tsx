@@ -2,11 +2,11 @@ import React from 'react'
 
 import { Button } from 'tamagui'
 
-import { fireEvent, render } from '@test/test-utils'
+import { fireEvent, render } from '~/test/test-utils'
 
 import { Header, HeaderProps } from '../Header'
 
-jest.mock('@store', () => ({
+jest.mock('@/store', () => ({
   Store: {
     settings: {
       theme: {

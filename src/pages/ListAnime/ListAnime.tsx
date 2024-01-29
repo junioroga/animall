@@ -3,9 +3,9 @@ import { useQueryClient } from '@tanstack/react-query'
 
 import { Stack, YStack } from 'tamagui'
 
-import { Search } from '@components'
-import { useAnimeList } from '@hooks'
-import { useLegendState } from '@hooks/useLegendState'
+import { Search } from '@/components'
+import { useAnimeList } from '@/hooks'
+import { useLegendState } from '@/hooks/useLegendState'
 
 import { AnimeList } from './AnimeList'
 

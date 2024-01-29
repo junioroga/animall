@@ -13,9 +13,9 @@ import {
   VerticalCard,
   WIDTH_HORIZONTAL_CARD,
   WIDTH_VERTICAL_CARD,
-} from '@components'
-import { QueryKeysRanking, useAnimeRanking } from '@hooks'
-import { CardType, RankingType } from '@services/types'
+} from '@/components'
+import { QueryKeysRanking, useAnimeRanking } from '@/hooks'
+import { CardType, RankingType } from '@/services/types'
 
 import { AnimeRankingPrepared, preparedData } from './data'
 import { SkeletonHorizontal } from './SkeletonHorizontal'
