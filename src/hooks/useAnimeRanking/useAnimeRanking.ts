@@ -65,5 +65,6 @@ export const useAnimeRanking = ({
     getNextPageParam: (lastPage) =>
       lastPage.paging?.next ? lastPage.nextPage : false,
     cacheTime: 0,
+    staleTime: Infinity,
   })
 }
