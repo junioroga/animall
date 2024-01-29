@@ -68,6 +68,12 @@ Run on Lint to identify and fix the problems
 yarn lint:fix
 ```
 
+Run TypeScript validator to identify invalid types
+
+```
+yarn typecheck
+```
+
 ## Environment variables
 
 To run this project, you will need to add the following environment variables to your .env
