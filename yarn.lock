@@ -6575,6 +6575,7 @@ __metadata:
     "@typescript-eslint/parser": "npm:^5.59.6"
     axios: "npm:^1.5.1"
     babel-plugin-inline-dotenv: "npm:^1.7.0"
+    cors-anywhere: "npm:^0.4.4"
     date-fns: "npm:^2.30.0"
     dotenv: "npm:^16.3.1"
     eslint: "npm:^8.52.0"
@@ -8086,6 +8087,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"cors-anywhere@npm:^0.4.4":
+  version: 0.4.4
+  resolution: "cors-anywhere@npm:0.4.4"
+  dependencies:
+    http-proxy: "npm:1.11.1"
+    proxy-from-env: "npm:0.0.1"
+  checksum: 10c0/71cfc61c6c50521993c3c1b2086c52359a6c161c12fffb4c24f14864f4ea1d9fbad6f25e677d7e5dadfb77db894cbc09850ff88b45c1d66a5e81fe77a06e6e5c
+  languageName: node
+  linkType: hard
+
 "cosmiconfig-typescript-loader@npm:^5.0.0":
   version: 5.0.0
   resolution: "cosmiconfig-typescript-loader@npm:5.0.0"
@@ -9557,6 +9568,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"eventemitter3@npm:1.x.x":
+  version: 1.2.0
+  resolution: "eventemitter3@npm:1.2.0"
+  checksum: 10c0/8fb54d4b00d87d0d43fe9bfd4f07bb27702a8f9f23cfa3ac854470b6e23d2868501198a74494c54a8585f8d99e0ef7f63ff926623883c13b4f93e585184867a5
+  languageName: node
+  linkType: hard
+
 "eventemitter3@npm:^5.0.1":
   version: 5.0.1
   resolution: "eventemitter3@npm:5.0.1"
@@ -10856,6 +10874,16 @@ __metadata:
     agent-base: "npm:^7.1.0"
     debug: "npm:^4.3.4"
   checksum: 10c0/a11574ff39436cee3c7bc67f259444097b09474605846ddd8edf0bf4ad8644be8533db1aa463426e376865047d05dc22755e638632819317c0c2f1b2196657c8
+  languageName: node
+  linkType: hard
+
+"http-proxy@npm:1.11.1":
+  version: 1.11.1
+  resolution: "http-proxy@npm:1.11.1"
+  dependencies:
+    eventemitter3: "npm:1.x.x"
+    requires-port: "npm:0.x.x"
+  checksum: 10c0/800487c1550af0e793be008cff3a05be9628fb99a00d3d4bc6b3b78832cba25641cde210033c835045cee916bcf90831cd0e99d9524b2a2bcb868cf62304e4c8
   languageName: node
   linkType: hard
 
@@ -14976,6 +15004,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"proxy-from-env@npm:0.0.1":
+  version: 0.0.1
+  resolution: "proxy-from-env@npm:0.0.1"
+  checksum: 10c0/4c5ab952df0b13a3aae98c40cbe90acecdb6a7193905481ae48d6481330370f8af3bec52b44a6f6f0724a5e4b5a426b1f04c84112fc9f48b75cbc201d608dd1e
+  languageName: node
+  linkType: hard
+
 "proxy-from-env@npm:^1.1.0":
   version: 1.1.0
   resolution: "proxy-from-env@npm:1.1.0"
@@ -15912,6 +15947,13 @@ __metadata:
   version: 1.1.0
   resolution: "requireindex@npm:1.1.0"
   checksum: 10c0/4d57e7c6d160c4d043a233a6a95a22c792ada72ff378c5ebd415be505b328f3c719f9188dd100f8fcaa8af513a85f39eee0a5047838d715e22e79544a3b7d002
+  languageName: node
+  linkType: hard
+
+"requires-port@npm:0.x.x":
+  version: 0.0.1
+  resolution: "requires-port@npm:0.0.1"
+  checksum: 10c0/3f727440d2d1b370e73a1286fa0aadbbc21777601aebf6ea79b205821cbe194c4c4cff1accd1491de5284a27bd562e38fa38fe078f34dec253f43c5a872fe3ec
   languageName: node
   linkType: hard
 

@@ -17,7 +17,10 @@ export const IS_DEBUG = __DEV__
 // -----------------------------------------------------------------------------
 const URLS = {
   PRODUCTION: {
-    API: process.env.EXPO_PUBLIC_API_URL,
+    API:
+      Platform.OS === 'web'
+        ? process.env.EXPO_PUBLIC_API_URL_WEB
+        : process.env.EXPO_PUBLIC_API_URL,
   },
 }
 
