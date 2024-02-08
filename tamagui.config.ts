@@ -125,7 +125,6 @@ const defaultFont = createFont({
 
 const config = createTamagui({
   animations,
-  defaultTheme: 'light',
   shouldAddPrefersColorThemes: false,
   themeClassNameOnRoot: false,
   shorthands,
