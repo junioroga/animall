@@ -5,9 +5,10 @@ import { enUS, ptBR } from 'date-fns/locale'
 import setDefaultOptions from 'date-fns/setDefaultOptions'
 import i18n, { Module } from 'i18next'
 
-import en from './lang/en.json'
-import pt from './lang/pt.json'
-import { Store } from './store'
+import { Store } from '@/store'
+
+import en from '@/lang/en.json'
+import pt from '@/lang/pt.json'
 
 const languageDetector = {
   type: 'languageDetector',

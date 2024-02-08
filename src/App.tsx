@@ -1,4 +1,4 @@
-import './i18n'
+import '@/config/i18n'
 import { useCallback } from 'react'
 import { Platform } from 'react-native'
 
@@ -24,7 +24,7 @@ import {
 import * as SplashScreen from 'expo-splash-screen'
 import { StatusBar } from 'expo-status-bar'
 
-import { TamaguiProvider, Theme } from 'tamagui'
+import { TamaguiProvider } from 'tamagui'
 
 import { Store } from '@/store'
 
@@ -64,15 +64,13 @@ export const App = observer(() => {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <TamaguiProvider config={config}>
+      <TamaguiProvider config={config} defaultTheme={theme}>
         <StatusBar style={theme === 'light' ? 'dark' : 'light'} />
-        <Theme name={theme}>
-          <SafeAreaProvider
-            initialMetrics={initialWindowMetrics}
-            onLayout={onLayoutRootView}>
-            <Router />
-          </SafeAreaProvider>
-        </Theme>
+        <SafeAreaProvider
+          initialMetrics={initialWindowMetrics}
+          onLayout={onLayoutRootView}>
+          <Router />
+        </SafeAreaProvider>
       </TamaguiProvider>
     </QueryClientProvider>
   )

@@ -2,6 +2,7 @@
   "expo": {
     "name": "Animall",
     "slug": "animall",
+    "scheme": "animall",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -30,10 +31,7 @@
     "plugins": [
       "expo-font",
       "expo-localization"
-    ],
-    "experiments": {
-      "typedRoutes": true,
-      "tsconfigPaths": true
-    }
+    ]
+
   }
 }
