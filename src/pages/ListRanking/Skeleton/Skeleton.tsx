@@ -11,7 +11,7 @@ import { useVerticalCardDimensions } from '@/hooks'
 export const Skeleton = () => {
   const theme = useTheme()
   const { width, height } = useWindowDimensions()
-  const { WIDTH_VERTICAL_CARD, HEIGHT_VERTICAL_CARD } =
+  const { HEIGHT_VERTICAL_CARD, WIDTH_VERTICAL_CARD } =
     useVerticalCardDimensions()
   const widthCardWithSpacing = useMemo(
     () => WIDTH_VERTICAL_CARD + getTokens().space[2.5].val,

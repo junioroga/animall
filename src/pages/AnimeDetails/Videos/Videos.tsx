@@ -1,11 +1,11 @@
 import React, { useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
+import { TouchableOpacity } from 'react-native'
 
 import { useNavigation } from '@react-navigation/native'
 import { NativeStackNavigationProp } from '@react-navigation/native-stack'
 
 import {
-  Button,
   Circle,
   getTokens,
   ScrollView,
@@ -51,16 +51,15 @@ export const Videos = ({ videos }: Props) => {
           showsHorizontalScrollIndicator={false}>
           <XStack gap="$2">
             {videos?.map((video) => (
-              <Button
+              <TouchableOpacity
                 testID="youtube-card"
                 key={video.id}
-                unstyled
-                jc="center"
-                ai="center"
+                style={{ justifyContent: 'center', alignItems: 'center' }}
                 onPress={() => handlePressVideo(video)}>
                 <Image
                   source={video.thumbnail}
                   style={{
+                    opacity: 0.7,
                     borderRadius: getTokens().size[0.5].val,
                     height: getTokens().size[10].val,
                     width: getTokens().size[14].val,
@@ -77,7 +76,7 @@ export const Videos = ({ videos }: Props) => {
                     />
                   </Stack>
                 </Stack>
-              </Button>
+              </TouchableOpacity>
             ))}
           </XStack>
         </ScrollView>

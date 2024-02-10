@@ -1,10 +1,18 @@
-import React, { useMemo } from 'react'
+import React from 'react'
 import { useTranslation } from 'react-i18next'
-import { Dimensions } from 'react-native'
+import { useWindowDimensions } from 'react-native'
 
 import { ProgressCircle } from 'react-native-svg-charts'
 
-import { getTokens, Stack, useTheme, XStack, YStack, ZStack } from 'tamagui'
+import {
+  getTokens,
+  Stack,
+  useMedia,
+  useTheme,
+  XStack,
+  YStack,
+  ZStack,
+} from 'tamagui'
 import { PlayCircle, Timer, TimerReset } from '@tamagui/lucide-icons'
 
 import { Image, Text } from '@/components'
@@ -31,8 +39,10 @@ export const HeaderDetails = ({
 }: Props) => {
   const { t } = useTranslation()
   const theme = useTheme()
-  const WIDTH_CARD = useMemo(() => Dimensions.get('window').width / 3.5, [])
-  const HEIGHT_CARD = useMemo(() => getTokens().size[13].val, [])
+  const { width } = useWindowDimensions()
+  const media = useMedia()
+  const WIDTH_CARD_DETAILS = media.isHandsetOrTablet ? width / 4 : width / 10
+  const HEIGHT_CARD = getTokens().size[13].val
 
   return (
     <Stack>
@@ -50,7 +60,7 @@ export const HeaderDetails = ({
           source={mainPicture?.medium}
           style={{
             height: HEIGHT_CARD,
-            width: WIDTH_CARD,
+            width: WIDTH_CARD_DETAILS,
             borderRadius: 3,
           }}
           contentFit="fill"

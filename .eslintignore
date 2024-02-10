@@ -3,4 +3,3 @@ web-build/**
 dist/**
 .expo/**
 .expo-shared/**
-src/config/reactotron.ts

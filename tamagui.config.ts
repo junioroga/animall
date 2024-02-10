@@ -1,5 +1,6 @@
 import { createFont, createTamagui } from 'tamagui'
 import { createAnimations } from '@tamagui/animations-moti'
+import { media } from '@tamagui/config'
 import { createMedia } from '@tamagui/react-native-media-driver'
 import { shorthands } from '@tamagui/shorthands'
 import { themes, tokens } from '@tamagui/themes'
@@ -41,35 +42,15 @@ const animations = createAnimations({
   },
 })
 
-const media = createMedia({
-  xs: { maxWidth: 660 },
-  sm: { maxWidth: 800 },
-  md: { maxWidth: 1020 },
-  lg: { maxWidth: 1280 },
-  xl: { maxWidth: 1420 },
-  xxl: { maxWidth: 1600 },
-  gtXs: { minWidth: 660 + 1 },
-  gtSm: { minWidth: 800 + 1 },
-  gtMd: { minWidth: 1020 + 1 },
-  gtLg: { minWidth: 1280 + 1 },
-  short: { maxHeight: 820 },
-  tall: { minHeight: 820 },
+const customMedia = createMedia({
+  ...media,
   hoverNone: { hover: 'none' },
   pointerCoarse: { pointer: 'coarse' },
-  isHandset: {},
-  isHandsetOrTablet: {},
-  isTablet: {},
-  isTabletOrDesktop: {},
-  isDesktop: {},
-  isLargerDesktop: {},
+  isHandset: { maxWidth: media.sm.maxWidth },
+  isTablet: { minWidth: media.sm.maxWidth, maxWidth: media.md.maxWidth },
+  isHandsetOrTablet: { maxWidth: media.md.maxWidth },
+  isDesktop: { minWidth: media.md.maxWidth, maxWidth: media.xl.maxWidth },
 })
-
-media.isHandset = media.xs || media.sm
-media.isHandsetOrTablet = media.md
-media.isTablet = media.md || media.lg
-media.isTabletOrDesktop = media.lg
-media.isDesktop = media.xl
-media.isLargerDesktop = media.xxl
 
 const defaultFont = createFont({
   family: 'Poppins',
@@ -129,6 +110,7 @@ const config = createTamagui({
   themeClassNameOnRoot: false,
   shorthands,
   onlyAllowShorthands: true,
+  defaultFont: 'body',
   fonts: {
     heading: defaultFont,
     body: defaultFont,
@@ -145,7 +127,7 @@ const config = createTamagui({
     },
   },
   tokens,
-  media,
+  media: customMedia,
 })
 
 export type AppConfig = typeof config

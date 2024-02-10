@@ -1,5 +1,15 @@
 {
   "translation": {
+    "web": {
+      "routes": {
+        "home": "Home page",
+        "details": "Details",
+        "videos": "Videos",
+        "ranking": "Ranking",
+        "animeList": "Anime list",
+        "settings": "Settings"
+      }
+    },
     "bottom-tabs": {
       "home": "Home",
       "discover": "Discover",

@@ -1,17 +1,17 @@
-import { Dimensions } from 'react-native'
+import { TouchableOpacity } from 'react-native'
 
 import { useNavigation } from '@react-navigation/native'
 import { NativeStackNavigationProp } from '@react-navigation/native-stack'
 
-import { Button, Card, getTokens, Stack, XStack, YStack, ZStack } from 'tamagui'
+import { Card, Stack, XStack, YStack, ZStack } from 'tamagui'
 import { CalendarDays, Timer } from '@tamagui/lucide-icons'
 
 import { Image } from '@/components/Image'
 import { Text } from '@/components/Text'
+import { useHorizontalCardDimensions } from '@/hooks/useHorizontalCardDimensions'
 import { RootStackParamListHome } from '@/navigators/Home/Home'
+import { AnimeRankingPrepared } from '@/pages/Home/AnimeRanking/data'
 import { blurhash } from '@/config/general'
-
-import { AnimeRankingPrepared } from '../../pages/Home/AnimeRanking/data'
 
 type NavigationProps = NativeStackNavigationProp<RootStackParamListHome>
 
@@ -19,20 +19,18 @@ export type HorizontalCardProps = {
   item: AnimeRankingPrepared
 }
 
-export const WIDTH_HORIZONTAL_CARD =
-  Dimensions.get('window').width - getTokens().size[7].val
-export const HEIGHT_HORIZONTAL_CARD = getTokens().size[13].val
-
 export const HorizontalCard = ({ item }: HorizontalCardProps) => {
   const navigation = useNavigation<NavigationProps>()
+  const { HEIGHT_HORIZONTAL_CARD, WIDTH_HORIZONTAL_CARD } =
+    useHorizontalCardDimensions()
 
   return (
-    <Button
+    <TouchableOpacity
       testID="card-button-horizontal"
-      unstyled
       onPress={() =>
         navigation.navigate('AnimeDetails', {
           animeId: item.id,
+          title: item?.title || item?.alternative_titles?.en || '',
         })
       }>
       <Card
@@ -58,7 +56,7 @@ export const HorizontalCard = ({ item }: HorizontalCardProps) => {
             </ZStack>
           </Card.Background>
           <XStack h={HEIGHT_HORIZONTAL_CARD}>
-            <Stack ml="$2" w="40%" jc="center">
+            <Stack ml="$2" w="35%" jc="center">
               <Image
                 style={{
                   height: '90%',
@@ -103,6 +101,6 @@ export const HorizontalCard = ({ item }: HorizontalCardProps) => {
           </XStack>
         </Card>
       </Card>
-    </Button>
+    </TouchableOpacity>
   )
 }

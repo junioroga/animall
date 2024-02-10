@@ -4,17 +4,20 @@ import { FlatList, ListRenderItem } from 'react-native'
 
 import { observer } from '@legendapp/state/react'
 
-import { getTokens, Separator, useTheme, YStack } from 'tamagui'
+import { getTokens, Separator, useMedia, useTheme } from 'tamagui'
 
 import {
   EmptyState,
   EmptyStateTypes,
   HorizontalCard,
   VerticalCard,
-  WIDTH_HORIZONTAL_CARD,
-  WIDTH_VERTICAL_CARD,
 } from '@/components'
-import { QueryKeysRanking, useAnimeRanking } from '@/hooks'
+import {
+  QueryKeysRanking,
+  useAnimeRanking,
+  useHorizontalCardDimensions,
+  useVerticalCardDimensions,
+} from '@/hooks'
 import { CardType, RankingType } from '@/services/types'
 
 import { AnimeRankingPrepared, preparedData } from './data'
@@ -27,10 +30,15 @@ type Props = {
 }
 
 export const AnimeRanking = observer(({ rankingType, cardType }: Props) => {
+  const media = useMedia()
+  const limit = useMemo(() => (media.isHandsetOrTablet ? 10 : 20), [media])
   const { isLoading, data } = useAnimeRanking({
     queryKey: QueryKeysRanking.RANKING_HOME,
     rankingType,
+    limit,
   })
+  const { WIDTH_VERTICAL_CARD } = useVerticalCardDimensions()
+  const { WIDTH_HORIZONTAL_CARD } = useHorizontalCardDimensions()
   const { t } = useTranslation()
   const theme = useTheme()
   const itemWidth = useMemo(
@@ -38,7 +46,7 @@ export const AnimeRanking = observer(({ rankingType, cardType }: Props) => {
       cardType === CardType.HORIZONTAL
         ? WIDTH_VERTICAL_CARD
         : WIDTH_HORIZONTAL_CARD,
-    [cardType],
+    [cardType, WIDTH_VERTICAL_CARD, WIDTH_HORIZONTAL_CARD],
   )
 
   const renderItem: ListRenderItem<AnimeRankingPrepared> = useCallback(
@@ -54,26 +62,19 @@ export const AnimeRanking = observer(({ rankingType, cardType }: Props) => {
   const renderSeparator = useCallback(() => <Separator mx="$1.5" />, [])
 
   const renderEmpty = useCallback(
-    () => (
-      <YStack
-        h={cardType === CardType.HORIZONTAL ? '$13' : '$14'}
-        w="100%"
-        ai="center"
-        jc="center">
-        {isLoading ? (
-          cardType === CardType.HORIZONTAL ? (
-            <SkeletonHorizontal />
-          ) : (
-            <SkeletonVertical />
-          )
+    () =>
+      isLoading ? (
+        cardType === CardType.HORIZONTAL ? (
+          <SkeletonHorizontal />
         ) : (
-          <EmptyState
-            type={EmptyStateTypes.ERROR}
-            message={t('anime.notFound')}
-          />
-        )}
-      </YStack>
-    ),
+          <SkeletonVertical />
+        )
+      ) : (
+        <EmptyState
+          type={EmptyStateTypes.ERROR}
+          message={t('anime.notFound')}
+        />
+      ),
     [isLoading, t, cardType],
   )
 
@@ -112,7 +113,7 @@ export const AnimeRanking = observer(({ rankingType, cardType }: Props) => {
         backgroundColor: theme.background.get(),
       }}
       showsHorizontalScrollIndicator={false}
-      initialNumToRender={10}
+      initialNumToRender={limit}
     />
   )
 })

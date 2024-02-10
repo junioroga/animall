@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next'
 import { Text as TextSVG } from 'react-native-svg'
 import { AccessorFunction, BarChart, YAxis } from 'react-native-svg-charts'
 
-import { getFontSize, useTheme, XStack, YStack } from 'tamagui'
+import { getFontSize, getTokens, useTheme, XStack, YStack } from 'tamagui'
 
 import { Text } from '@/components'
 import { Statistics } from '@/hooks/useAnimeList/types'
@@ -81,7 +81,7 @@ export const Chart = ({ statistics }: Props) => {
             fontFamily: 'Poppins_500Medium',
           }}
           style={{
-            height: 100,
+            height: getTokens().size[10].val,
             bottom: 1,
           }}
         />
@@ -96,7 +96,7 @@ export const Chart = ({ statistics }: Props) => {
           <Labels x={() => null} y={() => null} bandwidth={0} data={[]} />
         </BarChart>
       </XStack>
-      <Text fos="$1" als="flex-end">
+      <Text fos="$1.5" als="flex-end">
         {t('anime.details.statistics.allMembers', {
           total: formatString(statistics.num_list_users),
         })}

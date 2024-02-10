@@ -11,12 +11,13 @@ import { getTokens, Separator, Stack, YStack } from 'tamagui'
 import {
   EmptyState,
   EmptyStateTypes,
-  HEIGHT_VERTICAL_CARD,
   Loading,
   VerticalCard,
 } from '@/components'
+import { useVerticalCardDimensions } from '@/hooks'
 import { AnimeData } from '@/hooks/useAnimeList/types'
 
+import { Skeleton } from '../Skeleton'
 import { AnimeRankingPrepared, preparedData } from './data'
 
 type Props = Partial<Omit<ReturnType<typeof useInfiniteQuery>, 'data'>> & {
@@ -39,6 +40,8 @@ export const AnimeRanking = observer(
   }: Props) => {
     const { t } = useTranslation()
     const { bottom } = useSafeAreaInsets()
+    const { HEIGHT_VERTICAL_CARD, NUM_VERTICAL_COLUMNS } =
+      useVerticalCardDimensions()
 
     const renderItem: ListRenderItem<AnimeRankingPrepared> = useCallback(
       ({ item }) => (
@@ -49,13 +52,13 @@ export const AnimeRanking = observer(
       [],
     )
 
-    const renderSeparator = useCallback(() => <Separator py="$1.5" />, [])
+    const renderSeparator = useCallback(() => <Separator m="$1.5" />, [])
 
     const renderEmpty = useCallback(
       () => (
         <YStack f={1} ai="center" jc="center">
           {isLoading ? (
-            <Loading />
+            <Skeleton />
           ) : (
             <EmptyState
               type={EmptyStateTypes.ERROR}
@@ -104,14 +107,15 @@ export const AnimeRanking = observer(
         offset: HEIGHT_VERTICAL_CARD * index,
         index,
       }),
-      [],
+      [HEIGHT_VERTICAL_CARD],
     )
 
     return (
       <FlatList
+        key={NUM_VERTICAL_COLUMNS}
         keyExtractor={keyExtractor}
         data={isLoading ? [] : formattedData}
-        numColumns={3}
+        numColumns={NUM_VERTICAL_COLUMNS}
         renderItem={renderItem}
         getItemLayout={getItemLayout}
         ItemSeparatorComponent={renderSeparator}

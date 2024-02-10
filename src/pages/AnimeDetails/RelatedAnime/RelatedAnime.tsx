@@ -24,8 +24,11 @@ export const RelatedAnime = ({ relatedAnime }: Props) => {
   const relationArray = Object.keys(animeGrouped)
 
   const handleRelatedItem = useCallback(
-    (animeId: number) => {
-      navigation.push('AnimeDetails', { animeId })
+    (animeId: number, title: string) => {
+      navigation.push('AnimeDetails', {
+        animeId,
+        title,
+      })
     },
     [navigation],
   )
@@ -42,8 +45,9 @@ export const RelatedAnime = ({ relatedAnime }: Props) => {
               </Text>
             )}
             <Button
-              unstyled
-              onPress={() => handleRelatedItem(anime.node.id)}
+              $isHandsetOrTablet={{ unstyled: true }}
+              $isDesktop={{ size: '$2', mt: '$2' }}
+              onPress={() => handleRelatedItem(anime.node.id, anime.node.title)}
               als="flex-start">
               <Text col="$blue10">{anime.node.title}</Text>
             </Button>

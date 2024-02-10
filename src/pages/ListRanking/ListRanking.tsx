@@ -1,3 +1,6 @@
+import { useMemo } from 'react'
+import { useWindowDimensions } from 'react-native'
+
 import { observer } from '@legendapp/state/react'
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import { useQueryClient } from '@tanstack/react-query'
@@ -6,7 +9,11 @@ import { Button, YStack } from 'tamagui'
 import { SlidersHorizontal } from '@tamagui/lucide-icons'
 
 import { Header } from '@/components'
-import { QueryKeysRanking, useAnimeRanking } from '@/hooks'
+import {
+  QueryKeysRanking,
+  useAnimeRanking,
+  useVerticalCardDimensions,
+} from '@/hooks'
 import { useLegendState } from '@/hooks/useLegendState'
 import { RootStackParamListHome } from '@/navigators/Home'
 
@@ -15,14 +22,19 @@ import { FiltersSheet } from './FiltersSheet'
 
 type Props = NativeStackScreenProps<RootStackParamListHome, 'ListRanking'>
 
-const LIMIT = 15
-
 export const ListRanking = observer(({ route }: Props) => {
-  const { rankingType } = route.params
+  const { rankingType, sectionTitle } = route.params
   const queryClient = useQueryClient()
   const [refreshingManual, setRefreshingManual] = useLegendState(false)
   const [sheetOpen, setSheetOpen] = useLegendState(false)
   const [rankingSelected, setRankingSelected] = useLegendState(rankingType)
+  const { height } = useWindowDimensions()
+  const { HEIGHT_VERTICAL_CARD, NUM_VERTICAL_COLUMNS } =
+    useVerticalCardDimensions()
+  const limit = useMemo(
+    () => Math.round((height / HEIGHT_VERTICAL_CARD) * NUM_VERTICAL_COLUMNS),
+    [height, HEIGHT_VERTICAL_CARD, NUM_VERTICAL_COLUMNS],
+  )
 
   const {
     refetch,
@@ -34,7 +46,7 @@ export const ListRanking = observer(({ route }: Props) => {
   } = useAnimeRanking({
     queryKey: QueryKeysRanking.RANKING_LIST,
     rankingType: rankingSelected,
-    limit: LIMIT,
+    limit,
   })
 
   const refetchQuery = () => {
@@ -53,8 +65,11 @@ export const ListRanking = observer(({ route }: Props) => {
   return (
     <YStack f={1} bg="$background">
       <Header
+        title={sectionTitle}
         right={
-          <Button unstyled onPress={() => setSheetOpen(true)}>
+          <Button
+            $isHandsetOrTablet={{ unstyled: true }}
+            onPress={() => setSheetOpen(true)}>
             <SlidersHorizontal size="$1" />
           </Button>
         }
@@ -67,7 +82,7 @@ export const ListRanking = observer(({ route }: Props) => {
         data={data?.pages}
         onRefresh={onRefresh}
         refreshingManual={refreshingManual}
-        limit={LIMIT}
+        limit={limit}
       />
       <FiltersSheet
         open={sheetOpen}
