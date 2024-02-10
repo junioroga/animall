@@ -1,6 +1,5 @@
 import '@/config/i18n'
 import { useCallback } from 'react'
-import { Platform } from 'react-native'
 
 import {
   Poppins_100Thin,
@@ -31,16 +30,13 @@ import { Store } from '@/store'
 import config from '../tamagui.config'
 import Router from './router'
 
-if (Platform.OS === 'web') require('@/config/reactotron.web')
-else require('@/config/reactotron')
-
 SplashScreen.preventAutoHideAsync()
 
 const queryClient = new QueryClient()
 
 export const App = observer(() => {
   const theme = Store.settings.theme.get()
-  const [fontsLoaded] = useFonts({
+  const [fontsLoaded, fontError] = useFonts({
     Poppins_100Thin,
     Poppins_200ExtraLight,
     Poppins_300Light,
@@ -53,10 +49,10 @@ export const App = observer(() => {
   })
 
   const onLayoutRootView = useCallback(async () => {
-    if (fontsLoaded) {
+    if (fontsLoaded || fontError) {
       await SplashScreen.hideAsync()
     }
-  }, [fontsLoaded])
+  }, [fontsLoaded, fontError])
 
   if (!fontsLoaded) {
     return <></>

@@ -20,7 +20,12 @@ export const Genres = ({ genres }: Props) => (
     o={1}
     y={0}>
     {genres?.map((genre) => (
-      <Button key={genre.id} size="$2" bg="$blue5Light" br="$10">
+      <Button
+        disabled={true}
+        key={genre.id}
+        size="$2"
+        bg="$blue5Light"
+        br="$10">
         <Button.Text size="$2" fow="$5" p="$1" col="$blue10">
           {genre.name}
         </Button.Text>

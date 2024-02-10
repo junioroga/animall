@@ -1,4 +1,5 @@
 export * from './useAnimeList'
-export * from './useDeviceType'
 export * from './useAnimeRanking'
+export * from './useHorizontalCardDimensions'
+export * from './useVerticalCardDimensions'
 export * from './useAnimeDetails'

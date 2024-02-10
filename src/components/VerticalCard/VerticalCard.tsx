@@ -1,22 +1,15 @@
 import { useMemo } from 'react'
-import { Dimensions } from 'react-native'
+import { TouchableOpacity } from 'react-native'
 
 import { useNavigation } from '@react-navigation/native'
 import { NativeStackNavigationProp } from '@react-navigation/native-stack'
 
-import {
-  Button,
-  Card,
-  getTokens,
-  Stack,
-  useTheme,
-  XStack,
-  ZStack,
-} from 'tamagui'
+import { Card, getTokens, Stack, useTheme, XStack, ZStack } from 'tamagui'
 import { Star } from '@tamagui/lucide-icons'
 
 import { Image } from '@/components/Image'
 import { Text } from '@/components/Text'
+import { useVerticalCardDimensions } from '@/hooks'
 import { RootStackParamListHome } from '@/navigators/Home/Home'
 import { AnimeDataPrepared } from '@/pages/ListAnime/AnimeList/data'
 import { blurhash } from '@/config/general'
@@ -30,25 +23,27 @@ export type VerticalCardProps = {
   pushNavigation?: boolean
 }
 
-export const HEIGHT_VERTICAL_CARD = getTokens().size[14].val
-export const WIDTH_VERTICAL_CARD =
-  Dimensions.get('screen').width / 3 - getTokens().space[4].val
-
 export const VerticalCard = ({
   item,
   pushNavigation = false,
 }: VerticalCardProps) => {
   const theme = useTheme()
   const navigation = useNavigation<NavigationProps>()
+  const { WIDTH_VERTICAL_CARD, HEIGHT_VERTICAL_CARD } =
+    useVerticalCardDimensions()
   const navigationType = useMemo(
     () => (pushNavigation ? navigation.push : navigation.navigate),
     [pushNavigation, navigation],
   )
 
   return (
-    <Button
-      unstyled
-      onPress={() => navigationType('AnimeDetails', { animeId: item.id })}
+    <TouchableOpacity
+      onPress={() =>
+        navigationType('AnimeDetails', {
+          animeId: item.id,
+          title: item?.title || item?.alternative_titles?.en || '',
+        })
+      }
       testID="card-button-vertical">
       <Card
         h={HEIGHT_VERTICAL_CARD}
@@ -101,6 +96,6 @@ export const VerticalCard = ({
           </Stack>
         </Card>
       </Card>
-    </Button>
+    </TouchableOpacity>
   )
 }

@@ -9,7 +9,7 @@ export default function Router() {
   const insets = useSafeAreaInsets()
 
   return (
-    <XStack f={1} bg="$background" pt={insets.top}>
+    <XStack f={1} bg="$background" $isDesktop={{ pt: '$2' }} pt={insets.top}>
       <NavigationContainer>
         <BottomTab />
       </NavigationContainer>

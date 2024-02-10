@@ -21,7 +21,7 @@ export type EmptyStateProps = {
   onPress?: <T>(value: T) => void
 }
 
-const { height } = Dimensions.get('screen')
+const { height } = Dimensions.get('window')
 
 export const EmptyState = ({
   type,

@@ -1,20 +1,28 @@
+import { useMemo } from 'react'
+import { useWindowDimensions } from 'react-native'
+
 import { observer } from '@legendapp/state/react'
 import { useQueryClient } from '@tanstack/react-query'
 
 import { Stack, YStack } from 'tamagui'
 
 import { Search } from '@/components'
-import { useAnimeList } from '@/hooks'
+import { useAnimeList, useVerticalCardDimensions } from '@/hooks'
 import { useLegendState } from '@/hooks/useLegendState'
 
 import { AnimeList } from './AnimeList'
 
-const LIMIT = 10
-
 export const ListAnime = observer(() => {
+  const { height } = useWindowDimensions()
+  const { HEIGHT_VERTICAL_CARD, NUM_VERTICAL_COLUMNS } =
+    useVerticalCardDimensions()
   const queryClient = useQueryClient()
   const [refreshingManual, setRefreshingManual] = useLegendState(false)
   const [search, setSearch] = useLegendState('')
+  const limit = useMemo(
+    () => Math.round((height / HEIGHT_VERTICAL_CARD) * NUM_VERTICAL_COLUMNS),
+    [height, HEIGHT_VERTICAL_CARD, NUM_VERTICAL_COLUMNS],
+  )
 
   const {
     refetch,
@@ -23,7 +31,7 @@ export const ListAnime = observer(() => {
     hasNextPage,
     fetchNextPage,
     data,
-  } = useAnimeList({ search, enabled: false })
+  } = useAnimeList({ limit, search, enabled: false })
 
   const refetchQuery = () => {
     queryClient.removeQueries({ queryKey: ['anime-list'] })
@@ -51,7 +59,7 @@ export const ListAnime = observer(() => {
         data={data?.pages}
         onRefresh={onRefresh}
         refreshingManual={refreshingManual}
-        limit={LIMIT}
+        limit={limit}
       />
     </YStack>
   )

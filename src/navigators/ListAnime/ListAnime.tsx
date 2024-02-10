@@ -1,3 +1,5 @@
+import { useTranslation } from 'react-i18next'
+
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 
 import { Videos as VideosType } from '@/hooks/useAnimeList/types'
@@ -13,15 +15,31 @@ export type RootStackParamListSearch = {
 
 const Stack = createNativeStackNavigator<RootStackParamListSearch>()
 
-export const ListAnimeNavigator = () => (
-  <Stack.Navigator
-    initialRouteName="ListAnimePage"
-    screenOptions={{
-      headerShown: false,
-      fullScreenGestureEnabled: true,
-    }}>
-    <Stack.Screen name="ListAnimePage" component={ListAnime} />
-    <Stack.Screen name="AnimeDetails" component={AnimeDetails} />
-    <Stack.Screen name="Videos" component={Videos} />
-  </Stack.Navigator>
-)
+export const ListAnimeNavigator = () => {
+  const { t } = useTranslation()
+
+  return (
+    <Stack.Navigator
+      initialRouteName="ListAnimePage"
+      screenOptions={{
+        headerShown: false,
+        fullScreenGestureEnabled: true,
+      }}>
+      <Stack.Screen
+        name="ListAnimePage"
+        component={ListAnime}
+        options={{ title: t('web.routes.animeList') }}
+      />
+      <Stack.Screen
+        name="AnimeDetails"
+        component={AnimeDetails}
+        options={{ title: t('web.routes.details') }}
+      />
+      <Stack.Screen
+        name="Videos"
+        component={Videos}
+        options={{ title: t('web.routes.videos') }}
+      />
+    </Stack.Navigator>
+  )
+}

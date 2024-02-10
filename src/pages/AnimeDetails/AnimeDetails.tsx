@@ -5,9 +5,8 @@ import { Alert, Dimensions, Share } from 'react-native'
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 
-import { LinearGradient } from 'expo-linear-gradient'
-
 import { Button, getTokens, ScrollView, Stack, useTheme, YStack } from 'tamagui'
+import { LinearGradient } from 'tamagui/linear-gradient'
 import { Share as ShareIcon } from '@tamagui/lucide-icons'
 
 import { Header } from '@/components'
@@ -32,7 +31,7 @@ const { height, width } = Dimensions.get('window')
 type Props = NativeStackScreenProps<RootStackParamListHome, 'AnimeDetails'>
 
 export const AnimeDetails = ({ route }: Props) => {
-  const { animeId } = route.params
+  const { animeId, title } = route.params
   const { data, isLoading } = useAnimeDetails({ animeId })
   const { bottom } = useSafeAreaInsets()
   const theme = useTheme()
@@ -57,18 +56,19 @@ export const AnimeDetails = ({ route }: Props) => {
   }, [formattedData, t])
 
   return (
-    <Stack bg="$background">
+    <Stack f={1} bg="$background">
       <Header
         right={
-          <Button unstyled>
+          <Button $isHandsetOrTablet={{ unstyled: true }}>
             <ShareIcon size="$1" onPress={onShareAnime} />
           </Button>
         }
+        title={title}
       />
       <ScrollView
         testID="scroll-anime-details"
+        fg={1}
         contentContainerStyle={{
-          flexGrow: 1,
           paddingBottom: getTokens().space[13].val + bottom,
         }}
         showsVerticalScrollIndicator={false}>
@@ -96,12 +96,10 @@ export const AnimeDetails = ({ route }: Props) => {
                   `rgba(${hexToRgb(theme.color1.val)}, 0.3)`,
                   `rgba(${hexToRgb(theme.background.val)}, 1)`,
                 ]}
-                style={{
-                  width,
-                  height: height * 0.4,
-                  position: 'absolute',
-                  bottom: 0,
-                }}
+                w={width}
+                h={height * 0.4}
+                pos="absolute"
+                b={0}
                 start={{ x: 0, y: 0.5 }}
                 end={{ x: 0, y: 1 }}
               />

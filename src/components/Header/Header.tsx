@@ -2,37 +2,34 @@ import React from 'react'
 
 import { useNavigation } from '@react-navigation/native'
 
-import { Button, Stack, XStack } from 'tamagui'
+import { Button, H5, Stack, XStack } from 'tamagui'
 import { ChevronLeft } from '@tamagui/lucide-icons'
 
 export type HeaderProps = {
+  title?: string
   right?: React.ReactNode
 }
 
-export const Header = ({ right }: HeaderProps) => {
+export const Header = ({ title, right }: HeaderProps) => {
   const navigation = useNavigation()
 
   return (
     <XStack
       w="100%"
       px="$4"
-      pb="$2"
+      py="$2"
       jc="space-between"
       ai="center"
       bg="$background"
       testID="header-container">
       <Button
         testID="button-back"
-        f={1}
-        unstyled
-        onPress={navigation.goBack}
-        l="$-2.5">
+        $isHandsetOrTablet={{ unstyled: true }}
+        onPress={navigation.goBack}>
         <ChevronLeft />
       </Button>
-      <Stack f={1} ai="center" />
-      <Stack f={1} ai="flex-end">
-        {right && right}
-      </Stack>
+      <H5>{title && title}</H5>
+      <Stack>{right && right}</Stack>
     </XStack>
   )
 }

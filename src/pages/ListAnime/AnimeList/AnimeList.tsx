@@ -11,10 +11,10 @@ import { getTokens, Separator, Stack, YStack } from 'tamagui'
 import {
   EmptyState,
   EmptyStateTypes,
-  HEIGHT_VERTICAL_CARD,
   Loading,
   VerticalCard,
 } from '@/components'
+import { useVerticalCardDimensions } from '@/hooks'
 import { AnimeData } from '@/hooks/useAnimeList/types'
 
 import { AnimeDataPrepared, preparedData } from './data'
@@ -40,6 +40,8 @@ export const AnimeList = observer(
   }: Props) => {
     const { t } = useTranslation()
     const { bottom } = useSafeAreaInsets()
+    const { HEIGHT_VERTICAL_CARD, NUM_VERTICAL_COLUMNS } =
+      useVerticalCardDimensions()
 
     const renderItem: ListRenderItem<AnimeDataPrepared> = useCallback(
       ({ item }) => (
@@ -104,14 +106,15 @@ export const AnimeList = observer(
         offset: HEIGHT_VERTICAL_CARD * index,
         index,
       }),
-      [],
+      [HEIGHT_VERTICAL_CARD],
     )
 
     return (
       <FlatList
+        key={NUM_VERTICAL_COLUMNS}
         keyExtractor={keyExtractor}
         data={isLoading ? [] : formattedData}
-        numColumns={3}
+        numColumns={NUM_VERTICAL_COLUMNS}
         renderItem={renderItem}
         getItemLayout={getItemLayout}
         ItemSeparatorComponent={renderSeparator}

@@ -1,4 +1,5 @@
 import React, { useCallback } from 'react'
+import { Dimensions, TouchableOpacity } from 'react-native'
 
 import { observer } from '@legendapp/state/react'
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
@@ -6,8 +7,8 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import YoutubePlayer from 'react-native-youtube-iframe'
 
 import {
-  Button,
   Circle,
+  getMedia,
   getTokens,
   ScrollView,
   Stack,
@@ -27,6 +28,12 @@ import { getYouTubeVideoIdFromUrl } from '@/utils/regex'
 import { Skeleton } from './Skeleton'
 
 type Props = NativeStackScreenProps<RootStackParamListHome, 'Videos'>
+
+const { height, width } = Dimensions.get('window')
+const HEIGHT_PLAYER = getMedia().isHandsetOrTablet
+  ? getTokens().size[18].val
+  : height / 2
+const WIDTH_PLAYER = getMedia().isHandsetOrTablet ? width : width / 2
 
 export const Videos = observer(({ route }: Props) => {
   const { videos, pressedVideo } = route.params
@@ -49,14 +56,15 @@ export const Videos = observer(({ route }: Props) => {
     <YStack f={1} bg="$background">
       <Stack>
         <Header />
-        <Stack h="$18">
+        <Stack h={HEIGHT_PLAYER} ai="center" jc="center">
           <YoutubePlayer
-            height={getTokens().size[18].val}
+            height={HEIGHT_PLAYER}
+            width={WIDTH_PLAYER}
             videoId={getYouTubeVideoIdFromUrl(videoSelected.url)}
             webViewStyle={{ display: ready ? 'flex' : 'none' }}
             onReady={() => setReady(true)}
           />
-          {!ready && <Skeleton />}
+          {!ready && <Skeleton heightContent={HEIGHT_PLAYER} />}
         </Stack>
       </Stack>
       <ScrollView
@@ -70,11 +78,9 @@ export const Videos = observer(({ route }: Props) => {
         <Stack gap="$2">
           {videos?.map((video) => (
             <XStack key={video.id} ai="flex-start" gap="$3">
-              <Button
+              <TouchableOpacity
                 testID={`button-video-${video.id}`}
-                unstyled
-                jc="center"
-                ai="center"
+                style={{ alignItems: 'center', justifyContent: 'center' }}
                 onPress={() => handlePressVideo(video)}>
                 <Image
                   source={video.thumbnail}
@@ -95,7 +101,7 @@ export const Videos = observer(({ route }: Props) => {
                     />
                   </Stack>
                 </Stack>
-              </Button>
+              </TouchableOpacity>
               <Text f={1} fow="$6" numberOfLines={4}>
                 {video.title}
               </Text>
