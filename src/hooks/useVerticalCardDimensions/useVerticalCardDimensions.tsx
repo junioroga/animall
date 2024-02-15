@@ -7,7 +7,6 @@ export const useVerticalCardDimensions = () => {
   const media = useMedia()
   const { width } = useWindowDimensions()
 
-  const HEIGHT_VERTICAL_CARD = useMemo(() => getTokens().size[15].val, [])
   const WIDTH_VERTICAL_CARD = useMemo(
     () =>
       media.isHandsetOrTablet
@@ -17,6 +16,10 @@ export const useVerticalCardDimensions = () => {
             getTokens().space[4].val * 2) /
           12,
     [media.isHandsetOrTablet, width],
+  )
+  const HEIGHT_VERTICAL_CARD = useMemo(
+    () => WIDTH_VERTICAL_CARD * 1.8,
+    [WIDTH_VERTICAL_CARD],
   )
   const NUM_VERTICAL_COLUMNS = media.isHandsetOrTablet ? 3 : 12
 
