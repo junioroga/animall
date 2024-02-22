@@ -1,18 +1,20 @@
-import React, { useCallback } from 'react'
-import { Dimensions, TouchableOpacity } from 'react-native'
+import React, { useCallback, useMemo } from 'react'
+import { Platform, Pressable, useWindowDimensions } from 'react-native'
 
 import { observer } from '@legendapp/state/react'
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import YoutubePlayer from 'react-native-youtube-iframe'
 
+import * as ScreenOrientation from 'expo-screen-orientation'
+
 import {
   Circle,
-  getMedia,
   getTokens,
   ScrollView,
   Stack,
   Text,
+  useMedia,
   useTheme,
   XStack,
   YStack,
@@ -29,12 +31,6 @@ import { Skeleton } from './Skeleton'
 
 type Props = NativeStackScreenProps<RootStackParamListHome, 'Videos'>
 
-const { height, width } = Dimensions.get('window')
-const HEIGHT_PLAYER = getMedia().isHandsetOrTablet
-  ? getTokens().size[18].val
-  : height / 2
-const WIDTH_PLAYER = getMedia().isHandsetOrTablet ? width : width / 2
-
 export const Videos = observer(({ route }: Props) => {
   const { videos, pressedVideo } = route.params
   const { bottom } = useSafeAreaInsets()
@@ -42,6 +38,16 @@ export const Videos = observer(({ route }: Props) => {
   const [videoSelected, setVideoSelected] =
     useLegendState<VideosType>(pressedVideo)
   const [ready, setReady] = useLegendState(false)
+  const { height, width } = useWindowDimensions()
+  const { isHandsetOrTablet } = useMedia()
+  const HEIGHT_PLAYER = useMemo(
+    () => (isHandsetOrTablet ? getTokens().size[18].val : height / 2),
+    [isHandsetOrTablet, height],
+  )
+  const WIDTH_PLAYER = useMemo(
+    () => (isHandsetOrTablet ? width : width / 2),
+    [isHandsetOrTablet, width],
+  )
 
   const handlePressVideo = useCallback(
     (video: VideosType) => {
@@ -52,17 +58,30 @@ export const Videos = observer(({ route }: Props) => {
     [setReady, setVideoSelected],
   )
 
+  const handlePressFullScreen = useCallback((isFullScreen: boolean) => {
+    ScreenOrientation.lockAsync(
+      isFullScreen
+        ? ScreenOrientation.OrientationLock.LANDSCAPE
+        : ScreenOrientation.OrientationLock.PORTRAIT,
+    )
+  }, [])
+
   return (
     <YStack f={1} bg="$background">
       <Stack>
         <Header />
         <Stack h={HEIGHT_PLAYER} ai="center" jc="center">
           <YoutubePlayer
-            height={HEIGHT_PLAYER}
+            height={ready ? HEIGHT_PLAYER : 0}
             width={WIDTH_PLAYER}
             videoId={getYouTubeVideoIdFromUrl(videoSelected.url)}
-            webViewStyle={{ display: ready ? 'flex' : 'none' }}
+            // webViewStyle={{ display: ready ? 'flex' : 'none' }}
             onReady={() => setReady(true)}
+            onFullScreenChange={(isFullScreen: boolean) =>
+              Platform.OS !== 'web'
+                ? handlePressFullScreen(isFullScreen)
+                : undefined
+            }
           />
           {!ready && <Skeleton heightContent={HEIGHT_PLAYER} />}
         </Stack>
@@ -78,7 +97,7 @@ export const Videos = observer(({ route }: Props) => {
         <Stack gap="$2">
           {videos?.map((video) => (
             <XStack key={video.id} ai="flex-start" gap="$3">
-              <TouchableOpacity
+              <Pressable
                 testID={`button-video-${video.id}`}
                 style={{ alignItems: 'center', justifyContent: 'center' }}
                 onPress={() => handlePressVideo(video)}>
@@ -101,7 +120,7 @@ export const Videos = observer(({ route }: Props) => {
                     />
                   </Stack>
                 </Stack>
-              </TouchableOpacity>
+              </Pressable>
               <Text f={1} fow="$6" numberOfLines={4}>
                 {video.title}
               </Text>

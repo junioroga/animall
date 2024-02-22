@@ -6,35 +6,31 @@ import { Rect } from 'react-native-svg'
 
 import { getTokens, useTheme } from 'tamagui'
 
-import { useVerticalCardDimensions } from '@/hooks'
+import { useResponsiveCardsContext } from '@/context/ResponsiveCards'
 
 export const Skeleton = () => {
   const theme = useTheme()
   const { width, height } = useWindowDimensions()
-  const { WIDTH_VERTICAL_CARD, HEIGHT_VERTICAL_CARD } =
-    useVerticalCardDimensions()
+  const { widthVerticalCard, heightVerticalCard, numberVerticalColumns } =
+    useResponsiveCardsContext()
   const widthCardWithSpacing = useMemo(
-    () => WIDTH_VERTICAL_CARD + getTokens().space[2.5].val,
-    [WIDTH_VERTICAL_CARD],
+    () => widthVerticalCard + getTokens().space[2.5].val,
+    [widthVerticalCard],
   )
   const paddingHorizontal = useMemo(() => getTokens().space[4].val, [])
   const borderRadius = useMemo(() => getTokens().space[2].val, [])
   const heightCardWithSpacing = useMemo(
-    () => HEIGHT_VERTICAL_CARD + getTokens().space[2.5].val,
-    [HEIGHT_VERTICAL_CARD],
+    () => heightVerticalCard + getTokens().space[2.5].val,
+    [heightVerticalCard],
   )
   const lengthVerticalItems = useMemo(
-    () => Math.round(height / HEIGHT_VERTICAL_CARD),
-    [height, HEIGHT_VERTICAL_CARD],
-  )
-  const lengthHorizontalItems = useMemo(
-    () => Math.round(width / WIDTH_VERTICAL_CARD),
-    [width, WIDTH_VERTICAL_CARD],
+    () => Math.round(height / heightVerticalCard),
+    [height, heightVerticalCard],
   )
   const contentHeight = useMemo(
     () =>
-      (HEIGHT_VERTICAL_CARD + getTokens().space[2.5].val) * lengthVerticalItems,
-    [HEIGHT_VERTICAL_CARD, lengthVerticalItems],
+      (heightVerticalCard + getTokens().space[2.5].val) * lengthVerticalItems,
+    [heightVerticalCard, lengthVerticalItems],
   )
 
   return (
@@ -46,7 +42,7 @@ export const Skeleton = () => {
       backgroundColor={theme.color5.val}
       foregroundColor={theme.color8.val}>
       {Array.from({ length: lengthVerticalItems }).map((_, verticalIndex) =>
-        Array.from({ length: lengthHorizontalItems }).map(
+        Array.from({ length: numberVerticalColumns }).map(
           (_, horizontalIndex) => (
             <Rect
               key={`${verticalIndex}${horizontalIndex}`}
@@ -54,8 +50,8 @@ export const Skeleton = () => {
               y={verticalIndex * heightCardWithSpacing}
               rx={borderRadius}
               ry={borderRadius}
-              width={WIDTH_VERTICAL_CARD}
-              height={HEIGHT_VERTICAL_CARD}
+              width={widthVerticalCard}
+              height={heightVerticalCard}
             />
           ),
         ),

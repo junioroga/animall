@@ -6,7 +6,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context'
 
 import { selectionAsync } from 'expo-haptics'
 
-import { getTokens, useTheme } from 'tamagui'
+import { getTokens, useMedia, useTheme } from 'tamagui'
 import { Home, Search, Settings } from '@tamagui/lucide-icons'
 
 import { Text } from '@/components'
@@ -33,6 +33,7 @@ export const BottomTab = () => {
   const { t } = useTranslation()
   const { bottom } = useSafeAreaInsets()
   const bottomDistance = useMemo(() => (bottom > 0 ? bottom - 8 : 8), [bottom])
+  const { isDesktop } = useMedia()
 
   return (
     <Tab.Navigator
@@ -65,6 +66,9 @@ export const BottomTab = () => {
           },
           shadowOpacity: 0.17,
           shadowRadius: 3.05,
+        },
+        tabBarItemStyle: {
+          gap: isDesktop ? 15 : 0,
         },
         tabBarActiveTintColor: theme.blue10.val,
         tabBarInactiveTintColor: theme.gray11.val,

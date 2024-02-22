@@ -16,7 +16,8 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "br.com.animall"
+      "bundleIdentifier": "br.com.animall",
+      "requireFullScreen": true
     },
     "android": {
       "adaptiveIcon": {
@@ -30,8 +31,13 @@
     },
     "plugins": [
       "expo-font",
-      "expo-localization"
+      "expo-localization",
+      [
+        "expo-screen-orientation",
+        {
+          "initialOrientation": "PORTRAIT"
+        }
+      ]
     ]
-
   }
 }

@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
-import { TouchableOpacity } from 'react-native'
+import { Pressable } from 'react-native'
 
 import { useNavigation } from '@react-navigation/native'
 import { NativeStackNavigationProp } from '@react-navigation/native-stack'
@@ -51,7 +51,7 @@ export const Videos = ({ videos }: Props) => {
           showsHorizontalScrollIndicator={false}>
           <XStack gap="$2">
             {videos?.map((video) => (
-              <TouchableOpacity
+              <Pressable
                 testID="youtube-card"
                 key={video.id}
                 style={{ justifyContent: 'center', alignItems: 'center' }}
@@ -76,7 +76,7 @@ export const Videos = ({ videos }: Props) => {
                     />
                   </Stack>
                 </Stack>
-              </TouchableOpacity>
+              </Pressable>
             ))}
           </XStack>
         </ScrollView>

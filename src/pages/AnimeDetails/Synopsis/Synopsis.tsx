@@ -27,18 +27,13 @@ export const Synopsis = observer(({ synopsis }: Props) => {
       o={1}
       y={0}>
       <Text fow="$6">{t('anime.details.synopsis')}</Text>
-      <Button
-        $isHandsetOrTablet={{ unstyled: true }}
-        h="auto"
-        py="$2"
-        onPress={() => setOpen((old: boolean) => !old)}>
-        <Text numberOfLines={open ? undefined : 5} col="$gray11">
+      <Button h="auto" py="$2" onPress={() => setOpen((old: boolean) => !old)}>
+        <Text numberOfLines={open ? undefined : 3} col="$gray11">
           {synopsis}
         </Text>
       </Button>
       {synopsis!.length > 200 && (
         <Button
-          $isHandsetOrTablet={{ unstyled: true }}
           onPress={() => setOpen((old: boolean) => !old)}
           als="flex-end"
           mt="$-1">

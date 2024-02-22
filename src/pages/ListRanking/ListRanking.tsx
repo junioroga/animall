@@ -9,16 +9,14 @@ import { Button, YStack } from 'tamagui'
 import { SlidersHorizontal } from '@tamagui/lucide-icons'
 
 import { Header } from '@/components'
-import {
-  QueryKeysRanking,
-  useAnimeRanking,
-  useVerticalCardDimensions,
-} from '@/hooks'
+import { QueryKeysRanking, useAnimeRanking } from '@/hooks'
 import { useLegendState } from '@/hooks/useLegendState'
 import { RootStackParamListHome } from '@/navigators/Home'
 
 import { AnimeRanking } from './AnimeRanking'
 import { FiltersSheet } from './FiltersSheet'
+
+import { useResponsiveCardsContext } from '@/context/ResponsiveCards'
 
 type Props = NativeStackScreenProps<RootStackParamListHome, 'ListRanking'>
 
@@ -29,11 +27,11 @@ export const ListRanking = observer(({ route }: Props) => {
   const [sheetOpen, setSheetOpen] = useLegendState(false)
   const [rankingSelected, setRankingSelected] = useLegendState(rankingType)
   const { height } = useWindowDimensions()
-  const { HEIGHT_VERTICAL_CARD, NUM_VERTICAL_COLUMNS } =
-    useVerticalCardDimensions()
+  const { heightVerticalCard, numberVerticalColumns } =
+    useResponsiveCardsContext()
   const limit = useMemo(
-    () => Math.round((height / HEIGHT_VERTICAL_CARD) * NUM_VERTICAL_COLUMNS),
-    [height, HEIGHT_VERTICAL_CARD, NUM_VERTICAL_COLUMNS],
+    () => Math.round((height / heightVerticalCard) * numberVerticalColumns),
+    [height, heightVerticalCard, numberVerticalColumns],
   )
 
   const {
@@ -67,9 +65,7 @@ export const ListRanking = observer(({ route }: Props) => {
       <Header
         title={sectionTitle}
         right={
-          <Button
-            $isHandsetOrTablet={{ unstyled: true }}
-            onPress={() => setSheetOpen(true)}>
+          <Button onPress={() => setSheetOpen(true)}>
             <SlidersHorizontal size="$1" />
           </Button>
         }

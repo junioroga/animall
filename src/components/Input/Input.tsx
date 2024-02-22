@@ -8,7 +8,6 @@ export const Input = styled(TInput, {
   pl: '$3',
   placeholderTextColor: '$gray11',
   focusStyle: {
-    bw: '$1',
     boc: '$blue10',
   },
 

@@ -21,9 +21,6 @@ type TitleProps = {
 
 const TitleSection = ({ title, onPress }: TitleProps) => (
   <Button
-    $isHandsetOrTablet={{
-      unstyled: true,
-    }}
     my="$2"
     fd="row"
     ai="center"
@@ -43,94 +40,93 @@ export const Home = ({ navigation }: NavigationProps) => {
   const { bottom } = useSafeAreaInsets()
 
   return (
-    <YStack f={1} bg="$background">
-      <ScrollView
-        fg={1}
-        contentContainerStyle={{
-          paddingBottom: getTokens().space[9].val + bottom,
-        }}
-        showsVerticalScrollIndicator={false}>
+    <ScrollView
+      fg={1}
+      contentContainerStyle={{
+        paddingBottom: getTokens().space[9].val + bottom,
+      }}
+      bg="$background"
+      showsVerticalScrollIndicator={false}>
+      <Stack>
+        <YStack px="$4" py="$2">
+          <H3>{t('home.itsFunTime')}</H3>
+        </YStack>
         <Stack>
-          <YStack px="$4" py="$2">
-            <H3>{t('home.itsFunTime')}</H3>
-          </YStack>
-          <Stack>
-            <TitleSection
-              title={t('home.airing')}
-              onPress={() =>
-                navigation.navigate('ListRanking', {
-                  rankingType: RankingType.AIRING,
-                  sectionTitle: t('home.airing'),
-                })
-              }
-            />
-            <AnimeRanking
-              rankingType={RankingType.AIRING}
-              cardType={CardType.HORIZONTAL}
-            />
-          </Stack>
-          <Stack>
-            <TitleSection
-              title={t('home.topWatched')}
-              onPress={() =>
-                navigation.navigate('ListRanking', {
-                  rankingType: RankingType.ALL,
-                  sectionTitle: t('home.topWatched'),
-                })
-              }
-            />
-            <AnimeRanking
-              rankingType={RankingType.ALL}
-              cardType={CardType.VERTICAL}
-            />
-          </Stack>
-          <Stack>
-            <TitleSection
-              title={t('home.upcoming')}
-              onPress={() =>
-                navigation.navigate('ListRanking', {
-                  rankingType: RankingType.UPCOMING,
-                  sectionTitle: t('home.upcoming'),
-                })
-              }
-            />
-            <AnimeRanking
-              rankingType={RankingType.UPCOMING}
-              cardType={CardType.HORIZONTAL}
-            />
-          </Stack>
-          <Stack>
-            <TitleSection
-              title={t('home.mostPopular')}
-              onPress={() =>
-                navigation.navigate('ListRanking', {
-                  rankingType: RankingType.BY_POPULARITY,
-                  sectionTitle: t('home.mostPopular'),
-                })
-              }
-            />
-            <AnimeRanking
-              rankingType={RankingType.BY_POPULARITY}
-              cardType={CardType.VERTICAL}
-            />
-          </Stack>
-          <Stack>
-            <TitleSection
-              title={t('home.special')}
-              onPress={() =>
-                navigation.navigate('ListRanking', {
-                  rankingType: RankingType.SPECIAL,
-                  sectionTitle: t('home.special'),
-                })
-              }
-            />
-            <AnimeRanking
-              rankingType={RankingType.SPECIAL}
-              cardType={CardType.HORIZONTAL}
-            />
-          </Stack>
+          <TitleSection
+            title={t('home.airing')}
+            onPress={() =>
+              navigation.navigate('ListRanking', {
+                rankingType: RankingType.AIRING,
+                sectionTitle: t('home.airing'),
+              })
+            }
+          />
+          <AnimeRanking
+            rankingType={RankingType.AIRING}
+            cardType={CardType.HORIZONTAL}
+          />
         </Stack>
-      </ScrollView>
-    </YStack>
+        <Stack>
+          <TitleSection
+            title={t('home.topWatched')}
+            onPress={() =>
+              navigation.navigate('ListRanking', {
+                rankingType: RankingType.ALL,
+                sectionTitle: t('home.topWatched'),
+              })
+            }
+          />
+          <AnimeRanking
+            rankingType={RankingType.ALL}
+            cardType={CardType.VERTICAL}
+          />
+        </Stack>
+        <Stack>
+          <TitleSection
+            title={t('home.upcoming')}
+            onPress={() =>
+              navigation.navigate('ListRanking', {
+                rankingType: RankingType.UPCOMING,
+                sectionTitle: t('home.upcoming'),
+              })
+            }
+          />
+          <AnimeRanking
+            rankingType={RankingType.UPCOMING}
+            cardType={CardType.HORIZONTAL}
+          />
+        </Stack>
+        <Stack>
+          <TitleSection
+            title={t('home.mostPopular')}
+            onPress={() =>
+              navigation.navigate('ListRanking', {
+                rankingType: RankingType.BY_POPULARITY,
+                sectionTitle: t('home.mostPopular'),
+              })
+            }
+          />
+          <AnimeRanking
+            rankingType={RankingType.BY_POPULARITY}
+            cardType={CardType.VERTICAL}
+          />
+        </Stack>
+        <Stack>
+          <TitleSection
+            title={t('home.special')}
+            onPress={() =>
+              navigation.navigate('ListRanking', {
+                rankingType: RankingType.SPECIAL,
+                sectionTitle: t('home.special'),
+              })
+            }
+          />
+          <AnimeRanking
+            rankingType={RankingType.SPECIAL}
+            cardType={CardType.HORIZONTAL}
+          />
+        </Stack>
+      </Stack>
+    </ScrollView>
   )
 }

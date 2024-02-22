@@ -1,22 +1,15 @@
 import React from 'react'
 import { useTranslation } from 'react-i18next'
-import { useWindowDimensions } from 'react-native'
 
 import { ProgressCircle } from 'react-native-svg-charts'
 
-import {
-  getTokens,
-  Stack,
-  useMedia,
-  useTheme,
-  XStack,
-  YStack,
-  ZStack,
-} from 'tamagui'
+import { getTokens, Stack, useTheme, XStack, YStack, ZStack } from 'tamagui'
 import { PlayCircle, Timer, TimerReset } from '@tamagui/lucide-icons'
 
 import { Image, Text } from '@/components'
 import { MainPicture } from '@/hooks/useAnimeList/types'
+
+import { useResponsiveCardsContext } from '@/context/ResponsiveCards'
 
 type Props = {
   mainPicture?: MainPicture
@@ -39,29 +32,27 @@ export const HeaderDetails = ({
 }: Props) => {
   const { t } = useTranslation()
   const theme = useTheme()
-  const { width } = useWindowDimensions()
-  const media = useMedia()
-  const WIDTH_CARD_DETAILS = media.isHandsetOrTablet ? width / 4 : width / 10
-  const HEIGHT_CARD = getTokens().size[13].val
+  const { heightHorizontalCard, widthHorizontalCard } =
+    useResponsiveCardsContext()
 
   return (
     <Stack>
       <ZStack>
         <Image
           source={mainPicture?.medium}
-          style={{ height: HEIGHT_CARD + getTokens().size[3].val }}
+          style={{ height: heightHorizontalCard * 1.3 }}
           contentFit="cover"
-          blurRadius={6}
+          blurRadius={4}
         />
-        <Stack h={HEIGHT_CARD + getTokens().size[3].val} bg="$color1" o={0.4} />
+        <Stack h={heightHorizontalCard * 1.3} bg="$color1" o={0.2} />
       </ZStack>
       <XStack p="$4" gap="$2" f={1}>
         <Image
           source={mainPicture?.medium}
           style={{
-            height: HEIGHT_CARD,
-            width: WIDTH_CARD_DETAILS,
             borderRadius: 3,
+            height: heightHorizontalCard * 1.1,
+            width: widthHorizontalCard / 2.5,
           }}
           contentFit="fill"
         />
