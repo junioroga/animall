@@ -3,14 +3,17 @@ import { useWindowDimensions } from 'react-native'
 
 import { Circle, Rect } from 'react-native-svg'
 
-import { getTokens, useMedia, useTheme } from 'tamagui'
+import { useTheme } from 'tamagui'
+
+import { useResponsiveCardsContext } from '@/context/ResponsiveCards'
 
 export const Skeleton = () => {
   const theme = useTheme()
   const { width, height } = useWindowDimensions()
-  const media = useMedia()
-  const WIDTH_CARD_DETAILS = media.isHandsetOrTablet ? width / 4 : width / 10
-  const HEIGHT_CARD = getTokens().size[13].val
+  const { heightHorizontalCard, widthHorizontalCard } =
+    useResponsiveCardsContext()
+  const WIDTH_CARD_DETAILS = widthHorizontalCard / 2.5
+  const HEIGHT_CARD = heightHorizontalCard * 1.1
 
   return (
     <ContentLoader

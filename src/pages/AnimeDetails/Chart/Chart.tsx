@@ -4,7 +4,14 @@ import { useTranslation } from 'react-i18next'
 import { Text as TextSVG } from 'react-native-svg'
 import { AccessorFunction, BarChart, YAxis } from 'react-native-svg-charts'
 
-import { getFontSize, getTokens, useTheme, XStack, YStack } from 'tamagui'
+import {
+  getFontSize,
+  getTokens,
+  useMedia,
+  useTheme,
+  XStack,
+  YStack,
+} from 'tamagui'
 
 import { Text } from '@/components'
 import { Statistics } from '@/hooks/useAnimeList/types'
@@ -25,6 +32,7 @@ type LabelProps = {
 export const Chart = ({ statistics }: Props) => {
   const theme = useTheme()
   const { t } = useTranslation()
+  const { isDesktop } = useMedia()
   const labels = useMemo(
     () => ({
       [StatisticsTypes.COMPLETED]: t('anime.details.statistics.completed'),
@@ -55,7 +63,11 @@ export const Chart = ({ statistics }: Props) => {
     data.map((status: any, index: any) => (
       <TextSVG
         key={index}
-        x={status >= CUT_OFF ? x((status * 0.8) as any) : x(status) + 4}
+        x={
+          status >= CUT_OFF
+            ? x((status * (isDesktop ? 0.9 : 0.75)) as any)
+            : x(status) + 4
+        }
         y={y(index) + bandwidth / 1.8}
         fontSize={getFontSize('$1')}
         fontWeight="400"

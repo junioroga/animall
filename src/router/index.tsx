@@ -5,13 +5,17 @@ import { XStack } from 'tamagui'
 
 import { BottomTab } from '@/navigators'
 
+import { ResponsiveCardsProvider } from '@/context/ResponsiveCards'
+
 export default function Router() {
   const insets = useSafeAreaInsets()
 
   return (
-    <XStack f={1} bg="$background" $isDesktop={{ pt: '$2' }} pt={insets.top}>
+    <XStack f={1} bg="$background" pt={insets.top}>
       <NavigationContainer>
-        <BottomTab />
+        <ResponsiveCardsProvider>
+          <BottomTab />
+        </ResponsiveCardsProvider>
       </NavigationContainer>
     </XStack>
   )

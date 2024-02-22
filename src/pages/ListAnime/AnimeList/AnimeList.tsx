@@ -14,11 +14,12 @@ import {
   Loading,
   VerticalCard,
 } from '@/components'
-import { useVerticalCardDimensions } from '@/hooks'
 import { AnimeData } from '@/hooks/useAnimeList/types'
 
 import { AnimeDataPrepared, preparedData } from './data'
 import { Skeleton } from './Skeleton'
+
+import { useResponsiveCardsContext } from '@/context/ResponsiveCards'
 
 type Props = Partial<Omit<ReturnType<typeof useInfiniteQuery>, 'data'>> & {
   limit: number
@@ -40,8 +41,8 @@ export const AnimeList = observer(
   }: Props) => {
     const { t } = useTranslation()
     const { bottom } = useSafeAreaInsets()
-    const { HEIGHT_VERTICAL_CARD, NUM_VERTICAL_COLUMNS } =
-      useVerticalCardDimensions()
+    const { heightVerticalCard, numberVerticalColumns } =
+      useResponsiveCardsContext()
 
     const renderItem: ListRenderItem<AnimeDataPrepared> = useCallback(
       ({ item }) => (
@@ -102,19 +103,19 @@ export const AnimeList = observer(
 
     const getItemLayout = useCallback(
       (_: any, index: number) => ({
-        length: HEIGHT_VERTICAL_CARD,
-        offset: HEIGHT_VERTICAL_CARD * index,
+        length: heightVerticalCard,
+        offset: heightVerticalCard * index,
         index,
       }),
-      [HEIGHT_VERTICAL_CARD],
+      [heightVerticalCard],
     )
 
     return (
       <FlatList
-        key={NUM_VERTICAL_COLUMNS}
+        key={numberVerticalColumns}
         keyExtractor={keyExtractor}
         data={isLoading ? [] : formattedData}
-        numColumns={NUM_VERTICAL_COLUMNS}
+        numColumns={numberVerticalColumns}
         renderItem={renderItem}
         getItemLayout={getItemLayout}
         ItemSeparatorComponent={renderSeparator}

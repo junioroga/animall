@@ -1,9 +1,15 @@
+import { PixelRatio } from 'react-native'
+
 import { createFont, createTamagui } from 'tamagui'
 import { createAnimations } from '@tamagui/animations-moti'
 import { media } from '@tamagui/config'
 import { createMedia } from '@tamagui/react-native-media-driver'
 import { shorthands } from '@tamagui/shorthands'
 import { themes, tokens } from '@tamagui/themes'
+
+const fontScale = PixelRatio.getFontScale()
+
+const getFontSize = (size: number) => size / fontScale
 
 const animations = createAnimations({
   fast: {
@@ -46,10 +52,13 @@ const customMedia = createMedia({
   ...media,
   hoverNone: { hover: 'none' },
   pointerCoarse: { pointer: 'coarse' },
-  isHandset: { maxWidth: media.sm.maxWidth },
-  isTablet: { minWidth: media.sm.maxWidth, maxWidth: media.md.maxWidth },
-  isHandsetOrTablet: { maxWidth: media.md.maxWidth },
-  isDesktop: { minWidth: media.md.maxWidth, maxWidth: media.xl.maxWidth },
+  isHandset: { minWidth: 320, maxWidth: 480 },
+  isTablet: { minWidth: 481, maxWidth: 768 },
+  isHandsetOrTablet: { maxWidth: 768 },
+  isSmallDesktop: { minWidth: 769, maxWidth: 1024 },
+  isNormalDesktop: { minWidth: 1025, maxWidth: 1200 },
+  isWideDesktop: { minWidth: 1201 },
+  isDesktop: { minWidth: 769 },
 })
 
 const defaultFont = createFont({
@@ -61,24 +70,24 @@ const defaultFont = createFont({
     1: 1,
   },
   size: {
-    1: 10,
-    1.5: 11,
-    2: 12,
-    3: 13,
-    4: 14,
-    true: 14,
-    5: 16,
-    6: 18,
-    7: 20,
-    8: 23,
-    9: 30,
-    10: 46,
-    11: 55,
-    12: 62,
-    13: 72,
-    14: 92,
-    15: 114,
-    16: 134,
+    1: getFontSize(10),
+    1.5: getFontSize(11),
+    2: getFontSize(12),
+    3: getFontSize(13),
+    4: getFontSize(14),
+    true: getFontSize(14),
+    5: getFontSize(16),
+    6: getFontSize(18),
+    7: getFontSize(20),
+    8: getFontSize(23),
+    9: getFontSize(30),
+    10: getFontSize(46),
+    11: getFontSize(55),
+    12: getFontSize(62),
+    13: getFontSize(72),
+    14: getFontSize(92),
+    15: getFontSize(114),
+    16: getFontSize(134),
   },
   weight: {
     1: '100',
@@ -123,7 +132,7 @@ const config = createTamagui({
     },
     light: {
       ...themes.light,
-      shadowColor: themes.light.shadowColor,
+      shadowColor: themes.light.color10,
     },
   },
   tokens,

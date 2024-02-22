@@ -16,7 +16,7 @@ type AnimeListHookProps = {
 export const useAnimeList = ({
   search,
   limit = 10,
-  enabled = true,
+  enabled = false,
 }: AnimeListHookProps) => {
   const getListAnimes = async ({ pageParam = 0 }) => {
     const data = await animeService.getAll({

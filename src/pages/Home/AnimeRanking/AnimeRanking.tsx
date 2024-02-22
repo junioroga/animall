@@ -12,17 +12,14 @@ import {
   HorizontalCard,
   VerticalCard,
 } from '@/components'
-import {
-  QueryKeysRanking,
-  useAnimeRanking,
-  useHorizontalCardDimensions,
-  useVerticalCardDimensions,
-} from '@/hooks'
+import { QueryKeysRanking, useAnimeRanking } from '@/hooks'
 import { CardType, RankingType } from '@/services/types'
 
 import { AnimeRankingPrepared, preparedData } from './data'
 import { SkeletonHorizontal } from './SkeletonHorizontal'
 import { SkeletonVertical } from './SkeletonVertical'
+
+import { useResponsiveCardsContext } from '@/context/ResponsiveCards'
 
 type Props = {
   rankingType: RankingType
@@ -30,23 +27,25 @@ type Props = {
 }
 
 export const AnimeRanking = observer(({ rankingType, cardType }: Props) => {
-  const media = useMedia()
-  const limit = useMemo(() => (media.isHandsetOrTablet ? 10 : 20), [media])
+  const { isHandsetOrTablet } = useMedia()
+  const limit = useMemo(
+    () => (isHandsetOrTablet ? 10 : 20),
+    [isHandsetOrTablet],
+  )
   const { isLoading, data } = useAnimeRanking({
     queryKey: QueryKeysRanking.RANKING_HOME,
     rankingType,
     limit,
   })
-  const { WIDTH_VERTICAL_CARD } = useVerticalCardDimensions()
-  const { WIDTH_HORIZONTAL_CARD } = useHorizontalCardDimensions()
+  const { widthVerticalCard, widthHorizontalCard } = useResponsiveCardsContext()
   const { t } = useTranslation()
   const theme = useTheme()
   const itemWidth = useMemo(
     () =>
       cardType === CardType.HORIZONTAL
-        ? WIDTH_VERTICAL_CARD
-        : WIDTH_HORIZONTAL_CARD,
-    [cardType, WIDTH_VERTICAL_CARD, WIDTH_HORIZONTAL_CARD],
+        ? widthVerticalCard
+        : widthHorizontalCard,
+    [cardType, widthVerticalCard, widthHorizontalCard],
   )
 
   const renderItem: ListRenderItem<AnimeRankingPrepared> = useCallback(

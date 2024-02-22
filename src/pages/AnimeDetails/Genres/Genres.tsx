@@ -12,17 +12,18 @@ export const Genres = ({ genres }: Props) => (
   <XStack
     gap="$3"
     fw="wrap"
-    animation="lazy"
-    enterStyle={{
-      y: -20,
-      o: 0,
-    }}
-    o={1}
-    y={0}>
+    // animation="lazy"
+    // enterStyle={{
+    //   y: -20,
+    //   o: 0,
+    // }}
+    // o={1}
+    // y={0}
+  >
     {genres?.map((genre) => (
       <Button
-        disabled={true}
         key={genre.id}
+        disabled={true}
         size="$2"
         bg="$blue5Light"
         br="$10">

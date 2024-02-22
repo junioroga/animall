@@ -1,9 +1,12 @@
 import React from 'react'
+import { TouchableWithoutFeedback } from 'react-native'
 
 import { useNavigation } from '@react-navigation/native'
 
-import { Button, H5, Stack, XStack } from 'tamagui'
+import { Button, Stack, XStack } from 'tamagui'
 import { ChevronLeft } from '@tamagui/lucide-icons'
+
+import { Text } from '@/components/Text'
 
 export type HeaderProps = {
   title?: string
@@ -15,20 +18,21 @@ export const Header = ({ title, right }: HeaderProps) => {
 
   return (
     <XStack
-      w="100%"
       px="$4"
       py="$2"
       jc="space-between"
       ai="center"
       bg="$background"
       testID="header-container">
-      <Button
-        testID="button-back"
-        $isHandsetOrTablet={{ unstyled: true }}
-        onPress={navigation.goBack}>
+      <Button testID="button-back" onPress={navigation.goBack}>
         <ChevronLeft />
       </Button>
-      <H5>{title && title}</H5>
+      <TouchableWithoutFeedback
+        onPress={() => (navigation.canGoBack() ? navigation.goBack() : null)}>
+        <Text f={1} numberOfLines={1} px="$2" fow="$6" fos="$7" ta="center">
+          {title && title}
+        </Text>
+      </TouchableWithoutFeedback>
       <Stack>{right && right}</Stack>
     </XStack>
   )

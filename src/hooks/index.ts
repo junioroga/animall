@@ -1,5 +1,3 @@
 export * from './useAnimeList'
 export * from './useAnimeRanking'
-export * from './useHorizontalCardDimensions'
-export * from './useVerticalCardDimensions'
 export * from './useAnimeDetails'

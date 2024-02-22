@@ -5,14 +5,7 @@ import { observer } from '@legendapp/state/react'
 import { enUS, ptBR } from 'date-fns/locale'
 import setDefaultOptions from 'date-fns/setDefaultOptions'
 
-import {
-  getTokens,
-  ScrollView,
-  Separator,
-  Stack,
-  XStack,
-  YStack,
-} from 'tamagui'
+import { ScrollView, Separator, Stack, XStack } from 'tamagui'
 import { Moon, Sun } from '@tamagui/lucide-icons'
 
 import Brazil from '@/assets/brazil.svg'
@@ -42,48 +35,46 @@ export const Settings = observer(() => {
   }, [i18n, language])
 
   return (
-    <YStack f={1} bg="$background" pt="$4">
-      <ScrollView
-        contentContainerStyle={{
-          flexGrow: 1,
-          paddingHorizontal: getTokens().space[4].val,
-          paddingBottom: getTokens().space[12].val,
-        }}
-        showsVerticalScrollIndicator={false}>
-        <Stack gap="$4">
-          <XStack jc="space-between" ai="center">
-            <Text fow="$6">{t('settings.theme')}</Text>
-            <Switch
-              checked={isCheckedTheme}
-              onCheckedChange={onCheckedThemeChange}
-              testID="switch-theme">
-              <Switch.Thumb>
-                {isCheckedTheme ? (
-                  <Moon size="$1" col="$blue10" />
-                ) : (
-                  <Sun size="$1" col="$yellow8" />
-                )}
-              </Switch.Thumb>
-            </Switch>
-          </XStack>
-          <Separator />
-          <XStack jc="space-between" ai="center">
-            <Text fow="$6">{t('settings.language')}</Text>
-            <Switch
-              checked={isCheckedLanguage}
-              onCheckedChange={onCheckedLanguageChange}
-              testID="switch-language">
-              <Switch.Thumb>
-                {isCheckedLanguage ? (
-                  <Brazil height={10} width={15} />
-                ) : (
-                  <Usa height={10} width={15} />
-                )}
-              </Switch.Thumb>
-            </Switch>
-          </XStack>
-        </Stack>
-      </ScrollView>
-    </YStack>
+    <ScrollView
+      fg={1}
+      pt="$4"
+      px="$4"
+      pb="$12"
+      bg="$background"
+      showsVerticalScrollIndicator={false}>
+      <Stack gap="$4">
+        <XStack jc="space-between" ai="center">
+          <Text fow="$6">{t('settings.theme')}</Text>
+          <Switch
+            checked={isCheckedTheme}
+            onCheckedChange={onCheckedThemeChange}
+            testID="switch-theme">
+            <Switch.Thumb>
+              {isCheckedTheme ? (
+                <Moon size="$1" col="$blue10" />
+              ) : (
+                <Sun size="$1" col="$yellow8" />
+              )}
+            </Switch.Thumb>
+          </Switch>
+        </XStack>
+        <Separator />
+        <XStack jc="space-between" ai="center">
+          <Text fow="$6">{t('settings.language')}</Text>
+          <Switch
+            checked={isCheckedLanguage}
+            onCheckedChange={onCheckedLanguageChange}
+            testID="switch-language">
+            <Switch.Thumb ai="center" jc="center">
+              {isCheckedLanguage ? (
+                <Brazil height={10} width={15} />
+              ) : (
+                <Usa height={10} width={15} />
+              )}
+            </Switch.Thumb>
+          </Switch>
+        </XStack>
+      </Stack>
+    </ScrollView>
   )
 })

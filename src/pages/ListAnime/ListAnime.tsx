@@ -7,21 +7,23 @@ import { useQueryClient } from '@tanstack/react-query'
 import { Stack, YStack } from 'tamagui'
 
 import { Search } from '@/components'
-import { useAnimeList, useVerticalCardDimensions } from '@/hooks'
+import { useAnimeList } from '@/hooks'
 import { useLegendState } from '@/hooks/useLegendState'
 
 import { AnimeList } from './AnimeList'
 
+import { useResponsiveCardsContext } from '@/context/ResponsiveCards'
+
 export const ListAnime = observer(() => {
   const { height } = useWindowDimensions()
-  const { HEIGHT_VERTICAL_CARD, NUM_VERTICAL_COLUMNS } =
-    useVerticalCardDimensions()
+  const { heightVerticalCard, numberVerticalColumns } =
+    useResponsiveCardsContext()
   const queryClient = useQueryClient()
   const [refreshingManual, setRefreshingManual] = useLegendState(false)
   const [search, setSearch] = useLegendState('')
   const limit = useMemo(
-    () => Math.round((height / HEIGHT_VERTICAL_CARD) * NUM_VERTICAL_COLUMNS),
-    [height, HEIGHT_VERTICAL_CARD, NUM_VERTICAL_COLUMNS],
+    () => Math.round((height / heightVerticalCard) * numberVerticalColumns),
+    [height, heightVerticalCard, numberVerticalColumns],
   )
 
   const {
@@ -31,7 +33,7 @@ export const ListAnime = observer(() => {
     hasNextPage,
     fetchNextPage,
     data,
-  } = useAnimeList({ limit, search, enabled: false })
+  } = useAnimeList({ limit, search })
 
   const refetchQuery = () => {
     queryClient.removeQueries({ queryKey: ['anime-list'] })

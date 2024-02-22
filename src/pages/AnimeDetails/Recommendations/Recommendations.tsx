@@ -15,7 +15,7 @@ export const Recommendations = ({ recommendations }: Props) => {
   const { t } = useTranslation()
 
   return (
-    <YStack>
+    <YStack pt="$4">
       <Text fow="$6" ml="$4">
         {t('anime.details.recommendations')}
       </Text>

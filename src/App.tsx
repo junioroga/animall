@@ -1,4 +1,5 @@
 import '@/config/i18n'
+import '~/global.css'
 import { useCallback } from 'react'
 
 import {

@@ -6,22 +6,22 @@ import { Rect } from 'react-native-svg'
 
 import { getTokens, useTheme } from 'tamagui'
 
-import { useHorizontalCardDimensions } from '@/hooks'
+import { useResponsiveCardsContext } from '@/context/ResponsiveCards'
 
 export const SkeletonHorizontal = () => {
   const theme = useTheme()
   const { width } = useWindowDimensions()
-  const { HEIGHT_HORIZONTAL_CARD, WIDTH_HORIZONTAL_CARD } =
-    useHorizontalCardDimensions()
+  const { heightHorizontalCard, widthHorizontalCard } =
+    useResponsiveCardsContext()
   const separator = useMemo(() => getTokens().space[2.5].val, [])
   const widthCardWithSpacing = useMemo(
-    () => WIDTH_HORIZONTAL_CARD + separator,
-    [WIDTH_HORIZONTAL_CARD, separator],
+    () => widthHorizontalCard + separator,
+    [widthHorizontalCard, separator],
   )
   const borderRadius = useMemo(() => getTokens().space[2].val, [])
   const widthContentLoader = useMemo(
-    () => width + WIDTH_HORIZONTAL_CARD - getTokens().size[6].val,
-    [width, WIDTH_HORIZONTAL_CARD],
+    () => width + widthHorizontalCard - getTokens().size[6].val,
+    [width, widthHorizontalCard],
   )
   const length = useMemo(
     () => Math.round(width / widthCardWithSpacing),
@@ -32,8 +32,8 @@ export const SkeletonHorizontal = () => {
     <ContentLoader
       speed={2}
       width={widthContentLoader}
-      height={HEIGHT_HORIZONTAL_CARD}
-      viewBox={`0 0 ${widthContentLoader} ${HEIGHT_HORIZONTAL_CARD}`}
+      height={heightHorizontalCard}
+      viewBox={`0 0 ${widthContentLoader} ${heightHorizontalCard}`}
       backgroundColor={theme.color5.val}
       foregroundColor={theme.color8.val}>
       {Array.from({ length }).map((_, index) => (
@@ -43,8 +43,8 @@ export const SkeletonHorizontal = () => {
           y="0"
           rx={borderRadius}
           ry={borderRadius}
-          width={WIDTH_HORIZONTAL_CARD}
-          height={HEIGHT_HORIZONTAL_CARD}
+          width={widthHorizontalCard}
+          height={heightHorizontalCard}
         />
       ))}
     </ContentLoader>
