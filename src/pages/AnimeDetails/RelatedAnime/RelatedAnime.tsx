@@ -45,7 +45,8 @@ export const RelatedAnime = ({ relatedAnime }: Props) => {
               </Text>
             )}
             <Button
-              $isDesktop={{ size: '$2', mt: '$2' }}
+              size="$2"
+              mt="$2"
               onPress={() => handleRelatedItem(anime.node.id, anime.node.title)}
               als="flex-start">
               <Text col="$blue10">{anime.node.title}</Text>

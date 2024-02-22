@@ -1,6 +1,6 @@
 import { useCallback, useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
-import { FlatList, ListRenderItem } from 'react-native'
+import { FlatList, ListRenderItem, Platform } from 'react-native'
 
 import { observer } from '@legendapp/state/react'
 
@@ -111,7 +111,7 @@ export const AnimeRanking = observer(({ rankingType, cardType }: Props) => {
         paddingVertical: getTokens().space[3].val,
         backgroundColor: theme.background.get(),
       }}
-      showsHorizontalScrollIndicator={false}
+      showsHorizontalScrollIndicator={Platform.OS === 'web'}
       initialNumToRender={limit}
     />
   )
