@@ -75,7 +75,6 @@ export const Videos = observer(({ route }: Props) => {
             height={ready ? HEIGHT_PLAYER : 0}
             width={WIDTH_PLAYER}
             videoId={getYouTubeVideoIdFromUrl(videoSelected.url)}
-            // webViewStyle={{ display: ready ? 'flex' : 'none' }}
             onReady={() => setReady(true)}
             onFullScreenChange={(isFullScreen: boolean) =>
               Platform.OS !== 'web'

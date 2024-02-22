@@ -19,8 +19,8 @@ const URLS = {
   PRODUCTION: {
     API:
       Platform.OS === 'web'
-        ? process.env.EXPO_PUBLIC_API_URL_WEB
-        : process.env.EXPO_PUBLIC_API_URL,
+        ? 'http://localhost:8080/api.myanimelist.net/v2/'
+        : 'https://api.myanimelist.net/v2/',
   },
 }
 

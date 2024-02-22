@@ -17,6 +17,20 @@ jest.mock('@tanstack/react-query', () => {
 })
 
 describe('useAnimeRanking', () => {
+  it('when enabled is false, don`t call the api', () => {
+    const { result } = renderHook(() =>
+      useAnimeRanking({
+        queryKey: QueryKeysRanking.RANKING_LIST,
+        rankingType: RankingType.AIRING,
+        limit: 4,
+        enabled: false,
+      }),
+    )
+
+    expect(result.current.data).toEqual([])
+    expect(result.current.isFetching).toBeFalsy()
+  })
+
   it('when enabled is true, call the api', () => {
     ;(useInfiniteQuery as jest.Mock).mockReturnValueOnce({
       isFetching: false,
