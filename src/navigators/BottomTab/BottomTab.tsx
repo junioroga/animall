@@ -40,9 +40,10 @@ export const BottomTab = () => {
       initialRouteName="Home"
       backBehavior="initialRoute"
       screenListeners={() => ({
-        tabPress: () => {
-          selectionAsync()
-        },
+        tabPress: () =>
+          Platform.OS === 'ios' || Platform.OS === 'android'
+            ? selectionAsync()
+            : null,
       })}
       screenOptions={{
         headerShown: false,
