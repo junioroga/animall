@@ -38,6 +38,7 @@ describe('HorizontalCard', () => {
     expect(mockNavigate).toHaveBeenCalledTimes(1)
     expect(mockNavigate).toHaveBeenCalledWith('AnimeDetails', {
       animeId: mockCard.id,
+      title: mockCard.title || mockCard.alternative_titles.en,
     })
   })
 })

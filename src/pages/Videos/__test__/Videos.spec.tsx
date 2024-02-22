@@ -1,3 +1,5 @@
+import { View as MockView, ViewProps } from 'react-native'
+
 import { RouteProp } from '@react-navigation/native'
 
 import { RootStackParamListHome } from '@/navigators/Home'
@@ -5,6 +7,16 @@ import { fireEvent, render } from '~/test/test-utils'
 
 import { Videos } from '../Videos'
 import { videosMock } from './mock'
+
+jest.mock('react-native-webview', () => {
+  const WebView = (props: ViewProps) => <MockView {...props} />
+
+  return {
+    WebView,
+    default: WebView,
+    __esModule: true,
+  }
+})
 
 describe('Videos', () => {
   const setup = () => {
