@@ -69,7 +69,7 @@ export const HorizontalCard = ({ item }: HorizontalCardProps) => {
           </Stack>
           <YStack f={1}>
             <Stack h={heightHorizontalCard / 2} jc="center">
-              <Text col="$color12" fow="$6" numberOfLines={3}>
+              <Text col="$color12" fow="$6" fos="$5" numberOfLines={3}>
                 {item?.title || item?.alternative_titles?.en}
               </Text>
             </Stack>

@@ -1,5 +1,4 @@
 import React from 'react'
-import { TouchableWithoutFeedback } from 'react-native'
 
 import { useNavigation } from '@react-navigation/native'
 
@@ -27,12 +26,9 @@ export const Header = ({ title, right }: HeaderProps) => {
       <Button testID="button-back" onPress={navigation.goBack}>
         <ChevronLeft />
       </Button>
-      <TouchableWithoutFeedback
-        onPress={() => (navigation.canGoBack() ? navigation.goBack() : null)}>
-        <Text f={1} numberOfLines={1} px="$2" fow="$6" fos="$7" ta="center">
-          {title && title}
-        </Text>
-      </TouchableWithoutFeedback>
+      <Text f={1} numberOfLines={1} px="$2" fow="$6" fos="$7" ta="center">
+        {title && title}
+      </Text>
       <Stack>{right && right}</Stack>
     </XStack>
   )

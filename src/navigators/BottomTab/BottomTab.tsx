@@ -1,12 +1,13 @@
 import { useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
+import { Platform } from 'react-native'
 
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 
 import { selectionAsync } from 'expo-haptics'
 
-import { getTokens, useMedia, useTheme } from 'tamagui'
+import { getTokens, useTheme } from 'tamagui'
 import { Home, Search, Settings } from '@tamagui/lucide-icons'
 
 import { Text } from '@/components'
@@ -33,7 +34,6 @@ export const BottomTab = () => {
   const { t } = useTranslation()
   const { bottom } = useSafeAreaInsets()
   const bottomDistance = useMemo(() => (bottom > 0 ? bottom - 8 : 8), [bottom])
-  const { isDesktop } = useMedia()
 
   return (
     <Tab.Navigator
@@ -68,7 +68,7 @@ export const BottomTab = () => {
           shadowRadius: 3.05,
         },
         tabBarItemStyle: {
-          gap: isDesktop ? 15 : 0,
+          gap: Platform.OS === 'web' ? 15 : 0,
         },
         tabBarActiveTintColor: theme.blue10.val,
         tabBarInactiveTintColor: theme.gray11.val,

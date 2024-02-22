@@ -1,6 +1,6 @@
 import React, { useCallback, useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Alert, Share, useWindowDimensions } from 'react-native'
+import { Alert, Platform, Share, useWindowDimensions } from 'react-native'
 
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
@@ -70,9 +70,11 @@ export const AnimeDetails = ({ route }: Props) => {
       stickyHeaderHiddenOnScroll>
       <Header
         right={
-          <Button>
-            <ShareIcon size="$1" onPress={onShareAnime} />
-          </Button>
+          Platform.OS !== 'web' && (
+            <Button>
+              <ShareIcon size="$1" onPress={onShareAnime} />
+            </Button>
+          )
         }
         title={title}
       />
