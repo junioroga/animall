@@ -115,16 +115,24 @@ You can easily get your key for free on the website
 [AnimeList API](https://myanimelist.net/apiconfig/references/api/v2)
 Just register, click on your profile -> account settings -> API menu
 
-<img src="/assets/readme/api.png" width="50%" height="50%"/>
+<a href="https://github.com/junioroga/animall/blob/main/assets/readme/api.png?raw=true" target="_blank">
+  <img src="/assets/readme/api.png" width="70%" height="70%"/>
+</a>
+
+
 
 ## Web 
 
 ### Dark
-<img src="/assets/readme/web_dark.jpeg" width="50%" height="50%"/>
+<a href="https://github.com/junioroga/animall/blob/main/assets/readme/web_dark.png?raw=true" target="_blank">
+  <img src="/assets/readme/web_dark.png" width="70%" height="70%"/>
+</a>
 
 ### Light
 
-<img src="/assets/readme/web_light.jpeg" width="50%" height="50%"/>
+<a href="https://github.com/junioroga/animall/blob/main/assets/readme/web_light.png?raw=true" target="_blank">
+  <img src="/assets/readme/web_light.png" width="70%" height="70%"/>
+</a>
 
 ## IOS
 
