@@ -1,4 +1,4 @@
-import { useCallback, useMemo } from 'react'
+import { useCallback, useMemo, useRef } from 'react'
 import { useTranslation } from 'react-i18next'
 import { FlatList, ListRenderItem } from 'react-native'
 
@@ -13,8 +13,10 @@ import {
   VerticalCard,
 } from '@/components'
 import { QueryKeysRanking, useAnimeRanking } from '@/hooks'
+import { useLegendState } from '@/hooks/useLegendState'
 import { CardType, RankingType } from '@/services/types'
 
+import { ButtonsScrollHorizontalWeb } from './ButtonsScrollHorizontalWeb'
 import { AnimeRankingPrepared, preparedData } from './data'
 import { SkeletonHorizontal } from './SkeletonHorizontal'
 import { SkeletonVertical } from './SkeletonVertical'
@@ -28,6 +30,9 @@ type Props = {
 
 export const AnimeRanking = observer(({ rankingType, cardType }: Props) => {
   const { isHandsetOrTablet } = useMedia()
+  const [showScrollButtons, setShowScrollButtons] = useLegendState(false)
+  const [scrollOffset, setScrollOffset] = useLegendState(0)
+  const flatListRef = useRef<FlatList>(null)
   const limit = useMemo(
     () => (isHandsetOrTablet ? 10 : 20),
     [isHandsetOrTablet],
@@ -96,23 +101,53 @@ export const AnimeRanking = observer(({ rankingType, cardType }: Props) => {
     [data],
   )
 
+  const handlePressLeft = useCallback(() => {
+    flatListRef.current?.scrollToOffset({
+      animated: true,
+      offset:
+        scrollOffset - itemWidth * (cardType === CardType.HORIZONTAL ? 8 : 2),
+    })
+  }, [scrollOffset, itemWidth, cardType])
+
+  const handlePressRight = useCallback(() => {
+    flatListRef.current?.scrollToOffset({
+      animated: true,
+      offset:
+        scrollOffset + itemWidth * (cardType === CardType.HORIZONTAL ? 8 : 2),
+    })
+  }, [cardType, scrollOffset, itemWidth])
+
   return (
-    <FlatList
-      keyExtractor={keyExtractor}
-      data={isLoading ? [] : formattedData}
-      horizontal
-      renderItem={renderItem}
-      getItemLayout={getItemLayout}
-      ItemSeparatorComponent={renderSeparator}
-      ListEmptyComponent={renderEmpty}
-      contentContainerStyle={{
-        flexGrow: 1,
-        paddingHorizontal: getTokens().space[4].val,
-        paddingVertical: getTokens().space[3].val,
-        backgroundColor: theme.background.val,
-      }}
-      showsHorizontalScrollIndicator={false}
-      initialNumToRender={limit}
-    />
+    <>
+      <ButtonsScrollHorizontalWeb
+        orientation={cardType}
+        show={showScrollButtons}
+        onPressLeft={handlePressLeft}
+        onPressRight={handlePressRight}
+      />
+      <FlatList
+        ref={flatListRef}
+        keyExtractor={keyExtractor}
+        data={isLoading ? [] : formattedData}
+        horizontal
+        renderItem={renderItem}
+        getItemLayout={getItemLayout}
+        ItemSeparatorComponent={renderSeparator}
+        ListEmptyComponent={renderEmpty}
+        contentContainerStyle={{
+          flexGrow: 1,
+          paddingHorizontal: getTokens().space[4].val,
+          paddingVertical: getTokens().space[3].val,
+          backgroundColor: theme.background.val,
+        }}
+        showsHorizontalScrollIndicator={false}
+        initialNumToRender={limit}
+        onPointerEnter={() => setShowScrollButtons(true)}
+        onPointerLeave={() => setShowScrollButtons(false)}
+        onScroll={({ nativeEvent }) =>
+          setScrollOffset(nativeEvent.contentOffset.x)
+        }
+      />
+    </>
   )
 })
