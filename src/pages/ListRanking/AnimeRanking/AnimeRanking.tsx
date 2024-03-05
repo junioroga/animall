@@ -1,8 +1,8 @@
 import { useCallback, useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
-import { FlatList, ListRenderItem } from 'react-native'
 
 import { observer } from '@legendapp/state/react'
+import { FlashList, ListRenderItem } from '@shopify/flash-list'
 import { useInfiniteQuery } from '@tanstack/react-query'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 
@@ -102,23 +102,14 @@ export const AnimeRanking = observer(
       }
     }, [hasNextPage, isFetchingNextPage, fetchNextPage])
 
-    const getItemLayout = useCallback(
-      (_: any, index: number) => ({
-        length: heightVerticalCard,
-        offset: heightVerticalCard * index,
-        index,
-      }),
-      [heightVerticalCard],
-    )
-
     return (
-      <FlatList
+      <FlashList
         key={numberVerticalColumns}
         keyExtractor={keyExtractor}
         data={isLoading ? [] : formattedData}
         numColumns={numberVerticalColumns}
+        estimatedItemSize={heightVerticalCard}
         renderItem={renderItem}
-        getItemLayout={getItemLayout}
         ItemSeparatorComponent={renderSeparator}
         ListEmptyComponent={renderEmpty}
         ListFooterComponent={renderFooter}
@@ -126,9 +117,7 @@ export const AnimeRanking = observer(
         onRefresh={onRefresh}
         onEndReached={onEndReached}
         onEndReachedThreshold={0.5}
-        initialNumToRender={limit}
         contentContainerStyle={{
-          flexGrow: 1,
           paddingHorizontal: getTokens().space[4].val,
           paddingBottom: getTokens().space[11].val + bottom,
         }}
