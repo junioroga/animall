@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react'
-import { Dimensions } from 'react-native'
+import { useWindowDimensions } from 'react-native'
 
 import LottieView from 'lottie-react-native'
 
@@ -21,8 +21,6 @@ export type EmptyStateProps = {
   onPress?: <T>(value: T) => void
 }
 
-const { height } = Dimensions.get('window')
-
 export const EmptyState = ({
   type,
   alert,
@@ -30,22 +28,24 @@ export const EmptyState = ({
   action,
   onPress,
 }: EmptyStateProps) => {
+  const { height } = useWindowDimensions()
+
   const defineType = useMemo(
     () => ({
       [EmptyStateTypes.ERROR]: {
         source: require('@/assets/lottie/error.json'),
-        style: { height: height / 5, width: height / 2 },
+        style: { height: height / 5, width: height / 5 },
       },
       [EmptyStateTypes.NO_DATA]: {
         source: require('@/assets/lottie/no_data.json'),
-        style: { height: height / 7, width: height / 4 },
+        style: { height: height / 7, width: height / 7 },
       },
       [EmptyStateTypes.NO_SEARCH]: {
         source: require('@/assets/lottie/empty_search.json'),
-        style: { height: height / 5, width: height / 2 },
+        style: { height: height / 5, width: height / 5 },
       },
     }),
-    [],
+    [height],
   )
 
   return (

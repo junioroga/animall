@@ -42,7 +42,6 @@ export const ButtonsScrollHorizontalWeb = observer(
           onHoverIn={() => setShowIn(true)}
           onHoverOut={() => setShowIn(false)}
           onPress={onPressLeft}
-          animation="lazy"
           x={showButtons ? 0 : -100}>
           <Button.Icon>
             <ArrowLeft />
@@ -61,7 +60,6 @@ export const ButtonsScrollHorizontalWeb = observer(
           onHoverIn={() => setShowIn(true)}
           onHoverOut={() => setShowIn(false)}
           onPress={onPressRight}
-          animation="lazy"
           x={showButtons ? 0 : 100}>
           <Button.Icon>
             <ArrowRight />

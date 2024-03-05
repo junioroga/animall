@@ -1,8 +1,8 @@
 import { useCallback, useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
-import { FlatList, ListRenderItem } from 'react-native'
 
 import { observer } from '@legendapp/state/react'
+import { FlashList, ListRenderItem } from '@shopify/flash-list'
 
 import { getTokens, Separator, useMedia, useTheme } from 'tamagui'
 
@@ -82,37 +82,26 @@ export const AnimeRanking = observer(({ rankingType, cardType }: Props) => {
     [],
   )
 
-  const getItemLayout = useCallback(
-    (_: any, index: number) => ({
-      length: itemWidth,
-      offset: itemWidth * index,
-      index,
-    }),
-    [itemWidth],
-  )
-
   const formattedData = useMemo(
     () => (data?.pages ? preparedData(data.pages) : []),
     [data],
   )
 
   return (
-    <FlatList
+    <FlashList
       keyExtractor={keyExtractor}
       data={isLoading ? [] : formattedData}
+      estimatedItemSize={itemWidth}
       horizontal
       renderItem={renderItem}
-      getItemLayout={getItemLayout}
       ItemSeparatorComponent={renderSeparator}
       ListEmptyComponent={renderEmpty}
       contentContainerStyle={{
-        flexGrow: 1,
         paddingHorizontal: getTokens().space[4].val,
         paddingVertical: getTokens().space[3].val,
         backgroundColor: theme.background.val,
       }}
       showsHorizontalScrollIndicator={false}
-      initialNumToRender={limit}
     />
   )
 })
