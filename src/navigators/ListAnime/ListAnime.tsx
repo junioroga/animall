@@ -9,7 +9,12 @@ import { Videos } from '@/pages/Videos'
 
 export type RootStackParamListSearch = {
   ListAnimePage: undefined
-  AnimeDetails: { animeId: number }
+  AnimeDetails: {
+    animeId: number
+    title: string
+    image: string
+    customId: string
+  }
   Videos: { videos: VideosType[]; pressedVideo: VideosType }
 }
 

@@ -32,6 +32,8 @@ export const HorizontalCard = ({ item }: HorizontalCardProps) => {
         navigation.navigate('AnimeDetails', {
           animeId: item.id,
           title: item?.title || item?.alternative_titles?.en || '',
+          image: item?.main_picture?.medium || '',
+          customId: item.customId,
         })
       }>
       <Card
@@ -65,12 +67,13 @@ export const HorizontalCard = ({ item }: HorizontalCardProps) => {
               recyclingKey={item?.main_picture?.medium}
               transition={700}
               placeholder={blurhash}
+              sharedTransitionTag={item.customId}
             />
           </Stack>
           <YStack f={1}>
             <Stack h={heightHorizontalCard / 2} jc="center">
               <Text col="$color12" fow="$6" fos="$5" numberOfLines={3}>
-                {item?.title || item?.alternative_titles?.en}
+                {item.customTitle}
               </Text>
             </Stack>
             <Stack h={heightHorizontalCard / 2} gap="$1.5" mt="$2">

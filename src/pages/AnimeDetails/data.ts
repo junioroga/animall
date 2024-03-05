@@ -11,6 +11,7 @@ export interface AnimeDetailsPrepared extends AnimeData {
   averageTime: number
   releaseDay: string
   releaseHour: string
+  customTitle: string
 }
 
 export const preparedData = (data: AnimeData): AnimeDetailsPrepared => {
@@ -30,6 +31,7 @@ export const preparedData = (data: AnimeData): AnimeDetailsPrepared => {
     parse(data?.broadcast?.start_time || '00:00', 'HH:mm', new Date()),
     language === 'pt-BR' ? 'HH:mm' : 'hh:mm a',
   )
+  const customTitle = data.title || data?.alternative_titles?.en || ''
 
   return {
     ...data,
@@ -39,5 +41,6 @@ export const preparedData = (data: AnimeData): AnimeDetailsPrepared => {
     averageTime: data?.average_episode_duration
       ? Math.round((data?.average_episode_duration ?? 0) / 60)
       : 0,
+    customTitle,
   }
 }

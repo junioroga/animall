@@ -4,6 +4,7 @@ import isValid from 'date-fns/isValid'
 import parse from 'date-fns/parse'
 import { t } from 'i18next'
 import map from 'lodash/map'
+import uniqueId from 'lodash/uniqueId'
 
 import { AnimeRanking } from '@/hooks/useAnimeRanking/types'
 import { Store } from '@/store/index'
@@ -15,6 +16,8 @@ export interface AnimeRankingPrepared extends AnimeRanking {
   fullDate: string
   releaseDay: string
   releaseHour: string
+  customId: string
+  customTitle: string
 }
 
 export const preparedData = (data: AnimeRanking[]): AnimeRankingPrepared[] => {
@@ -50,6 +53,9 @@ export const preparedData = (data: AnimeRanking[]): AnimeRankingPrepared[] => {
       language === 'pt-BR' ? 'HH:mm' : 'hh:mm a',
     )
 
+    const customTitle = item.title || item?.alternative_titles?.en || ''
+    const customId = uniqueId(customTitle)
+
     return {
       ...item,
       genresFormatted,
@@ -57,6 +63,8 @@ export const preparedData = (data: AnimeRanking[]): AnimeRankingPrepared[] => {
       fullDate,
       releaseDay,
       releaseHour,
+      customId,
+      customTitle,
     }
   })
 }
