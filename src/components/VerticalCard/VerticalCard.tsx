@@ -42,6 +42,8 @@ export const VerticalCard = ({
         navigationType('AnimeDetails', {
           animeId: item.id,
           title: item?.title || item?.alternative_titles?.en || '',
+          image: item?.main_picture?.medium || '',
+          customId: item.customId,
         })
       }
       testID="card-button-vertical">
@@ -64,6 +66,7 @@ export const VerticalCard = ({
             recyclingKey={item?.main_picture?.medium}
             transition={700}
             placeholder={blurhash}
+            sharedTransitionTag={item.customId}
           />
           {item?.rating && (
             <Stack
@@ -89,7 +92,7 @@ export const VerticalCard = ({
         </ZStack>
         <Stack mx="$2" mt="$1" h="$3" jc="center">
           <Text fow="$4" fos="$1.5" numberOfLines={2}>
-            {item?.title || item?.alternative_titles?.en}
+            {item.customTitle}
           </Text>
         </Stack>
       </Card>

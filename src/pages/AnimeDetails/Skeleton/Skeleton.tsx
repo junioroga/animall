@@ -3,11 +3,18 @@ import { useWindowDimensions } from 'react-native'
 
 import { Circle, Rect } from 'react-native-svg'
 
-import { useTheme } from 'tamagui'
+import { getTokens, useTheme } from 'tamagui'
+
+import { Image } from '@/components'
 
 import { useResponsiveCardsContext } from '@/context/ResponsiveCards'
 
-export const Skeleton = () => {
+type Props = {
+  picture: string
+  sharedTransitionId: string
+}
+
+export const Skeleton = ({ picture, sharedTransitionId }: Props) => {
   const theme = useTheme()
   const { width, height } = useWindowDimensions()
   const { heightHorizontalCard, widthHorizontalCard } =
@@ -23,13 +30,17 @@ export const Skeleton = () => {
       viewBox={`0 0 ${width} ${height}`}
       backgroundColor={theme.color5.val}
       foregroundColor={theme.color8.val}>
-      <Rect
-        x="20"
-        y="15"
-        rx="5"
-        ry="5"
-        width={WIDTH_CARD_DETAILS}
-        height={HEIGHT_CARD}
+      <Image
+        source={picture}
+        style={{
+          borderRadius: 3,
+          height: heightHorizontalCard * 1.1,
+          width: widthHorizontalCard / 2.5,
+          left: getTokens().space[4].val,
+          top: getTokens().space[4].val,
+        }}
+        contentFit="fill"
+        sharedTransitionTag={sharedTransitionId}
       />
       <Rect
         x={WIDTH_CARD_DETAILS + 30}

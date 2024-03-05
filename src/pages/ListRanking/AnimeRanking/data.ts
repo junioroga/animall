@@ -4,6 +4,7 @@ import isValid from 'date-fns/isValid'
 import parse from 'date-fns/parse'
 import { t } from 'i18next'
 import map from 'lodash/map'
+import uniqueId from 'lodash/uniqueId'
 
 import { AnimeRanking } from '@/hooks/useAnimeRanking/types'
 import { DaysOfWeek } from '@/services/types'
@@ -14,6 +15,8 @@ export interface AnimeRankingPrepared extends AnimeRanking {
   fullDate: string
   releaseDay: string
   releaseHour: string
+  customId: string
+  customTitle: string
 }
 
 const daysOfWeek = {
@@ -48,6 +51,9 @@ export const preparedData = (data: AnimeRanking[]): AnimeRankingPrepared[] =>
       'HH:mm',
     )
 
+    const customTitle = item.title || item?.alternative_titles?.en || ''
+    const customId = uniqueId(customTitle)
+
     return {
       ...item,
       genresFormatted,
@@ -55,5 +61,7 @@ export const preparedData = (data: AnimeRanking[]): AnimeRankingPrepared[] =>
       fullDate,
       releaseDay,
       releaseHour,
+      customId,
+      customTitle,
     }
   })

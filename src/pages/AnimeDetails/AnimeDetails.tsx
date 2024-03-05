@@ -31,7 +31,7 @@ import { useResponsiveCardsContext } from '@/context/ResponsiveCards'
 type Props = NativeStackScreenProps<RootStackParamListHome, 'AnimeDetails'>
 
 export const AnimeDetails = ({ route }: Props) => {
-  const { animeId, title } = route.params
+  const { animeId, title, image, customId } = route.params
   const { data, isLoading } = useAnimeDetails({ animeId })
   const { bottom } = useSafeAreaInsets()
   const theme = useTheme()
@@ -79,9 +79,7 @@ export const AnimeDetails = ({ route }: Props) => {
         title={title}
       />
       {isLoading && !Object.keys(formattedData).length ? (
-        <YStack>
-          <Skeleton />
-        </YStack>
+        <Skeleton picture={image} sharedTransitionId={customId} />
       ) : (
         <YStack f={1}>
           <Stack>
@@ -89,9 +87,7 @@ export const AnimeDetails = ({ route }: Props) => {
               mainPicture={formattedData?.main_picture}
               averageTime={formattedData?.averageTime}
               numEpisodes={formattedData?.num_episodes || 0}
-              title={
-                formattedData?.title || formattedData?.alternative_titles?.en
-              }
+              title={formattedData.customTitle}
               mean={formattedData?.ratingString}
               releaseDay={formattedData?.releaseDay}
               releaseHour={formattedData?.releaseHour}
