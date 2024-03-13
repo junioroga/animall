@@ -64,9 +64,10 @@ export const HorizontalCard = ({ item }: HorizontalCardProps) => {
               }}
               source={item?.main_picture?.medium}
               contentFit="fill"
-              recyclingKey={item?.main_picture?.medium}
+              recyclingKey={item?.customId}
               transition={700}
               placeholder={blurhash}
+              defaultSource={require('@/assets/loading.png')}
               sharedTransitionTag={item.customId}
             />
           </Stack>
