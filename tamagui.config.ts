@@ -20,7 +20,7 @@ const animations = createAnimations({
   },
   medium: {
     type: 'spring',
-    damping: 10,
+    damping: 15,
     mass: 0.9,
     stiffness: 100,
   },

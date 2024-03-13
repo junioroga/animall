@@ -20,7 +20,7 @@ export const ButtonsScrollHorizontalWeb = observer(
   ({ orientation, show, onPressLeft, onPressRight }: Props) => {
     const { heightHorizontalCard, heightVerticalCard } =
       useResponsiveCardsContext()
-    const heightStack =
+    const heightCard =
       orientation === CardType.HORIZONTAL
         ? heightHorizontalCard
         : heightVerticalCard
@@ -32,16 +32,18 @@ export const ButtonsScrollHorizontalWeb = observer(
         <Button
           elevate
           pos="absolute"
-          t={heightStack / 1.6}
+          t={heightCard / 2}
           l={-10}
-          h="$8"
+          h="$12"
+          w="$7"
           zi="$1"
           br={0}
-          btrr={50}
-          bbrr={50}
+          btrr={1000}
+          bbrr={1000}
           onHoverIn={() => setShowIn(true)}
           onHoverOut={() => setShowIn(false)}
           onPress={onPressLeft}
+          animation="medium"
           x={showButtons ? 0 : -100}>
           <Button.Icon>
             <ArrowLeft />
@@ -50,16 +52,18 @@ export const ButtonsScrollHorizontalWeb = observer(
         <Button
           elevate
           pos="absolute"
-          t={heightStack / 1.6}
+          t={heightCard / 2}
           r={-10}
-          h="$8"
+          h="$12"
+          w="$7"
           zi="$1"
           br={0}
-          btlr={50}
-          bblr={50}
+          btlr={1000}
+          bblr={1000}
           onHoverIn={() => setShowIn(true)}
           onHoverOut={() => setShowIn(false)}
           onPress={onPressRight}
+          animation="medium"
           x={showButtons ? 0 : 100}>
           <Button.Icon>
             <ArrowRight />
