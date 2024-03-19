@@ -101,7 +101,7 @@ export const AnimeList = observer(
 
     return (
       <FlashList
-        key={numberVerticalColumns}
+        // key={numberVerticalColumns}
         keyExtractor={keyExtractor}
         data={isLoading ? [] : formattedData}
         numColumns={numberVerticalColumns}

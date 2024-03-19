@@ -1,3 +1,4 @@
+import { memo } from 'react'
 import { Pressable } from 'react-native'
 
 import { useNavigation } from '@react-navigation/native'
@@ -20,7 +21,7 @@ export type HorizontalCardProps = {
   item: AnimeRankingPrepared
 }
 
-export const HorizontalCard = ({ item }: HorizontalCardProps) => {
+const HorizontalCard = ({ item }: HorizontalCardProps) => {
   const navigation = useNavigation<NavigationProps>()
   const { heightHorizontalCard, widthHorizontalCard } =
     useResponsiveCardsContext()
@@ -64,7 +65,7 @@ export const HorizontalCard = ({ item }: HorizontalCardProps) => {
               }}
               source={item?.main_picture?.medium}
               contentFit="fill"
-              recyclingKey={item?.customId}
+              recyclingKey={item?.main_picture?.medium}
               transition={700}
               placeholder={blurhash}
               defaultSource={require('@/assets/loading.png')}
@@ -104,3 +105,5 @@ export const HorizontalCard = ({ item }: HorizontalCardProps) => {
     </Pressable>
   )
 }
+
+export default memo(HorizontalCard)

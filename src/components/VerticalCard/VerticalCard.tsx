@@ -1,4 +1,4 @@
-import { useMemo } from 'react'
+import { memo, useMemo } from 'react'
 import { Pressable } from 'react-native'
 
 import { useNavigation } from '@react-navigation/native'
@@ -24,10 +24,7 @@ export type VerticalCardProps = {
   pushNavigation?: boolean
 }
 
-export const VerticalCard = ({
-  item,
-  pushNavigation = false,
-}: VerticalCardProps) => {
+const VerticalCard = ({ item, pushNavigation = false }: VerticalCardProps) => {
   const theme = useTheme()
   const navigation = useNavigation<NavigationProps>()
   const { widthVerticalCard, heightVerticalCard } = useResponsiveCardsContext()
@@ -63,7 +60,7 @@ export const VerticalCard = ({
             }}
             source={item?.main_picture?.medium}
             contentFit="fill"
-            recyclingKey={item?.customId}
+            recyclingKey={item?.main_picture?.medium}
             transition={700}
             placeholder={blurhash}
             defaultSource={require('@/assets/loading.png')}
@@ -100,3 +97,5 @@ export const VerticalCard = ({
     </Pressable>
   )
 }
+
+export default memo(VerticalCard)

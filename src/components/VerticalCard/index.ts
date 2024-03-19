@@ -1,1 +1,1 @@
-export * from './VerticalCard'
+export { default as VerticalCard } from './VerticalCard'
