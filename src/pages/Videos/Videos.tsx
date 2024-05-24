@@ -4,7 +4,6 @@ import { Platform, Pressable, useWindowDimensions } from 'react-native'
 import { observer } from '@legendapp/state/react'
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
-import YoutubePlayer from 'react-native-youtube-iframe'
 
 import * as ScreenOrientation from 'expo-screen-orientation'
 
@@ -27,6 +26,7 @@ import { useLegendState } from '@/hooks/useLegendState'
 import { RootStackParamListHome } from '@/navigators/Home/Home'
 import { getYouTubeVideoIdFromUrl } from '@/utils/regex'
 
+import { Player } from './Player'
 import { Skeleton } from './Skeleton'
 
 type Props = NativeStackScreenProps<RootStackParamListHome, 'Videos'>
@@ -71,10 +71,10 @@ export const Videos = observer(({ route }: Props) => {
       <Stack>
         <Header />
         <Stack h={HEIGHT_PLAYER} ai="center" jc="center">
-          <YoutubePlayer
+          <Player
             height={ready ? HEIGHT_PLAYER : 0}
             width={WIDTH_PLAYER}
-            videoId={getYouTubeVideoIdFromUrl(videoSelected.url)}
+            videoId={getYouTubeVideoIdFromUrl(videoSelected.url) || ''}
             onReady={() => setReady(true)}
             onFullScreenChange={(isFullScreen: boolean) =>
               Platform.OS !== 'web'
@@ -87,10 +87,10 @@ export const Videos = observer(({ route }: Props) => {
       </Stack>
       <ScrollView
         contentContainerStyle={{
-          flexGrow: 1,
-          paddingHorizontal: getTokens().space[4].val,
-          paddingBottom: getTokens().space[11].val + bottom,
-          paddingTop: getTokens().space[4].val,
+          fg: 1,
+          px: getTokens().space[4].val,
+          pb: getTokens().space[11].val + bottom,
+          pt: getTokens().space[4].val,
         }}
         showsVerticalScrollIndicator={false}>
         <Stack gap="$2">

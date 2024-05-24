@@ -63,7 +63,7 @@ export const AnimeDetails = ({ route }: Props) => {
       fg={1}
       bg="$background"
       contentContainerStyle={{
-        paddingBottom: getTokens().space[13].val + bottom,
+        pb: getTokens().space[13].val + bottom,
       }}
       showsVerticalScrollIndicator={false}
       stickyHeaderIndices={[0]}
@@ -71,8 +71,8 @@ export const AnimeDetails = ({ route }: Props) => {
       <Header
         right={
           Platform.OS !== 'web' && (
-            <Button>
-              <ShareIcon size="$1" onPress={onShareAnime} />
+            <Button onPress={onShareAnime}>
+              <ShareIcon size="$1" />
             </Button>
           )
         }

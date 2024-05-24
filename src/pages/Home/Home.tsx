@@ -41,9 +41,9 @@ export const Home = ({ navigation }: NavigationProps) => {
 
   return (
     <ScrollView
-      fg={1}
       contentContainerStyle={{
-        paddingBottom: getTokens().space[9].val + bottom,
+        fg: 1,
+        pb: getTokens().space[9].val + bottom,
       }}
       bg="$background"
       showsVerticalScrollIndicator={false}>

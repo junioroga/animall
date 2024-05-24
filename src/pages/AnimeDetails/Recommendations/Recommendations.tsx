@@ -22,9 +22,9 @@ export const Recommendations = ({ recommendations }: Props) => {
       <ScrollView
         horizontal
         contentContainerStyle={{
-          flexGrow: 1,
-          paddingVertical: getTokens().space[3].val,
-          paddingHorizontal: getTokens().space[4].val,
+          fg: 1,
+          py: getTokens().space[3].val,
+          px: getTokens().space[4].val,
         }}
         showsHorizontalScrollIndicator={false}>
         <XStack gap="$2">
