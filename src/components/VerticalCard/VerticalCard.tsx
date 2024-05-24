@@ -90,7 +90,7 @@ const VerticalCard = ({ item, pushNavigation = false }: VerticalCardProps) => {
         </ZStack>
         <Stack mx="$2" mt="$1" h="$3" jc="center">
           <Text fow="$4" fos="$1.5" numberOfLines={2}>
-            {item.customTitle}
+            {item.customTitle || item.title}
           </Text>
         </Stack>
       </Card>

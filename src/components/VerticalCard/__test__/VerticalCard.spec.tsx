@@ -2,7 +2,7 @@ import React from 'react'
 
 import { fireEvent, render } from '~/test/test-utils'
 
-import { VerticalCard, VerticalCardProps } from '../VerticalCard'
+import VerticalCard, { VerticalCardProps } from '../VerticalCard'
 import { mockCard } from './mock'
 
 const mockNavigate = jest.fn()
@@ -40,6 +40,8 @@ describe('VerticalCard', () => {
     expect(mockNavigate).toHaveBeenCalledWith('AnimeDetails', {
       animeId: mockCard.id,
       title: mockCard.title || mockCard.alternative_titles.en,
+      customId: mockCard.customId,
+      image: mockCard.main_picture.medium,
     })
   })
 })

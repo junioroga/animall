@@ -45,8 +45,8 @@ export const Videos = ({ videos }: Props) => {
         <ScrollView
           horizontal
           contentContainerStyle={{
-            flexGrow: 1,
-            paddingTop: getTokens().space[4].val,
+            fg: 1,
+            pt: getTokens().space[4].val,
           }}
           showsHorizontalScrollIndicator={false}>
           <XStack gap="$2">

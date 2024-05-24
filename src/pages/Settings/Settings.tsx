@@ -16,21 +16,21 @@ import { Store } from '@/store/index'
 export const Settings = observer(() => {
   const { t, i18n } = useTranslation()
   const theme = Store.settings.theme.get()
-  const isCheckedTheme = Store.settings.theme.get() === 'dark'
+  const isCheckedTheme = theme === 'dark'
   const language = Store.settings.lang.get()
   const isCheckedLanguage = language === 'pt-BR'
 
   const onCheckedThemeChange = useCallback(() => {
-    const defineTheme = theme === 'light' ? 'dark' : 'light'
-    Store.settings.theme.set(defineTheme)
+    const definedTheme = theme === 'light' ? 'dark' : 'light'
+    Store.settings.theme.set(definedTheme)
   }, [theme])
 
   const onCheckedLanguageChange = useCallback(() => {
-    const defineLanguage = language === 'pt-BR' ? 'en-US' : 'pt-BR'
-    i18n.changeLanguage(defineLanguage).then(() => {
-      Store.settings.lang.set(defineLanguage)
+    const definedLanguage = language === 'pt-BR' ? 'en-US' : 'pt-BR'
+    i18n.changeLanguage(definedLanguage).then(() => {
+      Store.settings.lang.set(definedLanguage)
 
-      setDefaultOptions({ locale: defineLanguage === 'en-US' ? enUS : ptBR })
+      setDefaultOptions({ locale: definedLanguage === 'en-US' ? enUS : ptBR })
     })
   }, [i18n, language])
 

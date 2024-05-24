@@ -54,4 +54,6 @@ export const mockCard = {
   fullDate: 'almost 13 years ago',
   releaseDay: 'Saturday',
   releaseHour: '12:00 AM',
+  customId: '1',
+  customTitle: 'Gintama: Shinyaku Benizakura-hen',
 }

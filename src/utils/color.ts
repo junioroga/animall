@@ -25,16 +25,21 @@ const rgbToHex = (r: number, g: number, b: number): string =>
  *
  * @returns {number[]}
  */
-const hexToRgb = (hex: string): number[] =>
-  hex
+const hexToRgb = (hex: string): number[] => {
+  // Removendo '#' se presente e duplicando caracteres para formatar corretamente
+  const formattedHex = hex
     .replace(
       /^#?([a-f\d])([a-f\d])([a-f\d])$/i,
       (m, r, g, b) => `#${r}${r}${g}${g}${b}${b}`,
     )
     .substring(1)
-    .match(/.{2}/g)
-    .map((x) => parseInt(x, 16))
 
+  // Separando a string hex em pares de caracteres e convertendo-os para números decimais
+  const rgbValues =
+    formattedHex.match(/.{2}/g)?.map((x) => parseInt(x, 16)) ?? []
+
+  return rgbValues
+}
 /**
  * LightenDarken color
  * https://css-tricks.com/snippets/javascript/lighten-darken-color/

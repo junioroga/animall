@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next'
 import { useNavigation } from '@react-navigation/native'
 import { NativeStackNavigationProp } from '@react-navigation/native-stack'
 import groupBy from 'lodash/groupBy'
+import uniqueId from 'lodash/uniqueId'
 
 import { Button, YStack } from 'tamagui'
 
@@ -24,10 +25,12 @@ export const RelatedAnime = ({ relatedAnime }: Props) => {
   const relationArray = Object.keys(animeGrouped)
 
   const handleRelatedItem = useCallback(
-    (animeId: number, title: string) => {
+    (animeId: number, title: string, image: string) => {
       navigation.push('AnimeDetails', {
         animeId,
         title,
+        image,
+        customId: uniqueId(),
       })
     },
     [navigation],
@@ -47,9 +50,17 @@ export const RelatedAnime = ({ relatedAnime }: Props) => {
             <Button
               size="$2"
               mt="$2"
-              onPress={() => handleRelatedItem(anime.node.id, anime.node.title)}
+              onPress={() =>
+                handleRelatedItem(
+                  anime.node.id,
+                  anime.node.title,
+                  anime.node.main_picture.medium,
+                )
+              }
               als="flex-start">
-              <Text col="$blue10">{anime.node.title}</Text>
+              <Text numberOfLines={1} col="$blue10">
+                {anime.node.title}
+              </Text>
             </Button>
           </YStack>
         )),
