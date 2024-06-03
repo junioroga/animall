@@ -26,48 +26,34 @@ export const ResponsiveCardsProvider = ({
   const { width } = useWindowDimensions()
   const { isWideDesktop, isTablet, isSmallDesktop, isNormalDesktop } =
     useMedia()
+  const widthWithoutMargin = width - getTokens().space[4].val * 2
+  const spacing = getTokens().space[2.5].val
 
   const widthResponsive = useMemo(() => {
     switch (true) {
       case isWideDesktop:
         return {
-          width:
-            (width -
-              getTokens().space[2.5].val * 11 -
-              getTokens().space[4].val * 2) /
-            12,
+          width: (widthWithoutMargin - spacing * 11) / 12,
           column: 12,
         }
       case isNormalDesktop:
         return {
-          width:
-            (width -
-              getTokens().space[2.5].val * 8 -
-              getTokens().space[4].val * 2) /
-            9,
+          width: (widthWithoutMargin - spacing * 8) / 9,
           column: 9,
         }
       case isSmallDesktop:
         return {
-          width:
-            (width -
-              getTokens().space[2.5].val * 6 -
-              getTokens().space[4].val * 2) /
-            7,
+          width: (widthWithoutMargin - spacing * 6) / 7,
           column: 7,
         }
       case isTablet:
         return {
-          width:
-            (width -
-              getTokens().space[2.5].val * 3 -
-              getTokens().space[4].val * 2) /
-            4,
+          width: (widthWithoutMargin - spacing * 3) / 4,
           column: 4,
         }
       default:
         return {
-          width: width / 3 - getTokens().space[4].val,
+          width: (widthWithoutMargin - spacing * 2) / 3,
           column: 3,
         }
     }
@@ -76,7 +62,8 @@ export const ResponsiveCardsProvider = ({
     isNormalDesktop,
     isSmallDesktop,
     isTablet,
-    width,
+    widthWithoutMargin,
+    spacing,
   ]) as WidthResponsive
 
   const widthVerticalCard = useMemo(

@@ -1,8 +1,8 @@
 import { useCallback, useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
+import { FlatList, ListRenderItem } from 'react-native'
 
 import { observer } from '@legendapp/state/react'
-import { FlashList, ListRenderItem } from '@shopify/flash-list'
 
 import { getTokens, Separator, useMedia, useTheme } from 'tamagui'
 
@@ -18,8 +18,6 @@ import { CardType, RankingType } from '@/services/types'
 import { AnimeRankingPrepared, preparedData } from './data'
 import { SkeletonHorizontal } from './SkeletonHorizontal'
 import { SkeletonVertical } from './SkeletonVertical'
-
-import { useResponsiveCardsContext } from '@/context/ResponsiveCards'
 
 type Props = {
   rankingType: RankingType
@@ -37,16 +35,8 @@ export const AnimeRanking = observer(({ rankingType, cardType }: Props) => {
     rankingType,
     limit,
   })
-  const { widthVerticalCard, widthHorizontalCard } = useResponsiveCardsContext()
   const { t } = useTranslation()
   const theme = useTheme()
-  const itemWidth = useMemo(
-    () =>
-      cardType === CardType.HORIZONTAL
-        ? widthVerticalCard
-        : widthHorizontalCard,
-    [cardType, widthVerticalCard, widthHorizontalCard],
-  )
 
   const renderItem: ListRenderItem<AnimeRankingPrepared> = useCallback(
     ({ item }) =>
@@ -88,10 +78,9 @@ export const AnimeRanking = observer(({ rankingType, cardType }: Props) => {
   )
 
   return (
-    <FlashList
+    <FlatList
       keyExtractor={keyExtractor}
       data={isLoading ? [] : formattedData}
-      estimatedItemSize={itemWidth}
       horizontal
       renderItem={renderItem}
       ItemSeparatorComponent={renderSeparator}

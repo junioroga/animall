@@ -33,17 +33,17 @@ const VerticalCard = ({ item, pushNavigation = false }: VerticalCardProps) => {
     [pushNavigation, navigation],
   )
 
+  const handleNavigate = () => {
+    navigationType('AnimeDetails', {
+      animeId: item.id,
+      title: item?.title || item?.alternative_titles?.en || '',
+      image: item?.main_picture?.medium || '',
+      customId: item.customId,
+    })
+  }
+
   return (
-    <Pressable
-      onPress={() =>
-        navigationType('AnimeDetails', {
-          animeId: item.id,
-          title: item?.title || item?.alternative_titles?.en || '',
-          image: item?.main_picture?.medium || '',
-          customId: item.customId,
-        })
-      }
-      testID="card-button-vertical">
+    <Pressable testID="card-button-vertical" onPress={handleNavigate}>
       <Card
         h={heightVerticalCard}
         w={widthVerticalCard}
