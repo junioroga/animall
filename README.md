@@ -9,7 +9,7 @@ This is a React Native App to show information about Animes and Mangas. The data
 
 ![DEVELOPING](https://img.shields.io/badge/DEVELOPING-IMPROVING%20WEB-lightblue?style=flat-square)
 
-Project created with Expo CLI. [See official docs](https://docs.expo.dev/get-started/installation/) to set up the environment.
+Project created with Expo CLI. [See official docs](https://docs.expo.dev/get-started/create-a-project) to set up the environment.
 
 ## 🛠 Used Technologies
 
@@ -115,7 +115,7 @@ You can easily get your key for free on the website
 [AnimeList API](https://myanimelist.net/apiconfig/references/api/v2)
 Just register, click on your profile -> account settings -> API menu
 
-<a href="https://github.com/junioroga/animall/blob/main/assets/readme/api.png?raw=true" target="_blank">
+<a href="https://github.com/junioroga/animall/blob/main/assets/readme/api.png" target="_blank">
   <img src="/assets/readme/api.png" width="70%" height="70%"/>
 </a>
 
@@ -124,13 +124,13 @@ Just register, click on your profile -> account settings -> API menu
 ## Web 
 
 ### Dark
-<a href="https://github.com/junioroga/animall/blob/main/assets/readme/web_dark.png?raw=true" target="_blank">
+<a href="https://github.com/junioroga/animall/blob/main/assets/readme/web_dark.png" target="_blank">
   <img src="/assets/readme/web_dark.png" width="70%" height="70%"/>
 </a>
 
 ### Light
 
-<a href="https://github.com/junioroga/animall/blob/main/assets/readme/web_light.png?raw=true" target="_blank">
+<a href="https://github.com/junioroga/animall/blob/main/assets/readme/web_light.png" target="_blank">
   <img src="/assets/readme/web_light.png" width="70%" height="70%"/>
 </a>
 

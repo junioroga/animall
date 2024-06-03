@@ -1,0 +1,30 @@
+pre-commit:
+  parallel: true
+  commands:
+    type-check:
+      glob: '*.{ts,tsx}'
+      run: yarn typecheck
+    eslint:
+      glob: '*.{js,ts,jsx,tsx}'
+      run: yarn lint {staged_files}
+    spelling:
+      glob: '*.{js,ts,jsx,tsx,md}'
+      run: yarn cspell {staged_files}
+    markdown-link-check:
+      glob: '*.md'
+      run: yarn markdown-link-check {staged_files}
+    test:
+      run: |
+        files=$(git diff --cached --name-only --diff-filter=ACM | grep '\.spec\.' || true)
+          if [ -n "$files" ]; then
+            echo "Running tests for modified .spec files..."
+            yarn jest $files
+          else
+            echo "No .spec files to test."
+          fi
+
+commit-msg:
+  parallel: true
+  commands:
+    lint-commit-msg:
+      run: yarn commitlint --edit "$1"
