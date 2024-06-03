@@ -26,17 +26,17 @@ const HorizontalCard = ({ item }: HorizontalCardProps) => {
   const { heightHorizontalCard, widthHorizontalCard } =
     useResponsiveCardsContext()
 
+  const handleNavigate = () => {
+    navigation.navigate('AnimeDetails', {
+      animeId: item.id,
+      title: item?.title || item?.alternative_titles?.en || '',
+      image: item?.main_picture?.medium || '',
+      customId: item.customId,
+    })
+  }
+
   return (
-    <Pressable
-      testID="card-button-horizontal"
-      onPress={() =>
-        navigation.navigate('AnimeDetails', {
-          animeId: item.id,
-          title: item?.title || item?.alternative_titles?.en || '',
-          image: item?.main_picture?.medium || '',
-          customId: item.customId,
-        })
-      }>
+    <Pressable testID="card-button-horizontal" onPress={handleNavigate}>
       <Card
         h={heightHorizontalCard}
         w={widthHorizontalCard}

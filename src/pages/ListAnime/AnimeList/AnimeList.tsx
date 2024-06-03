@@ -1,8 +1,8 @@
 import { useCallback, useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
+import { FlatList, ListRenderItem } from 'react-native'
 
 import { observer } from '@legendapp/state/react'
-import { FlashList, ListRenderItem } from '@shopify/flash-list'
 import { useInfiniteQuery } from '@tanstack/react-query'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 
@@ -39,8 +39,7 @@ export const AnimeList = observer(
   }: Props) => {
     const { t } = useTranslation()
     const { bottom } = useSafeAreaInsets()
-    const { heightVerticalCard, numberVerticalColumns } =
-      useResponsiveCardsContext()
+    const { numberVerticalColumns } = useResponsiveCardsContext()
 
     const renderItem: ListRenderItem<AnimeDataPrepared> = useCallback(
       ({ item }) => (
@@ -51,7 +50,7 @@ export const AnimeList = observer(
       [],
     )
 
-    const renderSeparator = useCallback(() => <Separator my="$1.5" />, [])
+    const renderSeparator = useCallback(() => <Separator my="$2" />, [])
 
     const renderEmpty = useCallback(
       () => (
@@ -100,12 +99,11 @@ export const AnimeList = observer(
     }, [isFetchingNextPage, hasNextPage, fetchNextPage])
 
     return (
-      <FlashList
+      <FlatList
         key={numberVerticalColumns}
         keyExtractor={keyExtractor}
         data={isLoading ? [] : formattedData}
         numColumns={numberVerticalColumns}
-        estimatedItemSize={heightVerticalCard}
         renderItem={renderItem}
         ItemSeparatorComponent={renderSeparator}
         ListEmptyComponent={renderEmpty}
@@ -115,6 +113,7 @@ export const AnimeList = observer(
         onEndReached={onEndReached}
         onEndReachedThreshold={0.5}
         contentContainerStyle={{
+          flexGrow: 1,
           paddingHorizontal: getTokens().space[4].val,
           paddingBottom: getTokens().space[11].val + bottom,
         }}
