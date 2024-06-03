@@ -56,8 +56,8 @@ const customMedia = createMedia({
   isTablet: { minWidth: 481, maxWidth: 768 },
   isHandsetOrTablet: { maxWidth: 768 },
   isSmallDesktop: { minWidth: 769, maxWidth: 1024 },
-  isNormalDesktop: { minWidth: 1025, maxWidth: 1200 },
-  isWideDesktop: { minWidth: 1201 },
+  isNormalDesktop: { minWidth: 1025, maxWidth: 1440 },
+  isWideDesktop: { minWidth: 1441 },
   isDesktop: { minWidth: 769 },
 })
 
