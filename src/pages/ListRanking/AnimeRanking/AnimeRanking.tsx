@@ -41,7 +41,8 @@ export const AnimeRanking = observer(
   }: Props) => {
     const { t } = useTranslation()
     const { bottom } = useSafeAreaInsets()
-    const { numberVerticalColumns } = useResponsiveCardsContext()
+    const { numberVerticalColumns, heightVerticalCard } =
+      useResponsiveCardsContext()
 
     const renderItem: ListRenderItem<AnimeRankingPrepared> = useCallback(
       ({ item }) => (
@@ -101,6 +102,15 @@ export const AnimeRanking = observer(
       }
     }, [hasNextPage, isFetchingNextPage, fetchNextPage])
 
+    const getItemLayout = useCallback(
+      (_: any, index: number) => ({
+        length: heightVerticalCard,
+        offset: heightVerticalCard * index,
+        index,
+      }),
+      [heightVerticalCard],
+    )
+
     return (
       <FlatList
         key={numberVerticalColumns}
@@ -108,6 +118,7 @@ export const AnimeRanking = observer(
         data={isLoading ? [] : formattedData}
         numColumns={numberVerticalColumns}
         renderItem={renderItem}
+        getItemLayout={getItemLayout}
         ItemSeparatorComponent={renderSeparator}
         ListEmptyComponent={renderEmpty}
         ListFooterComponent={renderFooter}
@@ -120,6 +131,7 @@ export const AnimeRanking = observer(
           paddingHorizontal: getTokens().space[4].val,
           paddingBottom: getTokens().space[11].val + bottom,
         }}
+        initialNumToRender={limit}
         showsVerticalScrollIndicator={false}
       />
     )
