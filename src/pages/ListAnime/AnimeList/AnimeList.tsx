@@ -22,6 +22,7 @@ import { Skeleton } from './Skeleton'
 import { useResponsiveCardsContext } from '@/context/ResponsiveCards'
 
 type Props = Partial<Omit<ReturnType<typeof useInfiniteQuery>, 'data'>> & {
+  limit: number
   data?: AnimeData[]
   onRefresh: () => void
   refreshingManual: boolean
@@ -36,10 +37,12 @@ export const AnimeList = observer(
     data,
     onRefresh,
     refreshingManual,
+    limit,
   }: Props) => {
     const { t } = useTranslation()
     const { bottom } = useSafeAreaInsets()
-    const { numberVerticalColumns } = useResponsiveCardsContext()
+    const { numberVerticalColumns, heightVerticalCard } =
+      useResponsiveCardsContext()
 
     const renderItem: ListRenderItem<AnimeDataPrepared> = useCallback(
       ({ item }) => (
@@ -98,6 +101,15 @@ export const AnimeList = observer(
       }
     }, [isFetchingNextPage, hasNextPage, fetchNextPage])
 
+    const getItemLayout = useCallback(
+      (_: any, index: number) => ({
+        length: heightVerticalCard,
+        offset: heightVerticalCard * index,
+        index,
+      }),
+      [heightVerticalCard],
+    )
+
     return (
       <FlatList
         key={numberVerticalColumns}
@@ -105,6 +117,7 @@ export const AnimeList = observer(
         data={isLoading ? [] : formattedData}
         numColumns={numberVerticalColumns}
         renderItem={renderItem}
+        getItemLayout={getItemLayout}
         ItemSeparatorComponent={renderSeparator}
         ListEmptyComponent={renderEmpty}
         ListFooterComponent={renderFooter}
@@ -117,6 +130,7 @@ export const AnimeList = observer(
           paddingHorizontal: getTokens().space[4].val,
           paddingBottom: getTokens().space[11].val + bottom,
         }}
+        initialNumToRender={limit}
         showsVerticalScrollIndicator={false}
       />
     )

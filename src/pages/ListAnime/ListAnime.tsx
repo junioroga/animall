@@ -61,6 +61,7 @@ export const ListAnime = observer(() => {
         data={data?.pages}
         onRefresh={onRefresh}
         refreshingManual={refreshingManual}
+        limit={limit}
       />
     </YStack>
   )

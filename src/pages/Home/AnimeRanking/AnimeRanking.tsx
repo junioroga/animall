@@ -19,6 +19,8 @@ import { AnimeRankingPrepared, preparedData } from './data'
 import { SkeletonHorizontal } from './SkeletonHorizontal'
 import { SkeletonVertical } from './SkeletonVertical'
 
+import { useResponsiveCardsContext } from '@/context/ResponsiveCards'
+
 type Props = {
   rankingType: RankingType
   cardType: CardType
@@ -35,6 +37,15 @@ export const AnimeRanking = observer(({ rankingType, cardType }: Props) => {
     rankingType,
     limit,
   })
+  const { widthHorizontalCard, widthVerticalCard } = useResponsiveCardsContext()
+  const itemWidth = useMemo(
+    () =>
+      cardType === CardType.HORIZONTAL
+        ? widthVerticalCard
+        : widthHorizontalCard,
+    [cardType, widthVerticalCard, widthHorizontalCard],
+  )
+
   const { t } = useTranslation()
   const theme = useTheme()
 
@@ -77,12 +88,22 @@ export const AnimeRanking = observer(({ rankingType, cardType }: Props) => {
     [data],
   )
 
+  const getItemLayout = useCallback(
+    (_: any, index: number) => ({
+      length: itemWidth,
+      offset: itemWidth * index,
+      index,
+    }),
+    [itemWidth],
+  )
+
   return (
     <FlatList
       keyExtractor={keyExtractor}
       data={isLoading ? [] : formattedData}
       horizontal
       renderItem={renderItem}
+      getItemLayout={getItemLayout}
       ItemSeparatorComponent={renderSeparator}
       ListEmptyComponent={renderEmpty}
       contentContainerStyle={{
@@ -90,6 +111,7 @@ export const AnimeRanking = observer(({ rankingType, cardType }: Props) => {
         paddingVertical: getTokens().space[3].val,
         backgroundColor: theme.background.val,
       }}
+      initialNumToRender={10}
       showsHorizontalScrollIndicator={false}
     />
   )
