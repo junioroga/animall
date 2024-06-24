@@ -136,8 +136,8 @@ export const AnimeRanking = observer(({ rankingType, cardType }: Props) => {
         ListEmptyComponent={renderEmpty}
         contentContainerStyle={{
           flexGrow: 1,
-          paddingHorizontal: getTokens().space[4].val,
-          paddingVertical: getTokens().space[3].val,
+          paddingHorizontal: getTokens().space.$4.val,
+          paddingVertical: getTokens().space.$3.val,
           backgroundColor: theme.background.val,
         }}
         showsHorizontalScrollIndicator={false}

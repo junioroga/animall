@@ -41,7 +41,7 @@ export const Videos = observer(({ route }: Props) => {
   const { height, width } = useWindowDimensions()
   const { isHandsetOrTablet } = useMedia()
   const HEIGHT_PLAYER = useMemo(
-    () => (isHandsetOrTablet ? getTokens().size[18].val : height / 2),
+    () => (isHandsetOrTablet ? getTokens().size.$18.val : height / 2),
     [isHandsetOrTablet, height],
   )
   const WIDTH_PLAYER = useMemo(
@@ -88,9 +88,9 @@ export const Videos = observer(({ route }: Props) => {
       <ScrollView
         contentContainerStyle={{
           fg: 1,
-          px: getTokens().space[4].val,
-          pb: getTokens().space[11].val + bottom,
-          pt: getTokens().space[4].val,
+          px: getTokens().space.$4.val,
+          pb: getTokens().space.$11.val + bottom,
+          pt: getTokens().space.$4.val,
         }}
         showsVerticalScrollIndicator={false}>
         <Stack gap="$2">
@@ -103,9 +103,8 @@ export const Videos = observer(({ route }: Props) => {
                 <Image
                   source={video.thumbnail}
                   style={{
-                    borderRadius: getTokens().size[0.5].val,
-                    height: getTokens().size[10].val,
-                    width: getTokens().size[14].val,
+                    borderRadius: getTokens().size['$0.5'].val,
+                    height: getTokens().size.$14.val,
                   }}
                 />
                 <Stack pos="absolute" ai="center" jc="center">

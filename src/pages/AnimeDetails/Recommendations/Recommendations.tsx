@@ -23,8 +23,8 @@ export const Recommendations = ({ recommendations }: Props) => {
         horizontal
         contentContainerStyle={{
           fg: 1,
-          py: getTokens().space[3].val,
-          px: getTokens().space[4].val,
+          py: getTokens().space.$3.val,
+          px: getTokens().space.$4.val,
         }}
         showsHorizontalScrollIndicator={false}>
         <XStack gap="$2">

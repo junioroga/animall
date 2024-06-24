@@ -4,7 +4,8 @@ dictionaryDefinitions:
   - name: custom-dictionary
     path: ./.cspell/custom-dictionary.txt
     addWords: true
-words: []
+words:
+  - haptics
 ignoreWords:
   - Animall
   - Animes

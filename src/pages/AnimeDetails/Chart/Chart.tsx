@@ -93,7 +93,7 @@ export const Chart = ({ statistics }: Props) => {
             fontFamily: 'Poppins_500Medium',
           }}
           style={{
-            height: getTokens().size[10].val,
+            height: getTokens().size.$10.val,
             bottom: 1,
           }}
         />

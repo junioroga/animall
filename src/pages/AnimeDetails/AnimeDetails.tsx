@@ -63,7 +63,7 @@ export const AnimeDetails = ({ route }: Props) => {
       fg={1}
       bg="$background"
       contentContainerStyle={{
-        pb: getTokens().space[13].val + bottom,
+        pb: getTokens().space.$13.val + bottom,
       }}
       showsVerticalScrollIndicator={false}
       stickyHeaderIndices={[0]}

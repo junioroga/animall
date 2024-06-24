@@ -33,12 +33,12 @@
     "@react-navigation/bottom-tabs": "^6.5.11",
     "@react-navigation/native": "^6.0.8",
     "@react-navigation/native-stack": "^6.9.16",
-    "@tamagui/animations-moti": "^1.100.3",
-    "@tamagui/babel-plugin": "^1.100.3",
-    "@tamagui/config": "^1.100.3",
-    "@tamagui/linear-gradient": "^1.100.3",
-    "@tamagui/lucide-icons": "^1.100.3",
-    "@tamagui/metro-plugin": "^1.100.3",
+    "@tamagui/animations-moti": "^1.101.3",
+    "@tamagui/babel-plugin": "^1.101.3",
+    "@tamagui/config": "^1.101.3",
+    "@tamagui/linear-gradient": "^1.101.3",
+    "@tamagui/lucide-icons": "^1.101.3",
+    "@tamagui/metro-plugin": "^1.101.3",
     "@tanstack/react-query": "^4.33.0",
     "@types/react-dom": "~18.2.25",
     "axios": "^1.5.1",
@@ -71,7 +71,7 @@
     "react-native-webview": "13.8.6",
     "react-native-youtube-iframe": "^2.3.0",
     "react-youtube": "^10.1.0",
-    "tamagui": "^1.100.3"
+    "tamagui": "^1.101.3"
   },
   "devDependencies": {
     "@babel/core": "^7.24.0",
@@ -79,8 +79,7 @@
     "@commitlint/config-conventional": "^18.4.4",
     "@dev-plugins/react-navigation": "^0.0.5",
     "@react-native/metro-config": "^0.74.0",
-    "@rnx-kit/align-deps": "^2.4.6",
-    "@tamagui/react-native-svg": "^1.100.3",
+    "@tamagui/react-native-svg": "^1.101.3",
     "@tanstack/eslint-plugin-query": "^4.32.5",
     "@testing-library/react-native": "^12.3.2",
     "@types/jest": "^29.5.6",
@@ -114,30 +113,5 @@
   "eslintConfig": {
     "extends": "universe/native"
   },
-  "packageManager": "yarn@4.2.2",
-  "rnx-kit": {
-    "kitType": "app",
-    "alignDeps": {
-      "requirements": [
-        "react-native@0.74"
-      ],
-      "capabilities": [
-        "animation",
-        "core",
-        "core-android",
-        "core-ios",
-        "gestures",
-        "jest",
-        "navigation/native",
-        "react",
-        "react-dom",
-        "react-test-renderer",
-        "safe-area",
-        "screens",
-        "storage",
-        "svg",
-        "webview"
-      ]
-    }
-  }
+  "packageManager": "yarn@4.2.2"
 }

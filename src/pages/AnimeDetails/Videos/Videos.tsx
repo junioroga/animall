@@ -46,7 +46,7 @@ export const Videos = ({ videos }: Props) => {
           horizontal
           contentContainerStyle={{
             fg: 1,
-            pt: getTokens().space[4].val,
+            pt: getTokens().space.$4.val,
           }}
           showsHorizontalScrollIndicator={false}>
           <XStack gap="$2">
@@ -60,9 +60,9 @@ export const Videos = ({ videos }: Props) => {
                   source={video.thumbnail}
                   style={{
                     opacity: 0.7,
-                    borderRadius: getTokens().size[0.5].val,
-                    height: getTokens().size[10].val,
-                    width: getTokens().size[14].val,
+                    borderRadius: getTokens().size['$0.5'].val,
+                    height: getTokens().size.$10.val,
+                    width: getTokens().size.$14.val,
                   }}
                 />
                 <Stack pos="absolute" ai="center" jc="center">

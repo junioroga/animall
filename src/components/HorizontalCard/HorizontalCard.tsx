@@ -52,7 +52,7 @@ const HorizontalCard = ({ item }: HorizontalCardProps) => {
               contentFit="cover"
               blurRadius={2}
             />
-            <Stack h={heightHorizontalCard / 2} o={0.4} bg="$color1" />
+            <Stack h={heightHorizontalCard / 2} o={0.6} bg="$color1" />
           </ZStack>
         </Card.Background>
         <XStack h={heightHorizontalCard}>

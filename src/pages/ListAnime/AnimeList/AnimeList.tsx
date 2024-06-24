@@ -127,8 +127,8 @@ export const AnimeList = observer(
         onEndReachedThreshold={0.5}
         contentContainerStyle={{
           flexGrow: 1,
-          paddingHorizontal: getTokens().space[4].val,
-          paddingBottom: getTokens().space[11].val + bottom,
+          paddingHorizontal: getTokens().space.$4.val,
+          paddingBottom: getTokens().space.$11.val + bottom,
         }}
         initialNumToRender={limit}
         showsVerticalScrollIndicator={false}

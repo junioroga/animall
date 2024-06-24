@@ -68,13 +68,13 @@ const VerticalCard = ({ item, pushNavigation = false }: VerticalCardProps) => {
           />
           {item?.rating && (
             <Stack
-              h={getTokens().size[1.5].val}
+              h={getTokens().size['$1.5'].val}
               pos="absolute"
               l={0}
               b={0}
               r={0}
               jc="center">
-              <Stack h={getTokens().size[1.5].val} bg="$color1" o={0.7} />
+              <Stack h={getTokens().size['$1.5'].val} bg="$color1" o={0.7} />
               <XStack pos="absolute" r={2.5} ai="center" gap="$2">
                 <Text fow="$6" fos="$4" col="$color12" t={1}>
                   {item.rating}
