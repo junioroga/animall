@@ -13,14 +13,14 @@ export const SkeletonHorizontal = () => {
   const { width } = useWindowDimensions()
   const { heightHorizontalCard, widthHorizontalCard } =
     useResponsiveCardsContext()
-  const separator = useMemo(() => getTokens().space[2.5].val, [])
+  const separator = useMemo(() => getTokens().space['$2.5'].val, [])
   const widthCardWithSpacing = useMemo(
     () => widthHorizontalCard + separator,
     [widthHorizontalCard, separator],
   )
-  const borderRadius = useMemo(() => getTokens().space[2].val, [])
+  const borderRadius = useMemo(() => getTokens().space.$2.val, [])
   const widthContentLoader = useMemo(
-    () => width + widthHorizontalCard - getTokens().size[6].val,
+    () => width + widthHorizontalCard - getTokens().size.$6.val,
     [width, widthHorizontalCard],
   )
   const length = useMemo(

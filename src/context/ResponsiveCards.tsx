@@ -26,8 +26,8 @@ export const ResponsiveCardsProvider = ({
   const { width } = useWindowDimensions()
   const { isWideDesktop, isTablet, isSmallDesktop, isNormalDesktop } =
     useMedia()
-  const widthWithoutMargin = width - getTokens().space[4].val * 2
-  const spacing = getTokens().space[2.5].val
+  const widthWithoutMargin = width - getTokens().space.$4.val * 2
+  const spacing = getTokens().space['$2.5'].val
 
   const widthResponsive = useMemo(() => {
     switch (true) {

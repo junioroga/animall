@@ -42,9 +42,9 @@ export const HeaderDetails = ({
           source={mainPicture?.medium}
           style={{ height: heightHorizontalCard * 1.3 }}
           contentFit="cover"
-          blurRadius={4}
+          blurRadius={2}
         />
-        <Stack h={heightHorizontalCard * 1.3} bg="$color1" o={0.2} />
+        <Stack h={heightHorizontalCard * 1.3} bg="$color1" o={0.5} />
       </ZStack>
       <XStack p="$4" gap="$2" f={1}>
         <Image
@@ -91,7 +91,7 @@ export const HeaderDetails = ({
           <Text
             pos="absolute"
             zi={1}
-            t={getTokens().size[5].val / 3.4}
+            t={getTokens().size.$5.val / 3.4}
             fos="$5"
             fow="500"
             col="$color12">
@@ -99,10 +99,10 @@ export const HeaderDetails = ({
           </Text>
           <ProgressCircle
             style={{
-              height: getTokens().size[5].val,
-              width: getTokens().size[5].val,
+              height: getTokens().size.$5.val,
+              width: getTokens().size.$5.val,
               backgroundColor: theme.color5.val,
-              borderRadius: getTokens().size[5].val,
+              borderRadius: getTokens().size.$5.val,
             }}
             progress={Number(mean) / 10}
             progressColor={theme.blue10.val}

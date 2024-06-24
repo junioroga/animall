@@ -14,13 +14,13 @@ export const Skeleton = () => {
   const { widthVerticalCard, heightVerticalCard, numberVerticalColumns } =
     useResponsiveCardsContext()
   const widthCardWithSpacing = useMemo(
-    () => widthVerticalCard + getTokens().space[2.5].val,
+    () => widthVerticalCard + getTokens().space['$2.5'].val,
     [widthVerticalCard],
   )
-  const paddingHorizontal = useMemo(() => getTokens().space[4].val, [])
-  const borderRadius = useMemo(() => getTokens().space[2].val, [])
+  const paddingHorizontal = useMemo(() => getTokens().space.$4.val, [])
+  const borderRadius = useMemo(() => getTokens().space.$2.val, [])
   const heightCardWithSpacing = useMemo(
-    () => heightVerticalCard + getTokens().space[2.5].val,
+    () => heightVerticalCard + getTokens().space['$2.5'].val,
     [heightVerticalCard],
   )
   const lengthVerticalItems = useMemo(
@@ -29,7 +29,8 @@ export const Skeleton = () => {
   )
   const contentHeight = useMemo(
     () =>
-      (heightVerticalCard + getTokens().space[2.5].val) * lengthVerticalItems,
+      (heightVerticalCard + getTokens().space['$2.5'].val) *
+      lengthVerticalItems,
     [heightVerticalCard, lengthVerticalItems],
   )
 

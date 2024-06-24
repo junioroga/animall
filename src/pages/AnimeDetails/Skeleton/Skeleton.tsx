@@ -36,8 +36,8 @@ export const Skeleton = ({ picture, sharedTransitionId }: Props) => {
           borderRadius: 3,
           height: heightHorizontalCard * 1.1,
           width: widthHorizontalCard / 2.5,
-          left: getTokens().space[4].val,
-          top: getTokens().space[4].val,
+          left: getTokens().space.$4.val,
+          top: getTokens().space.$4.val,
         }}
         contentFit="fill"
         sharedTransitionTag={sharedTransitionId}

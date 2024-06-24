@@ -107,8 +107,8 @@ export const AnimeRanking = observer(({ rankingType, cardType }: Props) => {
       ItemSeparatorComponent={renderSeparator}
       ListEmptyComponent={renderEmpty}
       contentContainerStyle={{
-        paddingHorizontal: getTokens().space[4].val,
-        paddingVertical: getTokens().space[3].val,
+        paddingHorizontal: getTokens().space.$4.val,
+        paddingVertical: getTokens().space.$3.val,
         backgroundColor: theme.background.val,
       }}
       initialNumToRender={10}

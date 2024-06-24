@@ -12,12 +12,12 @@ export const SkeletonVertical = () => {
   const theme = useTheme()
   const { width } = useWindowDimensions()
   const { widthVerticalCard, heightVerticalCard } = useResponsiveCardsContext()
-  const separator = useMemo(() => getTokens().space[2.5].val, [])
+  const separator = useMemo(() => getTokens().space['$2.5'].val, [])
   const widthCardWithSpacing = useMemo(
     () => widthVerticalCard + separator,
     [widthVerticalCard, separator],
   )
-  const borderRadius = useMemo(() => getTokens().space[2].val, [])
+  const borderRadius = useMemo(() => getTokens().space.$2.val, [])
   const length = useMemo(
     () => Math.round(width / widthVerticalCard),
     [width, widthVerticalCard],
