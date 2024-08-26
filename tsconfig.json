@@ -4,18 +4,9 @@
     "strict": true,
     "baseUrl": "./",
     "paths": {
-      "@/*": [
-        "src/*"
-      ],
-      "~/*": [
-        "./*"
-      ]
+      "@/*": ["src/*"],
+      "~/*": ["./*"]
     }
   },
-  "include": [
-    "**/*.ts",
-    "**/*.tsx", 
-    "jest.setup.js", 
-    "jest.config.js"  
-  ]
+  "include": ["**/*.ts", "**/*.tsx", "jest.setup.js", "jest.config.js"]
 }

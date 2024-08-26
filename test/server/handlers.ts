@@ -1,11 +1,7 @@
 import { http, HttpResponse } from 'msw'
 
 import { API_URL } from '@/config/general'
-import {
-  animeDetailsMock,
-  animeListMock,
-  animeListRankingMock,
-} from '~/test/mocks/animeListMock'
+import { animeDetailsMock, animeListMock, animeListRankingMock } from '~/test/mocks/animeListMock'
 
 export const handlers = [
   http.get(`${API_URL}anime`, ({ request }) => {

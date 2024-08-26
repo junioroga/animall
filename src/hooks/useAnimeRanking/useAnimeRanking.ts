@@ -25,14 +25,8 @@ export const useAnimeRanking = ({
   limit = 10,
   enabled = true,
 }: AnimeRankingHookProps) => {
-  const getRankingAnimes = async ({
-    pageParam = 0,
-    queryKey,
-  }: QueryFunctionContext) => {
-    const [, { rankingType }] = queryKey as [
-      string,
-      { rankingType: RankingType },
-    ]
+  const getRankingAnimes = async ({ pageParam = 0, queryKey }: QueryFunctionContext) => {
+    const [, { rankingType }] = queryKey as [string, { rankingType: RankingType }]
 
     const data = await animeService.getRanking({
       ranking_type: rankingType,
@@ -62,8 +56,7 @@ export const useAnimeRanking = ({
       }
     },
     enabled,
-    getNextPageParam: (lastPage) =>
-      lastPage.paging?.next ? lastPage.nextPage : false,
+    getNextPageParam: (lastPage) => (lastPage.paging?.next ? lastPage.nextPage : false),
     cacheTime: 0,
     staleTime: Infinity,
   })

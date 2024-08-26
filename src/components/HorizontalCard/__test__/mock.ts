@@ -48,8 +48,7 @@ export const mockCard = {
     },
   ],
   rank: 10,
-  genresFormatted:
-    'Action, Comedy, Historical, Parody, Samurai, Sci-Fi, Shounen',
+  genresFormatted: 'Action, Comedy, Historical, Parody, Samurai, Sci-Fi, Shounen',
   rating: '8.28',
   fullDate: 'almost 13 years ago',
   releaseDay: 'Saturday',

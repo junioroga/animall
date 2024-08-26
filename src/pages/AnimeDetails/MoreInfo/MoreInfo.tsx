@@ -18,14 +18,7 @@ type Props = {
 
 const missingText = '-'
 
-export const MoreInfo = ({
-  status,
-  season,
-  studios,
-  source,
-  genre,
-  classification,
-}: Props) => {
+export const MoreInfo = ({ status, season, studios, source, genre, classification }: Props) => {
   const { t } = useTranslation()
   const seasonTranslated = {
     [Seasons.FALL]: t('anime.details.seasons.fall'),
@@ -58,7 +51,8 @@ export const MoreInfo = ({
         o: 0,
       }}
       o={1}
-      y={0}>
+      y={0}
+    >
       <Text fow="$6" mb="$2">
         {t('anime.details.moreInfo')}
       </Text>
@@ -68,15 +62,11 @@ export const MoreInfo = ({
       </XStack>
       <XStack ai="center" jc="space-between">
         <Text col="$gray11">{t('anime.details.season')}</Text>
-        <Text>
-          {season ? `${seasonTranslated} ${season?.year}` : missingText}
-        </Text>
+        <Text>{season ? `${seasonTranslated} ${season?.year}` : missingText}</Text>
       </XStack>
       <XStack ai="center" jc="space-between">
         <Text col="$gray11">{t('anime.details.studios')}</Text>
-        <Text>
-          {studios ? studios?.map((item) => item.name).join(', ') : missingText}
-        </Text>
+        <Text>{studios ? studios?.map((item) => item.name).join(', ') : missingText}</Text>
       </XStack>
       <XStack ai="center" jc="space-between">
         <Text col="$gray11">{t('anime.details.source')}</Text>

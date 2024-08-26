@@ -17,8 +17,7 @@ type Props = {
 export const Skeleton = ({ picture, sharedTransitionId }: Props) => {
   const theme = useTheme()
   const { width, height } = useWindowDimensions()
-  const { heightHorizontalCard, widthHorizontalCard } =
-    useResponsiveCardsContext()
+  const { heightHorizontalCard, widthHorizontalCard } = useResponsiveCardsContext()
   const WIDTH_CARD_DETAILS = widthHorizontalCard / 2.5
   const HEIGHT_CARD = heightHorizontalCard * 1.1
 
@@ -29,7 +28,8 @@ export const Skeleton = ({ picture, sharedTransitionId }: Props) => {
       height={height}
       viewBox={`0 0 ${width} ${height}`}
       backgroundColor={theme.color5.val}
-      foregroundColor={theme.color8.val}>
+      foregroundColor={theme.color8.val}
+    >
       <Image
         source={picture}
         style={{
@@ -42,63 +42,14 @@ export const Skeleton = ({ picture, sharedTransitionId }: Props) => {
         contentFit="fill"
         sharedTransitionTag={sharedTransitionId}
       />
-      <Rect
-        x={WIDTH_CARD_DETAILS + 30}
-        y="17"
-        rx="5"
-        ry="5"
-        width="120"
-        height="20"
-      />
-      <Rect
-        x={WIDTH_CARD_DETAILS + 30}
-        y="50"
-        rx="5"
-        ry="5"
-        width="150"
-        height="15"
-      />
+      <Rect x={WIDTH_CARD_DETAILS + 30} y="17" rx="5" ry="5" width="120" height="20" />
+      <Rect x={WIDTH_CARD_DETAILS + 30} y="50" rx="5" ry="5" width="150" height="15" />
       <Circle cx={width - 40} cy="40" r="25" />
-      <Rect
-        x={20}
-        y={HEIGHT_CARD + 40}
-        rx="5"
-        ry="5"
-        width={width - 40}
-        height="15"
-      />
-      <Rect
-        x={20}
-        y={HEIGHT_CARD + 70}
-        rx="5"
-        ry="5"
-        width={width - 40}
-        height="15"
-      />
-      <Rect
-        x={20}
-        y={HEIGHT_CARD + 100}
-        rx="5"
-        ry="5"
-        width={width - 40}
-        height="15"
-      />
-      <Rect
-        x={20}
-        y={HEIGHT_CARD + 130}
-        rx="5"
-        ry="5"
-        width={width - 40}
-        height="15"
-      />
-      <Rect
-        x={20}
-        y={HEIGHT_CARD + 160}
-        rx="5"
-        ry="5"
-        width={width - 40}
-        height="15"
-      />
+      <Rect x={20} y={HEIGHT_CARD + 40} rx="5" ry="5" width={width - 40} height="15" />
+      <Rect x={20} y={HEIGHT_CARD + 70} rx="5" ry="5" width={width - 40} height="15" />
+      <Rect x={20} y={HEIGHT_CARD + 100} rx="5" ry="5" width={width - 40} height="15" />
+      <Rect x={20} y={HEIGHT_CARD + 130} rx="5" ry="5" width={width - 40} height="15" />
+      <Rect x={20} y={HEIGHT_CARD + 160} rx="5" ry="5" width={width - 40} height="15" />
     </ContentLoader>
   )
 }

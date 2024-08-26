@@ -17,6 +17,6 @@ cors_proxy
         host +
         ':' +
         port +
-        ' - Now you can run `yarn web` command in a new terminal.',
+        ' - Now you can run `yarn web` command in a new terminal.'
     )
   })

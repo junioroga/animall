@@ -8,12 +8,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context'
 
 import { getTokens, Separator, Stack, YStack } from 'tamagui'
 
-import {
-  EmptyState,
-  EmptyStateTypes,
-  Loading,
-  VerticalCard,
-} from '@/components'
+import { EmptyState, EmptyStateTypes, Loading, VerticalCard } from '@/components'
 import { AnimeData } from '@/hooks/useAnimeList/types'
 
 import { AnimeDataPrepared, preparedData } from './data'
@@ -41,8 +36,7 @@ export const AnimeList = observer(
   }: Props) => {
     const { t } = useTranslation()
     const { bottom } = useSafeAreaInsets()
-    const { numberVerticalColumns, heightVerticalCard } =
-      useResponsiveCardsContext()
+    const { numberVerticalColumns, heightVerticalCard } = useResponsiveCardsContext()
 
     const renderItem: ListRenderItem<AnimeDataPrepared> = useCallback(
       ({ item }) => (
@@ -50,7 +44,7 @@ export const AnimeList = observer(
           <VerticalCard item={item} />
         </Stack>
       ),
-      [],
+      []
     )
 
     const renderSeparator = useCallback(() => <Separator my="$2" />, [])
@@ -61,14 +55,11 @@ export const AnimeList = observer(
           {isLoading ? (
             <Skeleton />
           ) : (
-            <EmptyState
-              type={EmptyStateTypes.NO_SEARCH}
-              message={t('anime.notSearched')}
-            />
+            <EmptyState type={EmptyStateTypes.NO_SEARCH} message={t('anime.notSearched')} />
           )}
         </YStack>
       ),
-      [isLoading, t],
+      [isLoading, t]
     )
 
     const renderFooter = useCallback(() => {
@@ -85,13 +76,10 @@ export const AnimeList = observer(
 
     const keyExtractor = useCallback(
       (item: AnimeDataPrepared, index: number) => `${String(item.id)}${index}`,
-      [],
+      []
     )
 
-    const formattedData = useMemo(
-      () => (data ? preparedData(data) : []),
-      [data],
-    )
+    const formattedData = useMemo(() => (data ? preparedData(data) : []), [data])
 
     const onEndReached = useCallback(() => {
       if (hasNextPage) {
@@ -107,7 +95,7 @@ export const AnimeList = observer(
         offset: heightVerticalCard * index,
         index,
       }),
-      [heightVerticalCard],
+      [heightVerticalCard]
     )
 
     return (
@@ -134,5 +122,5 @@ export const AnimeList = observer(
         showsVerticalScrollIndicator={false}
       />
     )
-  },
+  }
 )

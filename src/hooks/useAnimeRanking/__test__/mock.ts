@@ -487,10 +487,7 @@ export const useAnimeRankingMock: InfiniteData<AnimeData> = {
         large: 'https://cdn.myanimelist.net/images/anime/1591/137973l.jpg',
       },
       alternative_titles: {
-        synonyms: [
-          'Shangri-La Frontier: Crappy Game Hunter Challenges God-Tier Game',
-          'Shanfro',
-        ],
+        synonyms: ['Shangri-La Frontier: Crappy Game Hunter Challenges God-Tier Game', 'Shanfro'],
         en: 'Shangri-La Frontier',
         ja: 'シャングリラ・フロンティア～クソゲーハンター、神ゲーに挑まんとす～',
       },

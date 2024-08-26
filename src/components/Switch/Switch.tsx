@@ -1,9 +1,4 @@
-import {
-  GetProps,
-  styled,
-  Switch as TSwitch,
-  withStaticProperties,
-} from 'tamagui'
+import { GetProps, styled, Switch as TSwitch, withStaticProperties } from 'tamagui'
 
 const SwitchFrame = styled(TSwitch, {
   name: 'Switch',

@@ -35,18 +35,17 @@ export const Videos = observer(({ route }: Props) => {
   const { videos, pressedVideo } = route.params
   const { bottom } = useSafeAreaInsets()
   const theme = useTheme()
-  const [videoSelected, setVideoSelected] =
-    useLegendState<VideosType>(pressedVideo)
+  const [videoSelected, setVideoSelected] = useLegendState<VideosType>(pressedVideo)
   const [ready, setReady] = useLegendState(false)
   const { height, width } = useWindowDimensions()
   const { isHandsetOrTablet } = useMedia()
   const HEIGHT_PLAYER = useMemo(
     () => (isHandsetOrTablet ? getTokens().size.$18.val : height / 2),
-    [isHandsetOrTablet, height],
+    [isHandsetOrTablet, height]
   )
   const WIDTH_PLAYER = useMemo(
     () => (isHandsetOrTablet ? width : width / 2),
-    [isHandsetOrTablet, width],
+    [isHandsetOrTablet, width]
   )
 
   const handlePressVideo = useCallback(
@@ -55,14 +54,14 @@ export const Videos = observer(({ route }: Props) => {
       setVideoSelected(video)
       setReady(true)
     },
-    [setReady, setVideoSelected],
+    [setReady, setVideoSelected]
   )
 
   const handlePressFullScreen = useCallback((isFullScreen: boolean) => {
     ScreenOrientation.lockAsync(
       isFullScreen
         ? ScreenOrientation.OrientationLock.LANDSCAPE
-        : ScreenOrientation.OrientationLock.PORTRAIT,
+        : ScreenOrientation.OrientationLock.PORTRAIT
     )
   }, [])
 
@@ -77,9 +76,7 @@ export const Videos = observer(({ route }: Props) => {
             videoId={getYouTubeVideoIdFromUrl(videoSelected.url) || ''}
             onReady={() => setReady(true)}
             onFullScreenChange={(isFullScreen: boolean) =>
-              Platform.OS !== 'web'
-                ? handlePressFullScreen(isFullScreen)
-                : undefined
+              Platform.OS !== 'web' ? handlePressFullScreen(isFullScreen) : undefined
             }
           />
           {!ready && <Skeleton heightContent={HEIGHT_PLAYER} />}
@@ -92,14 +89,16 @@ export const Videos = observer(({ route }: Props) => {
           pb: getTokens().space.$11.val + bottom,
           pt: getTokens().space.$4.val,
         }}
-        showsVerticalScrollIndicator={false}>
+        showsVerticalScrollIndicator={false}
+      >
         <Stack gap="$2">
           {videos?.map((video) => (
             <XStack key={video.id} ai="flex-start" gap="$3">
               <Pressable
                 testID={`button-video-${video.id}`}
                 style={{ alignItems: 'center', justifyContent: 'center' }}
-                onPress={() => handlePressVideo(video)}>
+                onPress={() => handlePressVideo(video)}
+              >
                 <Image
                   source={video.thumbnail}
                   style={{

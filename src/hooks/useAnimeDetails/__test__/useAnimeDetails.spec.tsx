@@ -17,9 +17,7 @@ jest.mock('@tanstack/react-query', () => {
 
 describe('useAnimeDetails', () => {
   it('when no passing animeId parameter, don`t call the api', () => {
-    const { result } = renderHook(() =>
-      useAnimeDetails({ animeId: undefined } as any),
-    )
+    const { result } = renderHook(() => useAnimeDetails({ animeId: undefined } as any))
 
     expect(result.current.data).toEqual([])
     expect(result.current.isFetching).toBeFalsy()

@@ -9,8 +9,9 @@ const AnimatedImage = Animated.createAnimatedComponent(ExpoImage)
 export const Image = (props: AnimatedProps<ImageProps>) => {
   const expoProps = { ...props }
 
-  if (Object.keys(props).some((prop) => prop === 'defaultSource'))
+  if (Object.keys(props).some((prop) => prop === 'defaultSource')) {
     delete expoProps.defaultSource
+  }
 
   return <AnimatedImage {...expoProps} />
 }

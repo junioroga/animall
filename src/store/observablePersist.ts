@@ -1,18 +1,11 @@
 /* eslint-disable no-console */
-import type {
-  Change,
-  ObservablePersistLocal,
-  PersistMetadata,
-} from '@legendapp/state'
+import type { Change, ObservablePersistLocal, PersistMetadata } from '@legendapp/state'
 import { setAtPath } from '@legendapp/state'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 
 const MetadataSuffix = '__m'
 
-type ObservableAsyncStorage = Omit<
-  ObservablePersistLocal,
-  'getTable' | 'getMetadata'
-> & {
+type ObservableAsyncStorage = Omit<ObservablePersistLocal, 'getTable' | 'getMetadata'> & {
   getTable(table: string): Promise<string>
   getMetadata(table: string): Promise<PersistMetadata>
   setMetadata(table: string, metadata: PersistMetadata): Promise<void>
@@ -27,10 +20,7 @@ export class ObservablePersistAsyncStorage implements ObservableAsyncStorage {
         const value = await AsyncStorage.getItem(table)
         this.data[table] = value ? JSON.parse(String(value)) : undefined
       } catch {
-        console.error(
-          '[legend-state] ObservablePersistAsyncStorage failed to parse',
-          table,
-        )
+        console.error('[legend-state] ObservablePersistAsyncStorage failed to parse', table)
       }
     }
     return this.data[table]
@@ -41,10 +31,7 @@ export class ObservablePersistAsyncStorage implements ObservableAsyncStorage {
       try {
         AsyncStorage.setItem(table, JSON.stringify(metadata))
       } catch {
-        console.error(
-          '[legend-state] ObservablePersistAsyncStorage failed to parse',
-          table,
-        )
+        console.error('[legend-state] ObservablePersistAsyncStorage failed to parse', table)
       }
     }
     return this.data[table]
@@ -54,10 +41,7 @@ export class ObservablePersistAsyncStorage implements ObservableAsyncStorage {
     return await this.getTable(table + MetadataSuffix)
   }
 
-  public async setMetadata(
-    table: string,
-    metadata: PersistMetadata,
-  ): Promise<void> {
+  public async setMetadata(table: string, metadata: PersistMetadata): Promise<void> {
     return await this.setValue(table + MetadataSuffix, metadata)
   }
 
@@ -72,12 +56,7 @@ export class ObservablePersistAsyncStorage implements ObservableAsyncStorage {
     }
     for (let i = 0; i < changes.length; i++) {
       const { path, valueAtPath, pathTypes } = changes[i]
-      this.data[table] = setAtPath(
-        this.data[table],
-        path as string[],
-        pathTypes,
-        valueAtPath,
-      )
+      this.data[table] = setAtPath(this.data[table], path as string[], pathTypes, valueAtPath)
     }
     this.save(table)
   }

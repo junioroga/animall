@@ -15,13 +15,10 @@ export const SkeletonVertical = () => {
   const separator = useMemo(() => getTokens().space['$2.5'].val, [])
   const widthCardWithSpacing = useMemo(
     () => widthVerticalCard + separator,
-    [widthVerticalCard, separator],
+    [widthVerticalCard, separator]
   )
   const borderRadius = useMemo(() => getTokens().space.$2.val, [])
-  const length = useMemo(
-    () => Math.round(width / widthVerticalCard),
-    [width, widthVerticalCard],
-  )
+  const length = useMemo(() => Math.round(width / widthVerticalCard), [width, widthVerticalCard])
 
   return (
     <ContentLoader
@@ -30,7 +27,8 @@ export const SkeletonVertical = () => {
       height={heightVerticalCard}
       viewBox={`0 0 ${width} ${heightVerticalCard}`}
       backgroundColor={theme.color5.val}
-      foregroundColor={theme.color8.val}>
+      foregroundColor={theme.color8.val}
+    >
       {Array.from({ length }).map((_, index) => (
         <Rect
           key={index}

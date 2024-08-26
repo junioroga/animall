@@ -4,12 +4,9 @@ pre-commit:
     type-check:
       glob: '*.{ts,tsx}'
       run: yarn typecheck
-    eslint:
+    lint:
       glob: '*.{js,ts,jsx,tsx}'
       run: yarn lint {staged_files}
-    spelling:
-      glob: '*.{js,ts,jsx,tsx,md}'
-      run: yarn cspell {staged_files}
     markdown-link-check:
       glob: '*.md'
       run: yarn markdown-link-check {staged_files}

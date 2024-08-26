@@ -114,10 +114,7 @@ export const useAnimeListMock: InfiniteData<AnimeData> = {
         large: 'https://cdn.myanimelist.net/images/anime/1004/94169l.jpg',
       },
       alternative_titles: {
-        synonyms: [
-          'Romances of Sealed Gods',
-          'Soul Hunter: Battle of the Immortals',
-        ],
+        synonyms: ['Romances of Sealed Gods', 'Soul Hunter: Battle of the Immortals'],
         en: 'Soul Hunter',
         ja: '仙界伝 封神演義',
       },

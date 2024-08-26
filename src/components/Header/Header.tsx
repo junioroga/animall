@@ -22,7 +22,8 @@ export const Header = ({ title, right }: HeaderProps) => {
       jc="space-between"
       ai="center"
       bg="$background"
-      testID="header-container">
+      testID="header-container"
+    >
       <Button testID="button-back" onPress={navigation.goBack}>
         <ChevronLeft />
       </Button>

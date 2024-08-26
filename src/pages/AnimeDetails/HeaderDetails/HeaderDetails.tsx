@@ -32,8 +32,7 @@ export const HeaderDetails = ({
 }: Props) => {
   const { t } = useTranslation()
   const theme = useTheme()
-  const { heightHorizontalCard, widthHorizontalCard } =
-    useResponsiveCardsContext()
+  const { heightHorizontalCard, widthHorizontalCard } = useResponsiveCardsContext()
 
   return (
     <Stack>
@@ -94,7 +93,8 @@ export const HeaderDetails = ({
             t={getTokens().size.$5.val / 3.4}
             fos="$5"
             fow="500"
-            col="$color12">
+            col="$color12"
+          >
             {mean}
           </Text>
           <ProgressCircle

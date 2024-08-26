@@ -23,8 +23,7 @@ export type HorizontalCardProps = {
 
 const HorizontalCard = ({ item }: HorizontalCardProps) => {
   const navigation = useNavigation<NavigationProps>()
-  const { heightHorizontalCard, widthHorizontalCard } =
-    useResponsiveCardsContext()
+  const { heightHorizontalCard, widthHorizontalCard } = useResponsiveCardsContext()
 
   const handleNavigate = () => {
     navigation.navigate('AnimeDetails', {
@@ -43,7 +42,8 @@ const HorizontalCard = ({ item }: HorizontalCardProps) => {
         br="$2"
         pr="$2"
         elevation={2}
-        bg="$color1">
+        bg="$color1"
+      >
         <Card.Background br="$2">
           <ZStack>
             <Image

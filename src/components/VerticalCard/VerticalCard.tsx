@@ -30,7 +30,7 @@ const VerticalCard = ({ item, pushNavigation = false }: VerticalCardProps) => {
   const { widthVerticalCard, heightVerticalCard } = useResponsiveCardsContext()
   const navigationType = useMemo(
     () => (pushNavigation ? navigation.push : navigation.navigate),
-    [pushNavigation, navigation],
+    [pushNavigation, navigation]
   )
 
   const handleNavigate = () => {
@@ -44,12 +44,7 @@ const VerticalCard = ({ item, pushNavigation = false }: VerticalCardProps) => {
 
   return (
     <Pressable testID="card-button-vertical" onPress={handleNavigate}>
-      <Card
-        h={heightVerticalCard}
-        w={widthVerticalCard}
-        elevation={2}
-        br="$2"
-        bg="$color1">
+      <Card h={heightVerticalCard} w={widthVerticalCard} elevation={2} br="$2" bg="$color1">
         <ZStack f={1} ov="hidden">
           <Image
             style={{
@@ -67,23 +62,13 @@ const VerticalCard = ({ item, pushNavigation = false }: VerticalCardProps) => {
             sharedTransitionTag={item.customId}
           />
           {item?.rating && (
-            <Stack
-              h={getTokens().size['$1.5'].val}
-              pos="absolute"
-              l={0}
-              b={0}
-              r={0}
-              jc="center">
+            <Stack h={getTokens().size['$1.5'].val} pos="absolute" l={0} b={0} r={0} jc="center">
               <Stack h={getTokens().size['$1.5'].val} bg="$color1" o={0.7} />
               <XStack pos="absolute" r={2.5} ai="center" gap="$2">
                 <Text fow="$6" fos="$4" col="$color12" t={1}>
                   {item.rating}
                 </Text>
-                <Star
-                  size="$icon.sm"
-                  col="$yellow10"
-                  fill={theme.yellow6.val}
-                />
+                <Star size="$icon.sm" col="$yellow10" fill={theme.yellow6.val} />
               </XStack>
             </Stack>
           )}

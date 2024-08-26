@@ -5,15 +5,7 @@ import { Pressable } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 import { NativeStackNavigationProp } from '@react-navigation/native-stack'
 
-import {
-  Circle,
-  getTokens,
-  ScrollView,
-  Stack,
-  useTheme,
-  XStack,
-  YStack,
-} from 'tamagui'
+import { Circle, getTokens, ScrollView, Stack, useTheme, XStack, YStack } from 'tamagui'
 import { Play } from '@tamagui/lucide-icons'
 
 import { Image, Text } from '@/components'
@@ -35,7 +27,7 @@ export const Videos = ({ videos }: Props) => {
     (pressedVideo: VideosType) => {
       navigation.navigate('Videos', { videos, pressedVideo })
     },
-    [navigation, videos],
+    [navigation, videos]
   )
 
   return (
@@ -48,14 +40,16 @@ export const Videos = ({ videos }: Props) => {
             fg: 1,
             pt: getTokens().space.$4.val,
           }}
-          showsHorizontalScrollIndicator={false}>
+          showsHorizontalScrollIndicator={false}
+        >
           <XStack gap="$2">
             {videos?.map((video) => (
               <Pressable
                 testID="youtube-card"
                 key={video.id}
                 style={{ justifyContent: 'center', alignItems: 'center' }}
-                onPress={() => handlePressVideo(video)}>
+                onPress={() => handlePressVideo(video)}
+              >
                 <Image
                   source={video.thumbnail}
                   style={{

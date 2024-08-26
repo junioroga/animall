@@ -41,9 +41,7 @@ export const BottomTab = () => {
       backBehavior="initialRoute"
       screenListeners={() => ({
         tabPress: () =>
-          Platform.OS === 'ios' || Platform.OS === 'android'
-            ? selectionAsync()
-            : null,
+          Platform.OS === 'ios' || Platform.OS === 'android' ? selectionAsync() : null,
       })}
       screenOptions={{
         headerShown: false,
@@ -74,7 +72,8 @@ export const BottomTab = () => {
         tabBarActiveTintColor: theme.blue10.val,
         tabBarInactiveTintColor: theme.gray11.val,
         tabBarHideOnKeyboard: true,
-      }}>
+      }}
+    >
       <Tab.Screen
         name="Home"
         component={HomeNavigator}
@@ -87,9 +86,7 @@ export const BottomTab = () => {
               fill={focused ? theme.blue6.val : theme.background.val}
             />
           ),
-          tabBarLabel: ({ color }) => (
-            <TabLabel label={t('bottom-tabs.home')} color={color} />
-          ),
+          tabBarLabel: ({ color }) => <TabLabel label={t('bottom-tabs.home')} color={color} />,
         }}
       />
       <Tab.Screen
@@ -104,9 +101,7 @@ export const BottomTab = () => {
               fill={focused ? theme.blue6.val : theme.background.val}
             />
           ),
-          tabBarLabel: ({ color }) => (
-            <TabLabel label={t('bottom-tabs.discover')} color={color} />
-          ),
+          tabBarLabel: ({ color }) => <TabLabel label={t('bottom-tabs.discover')} color={color} />,
         }}
       />
       <Tab.Screen
@@ -121,9 +116,7 @@ export const BottomTab = () => {
               fill={focused ? theme.blue6.val : theme.background.val}
             />
           ),
-          tabBarLabel: ({ color }) => (
-            <TabLabel label={t('bottom-tabs.settings')} color={color} />
-          ),
+          tabBarLabel: ({ color }) => <TabLabel label={t('bottom-tabs.settings')} color={color} />,
         }}
       />
     </Tab.Navigator>

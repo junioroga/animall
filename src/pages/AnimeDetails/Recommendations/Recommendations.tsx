@@ -26,20 +26,15 @@ export const Recommendations = ({ recommendations }: Props) => {
           py: getTokens().space.$3.val,
           px: getTokens().space.$4.val,
         }}
-        showsHorizontalScrollIndicator={false}>
+        showsHorizontalScrollIndicator={false}
+      >
         <XStack gap="$2">
           {recommendations.map((anime) => {
             const animeRanking = {
               ...anime.node,
             } as unknown as AnimeRankingPrepared
 
-            return (
-              <VerticalCard
-                key={anime.node.id}
-                item={animeRanking}
-                pushNavigation
-              />
-            )
+            return <VerticalCard key={anime.node.id} item={animeRanking} pushNavigation />
           })}
         </XStack>
       </ScrollView>

@@ -69,8 +69,7 @@ export function getError(error: Error) {
       errorType = API_ERROR_TYPE_FORBIDDEN
 
       if (!errorMessage) {
-        errorMessage =
-          'Ocorreu um erro de autorização, por favor tente novamente.'
+        errorMessage = 'Ocorreu um erro de autorização, por favor tente novamente.'
       }
     } else if (data.error === API_ERROR_TYPE_NOT_FOUND) {
       // 404 with message
@@ -123,5 +122,5 @@ api.interceptors.response.use(
 
     errorReturn.toString = () => errorReturn.error_message
     return Promise.reject(errorReturn)
-  },
+  }
 )

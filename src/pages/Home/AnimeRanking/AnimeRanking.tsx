@@ -6,12 +6,7 @@ import { observer } from '@legendapp/state/react'
 
 import { getTokens, Separator, useMedia, useTheme } from 'tamagui'
 
-import {
-  EmptyState,
-  EmptyStateTypes,
-  HorizontalCard,
-  VerticalCard,
-} from '@/components'
+import { EmptyState, EmptyStateTypes, HorizontalCard, VerticalCard } from '@/components'
 import { QueryKeysRanking, useAnimeRanking } from '@/hooks'
 import { CardType, RankingType } from '@/services/types'
 
@@ -28,10 +23,7 @@ type Props = {
 
 export const AnimeRanking = observer(({ rankingType, cardType }: Props) => {
   const { isHandsetOrTablet } = useMedia()
-  const limit = useMemo(
-    () => (isHandsetOrTablet ? 10 : 20),
-    [isHandsetOrTablet],
-  )
+  const limit = useMemo(() => (isHandsetOrTablet ? 10 : 20), [isHandsetOrTablet])
   const { isLoading, data } = useAnimeRanking({
     queryKey: QueryKeysRanking.RANKING_HOME,
     rankingType,
@@ -39,11 +31,8 @@ export const AnimeRanking = observer(({ rankingType, cardType }: Props) => {
   })
   const { widthHorizontalCard, widthVerticalCard } = useResponsiveCardsContext()
   const itemWidth = useMemo(
-    () =>
-      cardType === CardType.HORIZONTAL
-        ? widthVerticalCard
-        : widthHorizontalCard,
-    [cardType, widthVerticalCard, widthHorizontalCard],
+    () => (cardType === CardType.HORIZONTAL ? widthVerticalCard : widthHorizontalCard),
+    [cardType, widthVerticalCard, widthHorizontalCard]
   )
 
   const { t } = useTranslation()
@@ -56,7 +45,7 @@ export const AnimeRanking = observer(({ rankingType, cardType }: Props) => {
       ) : (
         <VerticalCard item={item} />
       ),
-    [cardType],
+    [cardType]
   )
 
   const renderSeparator = useCallback(() => <Separator mx="$1.5" />, [])
@@ -70,23 +59,17 @@ export const AnimeRanking = observer(({ rankingType, cardType }: Props) => {
           <SkeletonVertical />
         )
       ) : (
-        <EmptyState
-          type={EmptyStateTypes.ERROR}
-          message={t('anime.notFound')}
-        />
+        <EmptyState type={EmptyStateTypes.ERROR} message={t('anime.notFound')} />
       ),
-    [isLoading, t, cardType],
+    [isLoading, t, cardType]
   )
 
   const keyExtractor = useCallback(
     (item: AnimeRankingPrepared, index: number) => `${String(item.id)}${index}`,
-    [],
+    []
   )
 
-  const formattedData = useMemo(
-    () => (data?.pages ? preparedData(data.pages) : []),
-    [data],
-  )
+  const formattedData = useMemo(() => (data?.pages ? preparedData(data.pages) : []), [data])
 
   const getItemLayout = useCallback(
     (_: any, index: number) => ({
@@ -94,7 +77,7 @@ export const AnimeRanking = observer(({ rankingType, cardType }: Props) => {
       offset: itemWidth * index,
       index,
     }),
-    [itemWidth],
+    [itemWidth]
   )
 
   return (

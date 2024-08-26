@@ -39,7 +39,7 @@ const customRender = (ui: ReactElement, options?: Options) =>
 
 const customRenderHook = <Result, Props>(
   renderCallback: (props: Props) => Result,
-  options?: RenderHookOptions<Props>,
+  options?: RenderHookOptions<Props>
 ): RenderHookResult<Result, Props> =>
   renderHook(renderCallback, { wrapper: AllTheProviders, ...options })
 
