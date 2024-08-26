@@ -100,10 +100,12 @@ export const Videos = observer(({ route }: Props) => {
                 onPress={() => handlePressVideo(video)}
               >
                 <Image
+                  contentFit="contain"
                   source={video.thumbnail}
                   style={{
                     borderRadius: getTokens().size['$0.5'].val,
-                    height: getTokens().size.$14.val,
+                    height: getTokens().size.$10.val,
+                    width: getTokens().size.$14.val,
                   }}
                 />
                 <Stack pos="absolute" ai="center" jc="center">
