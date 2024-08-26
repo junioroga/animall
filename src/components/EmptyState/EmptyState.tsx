@@ -21,13 +21,7 @@ export type EmptyStateProps = {
   onPress?: <T>(value: T) => void
 }
 
-export const EmptyState = ({
-  type,
-  alert,
-  message,
-  action,
-  onPress,
-}: EmptyStateProps) => {
+export const EmptyState = ({ type, alert, message, action, onPress }: EmptyStateProps) => {
   const { height } = useWindowDimensions()
 
   const defineType = useMemo(
@@ -45,7 +39,7 @@ export const EmptyState = ({
         style: { height: height / 5, width: height / 5 },
       },
     }),
-    [height],
+    [height]
   )
 
   return (

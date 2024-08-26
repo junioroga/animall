@@ -33,22 +33,15 @@ export const HomeNavigator = () => {
       screenOptions={{
         headerShown: false,
         fullScreenGestureEnabled: true,
-      }}>
-      <Stack.Screen
-        name="HomePage"
-        component={Home}
-        options={{ title: t('web.routes.home') }}
-      />
+      }}
+    >
+      <Stack.Screen name="HomePage" component={Home} options={{ title: t('web.routes.home') }} />
       <Stack.Screen
         name="AnimeDetails"
         component={AnimeDetails}
         options={{ title: t('web.routes.details') }}
       />
-      <Stack.Screen
-        name="Videos"
-        component={Videos}
-        options={{ title: t('web.routes.videos') }}
-      />
+      <Stack.Screen name="Videos" component={Videos} options={{ title: t('web.routes.videos') }} />
       <Stack.Screen
         name="ListRanking"
         component={ListRanking}

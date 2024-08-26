@@ -27,25 +27,18 @@ export const ListRanking = observer(({ route }: Props) => {
   const [sheetOpen, setSheetOpen] = useLegendState(false)
   const [rankingSelected, setRankingSelected] = useLegendState(rankingType)
   const { height } = useWindowDimensions()
-  const { heightVerticalCard, numberVerticalColumns } =
-    useResponsiveCardsContext()
+  const { heightVerticalCard, numberVerticalColumns } = useResponsiveCardsContext()
   const limit = useMemo(
     () => Math.round((height / heightVerticalCard) * numberVerticalColumns),
-    [height, heightVerticalCard, numberVerticalColumns],
+    [height, heightVerticalCard, numberVerticalColumns]
   )
 
-  const {
-    refetch,
-    isFetching,
-    isFetchingNextPage,
-    hasNextPage,
-    fetchNextPage,
-    data,
-  } = useAnimeRanking({
-    queryKey: QueryKeysRanking.RANKING_LIST,
-    rankingType: rankingSelected,
-    limit,
-  })
+  const { refetch, isFetching, isFetchingNextPage, hasNextPage, fetchNextPage, data } =
+    useAnimeRanking({
+      queryKey: QueryKeysRanking.RANKING_LIST,
+      rankingType: rankingSelected,
+      limit,
+    })
 
   const refetchQuery = () => {
     queryClient.removeQueries({ queryKey: [QueryKeysRanking.RANKING_LIST] })

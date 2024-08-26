@@ -17,9 +17,7 @@ jest.mock('@tanstack/react-query', () => {
 
 describe('useAnimeList', () => {
   it('when enabled is false, don`t call the api', () => {
-    const { result } = renderHook(() =>
-      useAnimeList({ search: '', enabled: false }),
-    )
+    const { result } = renderHook(() => useAnimeList({ search: '', enabled: false }))
 
     expect(result.current.data).toEqual([])
     expect(result.current.isFetching).toBeFalsy()
@@ -31,9 +29,7 @@ describe('useAnimeList', () => {
       data: useAnimeListMock,
     })
 
-    const { result } = renderHook(() =>
-      useAnimeList({ search: 'Hunter', enabled: true }),
-    )
+    const { result } = renderHook(() => useAnimeList({ search: 'Hunter', enabled: true }))
     expect(result.current.data).toEqual(useAnimeListMock)
     expect(result.current.isFetching).toBeFalsy()
   })

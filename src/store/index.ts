@@ -8,9 +8,7 @@ import { ObservablePersistAsyncStorage } from './observablePersist'
 import { settings } from './observers'
 
 const pluginLocal: any =
-  Platform.OS === 'web'
-    ? ObservablePersistLocalStorage
-    : ObservablePersistAsyncStorage
+  Platform.OS === 'web' ? ObservablePersistLocalStorage : ObservablePersistAsyncStorage
 
 export const Store = observable({ settings })
 

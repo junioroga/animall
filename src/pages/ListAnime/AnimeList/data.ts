@@ -15,9 +15,7 @@ export interface AnimeDataPrepared extends AnimeData {
 
 export const preparedData = (data: AnimeData[]): AnimeDataPrepared[] =>
   map(data, (item) => {
-    const startAt = item.start_date
-      ? format(new Date(item.start_date), 'dd/MM/yyyy')
-      : ''
+    const startAt = item.start_date ? format(new Date(item.start_date), 'dd/MM/yyyy') : ''
     const endAt = item.end_date
       ? format(new Date(item.end_date), 'dd/MM/yyyy')
       : t('anime.producing')

@@ -19,7 +19,8 @@ export const SettingsNavigator = () => {
       screenOptions={{
         headerShown: false,
         fullScreenGestureEnabled: true,
-      }}>
+      }}
+    >
       <Stack.Screen
         name="SettingsPage"
         component={Settings}

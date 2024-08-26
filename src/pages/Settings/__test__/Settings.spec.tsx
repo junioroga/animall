@@ -52,10 +52,7 @@ describe('Settings', () => {
     act(() => {
       fireEvent(switchComponent, 'onCheckedChange')
     })
-    expect(switchComponent.props.accessibilityState).toHaveProperty(
-      'checked',
-      false,
-    )
+    expect(switchComponent.props.accessibilityState).toHaveProperty('checked', false)
   })
 
   it('press switch to change language to pt-BR', () => {
@@ -66,10 +63,7 @@ describe('Settings', () => {
       fireEvent(switchComponent, 'onCheckedChange')
     })
 
-    expect(switchComponent.props.accessibilityState).toHaveProperty(
-      'checked',
-      true,
-    )
+    expect(switchComponent.props.accessibilityState).toHaveProperty('checked', true)
   })
 
   it('press switch to change theme to light', () => {
@@ -80,10 +74,7 @@ describe('Settings', () => {
     act(() => {
       fireEvent(switchComponent, 'onCheckedChange')
     })
-    expect(switchComponent.props.accessibilityState).toHaveProperty(
-      'checked',
-      false,
-    )
+    expect(switchComponent.props.accessibilityState).toHaveProperty('checked', false)
   })
 
   it('press switch to change language to en-US', () => {
@@ -94,9 +85,6 @@ describe('Settings', () => {
     act(() => {
       fireEvent(switchComponent, 'onCheckedChange')
     })
-    expect(switchComponent.props.accessibilityState).toHaveProperty(
-      'checked',
-      false,
-    )
+    expect(switchComponent.props.accessibilityState).toHaveProperty('checked', false)
   })
 })

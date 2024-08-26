@@ -12,12 +12,7 @@ type Props = {
   setSelected: (value: RankingType) => void
 }
 
-export const FiltersSheet = ({
-  open,
-  setOpen,
-  selected,
-  setSelected,
-}: Props) => {
+export const FiltersSheet = ({ open, setOpen, selected, setSelected }: Props) => {
   const { t } = useTranslation()
   const rankings = useMemo(() => Object.values(RankingType), [])
   const rankingTypes = useMemo(
@@ -31,7 +26,7 @@ export const FiltersSheet = ({
       [RankingType.UPCOMING]: t('rankingTypes.upcoming'),
       [RankingType.SPECIAL]: t('rankingTypes.special'),
     }),
-    [t],
+    [t]
   )
 
   const handleSelectRanking = (ranking: RankingType) => {
@@ -40,12 +35,7 @@ export const FiltersSheet = ({
   }
 
   return (
-    <Sheet
-      open={open}
-      snapPointsMode="fit"
-      modal
-      dismissOnSnapToBottom
-      onOpenChange={setOpen}>
+    <Sheet open={open} snapPointsMode="fit" modal dismissOnSnapToBottom onOpenChange={setOpen}>
       <Sheet.Overlay />
       <Sheet.Handle h="$0.5" w="$4" als="center" />
       <Sheet.Frame>
@@ -58,12 +48,14 @@ export const FiltersSheet = ({
                 size="$2"
                 bg={selected === ranking ? '$blue10' : '$blue5Light'}
                 br="$10"
-                onPress={() => handleSelectRanking(ranking)}>
+                onPress={() => handleSelectRanking(ranking)}
+              >
                 <Button.Text
                   size="$2"
                   fow="$5"
                   p="$1"
-                  col={selected === ranking ? '$blue5Light' : '$blue10'}>
+                  col={selected === ranking ? '$blue5Light' : '$blue10'}
+                >
                   {rankingTypes[ranking]}
                 </Button.Text>
               </Button>

@@ -16,12 +16,7 @@ type Props = {
 
 const missingText = '-'
 
-export const AnimeNumbers = ({
-  ranking,
-  favorites,
-  members,
-  popularity,
-}: Props) => {
+export const AnimeNumbers = ({ ranking, favorites, members, popularity }: Props) => {
   const { t } = useTranslation()
   const theme = useTheme()
 
@@ -36,13 +31,10 @@ export const AnimeNumbers = ({
         o: 0,
       }}
       o={1}
-      y={0}>
+      y={0}
+    >
       <YStack ai="center" gap="$1.5">
-        <BarChart2
-          size="$icon.sm"
-          strokeWidth={3}
-          col={ranking ? '$blue10' : '$blue6'}
-        />
+        <BarChart2 size="$icon.sm" strokeWidth={3} col={ranking ? '$blue10' : '$blue6'} />
         <Text fow="$6" mt="$2">
           {ranking ? `#${formatString(ranking)}` : missingText}
         </Text>

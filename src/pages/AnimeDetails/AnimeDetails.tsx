@@ -41,7 +41,7 @@ export const AnimeDetails = ({ route }: Props) => {
 
   const formattedData = useMemo(
     () => (data ? preparedData(data) : {}),
-    [data],
+    [data]
   ) as unknown as AnimeDetailsPrepared
 
   const onShareAnime = useCallback(async () => {
@@ -67,7 +67,8 @@ export const AnimeDetails = ({ route }: Props) => {
       }}
       showsVerticalScrollIndicator={false}
       stickyHeaderIndices={[0]}
-      stickyHeaderHiddenOnScroll>
+      stickyHeaderHiddenOnScroll
+    >
       <Header
         right={
           Platform.OS !== 'web' && (
@@ -129,17 +130,13 @@ export const AnimeDetails = ({ route }: Props) => {
             {formattedData?.statistics && !!formattedData?.statistics && (
               <Chart statistics={formattedData?.statistics} />
             )}
-            {formattedData?.related_anime &&
-              !!formattedData?.related_anime.length && (
-                <RelatedAnime relatedAnime={formattedData.related_anime} />
-              )}
-          </YStack>
-          {formattedData?.recommendations &&
-            !!formattedData?.recommendations.length && (
-              <Recommendations
-                recommendations={formattedData.recommendations}
-              />
+            {formattedData?.related_anime && !!formattedData?.related_anime.length && (
+              <RelatedAnime relatedAnime={formattedData.related_anime} />
             )}
+          </YStack>
+          {formattedData?.recommendations && !!formattedData?.recommendations.length && (
+            <Recommendations recommendations={formattedData.recommendations} />
+          )}
         </YStack>
       )}
     </ScrollView>

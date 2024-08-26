@@ -39,7 +39,7 @@
       "thursday": "Thursday",
       "friday": "Friday",
       "saturday": "Saturday",
-      "sunday": "Sunday" 
+      "sunday": "Sunday"
     },
     "rankingTypes": {
       "all": "All",
@@ -49,7 +49,7 @@
       "ova": "OVA",
       "movie": "Movie",
       "special": "Special",
-      "bypopularity": "Popular" 
+      "bypopularity": "Popular"
     },
     "anime": {
       "producing": "Producing",

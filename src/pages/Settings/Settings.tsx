@@ -41,20 +41,18 @@ export const Settings = observer(() => {
       px="$4"
       pb="$12"
       bg="$background"
-      showsVerticalScrollIndicator={false}>
+      showsVerticalScrollIndicator={false}
+    >
       <Stack gap="$4">
         <XStack jc="space-between" ai="center">
           <Text fow="$6">{t('settings.theme')}</Text>
           <Switch
             checked={isCheckedTheme}
             onCheckedChange={onCheckedThemeChange}
-            testID="switch-theme">
+            testID="switch-theme"
+          >
             <Switch.Thumb>
-              {isCheckedTheme ? (
-                <Moon size="$1" col="$blue10" />
-              ) : (
-                <Sun size="$1" col="$yellow8" />
-              )}
+              {isCheckedTheme ? <Moon size="$1" col="$blue10" /> : <Sun size="$1" col="$yellow8" />}
             </Switch.Thumb>
           </Switch>
         </XStack>
@@ -64,7 +62,8 @@ export const Settings = observer(() => {
           <Switch
             checked={isCheckedLanguage}
             onCheckedChange={onCheckedLanguageChange}
-            testID="switch-language">
+            testID="switch-language"
+          >
             <Switch.Thumb ai="center" jc="center">
               {isCheckedLanguage ? (
                 <Brazil height={10} width={15} />

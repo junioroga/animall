@@ -25,11 +25,10 @@ export const preparedData = (data: AnimeData): AnimeDetailsPrepared => {
     [DaysOfWeek.SUNDAY]: t('daysOfWeek.sunday'),
   }
   const language = Store.settings.lang.get()
-  const releaseDay =
-    daysOfWeek[(data?.broadcast?.day_of_the_week || '') as DaysOfWeek]
+  const releaseDay = daysOfWeek[(data?.broadcast?.day_of_the_week || '') as DaysOfWeek]
   const releaseHour = format(
     parse(data?.broadcast?.start_time || '00:00', 'HH:mm', new Date()),
-    language === 'pt-BR' ? 'HH:mm' : 'hh:mm a',
+    language === 'pt-BR' ? 'HH:mm' : 'hh:mm a'
   )
   const customTitle = data.title || data?.alternative_titles?.en || ''
 

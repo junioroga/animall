@@ -39,16 +39,13 @@ export const preparedData = (data: AnimeRanking[]): AnimeRankingPrepared[] =>
           })
         : t('anime.noReleaseDate')
 
-    const genresFormatted = item?.genres
-      ? map(item?.genres, 'name').join(', ')
-      : ''
+    const genresFormatted = item?.genres ? map(item?.genres, 'name').join(', ') : ''
 
-    const releaseDay =
-      daysOfWeek[(item?.broadcast?.day_of_the_week || '') as DaysOfWeek]
+    const releaseDay = daysOfWeek[(item?.broadcast?.day_of_the_week || '') as DaysOfWeek]
 
     const releaseHour = format(
       parse(item?.broadcast?.start_time || '00:00', 'HH:mm', new Date()),
-      'HH:mm',
+      'HH:mm'
     )
 
     const customTitle = item.title || item?.alternative_titles?.en || ''

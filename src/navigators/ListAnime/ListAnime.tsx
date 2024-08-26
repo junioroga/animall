@@ -29,7 +29,8 @@ export const ListAnimeNavigator = () => {
       screenOptions={{
         headerShown: false,
         fullScreenGestureEnabled: true,
-      }}>
+      }}
+    >
       <Stack.Screen
         name="ListAnimePage"
         component={ListAnime}
@@ -40,11 +41,7 @@ export const ListAnimeNavigator = () => {
         component={AnimeDetails}
         options={{ title: t('web.routes.details') }}
       />
-      <Stack.Screen
-        name="Videos"
-        component={Videos}
-        options={{ title: t('web.routes.videos') }}
-      />
+      <Stack.Screen name="Videos" component={Videos} options={{ title: t('web.routes.videos') }} />
     </Stack.Navigator>
   )
 }

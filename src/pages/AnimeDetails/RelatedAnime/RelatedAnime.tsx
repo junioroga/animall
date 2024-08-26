@@ -33,7 +33,7 @@ export const RelatedAnime = ({ relatedAnime }: Props) => {
         customId: uniqueId(),
       })
     },
-    [navigation],
+    [navigation]
   )
 
   return (
@@ -51,19 +51,16 @@ export const RelatedAnime = ({ relatedAnime }: Props) => {
               size="$2"
               mt="$2"
               onPress={() =>
-                handleRelatedItem(
-                  anime.node.id,
-                  anime.node.title,
-                  anime.node.main_picture.medium,
-                )
+                handleRelatedItem(anime.node.id, anime.node.title, anime.node.main_picture.medium)
               }
-              als="flex-start">
+              als="flex-start"
+            >
               <Text numberOfLines={1} col="$blue10">
                 {anime.node.title}
               </Text>
             </Button>
           </YStack>
-        )),
+        ))
       )}
     </YStack>
   )

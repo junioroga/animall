@@ -4,14 +4,7 @@ import { useTranslation } from 'react-i18next'
 import { Text as TextSVG } from 'react-native-svg'
 import { AccessorFunction, BarChart, YAxis } from 'react-native-svg-charts'
 
-import {
-  getFontSize,
-  getTokens,
-  useMedia,
-  useTheme,
-  XStack,
-  YStack,
-} from 'tamagui'
+import { getFontSize, getTokens, useMedia, useTheme, XStack, YStack } from 'tamagui'
 
 import { Text } from '@/components'
 import { Statistics } from '@/hooks/useAnimeList/types'
@@ -38,16 +31,14 @@ export const Chart = ({ statistics }: Props) => {
       [StatisticsTypes.COMPLETED]: t('anime.details.statistics.completed'),
       [StatisticsTypes.DROPPED]: t('anime.details.statistics.dropped'),
       [StatisticsTypes.ON_HOLD]: t('anime.details.statistics.onHold'),
-      [StatisticsTypes.PLAN_TO_WATCH]: t(
-        'anime.details.statistics.planToWatch',
-      ),
+      [StatisticsTypes.PLAN_TO_WATCH]: t('anime.details.statistics.planToWatch'),
       [StatisticsTypes.WATCHING]: t('anime.details.statistics.watching'),
     }),
-    [t],
+    [t]
   )
   const dataValues = useMemo(
     () => Object.values(statistics.status).map((values) => Number(values)),
-    [statistics],
+    [statistics]
   )
   const data = useMemo(
     () =>
@@ -55,7 +46,7 @@ export const Chart = ({ statistics }: Props) => {
         label: labels[values[0] as StatisticsTypes],
         value: values[1],
       })),
-    [statistics, labels],
+    [statistics, labels]
   )
   const CUT_OFF = useMemo(() => Math.max(...dataValues), [dataValues])
 
@@ -63,17 +54,14 @@ export const Chart = ({ statistics }: Props) => {
     data.map((status: any, index: any) => (
       <TextSVG
         key={index}
-        x={
-          status >= CUT_OFF
-            ? x((status * (isDesktop ? 0.9 : 0.75)) as any)
-            : x(status) + 4
-        }
+        x={status >= CUT_OFF ? x((status * (isDesktop ? 0.9 : 0.75)) as any) : x(status) + 4}
         y={y(index) + bandwidth / 1.8}
         fontSize={getFontSize('$1')}
         fontWeight="400"
         fontFamily="Poppins_500Medium"
         fill={status >= CUT_OFF ? theme.color1.val : theme.color12.val}
-        alignmentBaseline="middle">
+        alignmentBaseline="middle"
+      >
         {formatString(status)}
       </TextSVG>
     ))
@@ -104,7 +92,8 @@ export const Chart = ({ statistics }: Props) => {
           contentInset={{ top: 0, bottom: 0 }}
           spacingInner={0.1}
           spacingOuter={0.2}
-          svg={{ fill: theme.blue10.val }}>
+          svg={{ fill: theme.blue10.val }}
+        >
           <Labels x={() => null} y={() => null} bandwidth={0} data={[]} />
         </BarChart>
       </XStack>

@@ -16,24 +16,17 @@ import { useResponsiveCardsContext } from '@/context/ResponsiveCards'
 
 export const ListAnime = observer(() => {
   const { height } = useWindowDimensions()
-  const { heightVerticalCard, numberVerticalColumns } =
-    useResponsiveCardsContext()
+  const { heightVerticalCard, numberVerticalColumns } = useResponsiveCardsContext()
   const queryClient = useQueryClient()
   const [refreshingManual, setRefreshingManual] = useLegendState(false)
   const [search, setSearch] = useLegendState('')
   const limit = useMemo(
     () => Math.round((height / heightVerticalCard) * numberVerticalColumns),
-    [height, heightVerticalCard, numberVerticalColumns],
+    [height, heightVerticalCard, numberVerticalColumns]
   )
 
-  const {
-    refetch,
-    isFetching,
-    isFetchingNextPage,
-    hasNextPage,
-    fetchNextPage,
-    data,
-  } = useAnimeList({ limit, search })
+  const { refetch, isFetching, isFetchingNextPage, hasNextPage, fetchNextPage, data } =
+    useAnimeList({ limit, search })
 
   const refetchQuery = () => {
     queryClient.removeQueries({ queryKey: ['anime-list'] })

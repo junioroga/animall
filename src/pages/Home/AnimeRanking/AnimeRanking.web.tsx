@@ -6,12 +6,7 @@ import { observer } from '@legendapp/state/react'
 
 import { getTokens, Separator, useMedia, useTheme } from 'tamagui'
 
-import {
-  EmptyState,
-  EmptyStateTypes,
-  HorizontalCard,
-  VerticalCard,
-} from '@/components'
+import { EmptyState, EmptyStateTypes, HorizontalCard, VerticalCard } from '@/components'
 import { QueryKeysRanking, useAnimeRanking } from '@/hooks'
 import { useLegendState } from '@/hooks/useLegendState'
 import { CardType, RankingType } from '@/services/types'
@@ -33,10 +28,7 @@ export const AnimeRanking = observer(({ rankingType, cardType }: Props) => {
   const [showScrollButtons, setShowScrollButtons] = useLegendState(false)
   const [scrollOffset, setScrollOffset] = useLegendState(0)
   const flatListRef = useRef<FlatList>(null)
-  const limit = useMemo(
-    () => (isHandsetOrTablet ? 10 : 20),
-    [isHandsetOrTablet],
-  )
+  const limit = useMemo(() => (isHandsetOrTablet ? 10 : 20), [isHandsetOrTablet])
   const { isLoading, data } = useAnimeRanking({
     queryKey: QueryKeysRanking.RANKING_HOME,
     rankingType,
@@ -46,11 +38,8 @@ export const AnimeRanking = observer(({ rankingType, cardType }: Props) => {
   const { t } = useTranslation()
   const theme = useTheme()
   const itemWidth = useMemo(
-    () =>
-      cardType === CardType.HORIZONTAL
-        ? widthVerticalCard
-        : widthHorizontalCard,
-    [cardType, widthVerticalCard, widthHorizontalCard],
+    () => (cardType === CardType.HORIZONTAL ? widthVerticalCard : widthHorizontalCard),
+    [cardType, widthVerticalCard, widthHorizontalCard]
   )
 
   const renderItem: ListRenderItem<AnimeRankingPrepared> = useCallback(
@@ -60,7 +49,7 @@ export const AnimeRanking = observer(({ rankingType, cardType }: Props) => {
       ) : (
         <VerticalCard item={item} />
       ),
-    [cardType],
+    [cardType]
   )
 
   const renderSeparator = useCallback(() => <Separator mx="$1.5" />, [])
@@ -74,17 +63,14 @@ export const AnimeRanking = observer(({ rankingType, cardType }: Props) => {
           <SkeletonVertical />
         )
       ) : (
-        <EmptyState
-          type={EmptyStateTypes.ERROR}
-          message={t('anime.notFound')}
-        />
+        <EmptyState type={EmptyStateTypes.ERROR} message={t('anime.notFound')} />
       ),
-    [isLoading, t, cardType],
+    [isLoading, t, cardType]
   )
 
   const keyExtractor = useCallback(
     (item: AnimeRankingPrepared, index: number) => `${String(item.id)}${index}`,
-    [],
+    []
   )
 
   const getItemLayout = useCallback(
@@ -93,27 +79,22 @@ export const AnimeRanking = observer(({ rankingType, cardType }: Props) => {
       offset: itemWidth * index,
       index,
     }),
-    [itemWidth],
+    [itemWidth]
   )
 
-  const formattedData = useMemo(
-    () => (data?.pages ? preparedData(data.pages) : []),
-    [data],
-  )
+  const formattedData = useMemo(() => (data?.pages ? preparedData(data.pages) : []), [data])
 
   const handlePressLeft = useCallback(() => {
     flatListRef.current?.scrollToOffset({
       animated: true,
-      offset:
-        scrollOffset - itemWidth * (cardType === CardType.HORIZONTAL ? 8 : 2),
+      offset: scrollOffset - itemWidth * (cardType === CardType.HORIZONTAL ? 8 : 2),
     })
   }, [scrollOffset, itemWidth, cardType])
 
   const handlePressRight = useCallback(() => {
     flatListRef.current?.scrollToOffset({
       animated: true,
-      offset:
-        scrollOffset + itemWidth * (cardType === CardType.HORIZONTAL ? 8 : 2),
+      offset: scrollOffset + itemWidth * (cardType === CardType.HORIZONTAL ? 8 : 2),
     })
   }, [cardType, scrollOffset, itemWidth])
 
@@ -144,9 +125,7 @@ export const AnimeRanking = observer(({ rankingType, cardType }: Props) => {
         initialNumToRender={limit}
         onPointerEnter={() => setShowScrollButtons(true)}
         onPointerLeave={() => setShowScrollButtons(false)}
-        onScroll={({ nativeEvent }) =>
-          setScrollOffset(nativeEvent.contentOffset.x)
-        }
+        onScroll={({ nativeEvent }) => setScrollOffset(nativeEvent.contentOffset.x)}
       />
     </>
   )

@@ -1,10 +1,6 @@
 import { animeService } from '@/services'
 import { Fields, RankingType } from '@/services/types'
-import {
-  animeDetailsMock,
-  animeListMock,
-  animeListRankingMock,
-} from '~/test/mocks/animeListMock'
+import { animeDetailsMock, animeListMock, animeListRankingMock } from '~/test/mocks/animeListMock'
 
 describe('animeService', () => {
   describe('getAll', () => {
@@ -54,16 +50,16 @@ describe('animeService', () => {
       })
 
       expect(animeRankingList.data[0].ranking.rank).toEqual(
-        animeListRankingMock.data[0].ranking.rank,
+        animeListRankingMock.data[0].ranking.rank
       )
       expect(animeRankingList.data[1].ranking.rank).toEqual(
-        animeListRankingMock.data[1].ranking.rank,
+        animeListRankingMock.data[1].ranking.rank
       )
       expect(animeRankingList.data[2].ranking.rank).toEqual(
-        animeListRankingMock.data[2].ranking.rank,
+        animeListRankingMock.data[2].ranking.rank
       )
       expect(animeRankingList.data[3].ranking.rank).toEqual(
-        animeListRankingMock.data[3].ranking.rank,
+        animeListRankingMock.data[3].ranking.rank
       )
     })
 

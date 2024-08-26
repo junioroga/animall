@@ -24,7 +24,7 @@ describe('useAnimeRanking', () => {
         rankingType: RankingType.AIRING,
         limit: 4,
         enabled: false,
-      }),
+      })
     )
 
     expect(result.current.data).toEqual([])
@@ -42,7 +42,7 @@ describe('useAnimeRanking', () => {
         queryKey: QueryKeysRanking.RANKING_LIST,
         rankingType: RankingType.AIRING,
         limit: 4,
-      }),
+      })
     )
     expect(result.current.data).toEqual(useAnimeRankingMock)
     expect(result.current.isFetching).toBeFalsy()

@@ -8,12 +8,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context'
 
 import { getTokens, Separator, Stack, YStack } from 'tamagui'
 
-import {
-  EmptyState,
-  EmptyStateTypes,
-  Loading,
-  VerticalCard,
-} from '@/components'
+import { EmptyState, EmptyStateTypes, Loading, VerticalCard } from '@/components'
 import { AnimeData } from '@/hooks/useAnimeList/types'
 
 import { Skeleton } from '../Skeleton'
@@ -41,8 +36,7 @@ export const AnimeRanking = observer(
   }: Props) => {
     const { t } = useTranslation()
     const { bottom } = useSafeAreaInsets()
-    const { numberVerticalColumns, heightVerticalCard } =
-      useResponsiveCardsContext()
+    const { numberVerticalColumns, heightVerticalCard } = useResponsiveCardsContext()
 
     const renderItem: ListRenderItem<AnimeRankingPrepared> = useCallback(
       ({ item }) => (
@@ -50,7 +44,7 @@ export const AnimeRanking = observer(
           <VerticalCard item={item} />
         </Stack>
       ),
-      [],
+      []
     )
 
     const renderSeparator = useCallback(() => <Separator my="$2" />, [])
@@ -61,14 +55,11 @@ export const AnimeRanking = observer(
           {isLoading ? (
             <Skeleton />
           ) : (
-            <EmptyState
-              type={EmptyStateTypes.ERROR}
-              message={t('anime.notFound')}
-            />
+            <EmptyState type={EmptyStateTypes.ERROR} message={t('anime.notFound')} />
           )}
         </YStack>
       ),
-      [isLoading, t],
+      [isLoading, t]
     )
 
     const renderFooter = useCallback(() => {
@@ -84,15 +75,11 @@ export const AnimeRanking = observer(
     }, [isFetchingNextPage])
 
     const keyExtractor = useCallback(
-      (item: AnimeRankingPrepared, index: number) =>
-        `${String(item.id)}${index}`,
-      [],
+      (item: AnimeRankingPrepared, index: number) => `${String(item.id)}${index}`,
+      []
     )
 
-    const formattedData = useMemo(
-      () => (data ? preparedData(data) : []),
-      [data],
-    )
+    const formattedData = useMemo(() => (data ? preparedData(data) : []), [data])
 
     const onEndReached = useCallback(() => {
       if (hasNextPage) {
@@ -108,7 +95,7 @@ export const AnimeRanking = observer(
         offset: heightVerticalCard * index,
         index,
       }),
-      [heightVerticalCard],
+      [heightVerticalCard]
     )
 
     return (
@@ -135,5 +122,5 @@ export const AnimeRanking = observer(
         showsVerticalScrollIndicator={false}
       />
     )
-  },
+  }
 )

@@ -20,14 +20,7 @@ type TitleProps = {
 }
 
 const TitleSection = ({ title, onPress }: TitleProps) => (
-  <Button
-    my="$2"
-    fd="row"
-    ai="center"
-    jc="space-between"
-    ml="$4"
-    mr="$3"
-    onPress={onPress}>
+  <Button my="$2" fd="row" ai="center" jc="space-between" ml="$4" mr="$3" onPress={onPress}>
     <H6 fow="$6">{title}</H6>
     <Button unstyled>
       <ChevronRight size="$icon.sm" />
@@ -46,7 +39,8 @@ export const Home = ({ navigation }: NavigationProps) => {
         pb: getTokens().space.$9.val + bottom,
       }}
       bg="$background"
-      showsVerticalScrollIndicator={false}>
+      showsVerticalScrollIndicator={false}
+    >
       <Stack>
         <YStack px="$4" py="$2">
           <H3>{t('home.itsFunTime')}</H3>
@@ -61,10 +55,7 @@ export const Home = ({ navigation }: NavigationProps) => {
               })
             }
           />
-          <AnimeRanking
-            rankingType={RankingType.AIRING}
-            cardType={CardType.HORIZONTAL}
-          />
+          <AnimeRanking rankingType={RankingType.AIRING} cardType={CardType.HORIZONTAL} />
         </Stack>
         <Stack>
           <TitleSection
@@ -76,10 +67,7 @@ export const Home = ({ navigation }: NavigationProps) => {
               })
             }
           />
-          <AnimeRanking
-            rankingType={RankingType.ALL}
-            cardType={CardType.VERTICAL}
-          />
+          <AnimeRanking rankingType={RankingType.ALL} cardType={CardType.VERTICAL} />
         </Stack>
         <Stack>
           <TitleSection
@@ -91,10 +79,7 @@ export const Home = ({ navigation }: NavigationProps) => {
               })
             }
           />
-          <AnimeRanking
-            rankingType={RankingType.UPCOMING}
-            cardType={CardType.HORIZONTAL}
-          />
+          <AnimeRanking rankingType={RankingType.UPCOMING} cardType={CardType.HORIZONTAL} />
         </Stack>
         <Stack>
           <TitleSection
@@ -106,10 +91,7 @@ export const Home = ({ navigation }: NavigationProps) => {
               })
             }
           />
-          <AnimeRanking
-            rankingType={RankingType.BY_POPULARITY}
-            cardType={CardType.VERTICAL}
-          />
+          <AnimeRanking rankingType={RankingType.BY_POPULARITY} cardType={CardType.VERTICAL} />
         </Stack>
         <Stack>
           <TitleSection
@@ -121,10 +103,7 @@ export const Home = ({ navigation }: NavigationProps) => {
               })
             }
           />
-          <AnimeRanking
-            rankingType={RankingType.SPECIAL}
-            cardType={CardType.HORIZONTAL}
-          />
+          <AnimeRanking rankingType={RankingType.SPECIAL} cardType={CardType.HORIZONTAL} />
         </Stack>
       </Stack>
     </ScrollView>

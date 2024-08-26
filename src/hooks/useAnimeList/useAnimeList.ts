@@ -13,11 +13,7 @@ type AnimeListHookProps = {
   enabled?: boolean
 }
 
-export const useAnimeList = ({
-  search,
-  limit = 10,
-  enabled = false,
-}: AnimeListHookProps) => {
+export const useAnimeList = ({ search, limit = 10, enabled = false }: AnimeListHookProps) => {
   const getListAnimes = async ({ pageParam = 0 }) => {
     const data = await animeService.getAll({
       q: search,
@@ -46,8 +42,7 @@ export const useAnimeList = ({
       }
     },
     enabled,
-    getNextPageParam: (lastPage) =>
-      lastPage.paging?.next ? lastPage.nextPage : false,
+    getNextPageParam: (lastPage) => (lastPage.paging?.next ? lastPage.nextPage : false),
     staleTime: Infinity,
   })
 }

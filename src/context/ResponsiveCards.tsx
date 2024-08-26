@@ -17,15 +17,12 @@ export interface ResponsiveCardsInterface {
 }
 
 export const ResponsiveCardsContext = createContext<ResponsiveCardsInterface>(
-  {} as ResponsiveCardsInterface,
+  {} as ResponsiveCardsInterface
 )
 
-export const ResponsiveCardsProvider = ({
-  children,
-}: React.PropsWithChildren) => {
+export const ResponsiveCardsProvider = ({ children }: React.PropsWithChildren) => {
   const { width } = useWindowDimensions()
-  const { isWideDesktop, isTablet, isSmallDesktop, isNormalDesktop } =
-    useMedia()
+  const { isWideDesktop, isTablet, isSmallDesktop, isNormalDesktop } = useMedia()
   const widthWithoutMargin = width - getTokens().space.$4.val * 2
   const spacing = getTokens().space['$2.5'].val
 
@@ -66,20 +63,11 @@ export const ResponsiveCardsProvider = ({
     spacing,
   ]) as WidthResponsive
 
-  const widthVerticalCard = useMemo(
-    () => widthResponsive.width,
-    [widthResponsive.width],
-  )
+  const widthVerticalCard = useMemo(() => widthResponsive.width, [widthResponsive.width])
 
-  const heightVerticalCard = useMemo(
-    () => widthVerticalCard * 1.8,
-    [widthVerticalCard],
-  )
+  const heightVerticalCard = useMemo(() => widthVerticalCard * 1.8, [widthVerticalCard])
 
-  const numberVerticalColumns = useMemo(
-    () => widthResponsive.column,
-    [widthResponsive.column],
-  )
+  const numberVerticalColumns = useMemo(() => widthResponsive.column, [widthResponsive.column])
 
   const widthDivisor = useMemo(() => {
     switch (true) {
@@ -96,14 +84,8 @@ export const ResponsiveCardsProvider = ({
     }
   }, [isWideDesktop, isTablet, isSmallDesktop, isNormalDesktop])
 
-  const widthHorizontalCard = useMemo(
-    () => width / widthDivisor,
-    [widthDivisor, width],
-  )
-  const heightHorizontalCard = useMemo(
-    () => widthHorizontalCard * 0.5,
-    [widthHorizontalCard],
-  )
+  const widthHorizontalCard = useMemo(() => width / widthDivisor, [widthDivisor, width])
+  const heightHorizontalCard = useMemo(() => widthHorizontalCard * 0.5, [widthHorizontalCard])
 
   const value = useMemo(
     () => ({
@@ -119,15 +101,10 @@ export const ResponsiveCardsProvider = ({
       widthVerticalCard,
       heightVerticalCard,
       numberVerticalColumns,
-    ],
+    ]
   )
 
-  return (
-    <ResponsiveCardsContext.Provider value={value}>
-      {children}
-    </ResponsiveCardsContext.Provider>
-  )
+  return <ResponsiveCardsContext.Provider value={value}>{children}</ResponsiveCardsContext.Provider>
 }
 
-export const useResponsiveCardsContext = () =>
-  useContext(ResponsiveCardsContext)
+export const useResponsiveCardsContext = () => useContext(ResponsiveCardsContext)

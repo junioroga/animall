@@ -51,9 +51,7 @@ const getAll = async (options: GetAllProps): Promise<ResponseAnimeList> => {
   return response.data
 }
 
-const getDetails = async (
-  options: GetDetailsProps,
-): Promise<ResponseAnimeDetails> => {
+const getDetails = async (options: GetDetailsProps): Promise<ResponseAnimeDetails> => {
   const params = []
   let paramsQs = ''
 
@@ -65,16 +63,12 @@ const getDetails = async (
     paramsQs = `?${params.join('&')}`
   }
 
-  const response = await api.get<ResponseAnimeDetails>(
-    `${basePath}/${options.animeId}${paramsQs}`,
-  )
+  const response = await api.get<ResponseAnimeDetails>(`${basePath}/${options.animeId}${paramsQs}`)
 
   return response.data
 }
 
-const getRanking = async (
-  options: GetRankingProps,
-): Promise<ResponseAnimeRanking> => {
+const getRanking = async (options: GetRankingProps): Promise<ResponseAnimeRanking> => {
   const params = []
   let paramsQs = ''
 
@@ -98,9 +92,7 @@ const getRanking = async (
     paramsQs = `?${params.join('&')}`
   }
 
-  const response = await api.get<ResponseAnimeRanking>(
-    `${basePath}/ranking${paramsQs}`,
-  )
+  const response = await api.get<ResponseAnimeRanking>(`${basePath}/ranking${paramsQs}`)
 
   return response.data
 }

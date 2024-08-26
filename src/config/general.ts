@@ -42,10 +42,8 @@ export const API_ERROR_TYPE_CANCEL = 'cancel'
 // -----------------------------------------------------------------------------
 // Keyboard
 // -----------------------------------------------------------------------------
-export const KEYBOARD_NUMERIC_PAD =
-  Platform.OS === 'ios' ? 'number-pad' : 'numeric'
-export const KEYBOARD_PHONE_PAD =
-  Platform.OS === 'ios' ? 'number-pad' : 'phone-pad'
+export const KEYBOARD_NUMERIC_PAD = Platform.OS === 'ios' ? 'number-pad' : 'numeric'
+export const KEYBOARD_PHONE_PAD = Platform.OS === 'ios' ? 'number-pad' : 'phone-pad'
 
 export const blurhash = {
   blurhash:

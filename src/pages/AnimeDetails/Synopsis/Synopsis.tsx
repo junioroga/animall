@@ -15,9 +15,7 @@ type Props = {
 export const Synopsis = observer(({ synopsis }: Props) => {
   const { t } = useTranslation()
   const synopsisReduced =
-    (synopsis?.length ?? 0) > 100
-      ? synopsis?.substring(0, 100).concat(' ...')
-      : synopsis
+    (synopsis?.length ?? 0) > 100 ? synopsis?.substring(0, 100).concat(' ...') : synopsis
   const [open, setOpen] = useLegendState<boolean>(false)
   const [text, setText] = useLegendState<string>(synopsisReduced ?? '')
   const canExpand = (synopsis?.length ?? 0) > 104
@@ -36,7 +34,8 @@ export const Synopsis = observer(({ synopsis }: Props) => {
         o: 0,
       }}
       o={1}
-      y={0}>
+      y={0}
+    >
       <Text fow="$6">{t('anime.details.synopsis')}</Text>
       <YStack py="$2" onPress={canExpand ? toggleExpanded : undefined}>
         <Text col="$gray11">{text}</Text>

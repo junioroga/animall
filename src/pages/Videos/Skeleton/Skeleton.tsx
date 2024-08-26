@@ -22,7 +22,8 @@ export const Skeleton = ({ heightContent }: Props) => {
       viewBox={`0 0 ${width} ${heightContent}`}
       backgroundColor={theme.color5.val}
       foregroundColor={theme.color8.val}
-      style={{ position: 'absolute' }}>
+      style={{ position: 'absolute' }}
+    >
       <Rect x="0" y="0" rx="0" ry="0" width={width} height={heightContent} />
     </ContentLoader>
   )
