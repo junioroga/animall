@@ -3,7 +3,7 @@ import { View as MockView, ViewProps } from 'react-native'
 import { RouteProp } from '@react-navigation/native'
 
 import { RootStackParamListHome } from '@/navigators/Home'
-import { fireEvent, render } from '~/test/test-utils'
+import { act, fireEvent, render } from '~/test/test-utils'
 
 import { Videos } from '../Videos'
 import { videosMock } from './mock'
@@ -31,18 +31,22 @@ describe('Videos', () => {
     return render(<Videos route={route} navigation={navigation} />)
   }
 
-  it('render screen correctly', () => {
+  it('render screen correctly', async () => {
     const rendered = setup()
 
-    expect(rendered).toBeTruthy()
+    await act(async () => {
+      expect(rendered).toBeTruthy()
+    })
   })
 
-  it('render videos and press on first video', () => {
+  it('render videos and press on first video', async () => {
     const { getByTestId } = setup()
 
     const button = getByTestId('button-video-14130')
 
-    fireEvent.press(button)
+    await act(async () => {
+      fireEvent.press(button)
+    })
 
     expect(button).toBeTruthy()
   })

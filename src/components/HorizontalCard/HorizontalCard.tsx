@@ -75,7 +75,7 @@ const HorizontalCard = ({ item }: HorizontalCardProps) => {
           <YStack f={1}>
             <Stack h={heightHorizontalCard / 2} jc="center">
               <Text col="$color12" fow="$6" fos="$5" numberOfLines={3}>
-                {item.customTitle || item.title}
+                {item.customTitle}
               </Text>
             </Stack>
             <Stack h={heightHorizontalCard / 2} gap="$1.5" mt="$2">

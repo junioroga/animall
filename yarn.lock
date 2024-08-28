@@ -6071,9 +6071,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@testing-library/react-native@npm:^12.3.2":
-  version: 12.5.0
-  resolution: "@testing-library/react-native@npm:12.5.0"
+"@testing-library/react-native@npm:^12.6.1":
+  version: 12.6.1
+  resolution: "@testing-library/react-native@npm:12.6.1"
   dependencies:
     jest-matcher-utils: "npm:^29.7.0"
     pretty-format: "npm:^29.7.0"
@@ -6086,7 +6086,7 @@ __metadata:
   peerDependenciesMeta:
     jest:
       optional: true
-  checksum: 10c0/963cd3ef98280d874aa992b934d0cb2cab91f5dea050c8c991c8001e79124059b118a2f61f87ea986bf1aaef448ad46d3f416eb310b2a8c88330011dd3b75a95
+  checksum: 10c0/e028e39ca4ad6915c3a9699f479aff582328e252243009d313264dbb1eac8f4b7721b786ea0aed59b17939c8639e0addd18e08ee628900ff65a30b41c6ba0919
   languageName: node
   linkType: hard
 
@@ -6269,7 +6269,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/jest@npm:^29.5.6":
+"@types/jest@npm:^29.5.12":
   version: 29.5.12
   resolution: "@types/jest@npm:29.5.12"
   dependencies:
@@ -6642,8 +6642,8 @@ __metadata:
     "@tamagui/metro-plugin": "npm:^1.109.5"
     "@tamagui/react-native-svg": "npm:^1.109.5"
     "@tanstack/react-query": "npm:^4.33.0"
-    "@testing-library/react-native": "npm:^12.3.2"
-    "@types/jest": "npm:^29.5.6"
+    "@testing-library/react-native": "npm:^12.6.1"
+    "@types/jest": "npm:^29.5.12"
     "@types/lodash": "npm:^4.14.200"
     "@types/react": "npm:~18.2.79"
     "@types/react-dom": "npm:~18.2.25"
@@ -6664,9 +6664,9 @@ __metadata:
     expo-splash-screen: "npm:~0.27.5"
     expo-status-bar: "npm:~1.12.1"
     i18next: "npm:^23.6.0"
-    jest: "npm:^29.2.1"
+    jest: "npm:^29.7.0"
     jest-expo: "npm:~51.0.4"
-    jest-transformer-svg: "npm:^2.0.1"
+    jest-transformer-svg: "npm:^2.0.2"
     lefthook: "npm:^1.6.15"
     lodash: "npm:^4.17.21"
     lottie-react-native: "npm:6.7.0"
@@ -6688,7 +6688,7 @@ __metadata:
     react-native-web: "npm:^0.19.6"
     react-native-webview: "npm:13.8.6"
     react-native-youtube-iframe: "npm:^2.3.0"
-    react-test-renderer: "npm:18.2.0"
+    react-test-renderer: "npm:^18.3.1"
     react-youtube: "npm:^10.1.0"
     tamagui: "npm:^1.109.5"
     ts-node: "npm:^10.9.2"
@@ -11710,7 +11710,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"jest-transformer-svg@npm:^2.0.1":
+"jest-transformer-svg@npm:^2.0.2":
   version: 2.0.2
   resolution: "jest-transformer-svg@npm:2.0.2"
   peerDependencies:
@@ -11804,7 +11804,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"jest@npm:^29.2.1":
+"jest@npm:^29.7.0":
   version: 29.7.0
   resolution: "jest@npm:29.7.0"
   dependencies:
@@ -14594,7 +14594,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-is@npm:^16.12.0 || ^17.0.0 || ^18.0.0, react-is@npm:^18.0.0, react-is@npm:^18.2.0":
+"react-is@npm:^16.12.0 || ^17.0.0 || ^18.0.0, react-is@npm:^18.0.0, react-is@npm:^18.2.0, react-is@npm:^18.3.1":
   version: 18.3.1
   resolution: "react-is@npm:18.3.1"
   checksum: 10c0/f2f1e60010c683479e74c63f96b09fb41603527cd131a9959e2aee1e5a8b0caf270b365e5ca77d4a6b18aae659b60a86150bb3979073528877029b35aecd2072
@@ -15044,6 +15044,19 @@ __metadata:
   peerDependencies:
     react: ^18.2.0
   checksum: 10c0/53dfada1da1e8dd0498a5601e9eea3dc6ca23c6c2694d1cab9712faea869c11e4ce1c9a618d674cb668a668b41fb6bcf9a7b0a078cd853b1922f002fa22f42c8
+  languageName: node
+  linkType: hard
+
+"react-test-renderer@npm:^18.3.1":
+  version: 18.3.1
+  resolution: "react-test-renderer@npm:18.3.1"
+  dependencies:
+    react-is: "npm:^18.3.1"
+    react-shallow-renderer: "npm:^16.15.0"
+    scheduler: "npm:^0.23.2"
+  peerDependencies:
+    react: ^18.3.1
+  checksum: 10c0/c633558ef9af33bc68f0c4dbb5163a004c4fb9eade7bd0a7cfc0355fb367f36bd9d96533c90b7e85a146be6c525113a15f58683d269e0177ad77e2b04d4fe51c
   languageName: node
   linkType: hard
 

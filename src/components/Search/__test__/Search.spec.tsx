@@ -2,7 +2,7 @@ import React from 'react'
 
 import { mocked } from 'jest-mock'
 
-import { fireEvent, render } from '~/test/test-utils'
+import { act, fireEvent, render } from '~/test/test-utils'
 
 import { Search, SearchProps } from '../Search'
 
@@ -22,7 +22,7 @@ describe('Search', () => {
     jest.clearAllMocks()
   })
 
-  it('when input is filled', () => {
+  it('when input is filled', async () => {
     mocked(mockSetSearch).mockImplementationOnce(() => 'Naruto')
     const { getByTestId } = setup({
       search: 'Naruto',
@@ -30,23 +30,29 @@ describe('Search', () => {
     })
 
     const input = getByTestId('test-input-search')
-    fireEvent.changeText(input, 'Naruto')
+
+    await act(async () => {
+      fireEvent.changeText(input, 'Naruto')
+    })
 
     expect(input.props.value).toEqual('Naruto')
     expect(mockSetSearch).toHaveBeenCalledTimes(1)
   })
 
-  it('when search length is minus than three, button has disabled', () => {
+  it('when search length is minus than three, button has disabled', async () => {
     const { getByTestId } = setup({
       search: 'Na',
       setSearch: mockSetSearch,
     })
 
     const button = getByTestId('test-button-search')
-    expect(button.props.pointerEvents).toEqual('none')
+
+    await act(async () => {
+      expect(button.props.pointerEvents).toEqual('none')
+    })
   })
 
-  it('press button when has search length with more than 3 characters', () => {
+  it('press button when has search length with more than 3 characters', async () => {
     mocked(mockSetSearch).mockImplementationOnce(() => 'Naruto')
     const { getByTestId } = setup({
       search: 'Naruto',
@@ -55,7 +61,9 @@ describe('Search', () => {
     })
     const button = getByTestId('test-button-search')
 
-    fireEvent.press(button)
+    await act(async () => {
+      fireEvent.press(button)
+    })
     expect(mockOnSearch).toHaveBeenCalledTimes(1)
   })
 })
