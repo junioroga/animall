@@ -2,19 +2,9 @@ import React from 'react'
 
 import { Button } from 'tamagui'
 
-import { fireEvent, render } from '~/test/test-utils'
+import { act, fireEvent, render } from '~/test/test-utils'
 
 import { Header, HeaderProps } from '../Header'
-
-jest.mock('@/store', () => ({
-  Store: {
-    settings: {
-      theme: {
-        get: jest.fn(),
-      },
-    },
-  },
-}))
 
 describe('Header', () => {
   const setup = (props: HeaderProps) => {
@@ -25,17 +15,30 @@ describe('Header', () => {
     jest.clearAllMocks()
   })
 
-  it('renders with button on right', () => {
+  it('renders with button on right', async () => {
     const mockPress = jest.fn()
 
-    const rendered = setup({
+    const { getByTestId } = setup({
       right: <Button onPress={mockPress} testID="button-right" />,
     })
 
-    const buttonRight = rendered.getByTestId('button-right')
-    fireEvent.press(buttonRight)
+    const buttonRight = getByTestId('button-right')
+
+    await act(async () => {
+      fireEvent.press(buttonRight)
+    })
 
     expect(mockPress).toHaveBeenCalledTimes(1)
     expect(buttonRight).toBeTruthy()
+  })
+
+  it('renders with title', async () => {
+    const { getByText } = setup({
+      title: 'Teste',
+    })
+
+    await act(async () => {
+      expect(getByText('Teste'))
+    })
   })
 })

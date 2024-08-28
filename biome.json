@@ -16,6 +16,7 @@
       "**/expo-env.d.ts",
       "**/.tamagui/**",
       "jest.setup.js",
+      "jest.config.js",
       "coverage"
     ]
   },
@@ -93,6 +94,7 @@
       ".expo-shared/**",
       "**/.tamagui/**",
       "jest.setup.js",
+      "jest.config.js",
       "coverage"
     ]
   },

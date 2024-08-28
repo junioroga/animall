@@ -1,12 +1,15 @@
 import React from 'react'
 
-import { render } from '~/test/test-utils'
+import { act, render } from '~/test/test-utils'
 
 import { Switch } from '../Switch'
 
 describe('Switch', () => {
-  it('renders correctly', () => {
+  it('renders correctly', async () => {
     const rendered = render(<Switch />)
-    expect(rendered).toBeTruthy()
+
+    await act(async () => {
+      expect(rendered).toBeTruthy()
+    })
   })
 })
