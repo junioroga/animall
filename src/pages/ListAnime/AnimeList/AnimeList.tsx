@@ -15,6 +15,7 @@ import { AnimeDataPrepared, preparedData } from './data'
 import { Skeleton } from './Skeleton'
 
 import { useResponsiveCardsContext } from '@/context/ResponsiveCards'
+import Animated, { LinearTransition } from 'react-native-reanimated'
 
 type Props = Partial<Omit<ReturnType<typeof useInfiniteQuery>, 'data'>> & {
   limit: number
@@ -99,7 +100,7 @@ export const AnimeList = observer(
     )
 
     return (
-      <FlatList
+      <Animated.FlatList
         key={numberVerticalColumns}
         keyExtractor={keyExtractor}
         data={isLoading ? [] : formattedData}
@@ -120,6 +121,8 @@ export const AnimeList = observer(
         }}
         initialNumToRender={limit}
         showsVerticalScrollIndicator={false}
+        keyboardDismissMode="on-drag"
+        itemLayoutAnimation={LinearTransition}
       />
     )
   }
