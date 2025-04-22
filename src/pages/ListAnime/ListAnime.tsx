@@ -1,4 +1,4 @@
-import { useMemo } from 'react'
+import { useCallback, useEffect, useMemo } from 'react'
 import { useWindowDimensions } from 'react-native'
 
 import { observer } from '@legendapp/state/react'
@@ -7,8 +7,7 @@ import { useQueryClient } from '@tanstack/react-query'
 import { Stack, YStack } from 'tamagui'
 
 import { Search } from '@/components'
-import { useAnimeList } from '@/hooks'
-import { useLegendState } from '@/hooks/useLegendState'
+import { useAnimeList, useDebounceValue, useLegendState } from '@/hooks'
 
 import { AnimeList } from './AnimeList'
 
@@ -20,18 +19,25 @@ export const ListAnime = observer(() => {
   const queryClient = useQueryClient()
   const [refreshingManual, setRefreshingManual] = useLegendState(false)
   const [search, setSearch] = useLegendState('')
+  const debouncedSearch = useDebounceValue(search, 500)
   const limit = useMemo(
     () => Math.round((height / heightVerticalCard) * numberVerticalColumns),
     [height, heightVerticalCard, numberVerticalColumns]
   )
 
   const { refetch, isFetching, isFetchingNextPage, hasNextPage, fetchNextPage, data } =
-    useAnimeList({ limit, search })
+    useAnimeList({ limit, search: debouncedSearch })
 
-  const refetchQuery = () => {
+  const refetchQuery = useCallback(() => {
     queryClient.removeQueries({ queryKey: ['anime-list'] })
     refetch()
-  }
+  }, [queryClient, refetch])
+
+  useEffect(() => {
+    if (debouncedSearch.length > 3) {
+      refetchQuery()
+    }
+  }, [debouncedSearch, refetchQuery])
 
   const onRefresh = () => {
     if (data?.pages.length) {
@@ -44,7 +50,7 @@ export const ListAnime = observer(() => {
   return (
     <YStack f={1} bg="$background">
       <Stack p="$4">
-        <Search search={search} setSearch={setSearch} onSearch={refetchQuery} />
+        <Search search={search} setSearch={setSearch} />
       </Stack>
       <AnimeList
         isLoading={isFetching && !isFetchingNextPage}
