@@ -1,5 +1,3 @@
-import React from 'react'
-
 import { act, render } from '~/test/test-utils'
 
 import { Switch } from '../Switch'

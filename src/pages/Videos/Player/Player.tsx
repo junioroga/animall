@@ -1,5 +1,3 @@
-import React from 'react'
-
 import YoutubePlayer from 'react-native-youtube-iframe'
 
 import { PlayerProps } from './types'

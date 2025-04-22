@@ -1,5 +1,3 @@
-import React from 'react'
-
 import { Button } from 'tamagui'
 
 import { act, fireEvent, render } from '~/test/test-utils'

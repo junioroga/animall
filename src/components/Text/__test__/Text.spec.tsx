@@ -1,5 +1,3 @@
-import React from 'react'
-
 import { render } from '~/test/test-utils'
 
 import { Text } from '../Text'

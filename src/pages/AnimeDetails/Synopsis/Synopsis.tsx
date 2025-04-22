@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react'
+import { useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
 
 import { observer } from '@legendapp/state/react'
@@ -6,7 +6,7 @@ import { observer } from '@legendapp/state/react'
 import { Button, YStack } from 'tamagui'
 
 import { Text } from '@/components'
-import { useLegendState } from '@/hooks/useLegendState'
+import { useLegendState } from '@/hooks'
 
 type Props = {
   synopsis?: string

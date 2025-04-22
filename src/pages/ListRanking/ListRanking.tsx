@@ -5,12 +5,11 @@ import { observer } from '@legendapp/state/react'
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import { useQueryClient } from '@tanstack/react-query'
 
-import { Button, YStack } from 'tamagui'
 import { SlidersHorizontal } from '@tamagui/lucide-icons'
+import { Button, YStack } from 'tamagui'
 
 import { Header } from '@/components'
-import { QueryKeysRanking, useAnimeRanking } from '@/hooks'
-import { useLegendState } from '@/hooks/useLegendState'
+import { QueryKeysRanking, useAnimeRanking, useLegendState } from '@/hooks'
 import { RootStackParamListHome } from '@/navigators/Home'
 
 import { AnimeRanking } from './AnimeRanking'

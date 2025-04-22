@@ -1,5 +1,4 @@
 import '@/config/i18n'
-import '~/global.css'
 import { useCallback } from 'react'
 
 import {
@@ -16,7 +15,7 @@ import {
 } from '@expo-google-fonts/poppins'
 import { observer } from '@legendapp/state/react'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import { initialWindowMetrics, SafeAreaProvider } from 'react-native-safe-area-context'
+import { SafeAreaProvider, initialWindowMetrics } from 'react-native-safe-area-context'
 
 import * as SplashScreen from 'expo-splash-screen'
 import { StatusBar } from 'expo-status-bar'

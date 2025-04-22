@@ -4,17 +4,16 @@ import { FlatList, ListRenderItem } from 'react-native'
 
 import { observer } from '@legendapp/state/react'
 
-import { getTokens, Separator, useMedia, useTheme } from 'tamagui'
+import { Separator, getTokens, useMedia, useTheme } from 'tamagui'
 
 import { EmptyState, EmptyStateTypes, HorizontalCard, VerticalCard } from '@/components'
-import { QueryKeysRanking, useAnimeRanking } from '@/hooks'
-import { useLegendState } from '@/hooks/useLegendState'
+import { QueryKeysRanking, useAnimeRanking, useLegendState } from '@/hooks'
 import { CardType, RankingType } from '@/services/types'
 
 import { ButtonsScrollHorizontalWeb } from './ButtonsScrollHorizontalWeb'
-import { AnimeRankingPrepared, preparedData } from './data'
 import { SkeletonHorizontal } from './SkeletonHorizontal'
 import { SkeletonVertical } from './SkeletonVertical'
+import { AnimeRankingPrepared, preparedData } from './data'
 
 import { useResponsiveCardsContext } from '@/context/ResponsiveCards'
 

@@ -1,5 +1,3 @@
-import React from 'react'
-
 import { act, fireEvent, render } from '~/test/test-utils'
 
 import VerticalCard, { VerticalCardProps } from '../VerticalCard'

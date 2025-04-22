@@ -1,6 +1,6 @@
 import { useCallback, useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
-import { FlatList, ListRenderItem } from 'react-native'
+import { ListRenderItem } from 'react-native'
 
 import { observer } from '@legendapp/state/react'
 import { useInfiniteQuery } from '@tanstack/react-query'

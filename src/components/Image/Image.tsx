@@ -1,5 +1,3 @@
-import React from 'react'
-
 import Animated, { AnimatedProps } from 'react-native-reanimated'
 
 import { Image as ExpoImage, ImageProps } from 'expo-image'

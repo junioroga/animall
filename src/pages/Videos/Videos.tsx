@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo } from 'react'
+import { useCallback, useMemo } from 'react'
 import { Platform, Pressable, useWindowDimensions } from 'react-native'
 
 import { observer } from '@legendapp/state/react'
@@ -7,22 +7,22 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context'
 
 import * as ScreenOrientation from 'expo-screen-orientation'
 
+import { Play } from '@tamagui/lucide-icons'
 import {
   Circle,
-  getTokens,
   ScrollView,
   Stack,
   Text,
-  useMedia,
-  useTheme,
   XStack,
   YStack,
+  getTokens,
+  useMedia,
+  useTheme,
 } from 'tamagui'
-import { Play } from '@tamagui/lucide-icons'
 
 import { Header, Image } from '@/components'
+import { useLegendState } from '@/hooks'
 import { Videos as VideosType } from '@/hooks/useAnimeList/types'
-import { useLegendState } from '@/hooks/useLegendState'
 import { RootStackParamListHome } from '@/navigators/Home/Home'
 import { getYouTubeVideoIdFromUrl } from '@/utils/regex'
 

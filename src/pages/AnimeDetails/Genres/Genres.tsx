@@ -1,5 +1,3 @@
-import React from 'react'
-
 import { Button, XStack } from 'tamagui'
 
 import { Genres as GenresType } from '@/hooks/useAnimeList/types'
