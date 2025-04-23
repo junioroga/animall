@@ -11,6 +11,8 @@ This is a React Native App to show information about Animes and Mangas. The data
 
 Project created with Expo CLI. [See official docs](https://docs.expo.dev/get-started/create-a-project) to set up the environment.
 
+#### #### Update: The project was ejected to Bare Workflow ####
+
 ## 🛠 Used Technologies
 
 The following tools were used to build the project:
@@ -18,13 +20,13 @@ The following tools were used to build the project:
 - [Expo](https://expo.io/)
 - [React Native](https://reactnative.dev/)
 - [TypeScript](https://www.typescriptlang.org/)
-- [Tamagui](https://www.tamagui.dev/): Style and UI for React (web and native) meet an optimizing compiler
+- [Tamagui](https://tamagui.dev/): Style and UI for React (web and native) meet an optimizing compiler
 - [Reanimated](https://docs.swmansion.com/react-native-reanimated/): React Native Reanimated is a powerful animation library built by Software Mansion.
 - [React Navigation](https://reactnavigation.org/docs/getting-started/): Routes and navigation
 - [Axios](https://axios-http.com/ptbr/docs/intro): Promise based HTTP client
 - [React Query](https://tanstack.com/query/v3/): Fetching, caching, synchronizing and updating server state
 - [Legend-state](https://legendapp.com/open-source/state/): Control all application states instead of using react native's useState
-- [AsyncStorage](https://docs.expo.dev/versions/latest/sdk/async-storage/): A library that provides an asynchronous, unencrypted, persistent, key-value storage API.
+- [React Native MMKV](https://github.com/mrousavy/react-native-mmkv): The fastest key/value storage for React Native (using with LegendState to persist the application data).
 - [React Content Loader](https://github.com/danilowoz/react-content-loader): A SVG-Powered component to easily create placeholder loadings (like Facebook's cards loading).
 - [Jest](https://jestjs.io/): Jest is a delightful JavaScript Testing Framework with a focus on simplicity.
 - [MSW](https://mswjs.io/): Mock Service Worker is an API mocking library that allows you to write client-agnostic mocks and reuse them across any frameworks, tools, and environments.
