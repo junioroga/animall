@@ -2,8 +2,8 @@ import { useTranslation } from 'react-i18next'
 
 import { ProgressCircle } from 'react-native-svg-charts'
 
-import { getTokens, Stack, useTheme, XStack, YStack, ZStack } from 'tamagui'
 import { PlayCircle, Timer, TimerReset } from '@tamagui/lucide-icons'
+import { Stack, XStack, YStack, ZStack, getTokens, useTheme } from 'tamagui'
 
 import { Image, Text } from '@/components'
 import { MainPicture } from '@/hooks/useAnimeList/types'
@@ -37,7 +37,7 @@ export const HeaderDetails = ({
     <Stack>
       <ZStack>
         <Image
-          source={mainPicture?.medium}
+          source={{ uri: mainPicture?.medium }}
           style={{ height: heightHorizontalCard * 1.3 }}
           contentFit="cover"
           blurRadius={2}
@@ -46,7 +46,7 @@ export const HeaderDetails = ({
       </ZStack>
       <XStack p="$4" gap="$2" f={1}>
         <Image
-          source={mainPicture?.medium}
+          source={{ uri: mainPicture?.medium }}
           style={{
             borderRadius: 3,
             height: heightHorizontalCard * 1.1,

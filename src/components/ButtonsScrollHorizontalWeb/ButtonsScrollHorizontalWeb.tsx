@@ -2,8 +2,8 @@ import { useState } from 'react'
 
 import { observer } from '@legendapp/state/react'
 
-import { Button } from 'tamagui'
 import { ArrowLeft, ArrowRight } from '@tamagui/lucide-icons'
+import { Button } from 'tamagui'
 
 import { CardType } from '@/services/types'
 

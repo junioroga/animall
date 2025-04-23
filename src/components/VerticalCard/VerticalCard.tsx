@@ -4,14 +4,14 @@ import { Pressable } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 import { NativeStackNavigationProp } from '@react-navigation/native-stack'
 
-import { Card, getTokens, Stack, useTheme, XStack, ZStack } from 'tamagui'
 import { Star } from '@tamagui/lucide-icons'
+import { Card, Stack, XStack, ZStack, getTokens, useTheme } from 'tamagui'
 
 import { Image } from '@/components/Image'
 import { Text } from '@/components/Text'
+import { blurhash } from '@/config/general'
 import { RootStackParamListHome } from '@/navigators/Home/Home'
 import { AnimeDataPrepared } from '@/pages/ListAnime/AnimeList/data'
-import { blurhash } from '@/config/general'
 
 import { AnimeRankingPrepared } from '../../pages/Home/AnimeRanking/data'
 
@@ -53,13 +53,12 @@ const VerticalCard = ({ item, pushNavigation = false }: VerticalCardProps) => {
               borderTopLeftRadius: getTokens().radius[2].val,
               borderTopRightRadius: getTokens().radius[2].val,
             }}
-            source={item?.main_picture?.medium}
+            source={{ uri: item?.main_picture?.medium }}
             contentFit="fill"
             recyclingKey={item?.main_picture?.medium}
             transition={700}
             placeholder={blurhash}
             defaultSource={require('@/assets/loading.png')}
-            sharedTransitionTag={item.customId}
           />
           {item?.rating && (
             <Stack h={getTokens().size['$1.5'].val} pos="absolute" l={0} b={0} r={0} jc="center">

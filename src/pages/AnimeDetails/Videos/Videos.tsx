@@ -5,8 +5,8 @@ import { Pressable } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 import { NativeStackNavigationProp } from '@react-navigation/native-stack'
 
-import { Circle, getTokens, ScrollView, Stack, useTheme, XStack, YStack } from 'tamagui'
 import { Play } from '@tamagui/lucide-icons'
+import { Circle, ScrollView, Stack, XStack, YStack, getTokens, useTheme } from 'tamagui'
 
 import { Image, Text } from '@/components'
 import { Videos as VideosType } from '@/hooks/useAnimeList/types'
@@ -51,7 +51,7 @@ export const Videos = ({ videos }: Props) => {
                 onPress={() => handlePressVideo(video)}
               >
                 <Image
-                  source={video.thumbnail}
+                  source={{ uri: video.thumbnail }}
                   style={{
                     opacity: 0.7,
                     borderRadius: getTokens().size['$0.5'].val,

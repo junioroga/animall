@@ -3,12 +3,11 @@ import { Platform } from 'react-native'
 import { observable } from '@legendapp/state'
 import { persistObservable } from '@legendapp/state/persist'
 import { ObservablePersistLocalStorage } from '@legendapp/state/persist-plugins/local-storage'
-
-import { ObservablePersistAsyncStorage } from './observablePersist'
+import { ObservablePersistMMKV } from '@legendapp/state/persist-plugins/mmkv'
 import { settings } from './observers'
 
 const pluginLocal: any =
-  Platform.OS === 'web' ? ObservablePersistLocalStorage : ObservablePersistAsyncStorage
+  Platform.OS === 'web' ? ObservablePersistLocalStorage : ObservablePersistMMKV
 
 export const Store = observable({ settings })
 

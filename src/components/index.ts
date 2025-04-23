@@ -1,3 +1,4 @@
+export * from './ButtonsScrollHorizontalWeb'
 export * from './Header'
 export * from './HorizontalCard'
 export * from './Input'

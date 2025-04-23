@@ -3,7 +3,7 @@ import { useWindowDimensions } from 'react-native'
 
 import LottieView from 'lottie-react-native'
 
-import { Button, H6, YStack } from 'tamagui'
+import { Button, H6, Stack, YStack } from 'tamagui'
 
 import { Text } from '@/components/Text'
 
@@ -45,12 +45,9 @@ export const EmptyState = ({ type, alert, message, action, onPress }: EmptyState
   return (
     <YStack f={1} ai="center" jc="center" gap="$4">
       {alert && <H6>{alert}</H6>}
-      <LottieView
-        source={defineType[type].source}
-        style={defineType[type].style}
-        autoPlay
-        loop={false}
-      />
+      <Stack style={defineType[type].style}>
+        <LottieView source={defineType[type].source} autoPlay loop={false} />
+      </Stack>
       {message && <Text>{message}</Text>}
       {action && onPress && (
         <Button onPress={onPress}>

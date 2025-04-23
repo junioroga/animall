@@ -4,14 +4,14 @@ import { Pressable } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 import { NativeStackNavigationProp } from '@react-navigation/native-stack'
 
-import { Card, Stack, XStack, YStack, ZStack } from 'tamagui'
 import { CalendarDays, Timer } from '@tamagui/lucide-icons'
+import { Card, Stack, XStack, YStack, ZStack } from 'tamagui'
 
 import { Image } from '@/components/Image'
 import { Text } from '@/components/Text'
+import { blurhash } from '@/config/general'
 import { RootStackParamListHome } from '@/navigators/Home/Home'
 import { AnimeRankingPrepared } from '@/pages/Home/AnimeRanking/data'
-import { blurhash } from '@/config/general'
 
 import { useResponsiveCardsContext } from '@/context/ResponsiveCards'
 
@@ -47,7 +47,7 @@ const HorizontalCard = ({ item }: HorizontalCardProps) => {
         <Card.Background br="$2">
           <ZStack>
             <Image
-              source={item?.main_picture?.medium}
+              source={{ uri: item?.main_picture?.medium }}
               style={{ height: heightHorizontalCard / 2 }}
               contentFit="cover"
               blurRadius={2}
@@ -63,13 +63,12 @@ const HorizontalCard = ({ item }: HorizontalCardProps) => {
                 width: '90%',
                 borderRadius: 3,
               }}
-              source={item?.main_picture?.medium}
+              source={{ uri: item?.main_picture?.medium }}
               contentFit="fill"
               recyclingKey={item?.main_picture?.medium}
               transition={700}
               placeholder={blurhash}
               defaultSource={require('@/assets/loading.png')}
-              sharedTransitionTag={item.customId}
             />
           </Stack>
           <YStack f={1}>

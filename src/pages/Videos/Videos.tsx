@@ -101,7 +101,7 @@ export const Videos = observer(({ route }: Props) => {
               >
                 <Image
                   contentFit="contain"
-                  source={video.thumbnail}
+                  source={{ uri: video.thumbnail }}
                   style={{
                     borderRadius: getTokens().size['$0.5'].val,
                     height: getTokens().size.$10.val,

@@ -5,9 +5,9 @@ import { Alert, Platform, Share, useWindowDimensions } from 'react-native'
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 
-import { Button, getTokens, ScrollView, Stack, useTheme, YStack } from 'tamagui'
-import { LinearGradient } from 'tamagui/linear-gradient'
 import { Share as ShareIcon } from '@tamagui/lucide-icons'
+import { Button, ScrollView, Stack, YStack, getTokens, useTheme } from 'tamagui'
+import { LinearGradient } from 'tamagui/linear-gradient'
 
 import { Header } from '@/components'
 import { useAnimeDetails } from '@/hooks'
@@ -16,7 +16,6 @@ import { hexToRgb } from '@/utils/color'
 
 import { AnimeNumbers } from './AnimeNumbers'
 import { Chart } from './Chart'
-import { AnimeDetailsPrepared, preparedData } from './data'
 import { Genres } from './Genres'
 import { HeaderDetails } from './HeaderDetails'
 import { MoreInfo } from './MoreInfo'
@@ -25,13 +24,14 @@ import { RelatedAnime } from './RelatedAnime'
 import { Skeleton } from './Skeleton'
 import { Synopsis } from './Synopsis'
 import { Videos } from './Videos'
+import { AnimeDetailsPrepared, preparedData } from './data'
 
 import { useResponsiveCardsContext } from '@/context/ResponsiveCards'
 
 type Props = NativeStackScreenProps<RootStackParamListHome, 'AnimeDetails'>
 
 export const AnimeDetails = ({ route }: Props) => {
-  const { animeId, title, image, customId } = route.params
+  const { animeId, title } = route.params
   const { data, isLoading } = useAnimeDetails({ animeId })
   const { bottom } = useSafeAreaInsets()
   const theme = useTheme()
@@ -80,7 +80,7 @@ export const AnimeDetails = ({ route }: Props) => {
         title={title}
       />
       {isLoading && !Object.keys(formattedData).length ? (
-        <Skeleton picture={image} sharedTransitionId={customId} />
+        <Skeleton />
       ) : (
         <YStack f={1}>
           <Stack>

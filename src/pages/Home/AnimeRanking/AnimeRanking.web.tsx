@@ -6,11 +6,16 @@ import { observer } from '@legendapp/state/react'
 
 import { Separator, getTokens, useMedia, useTheme } from 'tamagui'
 
-import { EmptyState, EmptyStateTypes, HorizontalCard, VerticalCard } from '@/components'
+import {
+  ButtonsScrollHorizontalWeb,
+  EmptyState,
+  EmptyStateTypes,
+  HorizontalCard,
+  VerticalCard,
+} from '@/components'
 import { QueryKeysRanking, useAnimeRanking, useLegendState } from '@/hooks'
 import { CardType, RankingType } from '@/services/types'
 
-import { ButtonsScrollHorizontalWeb } from './ButtonsScrollHorizontalWeb'
 import { SkeletonHorizontal } from './SkeletonHorizontal'
 import { SkeletonVertical } from './SkeletonVertical'
 import { AnimeRankingPrepared, preparedData } from './data'
